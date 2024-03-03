@@ -4,8 +4,6 @@ import '/pages/pages/components/setting_page_list_item/setting_page_list_item_wi
 import '/pages/pages/components/social_media_icon/social_media_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'settings_page_model.dart';
 export 'settings_page_model.dart';
@@ -48,7 +46,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
           borderRadius: 30,
           borderWidth: 1,
           buttonSize: 60,
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: Colors.white,
             size: 30,
@@ -66,23 +64,24 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             fontSize: 22,
           ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 2,
       ),
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: AlignmentDirectional(0, 0),
+          alignment: const AlignmentDirectional(0, 0),
           child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListView(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: [
                     wrapWithModel(
@@ -162,14 +161,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 8),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 0, 8),
                   child: Text(
                     'Follow us on',
                     style: MyTheme.of(context).labelMedium,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -177,7 +176,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         model: _model.socialMediaIconModel1,
                         updateCallback: () => setState(() {}),
                         child: SocialMediaIconWidget(
-                          iconName: FaIcon(
+                          iconName: const FaIcon(
                             FontAwesomeIcons.youtube,
                           ),
                           iconAction: () async {},
@@ -187,7 +186,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         model: _model.socialMediaIconModel2,
                         updateCallback: () => setState(() {}),
                         child: SocialMediaIconWidget(
-                          iconName: FaIcon(
+                          iconName: const FaIcon(
                             FontAwesomeIcons.youtube,
                           ),
                           iconAction: () async {},
@@ -197,7 +196,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         model: _model.socialMediaIconModel3,
                         updateCallback: () => setState(() {}),
                         child: SocialMediaIconWidget(
-                          iconName: FaIcon(
+                          iconName: const FaIcon(
                             FontAwesomeIcons.youtube,
                           ),
                           iconAction: () async {},
@@ -207,31 +206,31 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         model: _model.socialMediaIconModel4,
                         updateCallback: () => setState(() {}),
                         child: SocialMediaIconWidget(
-                          iconName: FaIcon(
+                          iconName: const FaIcon(
                             FontAwesomeIcons.youtube,
                           ),
                           iconAction: () async {},
                         ),
                       ),
-                    ].divide(SizedBox(width: 8)),
+                    ].divide(const SizedBox(width: 8)),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                   child: Text(
                     'App Versions',
                     style: MyTheme.of(context).titleLarge,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
                   child: Text(
                     'v0.0.1',
                     style: MyTheme.of(context).labelMedium,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                   child: FFButtonWidget(
                     onPressed: () {
                       print('Button pressed ...');
@@ -239,8 +238,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     text: 'Log Out',
                     options: FFButtonOptions(
                       height: 40,
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                      iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       color: MyTheme.of(context).error,
                       textStyle: MyTheme.of(context)
                           .labelMedium
@@ -257,7 +256,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     ),
                   ),
                 ),
-              ].addToStart(SizedBox(height: 0)).addToEnd(SizedBox(height: 20)),
+              ].addToStart(const SizedBox(height: 0)).addToEnd(const SizedBox(height: 20)),
             ),
           ),
         ),

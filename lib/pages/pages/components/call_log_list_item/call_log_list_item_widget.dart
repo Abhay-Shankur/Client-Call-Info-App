@@ -1,8 +1,6 @@
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'call_log_list_item_model.dart';
 export 'call_log_list_item_model.dart';
@@ -13,9 +11,9 @@ class CallLogListItemWidget extends StatefulWidget {
     String? logName,
     String? logNumber,
     String? logStatus,
-  })  : this.logName = logName ?? 'Call Log Name',
-        this.logNumber = logNumber ?? 'Call Log Number',
-        this.logStatus = logStatus ?? 'Status';
+  })  : logName = logName ?? 'Call Log Name',
+        logNumber = logNumber ?? 'Call Log Number',
+        logStatus = logStatus ?? 'Status';
 
   final String logName;
   final String logNumber;
@@ -57,19 +55,19 @@ class _CallLogListItemWidgetState extends State<CallLogListItemWidget> {
           BoxShadow(
             blurRadius: 0,
             color: MyTheme.of(context).alternate,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
           )
         ],
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
               flex: 4,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +78,7 @@ class _CallLogListItemWidgetState extends State<CallLogListItemWidget> {
                       style: MyTheme.of(context).bodyLarge,
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                       child: Text(
                         widget.logNumber,
                         style: MyTheme.of(context).labelSmall.override(
@@ -89,7 +87,7 @@ class _CallLogListItemWidgetState extends State<CallLogListItemWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(height: 4)),
+                  ].divide(const SizedBox(height: 4)),
                 ),
               ),
             ),
@@ -113,9 +111,9 @@ class _CallLogListItemWidgetState extends State<CallLogListItemWidget> {
                     ),
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 4, 8, 4),
+                      padding: const EdgeInsetsDirectional.fromSTEB(8, 4, 8, 4),
                       child: Text(
                         widget.logStatus,
                         style: MyTheme.of(context).bodySmall,

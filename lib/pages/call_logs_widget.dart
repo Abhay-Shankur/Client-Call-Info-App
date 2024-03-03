@@ -1,9 +1,9 @@
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '/pages/pages/components/call_log_list_item/call_log_list_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:call_log/call_log.dart';
 
 import 'call_logs_model.dart';
 export 'call_logs_model.dart';
@@ -17,6 +17,7 @@ class CallLogsWidget extends StatefulWidget {
 
 class _CallLogsWidgetState extends State<CallLogsWidget> {
   late CallLogsModel _model;
+  List<CallLogEntry> _callLogs = [];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -24,6 +25,7 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CallLogsModel());
+    _retrieveCallLogs();
   }
 
   @override
@@ -32,6 +34,37 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
 
     super.dispose();
   }
+
+  Future<void> _retrieveCallLogs() async {
+    if (await Permission.phone.request().isGranted) {
+      var callLogs = await CallLog.get();
+      setState(() {
+        _callLogs = callLogs.toList();
+      });
+    }
+  }
+
+  String getMessageForCallType(CallType? callType) {
+    if (callType == null) {
+      return 'Unknown call type';
+    }
+
+    switch (callType) {
+      case CallType.incoming:
+        return 'Incoming call';
+      case CallType.outgoing:
+        return 'Outgoing call';
+      case CallType.missed:
+        return 'Missed call';
+      case CallType.rejected:
+        return 'Rejected call';
+      case CallType.blocked:
+        return 'Blocked call';
+      default:
+        return 'Unknown call type';
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +83,7 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
             borderRadius: 30,
             borderWidth: 1,
             buttonSize: 60,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30,
@@ -68,7 +101,7 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
               fontSize: 22,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2,
         ),
@@ -80,13 +113,13 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(0, -1),
+                  alignment: const AlignmentDirectional(0, -1),
                   child: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 970,
                     ),
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -94,7 +127,7 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                            const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                             child: Container(
                               width: double.infinity,
                               height: 40,
@@ -103,16 +136,16 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
                                     .primaryBackground,
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              alignment: AlignmentDirectional(-1, 0),
+                              alignment: const AlignmentDirectional(-1, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
                                     flex: 4,
                                     child: Align(
-                                      alignment: AlignmentDirectional(-1, 0),
+                                      alignment: const AlignmentDirectional(-1, 0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16, 0, 0, 0),
                                         child: Text(
                                           'Name',
@@ -129,36 +162,46 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Align(
-                                          alignment: AlignmentDirectional(1, 0),
+                                          alignment: const AlignmentDirectional(1, 0),
                                           child: Text(
                                             'Status',
                                             style: MyTheme.of(context)
                                                 .labelSmall,
                                           ),
                                         ),
-                                      ].addToEnd(SizedBox(width: 10)),
+                                      ].addToEnd(const SizedBox(width: 10)),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          ListView(
-                            padding: EdgeInsets.fromLTRB(
-                              0,
-                              0,
-                              0,
-                              44,
-                            ),
+                          ListView.builder(
+                            padding: const EdgeInsets.fromLTRB(0,0,0,44,),
                             shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            children: [
-                              wrapWithModel(
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: _callLogs.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var call = _callLogs[index];
+                              var callTypeMessage = getMessageForCallType(call.callType);
+                              debugPrint('Call: ${call.toString()}');
+                              return wrapWithModel(
                                 model: _model.callLogListItemModel,
                                 updateCallback: () => setState(() {}),
-                                child: CallLogListItemWidget(),
-                              ),
-                            ].divide(SizedBox(height: 1)),
+                                child: CallLogListItemWidget(
+                                  logName: call.name.toString(),
+                                  logNumber: call.number.toString(),
+                                  logStatus: call.simDisplayName,
+                                ),
+                              );
+                            },
+                            // children: [
+                            //   wrapWithModel(
+                            //     model: _model.callLogListItemModel,
+                            //     updateCallback: () => setState(() {}),
+                            //     child: CallLogListItemWidget(),
+                            //   ),
+                            // ].divide(SizedBox(height: 1)),
                           ),
                         ],
                       ),

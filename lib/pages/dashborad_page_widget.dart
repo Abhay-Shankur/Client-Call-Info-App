@@ -207,9 +207,11 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                             style: MyTheme.of(context).labelMedium,
                           ),
                         ),
+                        // Generated code for this ListView Widget...
+                        // Generated code for this ListView Widget...
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                             child: ListView(
                               padding: EdgeInsets.zero,
                               primary: false,
@@ -217,31 +219,33 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                               scrollDirection: Axis.horizontal,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(8),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: MyTheme.of(context).secondaryBackground,
+                                      color: FlutterFlowTheme.of(context).secondaryBackground,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: const Color(0xFFE0E3E7),
+                                        color: Color(0xFFE0E3E7),
                                         width: 2,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12),
+                                      padding: EdgeInsets.all(12),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            '16',
-                                            style: MyTheme.of(context).displaySmall,
+                                          Expanded(
+                                            child: Text(
+                                              '16',
+                                              style: FlutterFlowTheme.of(context).displaySmall,
+                                            ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                             child: Text(
                                               'Incoming Calls',
-                                              style: MyTheme.of(context).labelMedium,
+                                              style: FlutterFlowTheme.of(context).labelMedium,
                                             ),
                                           ),
                                         ],
@@ -250,34 +254,37 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(8),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: MyTheme.of(context).secondaryBackground,
+                                      color: FlutterFlowTheme.of(context).secondaryBackground,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: const Color(0xFFE0E3E7),
+                                        color: Color(0xFFE0E3E7),
                                         width: 2,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12),
+                                      padding: EdgeInsets.all(12),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            '16',
-                                            style: MyTheme.of(context).displaySmall.override(
-                                              fontFamily: 'Readex Pro',
-                                              color: MyTheme.of(context).tertiary,
+                                          Expanded(
+                                            child: Text(
+                                              '16',
+                                              style:
+                                              FlutterFlowTheme.of(context).displaySmall.override(
+                                                fontFamily: 'Readex Pro',
+                                                color: FlutterFlowTheme.of(context).tertiary,
+                                              ),
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                             child: Text(
                                               'Outgoing Calls',
-                                              style: MyTheme.of(context).labelMedium,
+                                              style: FlutterFlowTheme.of(context).labelMedium,
                                             ),
                                           ),
                                         ],
@@ -286,34 +293,37 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(8),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: MyTheme.of(context).secondaryBackground,
+                                      color: FlutterFlowTheme.of(context).secondaryBackground,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: const Color(0xFFE0E3E7),
+                                        color: Color(0xFFE0E3E7),
                                         width: 2,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12),
+                                      padding: EdgeInsets.all(12),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            '16',
-                                            style: MyTheme.of(context).displaySmall.override(
-                                              fontFamily: 'Readex Pro',
-                                              color: MyTheme.of(context).secondary,
+                                          Expanded(
+                                            child: Text(
+                                              '16',
+                                              style:
+                                              FlutterFlowTheme.of(context).displaySmall.override(
+                                                fontFamily: 'Readex Pro',
+                                                color: FlutterFlowTheme.of(context).secondary,
+                                              ),
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                             child: Text(
                                               'Missed Calls',
-                                              style: MyTheme.of(context).labelMedium,
+                                              style: FlutterFlowTheme.of(context).labelMedium,
                                             ),
                                           ),
                                         ],
@@ -879,125 +889,110 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                           Padding(
                             padding:
                                 const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 32,
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 32,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: MyTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 8, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.radio_button_checked_sharp,
-                                          color: MyTheme.of(context)
-                                              .primary,
-                                          size: 20,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 32,
+                                      constraints: BoxConstraints(
+                                        maxHeight: 32,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.radio_button_checked_sharp,
+                                              color: FlutterFlowTheme.of(context).primary,
+                                              size: 20,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                              child: Text(
+                                                'Tasks',
+                                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              8, 0, 0, 0),
-                                          child: Text(
-                                            'Tasks',
-                                            style: MyTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 32,
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 32,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: MyTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 8, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.radio_button_checked_sharp,
-                                          color: MyTheme.of(context)
-                                              .secondary,
-                                          size: 20,
+                                    Container(
+                                      height: 32,
+                                      constraints: BoxConstraints(
+                                        maxHeight: 32,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.radio_button_checked_sharp,
+                                              color: FlutterFlowTheme.of(context).secondary,
+                                              size: 20,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                              child: Text(
+                                                'Completed',
+                                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              8, 0, 0, 0),
-                                          child: Text(
-                                            'Completed',
-                                            style: MyTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 32,
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 32,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: MyTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 8, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.radio_button_checked_sharp,
-                                          color: MyTheme.of(context)
-                                              .tertiary,
-                                          size: 20,
+                                    Container(
+                                      height: 32,
+                                      constraints: BoxConstraints(
+                                        maxHeight: 32,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.radio_button_checked_sharp,
+                                              color: FlutterFlowTheme.of(context).tertiary,
+                                              size: 20,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                              child: Text(
+                                                'Launches',
+                                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              8, 0, 0, 0),
-                                          child: Text(
-                                            'Launches',
-                                            style: MyTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                           Padding(
@@ -1010,13 +1005,13 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                 data: [
                                   FFLineChartData(
                                     xData: List.generate(
-                                        mock_data.mockInteger(0,1),
+                                        3,
                                         (index) =>
-                                            mock_data.mockInteger(0, 10)),
+                                            mock_data.mockInteger(0, 10).toDouble()),
                                     yData: List.generate(
-                                        mock_data.mockInteger(0, 1),
+                                        3,
                                         (index) =>
-                                            mock_data.mockInteger(0, 10)),
+                                            mock_data.mockInteger(0, 10).toDouble()),
                                     settings: LineChartBarData(
                                       color:
                                           MyTheme.of(context).primary,
@@ -1033,13 +1028,13 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                   ),
                                   FFLineChartData(
                                     xData: List.generate(
-                                        mock_data.mockInteger(0, 1),
+                                        3,
                                         (index) =>
-                                            mock_data.mockInteger(0, 200)),
+                                            mock_data.mockInteger(0, 10).toDouble()),
                                     yData: List.generate(
-                                        mock_data.mockInteger(0, 1),
+                                        3,
                                         (index) =>
-                                            mock_data.mockInteger(0, 200)),
+                                            mock_data.mockInteger(0, 10).toDouble()),
                                     settings: LineChartBarData(
                                       color: MyTheme.of(context)
                                           .secondary,

@@ -1,8 +1,6 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'setting_page_list_item_widget.dart' show SettingPageListItemWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class SettingPageListItemModel
     extends FlutterFlowModel<SettingPageListItemWidget> {

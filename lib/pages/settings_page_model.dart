@@ -3,9 +3,6 @@ import '/pages/pages/components/setting_page_list_item/setting_page_list_item_wi
 import '/pages/pages/components/social_media_icon/social_media_icon_widget.dart';
 import 'settings_page_widget.dart' show SettingsPageWidget;
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class SettingsPageModel extends FlutterFlowModel<SettingsPageWidget> {
   ///  State fields for stateful widgets in this page.
