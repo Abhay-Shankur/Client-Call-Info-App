@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../models/dashborad_page_model.dart';
-export '../models/dashborad_page_model.dart';
+import '../../models/dashborad_page_model.dart';
+export '../../models/dashborad_page_model.dart';
 
 class DashboradPageWidget extends StatefulWidget {
   const DashboradPageWidget({super.key});

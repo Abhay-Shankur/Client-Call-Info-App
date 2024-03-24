@@ -1,5 +1,5 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import '../pages/dashborad_page_widget.dart' show DashboradPageWidget;
+import '../pages/pages/dashborad_page_widget.dart' show DashboradPageWidget;
 import 'package:flutter/material.dart';
 
 class DashboradPageModel extends FlutterFlowModel<DashboradPageWidget> {

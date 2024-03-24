@@ -1,21 +1,17 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'package:call_info/pages/pages/call_logs_widget.dart' show CallLogsWidget;
+import 'f_a_q_list_item_widget.dart' show FAQListItemWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class CallLogsModel extends FlutterFlowModel<CallLogsWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
+class FAQListItemModel extends FlutterFlowModel<FAQListItemWidget> {
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
 /// Action blocks are added here.
 

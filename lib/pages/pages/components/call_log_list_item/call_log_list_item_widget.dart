@@ -81,6 +81,7 @@ class _CallLogListItemWidgetState extends State<CallLogListItemWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                       child: Text(
                         widget.logNumber,
+
                         style: MyTheme.of(context).labelSmall.override(
                           fontFamily: 'Inter',
                           color: MyTheme.of(context).primary,

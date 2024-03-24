@@ -1,14 +1,23 @@
 
 import 'package:call_info/handlers/permissions.dart';
 import 'package:call_info/handlers/service_locator.dart';
+import 'package:call_info/pages/calllogs_widget.dart';
+import 'package:call_info/pages/customer_support_widget.dart';
+import 'package:call_info/pages/edit_profile_widget.dart';
+import 'package:call_info/pages/faq_widget.dart';
+import 'package:call_info/pages/login_page_widget.dart';
+import 'package:call_info/pages/o_t_p_screen_widget.dart';
+import 'package:call_info/pages/permission_widget.dart';
+import 'package:call_info/pages/profile_widget.dart';
+import 'package:call_info/pages/splash_screen_widget.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/services.dart';
 import 'package:no_screenshot/no_screenshot.dart';
 import 'package:workmanager/workmanager.dart';
 // import 'package:call_info/handlers/background_tasks.dart';
-import 'package:call_info/pages/call_logs_widget.dart';
-import 'package:call_info/pages/dashborad_page_widget.dart';
-import 'package:call_info/pages/settings_page_widget.dart';
+import 'package:call_info/pages/pages/call_logs_widget.dart';
+import 'package:call_info/pages/pages/dashborad_page_widget.dart';
+import 'package:call_info/pages/pages/settings_page_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -73,12 +82,21 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Call Info',
       // home: DashboradPageWidget(),
-      initialRoute: '/vendor_dashboard',
+      // initialRoute: '/vendor_dashboard',
+      initialRoute: '/vendor_login',
       routes: {
         '/vendor_dashboard': (context) => const DashboradPageWidget(),
         '/vendor_settings': (context) => const SettingsPageWidget(),
-        '/vendor_logs': (context) => const CallLogsWidget(),
-        // '/splash': (context) => const SplashScreen(),
+        // '/vendor_logs': (context) => const CallLogsWidget(),
+        '/vendor_logs': (context) => const CalllogsWidget(),
+        '/vendor_faq': (context) => const FaqWidget(),
+        '/vendor_support': (context) => const CustomerSupportWidget(),
+        '/vendor_permission': (context) => const PermissionWidget(),
+        '/vendor_editProfile': (context) => const EditProfileWidget(),
+        '/vendor_profile': (context) => const ProfileWidget(),
+        '/vendor_otp': (context) => const OTPScreenWidget(),
+        '/vendor_login': (context) => const LoginPageWidget(),
+        '/splash': (context) => const SplashScreenWidget(),
         // '/login': (context) => const LoginPhone(),
       },
     );

@@ -1,4 +1,4 @@
-import 'package:call_info/pages/settings_page_widget.dart' show SettingsPageWidget;
+import 'package:call_info/pages/pages/settings_page_widget.dart' show SettingsPageWidget;
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
