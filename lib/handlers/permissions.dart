@@ -14,9 +14,9 @@ class AppPermissions {
     PermissionStatus statusPhone = await Permission.phone.status;
     PermissionStatus statusContacts = await Permission.contacts.status;
 
-    if (statusPhone.isGranted && statusContacts.isGranted) {
-      _openTabsScreen();
-    }
+    // if (statusPhone.isGranted && statusContacts.isGranted) {
+    //   _openTabsScreen();
+    // }
     if (statusContacts.isPermanentlyDenied || statusPhone.isPermanentlyDenied) {
       await openAppSettings();
       _closeApp();

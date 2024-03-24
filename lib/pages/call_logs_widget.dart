@@ -37,7 +37,8 @@ class _CallLogsWidgetState extends State<CallLogsWidget> {
 
   Future<void> _retrieveCallLogs() async {
     if (await Permission.phone.request().isGranted) {
-      var callLogs = await CallLog.get();
+      // var callLogs = await CallLog.get();
+      var callLogs = await _model.loadLogs();
       setState(() {
         _callLogs = callLogs.toList();
       });

@@ -211,7 +211,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                         // Generated code for this ListView Widget...
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                             child: ListView(
                               padding: EdgeInsets.zero,
                               primary: false,
@@ -219,18 +219,18 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                               scrollDirection: Axis.horizontal,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(8),
+                                  padding: const EdgeInsets.all(8),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE0E3E7),
+                                        color: const Color(0xFFE0E3E7),
                                         width: 2,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12),
+                                      padding: const EdgeInsets.all(12),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -242,7 +242,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                             child: Text(
                                               'Incoming Calls',
                                               style: FlutterFlowTheme.of(context).labelMedium,
@@ -254,18 +254,18 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(8),
+                                  padding: const EdgeInsets.all(8),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE0E3E7),
+                                        color: const Color(0xFFE0E3E7),
                                         width: 2,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12),
+                                      padding: const EdgeInsets.all(12),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,7 +281,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                             child: Text(
                                               'Outgoing Calls',
                                               style: FlutterFlowTheme.of(context).labelMedium,
@@ -293,18 +293,18 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(8),
+                                  padding: const EdgeInsets.all(8),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: Color(0xFFE0E3E7),
+                                        color: const Color(0xFFE0E3E7),
                                         width: 2,
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(12),
+                                      padding: const EdgeInsets.all(12),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -320,7 +320,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                            padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                             child: Text(
                                               'Missed Calls',
                                               style: FlutterFlowTheme.of(context).labelMedium,
@@ -890,7 +890,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                             padding:
                                 const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -899,7 +899,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                   children: [
                                     Container(
                                       height: 32,
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         maxHeight: 32,
                                       ),
                                       decoration: BoxDecoration(
@@ -907,7 +907,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -918,7 +918,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                               size: 20,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                               child: Text(
                                                 'Tasks',
                                                 style: FlutterFlowTheme.of(context).bodyMedium,
@@ -930,7 +930,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                     ),
                                     Container(
                                       height: 32,
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         maxHeight: 32,
                                       ),
                                       decoration: BoxDecoration(
@@ -938,7 +938,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -949,7 +949,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                               size: 20,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                               child: Text(
                                                 'Completed',
                                                 style: FlutterFlowTheme.of(context).bodyMedium,
@@ -961,7 +961,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                     ),
                                     Container(
                                       height: 32,
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         maxHeight: 32,
                                       ),
                                       decoration: BoxDecoration(
@@ -969,7 +969,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -980,7 +980,7 @@ class _DashboradPageWidgetState extends State<DashboradPageWidget>
                                               size: 20,
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                               child: Text(
                                                 'Launches',
                                                 style: FlutterFlowTheme.of(context).bodyMedium,
