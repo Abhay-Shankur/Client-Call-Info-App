@@ -1,3 +1,4 @@
+import 'package:call_info/pages/ProfilePage/profileui.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/permission_list_item/permission_list_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,10 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                //TODO
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Profile08Widget()),
+                  );
                 // context.pop();
               },
             ),

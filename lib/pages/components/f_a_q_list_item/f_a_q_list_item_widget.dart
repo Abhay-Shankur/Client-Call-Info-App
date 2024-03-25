@@ -57,7 +57,7 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xFF14181B),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(

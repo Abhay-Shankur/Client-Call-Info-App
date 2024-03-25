@@ -1,3 +1,4 @@
+import 'package:call_info/pages/Dashboard/DashboardUi.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -107,7 +108,7 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
                   child: Container(
-                    width: 200,
+                    width: double.infinity,
                     height: 70,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
@@ -272,8 +273,10 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  // context.pushNamed('EditProfile');
-                                  Navigator.of(context).pushNamed('/vendor_editProfile');
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => DashboardUi())
+                                    );
                                 },
                                 text: 'Submit',
                                 options: FFButtonOptions(

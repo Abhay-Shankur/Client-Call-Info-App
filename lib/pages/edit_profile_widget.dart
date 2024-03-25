@@ -2,7 +2,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
+import 'ProfilePage/profileui.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 
@@ -448,8 +448,14 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Profile08Widget()),
+
                     //TODO
-                    // context.pushNamed('Profile');
+
+                      );  // context.pushNamed('Profile');
                   },
                   text: 'Save Changes',
                   options: FFButtonOptions(

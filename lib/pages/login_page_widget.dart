@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'o_t_p_screen_widget.dart';
 
 import 'login_page_model.dart';
 export 'login_page_model.dart';
@@ -107,7 +108,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
                   child: Container(
-                    width: 200,
+                    width: double.infinity,
                     height: 70,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
@@ -122,7 +123,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                           child: Icon(
                             Icons.flourescent_rounded,
                             color: FlutterFlowTheme.of(context).info,
-                            size: 44,
+                            size: 34,
                           ),
                         ),
                         Text(
@@ -246,17 +247,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  Navigator.of(context).pushNamed(
-                                    '/vendor_otp',
-                                    arguments: <String, dynamic>{
-                                      //TODO arguments to the path
-                                      // kTransitionInfoKey: TransitionInfo(
-                                      //   hasTransition: true,
-                                      //   transitionType:
-                                      //   PageTransitionType.rightToLeft,
-                                      // ),
-                                    },
-                                  );
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => OTPScreenWidget())
+                                    );
+
                                 },
                                 text: 'Send OTP',
                                 options: FFButtonOptions(

@@ -1,6 +1,8 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
 as smooth_page_indicator;
+import 'login_page_model.dart';
+import 'login_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -240,7 +242,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
             ClipRRect(
               child: Container(
                 width: double.infinity,
-                height: 420,
+                height: 370,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -249,7 +251,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                   children: [
                     Container(
                       width: double.infinity,
-                      height: 600,
+                      height: 350,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -402,8 +404,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                 alignment: AlignmentDirectional(0, 0),
                 child: Container(
                   width: double.infinity,
+                  height: 500,
                   constraints: BoxConstraints(
-                    maxWidth: 670,
+                    maxWidth: 600,
                   ),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -413,7 +416,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                     children: [
                       Container(
                         width: double.infinity,
-                        height: 230,
+                        height: 250,
                         child: Stack(
                           children: [
                             Padding(
@@ -514,14 +517,14 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                         Padding(
                                           padding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              0, 16, 0, 0),
-                                          child: Text(
-                                            'I have some great food options here!! Yum yum!!',
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge,
-                                          ).animateOnPageLoad(animationsMap[
-                                          'textOnPageLoadAnimation6']!),
+                                              0, 8, 0, 0),
+                                        //   child: Text(
+                                        //     'I have some great food options here!! Yum yum!!',
+                                        //     textAlign: TextAlign.center,
+                                        //     style: FlutterFlowTheme.of(context)
+                                        //         .labelLarge,
+                                        //   ).animateOnPageLoad(animationsMap[
+                                        //   'textOnPageLoadAnimation6']!),
                                         ),
                                       ],
                                     ),
@@ -568,9 +571,14 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => LoginPageWidget()),
+                              );
                             //TODO
                             // context.pushNamed('null');
                           },
@@ -600,33 +608,33 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 44),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            //TODO
-                            // context.pushNamed('SignUpPage');
-                          },
-                          text: 'Skip',
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            textStyle: FlutterFlowTheme.of(context).titleLarge,
-                            elevation: 0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(50),
-                            hoverColor: FlutterFlowTheme.of(context).alternate,
-                          ),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                      //   child: FFButtonWidget(
+                      //     onPressed: () async {
+                      //       //TODO
+                      //       // context.pushNamed('SignUpPage');
+                      //     },
+                      //     text: 'Skip',
+                      //     options: FFButtonOptions(
+                      //       width: double.infinity,
+                      //       height: 30,
+                      //       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      //       iconPadding:
+                      //       EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      //       color: FlutterFlowTheme.of(context)
+                      //           .secondaryBackground,
+                      //       textStyle: FlutterFlowTheme.of(context).titleLarge,
+                      //       elevation: 0,
+                      //       borderSide: BorderSide(
+                      //         color: Colors.transparent,
+                      //         width: 1,
+                      //       ),
+                      //       borderRadius: BorderRadius.circular(50),
+                      //       hoverColor: FlutterFlowTheme.of(context).alternate,
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

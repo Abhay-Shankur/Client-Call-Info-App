@@ -1,6 +1,7 @@
 
 import 'package:call_info/handlers/permissions.dart';
 import 'package:call_info/handlers/service_locator.dart';
+import 'package:call_info/pages/Dashboard/DashboardUi.dart';
 import 'package:call_info/pages/calllogs_widget.dart';
 import 'package:call_info/pages/customer_support_widget.dart';
 import 'package:call_info/pages/edit_profile_widget.dart';
@@ -81,24 +82,24 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Call Info',
-      // home: DashboradPageWidget(),
+      home: SplashScreenWidget(),
       // initialRoute: '/vendor_dashboard',
-      initialRoute: '/vendor_login',
-      routes: {
-        '/vendor_dashboard': (context) => const DashboradPageWidget(),
-        '/vendor_settings': (context) => const SettingsPageWidget(),
-        // '/vendor_logs': (context) => const CallLogsWidget(),
-        '/vendor_logs': (context) => const CalllogsWidget(),
-        '/vendor_faq': (context) => const FaqWidget(),
-        '/vendor_support': (context) => const CustomerSupportWidget(),
-        '/vendor_permission': (context) => const PermissionWidget(),
-        '/vendor_editProfile': (context) => const EditProfileWidget(),
-        '/vendor_profile': (context) => const ProfileWidget(),
-        '/vendor_otp': (context) => const OTPScreenWidget(),
-        '/vendor_login': (context) => const LoginPageWidget(),
-        '/splash': (context) => const SplashScreenWidget(),
-        // '/login': (context) => const LoginPhone(),
-      },
+      // initialRoute: '/vendor_login',
+      // routes: {
+      //   '/vendor_dashboard': (context) => const DashboradPageWidget(),
+      //   '/vendor_settings': (context) => const SettingsPageWidget(),
+      //   // '/vendor_logs': (context) => const CallLogsWidget(),
+      //   '/vendor_logs': (context) => const CalllogsWidget(),
+      //   '/vendor_faq': (context) => const FaqWidget(),
+      //   '/vendor_support': (context) => const CustomerSupportWidget(),
+      //   '/vendor_permission': (context) => const PermissionWidget(),
+      //   '/vendor_editProfile': (context) => const EditProfileWidget(),
+      //   '/vendor_profile': (context) => const ProfileWidget(),
+      //   '/vendor_otp': (context) => const OTPScreenWidget(),
+      //   '/vendor_login': (context) => const LoginPageWidget(),
+      //   '/splash': (context) => const SplashScreenWidget(),
+      //   // '/login': (context) => const LoginPhone(),
+      // },
     );
   }
 }
