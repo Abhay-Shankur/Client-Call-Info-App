@@ -57,7 +57,7 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Color(0xFF14181B),
+            color: Colors.white,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(
@@ -73,7 +73,7 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
                   ),
                   style: GoogleFonts.getFont(
                     'Inter',
-                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    color: Color(0xFF14181B),
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),
