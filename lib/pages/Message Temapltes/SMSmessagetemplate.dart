@@ -1,6 +1,7 @@
 // import '/flutter_flow/flutter_flow_theme.dart';
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:call_info/pages/Message%20Temapltes/CustomTemplate.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -50,6 +51,8 @@ class _WhtstempCopyWidgetState extends State<SMSmessagewidegt> {
         automaticallyImplyLeading: false,
         title: FFButtonWidget(
           onPressed: () async {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CustomtemplateWidget())
+            );
             // context.pop();
           },
           text: 'Cancel',
@@ -164,7 +167,7 @@ class _WhtstempCopyWidgetState extends State<SMSmessagewidegt> {
                         child: Image.asset(
                           'assets/customtemplate.png',
                           width: double.infinity,
-                          height: 171,
+                          height: 200,
                           fit: BoxFit.fill,
                         ),
                       ),

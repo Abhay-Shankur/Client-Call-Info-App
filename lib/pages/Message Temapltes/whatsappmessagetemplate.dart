@@ -1,5 +1,8 @@
 
 
+import 'dart:io';
+
+import 'package:call_info/pages/Message%20Temapltes/CustomTemplate.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -22,7 +25,7 @@ class WhtstempWidget extends StatefulWidget {
 
 class _WhtstempWidgetState extends State<WhtstempWidget> {
   late WhtstempModel _model;
-
+  String? _selectedImagePath;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -51,6 +54,10 @@ class _WhtstempWidgetState extends State<WhtstempWidget> {
         automaticallyImplyLeading: false,
         title: FFButtonWidget(
           onPressed: () async {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CustomtemplateWidget()),
+            );
             // context.pop();
           },
           text: 'Cancel',
@@ -158,16 +165,38 @@ class _WhtstempWidgetState extends State<WhtstempWidget> {
                         ),
                       ),
                     ),
+                    // Container(
+                    //   decoration: BoxDecoration(),
+                    //   child: Padding(
+                    //     padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                    //     child: ClipRRect(
+                    //       borderRadius: BorderRadius.circular(8),
+                    //       child: Image.asset(
+                    //         'assets/customtemplate.png',
+                    //         width: double.infinity,
+                    //         height: 171,
+                    //         fit: BoxFit.cover,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Container(
                       decoration: BoxDecoration(),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(
-                            'assets/customtemplate.png',
+                          child: _selectedImagePath != null ? // Check if an image is selected
+                          Image.file(
+                            File(_selectedImagePath!), // Load selected image
                             width: double.infinity,
-                            height: 171,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          ) :
+                          Image.asset(
+                            'assets/customtemplate.png', // Use default image if no image is selected
+                            width: double.infinity,
+                            height: 200,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -327,15 +356,27 @@ class _WhtstempWidgetState extends State<WhtstempWidget> {
   }
 
 
+  // void selectImages() async {
+  //   final ImagePicker imagePicker = ImagePicker();
+  //   List<XFile>? imageFileList = [];
+  //
+  //   final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
+  //   if (selectedImages!.isNotEmpty) {
+  //     imageFileList!.addAll(selectedImages);
+  //   }
+  //   print("Image List Length:" + imageFileList!.length.toString());
+  //   setState(() {});
+  // }
   void selectImages() async {
     final ImagePicker imagePicker = ImagePicker();
     List<XFile>? imageFileList = [];
 
     final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
-    if (selectedImages!.isNotEmpty) {
-      imageFileList!.addAll(selectedImages);
+    if (selectedImages != null && selectedImages.isNotEmpty) {
+      // Only proceed if images are selected
+      setState(() {
+        _selectedImagePath = selectedImages[0].path; // Store the path of the first selected image
+      });
     }
-    print("Image List Length:" + imageFileList!.length.toString());
-    setState(() {});
   }
 }

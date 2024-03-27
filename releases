@@ -9,14 +9,18 @@ Added Profile
 Added Login
 Added OTP
 
-1.0.4
+1.0.4(Nikhil)
 Added Dashboard
 Added Edit Profile
 Added Message Templates
 Added SMS Message Template
-Added Whatsapp Mesaage Tempalte
+Added Whatsapp Message Template
 Added Professional Templates
 Added Profile page Customer
 Connected All Pages
-Handled Overflow
+Handled Overflow Error
 
+
+1.0.5(Nikhil)
+Added Image support for Whatsapp Message Template
+Optimized Prmossional Message Template Delay

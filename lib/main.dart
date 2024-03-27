@@ -2,6 +2,7 @@
 import 'package:call_info/handlers/permissions.dart';
 import 'package:call_info/handlers/service_locator.dart';
 import 'package:call_info/pages/Dashboard/DashboardUi.dart';
+import 'package:call_info/pages/Message%20Temapltes/CustomTemplate.dart';
 import 'package:call_info/pages/calllogs_widget.dart';
 import 'package:call_info/pages/customer_support_widget.dart';
 import 'package:call_info/pages/edit_profile_widget.dart';
@@ -9,6 +10,7 @@ import 'package:call_info/pages/faq_widget.dart';
 import 'package:call_info/pages/login_page_widget.dart';
 import 'package:call_info/pages/o_t_p_screen_widget.dart';
 import 'package:call_info/pages/permission_widget.dart';
+import 'package:call_info/pages/professionalTemplate/professionalttemplate.dart';
 import 'package:call_info/pages/profile_widget.dart';
 import 'package:call_info/pages/splash_screen_widget.dart';
 import 'package:call_log/call_log.dart';

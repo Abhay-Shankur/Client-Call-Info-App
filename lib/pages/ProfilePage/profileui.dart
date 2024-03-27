@@ -575,42 +575,44 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 8, 16, 8),
-    child:
-    GestureDetector(
-    onTap: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => CustomerSupportWidget()),
-    );
-    },
-                                  child: Icon(
-                                    Icons.groups_3,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CustomerSupportWidget()),
+                                      );
+                                    },
+                                    child: Icon(
+                                      Icons.groups_3,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24,
+                                    ),
                                   ),
-                                ),
                                 ),
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 12, 0),
-    child:
-    GestureDetector(
-    onTap: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => CustomerSupportWidget()),
-    );
-    },
-                                    child: Text(
-                                      'Customer Support',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CustomerSupportWidget()),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Customer Support',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
                                     ),
                                   ),
-                                ),
                                 ),
                               ],
                             ),

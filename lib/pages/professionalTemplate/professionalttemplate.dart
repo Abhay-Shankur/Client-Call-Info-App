@@ -5,6 +5,9 @@
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
 // import '/flutter_flow/form_field_controller.dart';
+import 'dart:io';
+
+import 'package:call_info/pages/ProfilePage/profileui.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -20,6 +23,7 @@ export 'models/promossionaltemplatesmodel.dart';
 class PromossionalmsgtempWidget extends StatefulWidget {
   const PromossionalmsgtempWidget({super.key});
 
+
   @override
   State<PromossionalmsgtempWidget> createState() =>
       _PromossionalmsgtempWidgetState();
@@ -28,6 +32,7 @@ class PromossionalmsgtempWidget extends StatefulWidget {
 class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
     with TickerProviderStateMixin {
   late PromossionalmsgtempModel _model;
+  String? _selectedImagePath;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -123,6 +128,8 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
               size: 30,
             ),
             onPressed: () async {
+              Navigator.push(context, MaterialPageRoute(builder: (Context) => Profile08Widget())
+              );
               // context.pop();
             },
           ),
@@ -285,13 +292,13 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                   ChipData('1 Week'),
                                                   ChipData('1 Month')
                                                 ],
-                                                onChanged: (val) {
+                                                onChanged:  (val) {
+                                                  final selectedValue = val?.firstOrNull ?? '';
+
                                                   setState(() {
-                                                    _model.choiceChipsValue = val?.firstOrNull;
+                                                    _model.choiceChipsValue = selectedValue;
                                                   });
-                                                  if (val != null && val.isNotEmpty) {
-                                                    showSelectedChipValue(val.firstOrNull?? '');
-                                                  }
+                                                  showSelectedChipValue(selectedValue);
                                                 },
                                                 selectedChipStyle: ChipStyle(
                                                   backgroundColor:
@@ -378,6 +385,28 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                         ),
                       ),
                     ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: _selectedImagePath != null ? // Check if an image is selected
+                        Image.file(
+                          File(_selectedImagePath!), // Load selected image
+                          width: double.infinity,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ) :
+                        Image.asset(
+                          'assets/customtemplate.png', // Use default image if no image is selected
+                          width: double.infinity,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -605,10 +634,11 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
     List<XFile>? imageFileList = [];
 
     final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
-    if (selectedImages!.isNotEmpty) {
-      imageFileList!.addAll(selectedImages);
+    if (selectedImages != null && selectedImages.isNotEmpty) {
+      // Only proceed if images are selected
+      setState(() {
+        _selectedImagePath = selectedImages[0].path; // Store the path of the first selected image
+      });
     }
-    print("Image List Length:" + imageFileList!.length.toString());
-    setState(() {});
   }
 }
