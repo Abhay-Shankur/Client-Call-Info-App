@@ -1,7 +1,6 @@
+import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'call_log_model.dart';
 export 'call_log_model.dart';
@@ -50,7 +49,7 @@ class _CallLogWidgetState extends State<CallLogWidget> {
         width: MediaQuery.sizeOf(context).width,
         height: 100,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: MyTheme.of(context).secondaryBackground,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
@@ -74,12 +73,12 @@ class _CallLogWidgetState extends State<CallLogWidget> {
                           Text(
                             'John Doe',
                             maxLines: 1,
-                            style: FlutterFlowTheme.of(context)
+                            style: MyTheme.of(context)
                                 .titleMedium
                                 .override(
                               fontFamily: 'Readex Pro',
                               color:
-                              FlutterFlowTheme.of(context).primaryText,
+                              MyTheme.of(context).primaryText,
                               fontSize: 20,
                             ),
                           ),
@@ -94,8 +93,8 @@ class _CallLogWidgetState extends State<CallLogWidget> {
                               EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                               iconPadding:
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
+                              color: MyTheme.of(context).primary,
+                              textStyle: MyTheme.of(context)
                                   .titleSmall
                                   .override(
                                 fontFamily: 'Inter',
@@ -118,9 +117,9 @@ class _CallLogWidgetState extends State<CallLogWidget> {
                             '702823####',
                             maxLines: 1,
                             style:
-                            FlutterFlowTheme.of(context).bodySmall.override(
+                            MyTheme.of(context).bodySmall.override(
                               fontFamily: 'Inter',
-                              color: FlutterFlowTheme.of(context)
+                              color: MyTheme.of(context)
                                   .secondaryText,
                               fontSize: 16,
                               fontWeight: FontWeight.normal,

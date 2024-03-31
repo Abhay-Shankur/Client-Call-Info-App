@@ -1,26 +1,10 @@
 
-import 'package:call_info/handlers/permissions.dart';
 import 'package:call_info/handlers/service_locator.dart';
-import 'package:call_info/pages/Dashboard/DashboardUi.dart';
-import 'package:call_info/pages/Message%20Temapltes/CustomTemplate.dart';
-import 'package:call_info/pages/calllogs_widget.dart';
-import 'package:call_info/pages/customer_support_widget.dart';
-import 'package:call_info/pages/edit_profile_widget.dart';
-import 'package:call_info/pages/faq_widget.dart';
-import 'package:call_info/pages/login_page_widget.dart';
-import 'package:call_info/pages/o_t_p_screen_widget.dart';
-import 'package:call_info/pages/permission_widget.dart';
-import 'package:call_info/pages/professionalTemplate/professionalttemplate.dart';
-import 'package:call_info/pages/profile_widget.dart';
-import 'package:call_info/pages/splash_screen_widget.dart';
+import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/services.dart';
-import 'package:no_screenshot/no_screenshot.dart';
 import 'package:workmanager/workmanager.dart';
 // import 'package:call_info/handlers/background_tasks.dart';
-import 'package:call_info/pages/pages/call_logs_widget.dart';
-import 'package:call_info/pages/pages/dashborad_page_widget.dart';
-import 'package:call_info/pages/pages/settings_page_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -67,7 +51,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _noScreenshot = NoScreenshot.instance;
+  // final _noScreenshot = NoScreenshot.instance;
 
   @override
   void initState() {
@@ -76,8 +60,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> disableSS() async {
-    final result = await _noScreenshot.screenshotOff();
-    print(result);
+    // final result = await _noScreenshot.screenshotOff();
+    // print(result);
   }
 
   @override

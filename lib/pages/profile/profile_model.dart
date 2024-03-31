@@ -1,15 +1,21 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'f_a_q_list_item_widget.dart' show FAQListItemWidget;
+import 'profile_widget.dart' show ProfileWidget;
 import 'package:flutter/material.dart';
 
-class FAQListItemModel extends FlutterFlowModel<FAQListItemWidget> {
+class ProfileModel extends FlutterFlowModel<ProfileWidget> {
+  ///  State fields for stateful widgets in this page.
+
+  final unfocusNode = FocusNode();
+
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
 
 /// Action blocks are added here.
 

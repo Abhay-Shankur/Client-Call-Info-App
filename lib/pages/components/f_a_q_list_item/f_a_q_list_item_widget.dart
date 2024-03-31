@@ -1,7 +1,7 @@
+import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'f_a_q_list_item_model.dart';
 export 'f_a_q_list_item_model.dart';
@@ -85,7 +85,7 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
                       widget.faqContent,
                       'faqContent',
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    style: MyTheme.of(context).bodyMedium.override(
                       fontFamily: 'Inter',
                       color: Color(0xFF14181B),
                       fontSize: 14,

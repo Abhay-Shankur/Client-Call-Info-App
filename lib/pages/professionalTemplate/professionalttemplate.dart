@@ -7,18 +7,16 @@
 // import '/flutter_flow/form_field_controller.dart';
 import 'dart:io';
 
-import 'package:call_info/pages/ProfilePage/profileui.dart';
+import 'package:call_info/pages/vendorProfile/profile_widget.dart';
+import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import 'models/promossionaltemplatesmodel.dart';
-export 'models/promossionaltemplatesmodel.dart';
+import 'promossionaltemplatesmodel.dart';
+export 'promossionaltemplatesmodel.dart';
 
 class PromossionalmsgtempWidget extends StatefulWidget {
   const PromossionalmsgtempWidget({super.key});
@@ -113,9 +111,9 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: MyTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: MyTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -124,7 +122,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -135,9 +133,9 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
           ),
           title: Text(
             'Promotional Message',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: MyTheme.of(context).primaryText,
                   fontSize: 22,
                 ),
           ),
@@ -156,13 +154,13 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                 children: [
                   Text(
                     'Customize Template',
-                    style: FlutterFlowTheme.of(context).headlineMedium,
+                    style: MyTheme.of(context).headlineMedium,
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                     child: Text(
                       'Fill out the form below to create new  promossion',
-                      style: FlutterFlowTheme.of(context).labelLarge,
+                      style: MyTheme.of(context).labelLarge,
                     ),
                   ),
                   Column(
@@ -183,11 +181,11 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
+                                    color: MyTheme.of(context)
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: MyTheme.of(context)
                                           .alternate,
                                       width: 2,
                                     ),
@@ -224,13 +222,13 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                           'Select Duration ',
                                                           textAlign:
                                                               TextAlign.start,
-                                                          style: FlutterFlowTheme
+                                                          style: MyTheme
                                                                   .of(context)
                                                               .labelSmall
                                                               .override(
                                                                 fontFamily:
                                                                     'Inter',
-                                                                color: FlutterFlowTheme.of(
+                                                                color: MyTheme.of(
                                                                         context)
                                                                     .primaryText,
                                                                 fontSize: 14,
@@ -246,7 +244,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                       child: Icon(
                                                         Icons.timer_sharp,
                                                         color:
-                                                            FlutterFlowTheme.of(
+                                                            MyTheme.of(
                                                                     context)
                                                                 .primaryText,
                                                         size: 24,
@@ -257,10 +255,10 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                               ),
                                               // Slider(
                                               //   activeColor:
-                                              //       FlutterFlowTheme.of(context)
+                                              //       MyTheme.of(context)
                                               //           .primaryText,
                                               //   inactiveColor:
-                                              //       FlutterFlowTheme.of(context)
+                                              //       MyTheme.of(context)
                                               //           .primaryText,
                                               //   min: 0,
                                               //   max: 90,
@@ -302,28 +300,28 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                 },
                                                 selectedChipStyle: ChipStyle(
                                                   backgroundColor:
-                                                      FlutterFlowTheme.of(
+                                                      MyTheme.of(
                                                               context)
                                                           .accent2,
-                                                  textStyle: FlutterFlowTheme
+                                                  textStyle: MyTheme
                                                           .of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
                                                         color:
-                                                            FlutterFlowTheme.of(
+                                                            MyTheme.of(
                                                                     context)
                                                                 .primaryText,
                                                         fontSize: 20,
                                                       ),
                                                   iconColor:
-                                                      FlutterFlowTheme.of(
+                                                      MyTheme.of(
                                                               context)
                                                           .primaryText,
                                                   iconSize: 0,
                                                   elevation: 0,
                                                   borderColor:
-                                                      FlutterFlowTheme.of(
+                                                      MyTheme.of(
                                                               context)
                                                           .secondary,
                                                   borderWidth: 2,
@@ -332,27 +330,27 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                 ),
                                                 unselectedChipStyle: ChipStyle(
                                                   backgroundColor:
-                                                      FlutterFlowTheme.of(
+                                                      MyTheme.of(
                                                               context)
                                                           .primaryBackground,
-                                                  textStyle: FlutterFlowTheme
+                                                  textStyle: MyTheme
                                                           .of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
                                                         color:
-                                                            FlutterFlowTheme.of(
+                                                            MyTheme.of(
                                                                     context)
                                                                 .secondaryText,
                                                       ),
                                                   iconColor:
-                                                      FlutterFlowTheme.of(
+                                                      MyTheme.of(
                                                               context)
                                                           .secondaryText,
                                                   iconSize: 0,
                                                   elevation: 0,
                                                   borderColor:
-                                                      FlutterFlowTheme.of(
+                                                      MyTheme.of(
                                                               context)
                                                           .alternate,
                                                   borderWidth: 1,
@@ -418,39 +416,39 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Heading',
-                          labelStyle: FlutterFlowTheme.of(context)
+                          labelStyle: MyTheme.of(context)
                               .headlineSmall
                               .override(
                                 fontFamily: 'Readex Pro',
                                 color:
-                                    FlutterFlowTheme.of(context).secondaryText,
+                                    MyTheme.of(context).secondaryText,
                                 fontWeight: FontWeight.w500,
                               ),
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          hintStyle: MyTheme.of(context).labelMedium,
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: MyTheme.of(context).alternate,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: MyTheme.of(context).primary,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           errorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
@@ -458,8 +456,8 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                         ),
-                        style: FlutterFlowTheme.of(context).headlineSmall,
-                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        style: MyTheme.of(context).headlineSmall,
+                        cursorColor: MyTheme.of(context).primary,
                         validator: _model.textController1Validator
                             .asValidator(context),
                       ),
@@ -469,33 +467,33 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                          labelStyle: MyTheme.of(context).labelMedium,
                           hintText: 'What\'s in your mind..?',
-                          hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                          hintStyle: MyTheme.of(context).labelMedium,
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: MyTheme.of(context).primaryText,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: MyTheme.of(context).primary,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(1),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(1),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(1),
@@ -503,10 +501,10 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: MyTheme.of(context).bodyMedium,
                         maxLines: 16,
                         minLines: 6,
-                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        cursorColor: MyTheme.of(context).primary,
                         validator: _model.textController2Validator
                             .asValidator(context),
                       ),
@@ -522,10 +520,10 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                         maxWidth: 500,
                       ),
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: MyTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: MyTheme.of(context).alternate,
                           width: 2,
                         ),
                       ),
@@ -541,7 +539,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                           children: [
                             Icon(
                               Icons.add_a_photo_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: MyTheme.of(context).primaryText,
                               size: 32,
                             ),
                             Padding(
@@ -555,7 +553,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                 child: Text(
                                 'Upload Media',
                                 textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                style: MyTheme.of(context).bodyMedium,
                               ),
                             ),
                             ),
@@ -585,7 +583,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                         iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: Color(0xFF4A39EB),
                         textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
+                            MyTheme.of(context).titleSmall.override(
                                   fontFamily: 'Inter',
                                   color: Colors.white,
                                 ),
