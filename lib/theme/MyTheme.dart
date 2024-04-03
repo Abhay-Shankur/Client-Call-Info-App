@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 const kThemeModeKey = '__theme_mode__';
 
-abstract class MyTheme {
+abstract class MyTheme extends FlutterFlowTheme {
   static MyTheme of(BuildContext context) {
     return Theme.of(context).brightness == Brightness.dark
         ? DarkModeTheme()
@@ -98,7 +100,7 @@ abstract class MyTheme {
   String get bodySmallFamily => typography.bodySmallFamily;
   TextStyle get bodySmall => typography.bodySmall;
 
-  Typography get typography => ThemeTypography(this);
+  // Typography get typography => ThemeTypography(this);
 }
 
 class LightModeTheme extends MyTheme {
@@ -375,38 +377,38 @@ class DarkModeTheme extends MyTheme {
   @override
   late Color lineColor = const Color(0xFF22282F);
 }
-
-extension TextStyleHelper on TextStyle {
-  TextStyle override({
-    String? fontFamily,
-    Color? color,
-    double? fontSize,
-    FontWeight? fontWeight,
-    double? letterSpacing,
-    FontStyle? fontStyle,
-    bool useGoogleFonts = true,
-    TextDecoration? decoration,
-    double? lineHeight,
-  }) =>
-      useGoogleFonts
-          ? GoogleFonts.getFont(
-              fontFamily!,
-              color: color ?? this.color,
-              fontSize: fontSize ?? this.fontSize,
-              letterSpacing: letterSpacing ?? this.letterSpacing,
-              fontWeight: fontWeight ?? this.fontWeight,
-              fontStyle: fontStyle ?? this.fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-            )
-          : copyWith(
-              fontFamily: fontFamily,
-              color: color,
-              fontSize: fontSize,
-              letterSpacing: letterSpacing,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-            );
-}
+//
+// extension TextStyleHelper on TextStyle {
+//   TextStyle override({
+//     String? fontFamily,
+//     Color? color,
+//     double? fontSize,
+//     FontWeight? fontWeight,
+//     double? letterSpacing,
+//     FontStyle? fontStyle,
+//     bool useGoogleFonts = true,
+//     TextDecoration? decoration,
+//     double? lineHeight,
+//   }) =>
+//       useGoogleFonts
+//           ? GoogleFonts.getFont(
+//               fontFamily!,
+//               color: color ?? this.color,
+//               fontSize: fontSize ?? this.fontSize,
+//               letterSpacing: letterSpacing ?? this.letterSpacing,
+//               fontWeight: fontWeight ?? this.fontWeight,
+//               fontStyle: fontStyle ?? this.fontStyle,
+//               decoration: decoration,
+//               height: lineHeight,
+//             )
+//           : copyWith(
+//               fontFamily: fontFamily,
+//               color: color,
+//               fontSize: fontSize,
+//               letterSpacing: letterSpacing,
+//               fontWeight: fontWeight,
+//               fontStyle: fontStyle,
+//               decoration: decoration,
+//               height: lineHeight,
+//             );
+// }

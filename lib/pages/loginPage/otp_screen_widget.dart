@@ -1,9 +1,10 @@
-import 'package:call_info/pages/Dashboard/DashboardUi.dart';
+
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../dashboard/dashboard_widget.dart';
 import 'otp_screen_model.dart';
 export 'otp_screen_model.dart';
 
@@ -273,7 +274,7 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                                 onPressed: () async {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => DashboardUi())
+                                      MaterialPageRoute(builder: (context) => DashboardWidget())
                                     );
                                 },
                                 text: 'Submit',

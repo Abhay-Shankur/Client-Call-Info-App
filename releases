@@ -1,4 +1,4 @@
-1.0.3:
+1.0.3(Shubham):
 Added SplashScreen
 Added CallLogs
 Added FAQ
@@ -9,7 +9,7 @@ Added Profile
 Added Login
 Added OTP
 
-1.0.4(Nikhil)
+1.0.4(Nikhil):
 Added Dashboard
 Added Edit Profile
 Added Message Templates
@@ -21,10 +21,16 @@ Connected All Pages
 Handled Overflow Error
 
 
-1.0.5(Nikhil)
+1.0.5(Nikhil) :
 Added Image support for Whatsapp Message Template
 Optimized Prmossional Message Template Delay
 
-1.0.6(Abhay)
+1.0.6(Abhay):
 Changed Theme to MyTheme
 Structured Files
+
+1.0.7(Nikhil):
+updated Dashboard Graph
+Replaced static widgets with reusable components
+Handled OnBack events of pages(permissions n EditProfile)
+Big issue in Null pointer(helped Abhay for this)

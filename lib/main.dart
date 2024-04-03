@@ -1,11 +1,14 @@
 
 import 'package:call_info/handlers/service_locator.dart';
+import 'package:call_info/pages/dashboard/dashboard_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_log/call_log.dart';
-import 'package:flutter/services.dart';
-import 'package:workmanager/workmanager.dart';
-// import 'package:call_info/handlers/background_tasks.dart';
+import 'package:call_info/handlers/background_tasks.dart';
 import 'package:flutter/material.dart';
+import 'pages/profile/profile_widget.dart';
+import 'package:flutter/services.dart';
+import 'pages/editProfile/edit_profile_widget.dart';
+import 'package:workmanager/workmanager.dart';
 
 void main() {
   setupServiceLocator();
@@ -68,7 +71,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Call Info',
-      home: SplashScreenWidget(),
+      home : DashboardWidget(),
       // initialRoute: '/vendor_dashboard',
       // initialRoute: '/vendor_login',
       // routes: {

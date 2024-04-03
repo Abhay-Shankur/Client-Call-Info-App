@@ -1,3 +1,4 @@
+import 'package:call_info/pages/dashboard/dashboard_widget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -50,7 +51,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: MyTheme.of(context).secondaryBackground,
@@ -69,6 +70,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             ),
             onPressed: () async {
               //TODO
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> DashboardWidget()));
               // context.pop();
             },
           ),

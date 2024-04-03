@@ -2,8 +2,9 @@
 // import '/flutter_flow/flutter_flow_theme.dart';
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:call_info/pages/Dashboard/DashboardUi.dart';
+
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
+import 'package:call_info/pages/dashboard/dashboard_widget.dart';
 import 'package:call_info/pages/loginPage/login_page_widget.dart';
 import 'package:call_info/pages/messageTemplate/CustomTemplate.dart';
 import 'package:call_info/theme/MyTheme.dart';
@@ -184,7 +185,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        DashboardUi()),
+                                                        DashboardWidget()),
                                               );
                                             },
                                             child: Icon(
@@ -238,7 +239,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          DashboardUi()),
+                                                          DashboardWidget()),
                                                 );
                                               },
                                               child: Icon(

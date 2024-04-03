@@ -42,7 +42,7 @@ class _PermissionWidgetState extends State<PermissionWidget> {
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: WillPopScope(
-        onWillPop: () async => false,
+        onWillPop: () async => true,
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: MyTheme.of(context).primaryBackground,
