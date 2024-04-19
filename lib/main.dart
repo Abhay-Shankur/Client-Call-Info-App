@@ -1,47 +1,44 @@
-
-import 'package:call_info/handlers/service_locator.dart';
+import 'package:call_info/handlers/call_handler.dart';
+import 'package:call_info/pages/dashboard/DashboardUi.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
-import 'package:call_log/call_log.dart';
 import 'package:flutter/services.dart';
-import 'package:workmanager/workmanager.dart';
 // import 'package:call_info/handlers/background_tasks.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  setupServiceLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  CallHandler.setupCallHandler((callType) {
+    debugPrint('Received call type: $callType');
+    // Update UI or perform any other actions based on call type
+  });
+  // app = await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // //Crashlytics
+  // FlutterError.onError = (errorDetails) {
+  //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  // };
+  // // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  // PlatformDispatcher.instance.onError = (error, stack) {
+  //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+  //   return true;
+  // };
+  // //Push Notifications
+  // await FirebaseMessagingHandler().initNotifications();
   runApp(const MyApp());
-  // Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
 }
 
-///TOP-LEVEL FUNCTION PROVIDED FOR WORK MANAGER AS CALLBACK
-void callbackDispatcher() {
-  Workmanager().executeTask((dynamic task, dynamic inputData) async {
-    print('Background Services are Working!');
-    try {
-      final Iterable<CallLogEntry> cLog = await CallLog.get();
-      print('Queried call log entries');
-      for (CallLogEntry entry in cLog) {
-        print('-------------------------------------');
-        print('F. NUMBER  : ${entry.formattedNumber}');
-        print('C.M. NUMBER: ${entry.cachedMatchedNumber}');
-        print('NUMBER     : ${entry.number}');
-        print('NAME       : ${entry.name}');
-        print('TYPE       : ${entry.callType}');
-        print('DATE       : ${DateTime.fromMillisecondsSinceEpoch(entry.timestamp!)}');
-        print('DURATION   : ${entry.duration}');
-        print('ACCOUNT ID : ${entry.phoneAccountId}');
-        print('ACCOUNT ID : ${entry.phoneAccountId}');
-        print('SIM NAME   : ${entry.simDisplayName}');
-        print('-------------------------------------');
-      }
-      return true;
-    } on PlatformException catch (e, s) {
-      print(e);
-      print(s);
-      return true;
-    }
-  });
-}
+// void backgroundTask() {
+//   const MethodChannel backgroundChannel = MethodChannel('com.callinfo.application.call_info/callType');
+//   backgroundChannel.setMethodCallHandler((call) async {
+//     if (call.method == 'triggerBackgroundTask') {
+//       // Code to trigger the BroadcastReceiver and send call type to Flutter
+//       // You can implement this logic here or call another function
+//       backgroundChannel.invokeMethod('receiveCallType', 'Incoming');
+//     }
+//   });
+// }
+
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -51,25 +48,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // final _noScreenshot = NoScreenshot.instance;
 
   @override
   void initState() {
     super.initState();
-    // disableSS();
-  }
-
-  Future<void> disableSS() async {
-    // final result = await _noScreenshot.screenshotOff();
-    // print(result);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Call Info',
-      home: SplashScreenWidget(),
-      // initialRoute: '/vendor_dashboard',
+      initialRoute: routeKeys.vendorDashboard,
+      routes: appRoutes,
       // initialRoute: '/vendor_login',
       // routes: {
       //   '/vendor_dashboard': (context) => const DashboradPageWidget(),
@@ -88,4 +78,18 @@ class _MyAppState extends State<MyApp> {
       // },
     );
   }
+}
+var appRoutes = {
+  routeKeys.splashScreen : (context) => SplashScreenWidget(),
+  routeKeys.vendorDashboard : (context) => DashboardUi(),
+};
+
+class routeKeys {
+  static const String splashScreen = '/splash';
+  static const String vendorDashboard = '/vendor_dashboard';
+  // static const String splashScreen = '/splash';
+  // static const String splashScreen = '/splash';
+  // static const String splashScreen = '/splash';
+  // static const String splashScreen = '/splash';
+  // static const String splashScreen = '/splash';
 }

@@ -1,14 +1,8 @@
-// import 'package:call_log_access_app/screens/tabs_screen.dart';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
-// import 'package:call_log_access_app/helpers.dart';
 
 class AppPermissions {
-  late BuildContext localContext;
-
-  AppPermissions(this.localContext);
 
   void checkPermission() async {
     PermissionStatus statusPhone = await Permission.phone.status;
