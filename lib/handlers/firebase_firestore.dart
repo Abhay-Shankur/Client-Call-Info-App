@@ -26,7 +26,8 @@ class FirestoreOperations {
 
       if (documentSnapshot.exists) {
         debugPrint('User data: ${documentSnapshot.data()}');
-        return documentSnapshot.data() as Map<String, dynamic>;
+        Map<String, dynamic> rs = documentSnapshot.data() as Map<String, dynamic>;
+        return rs['Message'] as Map<String, dynamic>;
       } else {
         debugPrint('User not found');
       }

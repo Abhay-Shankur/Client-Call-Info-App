@@ -8,10 +8,9 @@ Future<Map<String, dynamic>> sendWP({
 }) async {
 
   try {
-
     var firestore = FirestoreOperations();
     Map<String, dynamic> res = await firestore.readFirestoreData("USERS", "dummy");
-    res = res['Message'] as Map<String, dynamic>;
+    // res = res['Message'] as Map<String, dynamic>;
     firestore.closeConnection();
 
     var authority = 'takesolution.co.in';
