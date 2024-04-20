@@ -29,4 +29,12 @@ Optimized Prmossional Message Template Delay
 Changed Theme to MyTheme
 Structured Files
 
-1.0.7(Abhay)
+1.0.7(Nikhil):
+updated Dashboard Graph
+Replaced static widgets with reusable components
+Handled OnBack events of pages(permissions n EditProfile)
+Big issue in Null pointer(helped Abhay for this)
+
+1.0.8(Abhay):
+Call Identifying
+Merged both branch to "merged-branch"

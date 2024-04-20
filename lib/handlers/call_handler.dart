@@ -7,14 +7,21 @@ class CallHandler {
   static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
 
   static String _callType = '';
-  static bool _callIncoming = false;
 
   static void setupCallHandler(void Function(String) onCallTypeReceived) {
     _channel.setMethodCallHandler((call) async {
       if (call.method == 'receiveCallType') {
         _callType = call.arguments;
         onCallTypeReceived(_callType);
-        _showNotification(_callType); // Send notification
+        if(_callType == 'Ongoing') {
+          _showNotification("Sending Incoming Message"); // Send notification
+        } else if(_callType == 'Missed') {
+          _showNotification("Sending Missed Message"); // Send notification
+        } else if(_callType == 'Incoming') {
+          // _showNotification(_callType); // Send notification
+        } else {
+          // _showNotification(_callType); // Send notification
+        }
       }
     });
   }

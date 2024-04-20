@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "840804333118",
+    "project_id": "call-infos",
+    "storage_bucket": "call-infos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840804333118:android:102a802d39ed2e37d4c36f",
+        "android_client_info": {
+          "package_name": "com.callinfo.application.call_info"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSB2OvfwEjofThDPLUSSiP1540NbGa9VI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

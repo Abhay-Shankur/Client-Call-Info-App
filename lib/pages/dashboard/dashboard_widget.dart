@@ -1,14 +1,11 @@
 
-import 'dart:ffi';
 
 import 'package:call_log/call_log.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:provider/provider.dart';
 
 import '../../theme/MyTheme.dart';
 import '../components/card_call/card_call_widget.dart';
@@ -794,7 +791,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
-                                                            call?.name ?? 'Unknown',
+                                                            call.name ?? 'Unknown',
                                                             textAlign: TextAlign.end,
                                                             style: MyTheme.of(context).bodyMedium,
                                                           ),
@@ -802,7 +799,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             padding: EdgeInsetsDirectional.fromSTEB(
                                                                 0, 4, 0, 0),
                                                             child: Text(
-                                                              'Number ${call?.number ?? '**** 2192'}',
+                                                              'Number ${call.number ?? '**** 2192'}',
                                                               style: MyTheme.of(context).labelMedium,
                                                             ),
                                                           ),

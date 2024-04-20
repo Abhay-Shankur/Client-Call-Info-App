@@ -1,10 +1,6 @@
 package com.callinfo.application.call_info
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -12,16 +8,18 @@ import android.os.IBinder
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.dart.DartExecutor
+import io.flutter.plugin.common.MethodChannel
 
 class CallHandlingService : Service() {
 
     private val CHANNEL_NAME = "com.callinfo.application.call_info/callType"
-
-    private val IS_INCOMING = false
     private val CHANNEL_ID = "ForegroundServiceChannel"
     private val NOTIFICATION_ID = 1
-    private val NOTIFY_STATUS_ID =2
+    private var isIncoming = false
+    private var isOngoing = false
+
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent != null) {
@@ -43,18 +41,18 @@ class CallHandlingService : Service() {
         createNotificationChannel()
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Call Handling Service")
-            .setContentText("Listening for call events")
-            .setSmallIcon(android.R.drawable.ic_dialog_info) // Use Android's built-in icon
-            .build()
+                .setContentTitle("Call Handling Service")
+                .setContentText("Listening for call events")
+                .setSmallIcon(android.R.drawable.ic_dialog_info) // Use Android's built-in icon
+                .build()
     }
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val serviceChannel = NotificationChannel(
-                CHANNEL_ID,
-                "Foreground Service Channel",
-                NotificationManager.IMPORTANCE_DEFAULT
+                    CHANNEL_ID,
+                    "Foreground Service Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT
             )
             val manager = getSystemService(NotificationManager::class.java)
             manager?.createNotificationChannel(serviceChannel)
@@ -72,24 +70,30 @@ class CallHandlingService : Service() {
             when (state) {
                 TelephonyManager.CALL_STATE_RINGING -> {
                     // Incoming call
-                    IS_INCOMING = true
+                    isIncoming = true
                     sendCallTypeToFlutter("Incoming")
-                    showNotification("Incoming call", "You have an incoming call")
                 }
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
                     // Call in progress
+                    isOngoing = true
                     sendCallTypeToFlutter("Outgoing")
-                    showNotification("Incoming call", "You have an incoming call")
                 }
                 TelephonyManager.CALL_STATE_IDLE -> {
                     // Call ended
-                    if (incomingNumber != null && IS_INCOMING) {
+//                    android.util.Log.w("TAG", "onCallStateChanged: "+isIncoming.toString()+isOngoing.toString(),)
+                    if (isIncoming.and(isOngoing)) {
+                        sendCallTypeToFlutter("Ongoing")
+                    } else if (isIncoming && isOngoing.not()) {
                         sendCallTypeToFlutter("Missed")
-                        showNotification("Missed call", "You missed a call")
-                    } else {
-                        sendCallTypeToFlutter("Idle")
-                        showNotification("Missed call", "You missed a call")
                     }
+
+                    isOngoing=false
+                    isIncoming=false
+//                    if (incomingNumber != null) {
+//                        sendCallTypeToFlutter("Missed")
+//                    } else {
+//                        sendCallTypeToFlutter("Idle")
+//                    }
                 }
             }
         }
@@ -98,25 +102,25 @@ class CallHandlingService : Service() {
     private fun sendCallTypeToFlutter(callType: String) {
         // Send call type to Flutter using MethodChannel or any other suitable mechanism
         // For example:
-//         val intent = Intent("com.example.call_detection.CALL_TYPE")
-//         intent.putExtra("callType", callType)
-//         sendBroadcast(intent)
-    }
+        // val intent = Intent("com.example.call_detection.CALL_TYPE")
+        // intent.putExtra("callType", callType)
+        // sendBroadcast(intent)
+        // Initialize a FlutterEngine instance
+        val flutterEngine = FlutterEngine(this)
 
-    private fun showNotification(title: String, content: String) {
-        val notificationIntent = Intent(this, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        // Execute the Dart entry point
+        flutterEngine.dartExecutor.executeDartEntrypoint(
+                DartExecutor.DartEntrypoint.createDefault()
+        )
 
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle(title)
-            .setContentText(content)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
+        // Create a MethodChannel with the specified channel name
+        val channel = MethodChannel(
+                flutterEngine.dartExecutor.binaryMessenger,
+                CHANNEL_NAME
+        )
 
-        val notificationManager = NotificationManagerCompat.from(this)
-        notificationManager.notify(NOTIFY_STATUS_ID, notification)
+        // Invoke the method on the MethodChannel to send the callType to Flutter
+        channel.invokeMethod("receiveCallType", callType)
     }
 
     override fun onBind(intent: Intent): IBinder? {

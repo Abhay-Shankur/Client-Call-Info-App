@@ -1,11 +1,12 @@
 import 'package:call_info/handlers/call_handler.dart';
 import 'package:call_info/pages/dashboard/DashboardUi.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
-import 'package:flutter/services.dart';
 // import 'package:call_info/handlers/background_tasks.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   CallHandler.setupCallHandler((callType) {
     debugPrint('Received call type: $callType');
@@ -14,6 +15,9 @@ void main() {
   // app = await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // //Crashlytics
   // FlutterError.onError = (errorDetails) {
   //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);

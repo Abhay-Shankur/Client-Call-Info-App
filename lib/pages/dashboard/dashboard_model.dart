@@ -2,10 +2,6 @@ import '/pages/components/card_call/card_call_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  State fields for stateful widgets in this page.
