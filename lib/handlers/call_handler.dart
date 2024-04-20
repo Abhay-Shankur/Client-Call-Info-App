@@ -33,7 +33,7 @@ class CallHandler {
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
     AndroidNotificationDetails(
-      'com.example.call_detection',
+      'com.callinfo.application.call_info',
       'Call Detection',
       channelDescription:'Notification channel for call detection',
       importance: Importance.max,

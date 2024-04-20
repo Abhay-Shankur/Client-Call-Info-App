@@ -28,6 +28,7 @@ class CallReceiver : BroadcastReceiver() {
 
     private fun getCallType(state: Int): String {
         return when (state) {
+//            Telepho
             TelephonyManager.CALL_STATE_RINGING -> "Incoming"
             TelephonyManager.CALL_STATE_OFFHOOK -> "Outgoing"
             TelephonyManager.CALL_STATE_IDLE -> "Idle"
