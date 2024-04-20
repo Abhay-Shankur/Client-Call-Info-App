@@ -71,20 +71,31 @@ class CallHandlingService : Service() {
                 TelephonyManager.CALL_STATE_RINGING -> {
                     // Incoming call
                     isIncoming = true
-                    sendCallTypeToFlutter("Incoming")
+                    if (incomingNumber != null) {
+                        sendCallTypeToFlutter("Incoming", incomingNumber)
+                    }
                 }
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
                     // Call in progress
                     isOngoing = true
-                    sendCallTypeToFlutter("Outgoing")
+                    if (incomingNumber != null) {
+
+                        sendCallTypeToFlutter("Outgoing", incomingNumber)
+                    }
                 }
                 TelephonyManager.CALL_STATE_IDLE -> {
                     // Call ended
 //                    android.util.Log.w("TAG", "onCallStateChanged: "+isIncoming.toString()+isOngoing.toString(),)
+                    android.util.Log.w("TAG", "onCallStateChanged: "+incomingNumber.toString(),)
                     if (isIncoming.and(isOngoing)) {
-                        sendCallTypeToFlutter("Ongoing")
+                        if (incomingNumber != null) {
+                            sendCallTypeToFlutter("Ongoing", incomingNumber)
+                        }
                     } else if (isIncoming && isOngoing.not()) {
-                        sendCallTypeToFlutter("Missed")
+                        if (incomingNumber != null) {
+                            sendCallTypeToFlutter("Missed", incomingNumber)
+                        }
+
                     }
 
                     isOngoing=false
@@ -99,12 +110,7 @@ class CallHandlingService : Service() {
         }
     }
 
-    private fun sendCallTypeToFlutter(callType: String) {
-        // Send call type to Flutter using MethodChannel or any other suitable mechanism
-        // For example:
-        // val intent = Intent("com.example.call_detection.CALL_TYPE")
-        // intent.putExtra("callType", callType)
-        // sendBroadcast(intent)
+    private fun sendCallTypeToFlutter(callType: String, phoneNumber: String) {
         // Initialize a FlutterEngine instance
         val flutterEngine = FlutterEngine(this)
 
@@ -119,8 +125,14 @@ class CallHandlingService : Service() {
                 CHANNEL_NAME
         )
 
+        // Create a map to pass both callType and phoneNumber to Flutter
+        val arguments = mapOf(
+                "callType" to callType,
+                "phoneNumber" to phoneNumber
+        )
         // Invoke the method on the MethodChannel to send the callType to Flutter
-        channel.invokeMethod("receiveCallType", callType)
+//        channel.invokeMethod("receiveCallType", callType)
+        channel.invokeMethod("receiveCallType", arguments)
     }
 
     override fun onBind(intent: Intent): IBinder? {

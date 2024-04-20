@@ -1,24 +1,35 @@
+
 import 'package:call_info/handlers/call_handler.dart';
+import 'package:call_info/handlers/firebase_firestore.dart';
+import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/pages/dashboard/DashboardUi.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
-// import 'package:call_info/handlers/background_tasks.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+
+late final FirebaseApp app;
+final navigator = GlobalKey<NavigatorState>();
+
 Future<void> main() async {
+  //Widgets Initializations.
   WidgetsFlutterBinding.ensureInitialized();
-  CallHandler.setupCallHandler((callType) {
-    debugPrint('Received call type: $callType');
-    // Update UI or perform any other actions based on call type
-  });
-  // app = await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-  await Firebase.initializeApp(
+
+  //Firebase Initialize
+  // await Firebase.initializeApp();
+  app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // //Crashlytics
+
+  //Call Handler
+  CallHandler.setupCallHandler();
+  // CallHandler.setupCallHandler((callType) {
+  //   debugPrint('Received call type: $callType');
+  //   // Update UI or perform any other actions based on call type
+  // });
+
+  //Crashlytics
   // FlutterError.onError = (errorDetails) {
   //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
   // };
@@ -27,8 +38,13 @@ Future<void> main() async {
   //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
   //   return true;
   // };
+  //
   // //Push Notifications
   // await FirebaseMessagingHandler().initNotifications();
+
+  // Check and request storage permissions
+  await PermissionManager.requestAll();
+
   runApp(const MyApp());
 }
 
@@ -64,6 +80,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Call Info',
       initialRoute: routeKeys.vendorDashboard,
       routes: appRoutes,
+      navigatorKey: navigator,
       // initialRoute: '/vendor_login',
       // routes: {
       //   '/vendor_dashboard': (context) => const DashboradPageWidget(),

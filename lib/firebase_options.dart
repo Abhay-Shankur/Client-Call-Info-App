@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'call-infos.appspot.com',
     iosBundleId: 'com.callinfo.application.callInfo',
   );
+
 }
