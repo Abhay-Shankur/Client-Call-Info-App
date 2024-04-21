@@ -1,10 +1,10 @@
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 // import '/flutter_flow/random_data_util.dart' as random_data;
-import 'DashboardUi.dart' show DashboardUi;
+import 'DashboardUi.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
 
-class DashborddemoCopyModel extends FlutterFlowModel<DashboardUi> {
+class DashborddemoCopyModel extends FlutterFlowModel<DashboardWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

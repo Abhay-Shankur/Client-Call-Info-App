@@ -1,3 +1,4 @@
+import 'package:call_info/main.dart';
 import 'package:call_info/pages/Dashboard/DashboardUi.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -271,10 +272,11 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => DashboardUi())
-                                    );
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(builder: (context) => DashboardUi())
+                                    // );
+                                  navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                 },
                                 text: 'Submit',
                                 options: FFButtonOptions(

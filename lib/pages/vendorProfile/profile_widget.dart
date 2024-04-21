@@ -2,6 +2,7 @@
 // import '/flutter_flow/flutter_flow_theme.dart';
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:call_info/main.dart';
 import 'package:call_info/pages/Dashboard/DashboardUi.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
 import 'package:call_info/pages/loginPage/login_page_widget.dart';
@@ -180,12 +181,13 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                           alignment: AlignmentDirectional(0, 0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DashboardUi()),
-                                              );
+                                              // Navigator.push(
+                                              //   context,
+                                              //   MaterialPageRoute(
+                                              //       builder: (context) =>
+                                              //           DashboardUi()),
+                                              // );
+                                              navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                             },
                                             child: Icon(
                                               Icons.work_outline,
@@ -234,12 +236,13 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                                 AlignmentDirectional(0, 0),
                                             child: GestureDetector(
                                               onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          DashboardUi()),
-                                                );
+                                                // Navigator.push(
+                                                //   context,
+                                                //   MaterialPageRoute(
+                                                //       builder: (context) =>
+                                                //           DashboardUi()),
+                                                // );
+                                                navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                               },
                                               child: Icon(
                                                 Icons.notifications_outlined,

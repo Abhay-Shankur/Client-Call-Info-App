@@ -10,14 +10,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'SMSmessagemodel.dart';
 export 'SMSmessagemodel.dart';
 
-class SMSmessagewidegt extends StatefulWidget {
-  const SMSmessagewidegt({super.key});
+class SMSTemplateWidget extends StatefulWidget {
+  const SMSTemplateWidget({super.key});
 
   @override
-  State<SMSmessagewidegt> createState() => _WhtstempCopyWidgetState();
+  State<SMSTemplateWidget> createState() => _WhtstempCopyWidgetState();
 }
 
-class _WhtstempCopyWidgetState extends State<SMSmessagewidegt> {
+class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
   late WhtstempCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -48,8 +48,7 @@ class _WhtstempCopyWidgetState extends State<SMSmessagewidegt> {
         automaticallyImplyLeading: false,
         title: FFButtonWidget(
           onPressed: () async {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => CustomtemplateWidget())
-            );
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CustomtemplateWidget()));
             // context.pop();
           },
           text: 'Cancel',
@@ -78,6 +77,7 @@ class _WhtstempCopyWidgetState extends State<SMSmessagewidegt> {
             child: FFButtonWidget(
               onPressed: () {
                 showToast();
+                _model.saveTemplate();
                 print('Button pressed ...');
               },
               text: 'Save',

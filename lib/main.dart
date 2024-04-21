@@ -1,12 +1,16 @@
 
 import 'package:call_info/handlers/call_handler.dart';
-import 'package:call_info/handlers/firebase_firestore.dart';
 import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/pages/dashboard/DashboardUi.dart';
+import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
+import 'package:call_info/providers/sms/sms_provider.dart';
+import 'package:call_info/providers/wp/wp_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'pages/messageTemplate/whatsappmessagetemplate.dart';
 
 
 late final FirebaseApp app;
@@ -76,39 +80,49 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Call Info',
-      initialRoute: routeKeys.vendorDashboard,
-      routes: appRoutes,
-      navigatorKey: navigator,
-      // initialRoute: '/vendor_login',
-      // routes: {
-      //   '/vendor_dashboard': (context) => const DashboradPageWidget(),
-      //   '/vendor_settings': (context) => const SettingsPageWidget(),
-      //   // '/vendor_logs': (context) => const CallLogsWidget(),
-      //   '/vendor_logs': (context) => const CalllogsWidget(),
-      //   '/vendor_faq': (context) => const FaqWidget(),
-      //   '/vendor_support': (context) => const CustomerSupportWidget(),
-      //   '/vendor_permission': (context) => const PermissionWidget(),
-      //   '/vendor_editProfile': (context) => const EditProfileWidget(),
-      //   '/vendor_profile': (context) => const ProfileWidget(),
-      //   '/vendor_otp': (context) => const OTPScreenWidget(),
-      //   '/vendor_login': (context) => const LoginPageWidget(),
-      //   '/splash': (context) => const SplashScreenWidget(),
-      //   // '/login': (context) => const LoginPhone(),
-      // },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SMSMessageTemplateProvider()),
+        ChangeNotifierProvider(create: (_) => WPMessageTemplateProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Call Info',
+        initialRoute: routeKeys.vendorDashboard,
+        // initialRoute: routeKeys.vendorWPTemplate,
+        routes: appRoutes,
+        navigatorKey: navigator,
+        // initialRoute: '/vendor_login',
+        // routes: {
+        //   '/vendor_dashboard': (context) => const DashboradPageWidget(),
+        //   '/vendor_settings': (context) => const SettingsPageWidget(),
+        //   // '/vendor_logs': (context) => const CallLogsWidget(),
+        //   '/vendor_logs': (context) => const CalllogsWidget(),
+        //   '/vendor_faq': (context) => const FaqWidget(),
+        //   '/vendor_support': (context) => const CustomerSupportWidget(),
+        //   '/vendor_permission': (context) => const PermissionWidget(),
+        //   '/vendor_editProfile': (context) => const EditProfileWidget(),
+        //   '/vendor_profile': (context) => const ProfileWidget(),
+        //   '/vendor_otp': (context) => const OTPScreenWidget(),
+        //   '/vendor_login': (context) => const LoginPageWidget(),
+        //   '/splash': (context) => const SplashScreenWidget(),
+        //   // '/login': (context) => const LoginPhone(),
+        // },
+      ),
     );
   }
 }
 var appRoutes = {
   routeKeys.splashScreen : (context) => SplashScreenWidget(),
-  routeKeys.vendorDashboard : (context) => DashboardUi(),
+  routeKeys.vendorDashboard : (context) => DashboardWidget(),
+  routeKeys.vendorSMSTemplate : (context) => SMSTemplateWidget(),
+  routeKeys.vendorWPTemplate : (context) => WhatsappTemplateWidget(),
 };
 
 class routeKeys {
   static const String splashScreen = '/splash';
   static const String vendorDashboard = '/vendor_dashboard';
-  // static const String splashScreen = '/splash';
+  static const String vendorSMSTemplate = '/vendor_SMSTemplate';
+  static const String vendorWPTemplate = '/vendor_WPTemplate';
   // static const String splashScreen = '/splash';
   // static const String splashScreen = '/splash';
   // static const String splashScreen = '/splash';

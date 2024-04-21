@@ -1,11 +1,11 @@
-// import '/flutter_flow/flutter_flow_theme.dart';
-// import '/flutter_flow/flutter_flow_util.dart';
-// import '/flutter_flow/flutter_flow_widgets.dart';
+
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/providers/sms/sms_shared.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart' show SMSmessagewidegt;
+import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart' show SMSTemplateWidget;
 import 'package:flutter/material.dart';
 
-class WhtstempCopyModel extends FlutterFlowModel<SMSmessagewidegt> {
+class WhtstempCopyModel extends FlutterFlowModel<SMSTemplateWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
@@ -16,7 +16,9 @@ class WhtstempCopyModel extends FlutterFlowModel<SMSmessagewidegt> {
   /// Initialization and disposal methods.
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+
+  }
 
   @override
   void dispose() {
@@ -24,6 +26,21 @@ class WhtstempCopyModel extends FlutterFlowModel<SMSmessagewidegt> {
     textController?.dispose();
   }
 
+  Future<void> saveTemplate() async {
+    String text = this.textController!.value.text;
+    // Update message template text
+    // SharedPreferencesHelper.setString('smsMsg', text);
+    FirestoreOperations firestore =FirestoreOperations();
+    Map<String,dynamic> data = {
+      'sms': {
+        'text': text,
+      }
+    };
+    await firestore.updateFirestoreData("USERS","abhay",data);
+    firestore.closeConnection();
+    SMSMessageTemplate(text: text).saveToShared();
+    debugPrint('Saving Template');
+  }
 /// Action blocks are added here.
 
 /// Additional helper methods are added here.

@@ -121,7 +121,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => WhtstempWidget()),
+                                MaterialPageRoute(builder: (context) => WhatsappTemplateWidget()),
                               );
                             },
                                 child: ClipRRect(
@@ -144,7 +144,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                     onTap: () {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => WhtstempWidget()),
+                                        MaterialPageRoute(builder: (context) => WhatsappTemplateWidget()),
                                       );
                                     },
                                   child: Column(
@@ -185,7 +185,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                       onTap: () {
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => WhtstempWidget()),
+                                          MaterialPageRoute(builder: (context) => WhatsappTemplateWidget()),
                                         );
                                       },
                                     child: Icon(
@@ -232,7 +232,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                   onTap: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => SMSmessagewidegt()),
+                                      MaterialPageRoute(builder: (context) => SMSTemplateWidget()),
                                     );
                                   },                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(6),
@@ -254,7 +254,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                     onTap: () {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => SMSmessagewidegt()),
+                                        MaterialPageRoute(builder: (context) => SMSTemplateWidget()),
                                       );
                                     },
                                   child: Column(
@@ -295,7 +295,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                       onTap: () {
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => SMSmessagewidegt()),
+                                          MaterialPageRoute(builder: (context) => SMSTemplateWidget()),
                                         );
                                       },
                                     child: Icon(

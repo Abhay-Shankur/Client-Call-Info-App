@@ -43,3 +43,11 @@ Merged both branch to "merged-branch"
 Added Handler Files
 Created SMS Handler
 Created WhatsApp Handler.
+
+1.0.10(Abhay):
+Added SMS Provider.
+Added WP Provider.
+Connected Templates with Firestore.
+Connected FirebaseStorage to project.
+Saving Data to Shared Preference.
+Able to Send through WhatsApp and SMS.

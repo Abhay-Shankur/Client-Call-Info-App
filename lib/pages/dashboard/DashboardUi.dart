@@ -9,14 +9,14 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'Dashboardmodel.dart';
 export 'Dashboardmodel.dart';
 
-class DashboardUi extends StatefulWidget {
-  const DashboardUi({super.key});
+class DashboardWidget extends StatefulWidget {
+  const DashboardWidget({super.key});
 
   @override
-  State<DashboardUi> createState() => _DashborddemoCopyWidgetState();
+  State<DashboardWidget> createState() => _DashborddemoCopyWidgetState();
 }
 
-class _DashborddemoCopyWidgetState extends State<DashboardUi>
+class _DashborddemoCopyWidgetState extends State<DashboardWidget>
     with TickerProviderStateMixin {
   late DashborddemoCopyModel _model;
   int incomingCalls = 0;

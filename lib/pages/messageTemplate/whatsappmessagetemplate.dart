@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:call_info/pages/messageTemplate/CustomTemplate.dart';
@@ -15,14 +13,14 @@ import 'whatsappmessagemodel.dart';
 export 'whatsappmessagemodel.dart';
 
 
-class WhtstempWidget extends StatefulWidget {
-  const WhtstempWidget({super.key});
+class WhatsappTemplateWidget extends StatefulWidget {
+  const WhatsappTemplateWidget({super.key});
 
   @override
-  State<WhtstempWidget> createState() => _WhtstempWidgetState();
+  State<WhatsappTemplateWidget> createState() => _WhatsappTemplateWidgetState();
 }
 
-class _WhtstempWidgetState extends State<WhtstempWidget> {
+class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
   late WhtstempModel _model;
   String? _selectedImagePath;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -84,7 +82,8 @@ class _WhtstempWidgetState extends State<WhtstempWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
             child: FFButtonWidget(
               onPressed: () {
-                showToast();
+                // showToast();
+                _model.saveTemplate();
                 print('Button pressed ...');
               },
               text: 'Save',
@@ -321,7 +320,8 @@ class _WhtstempWidgetState extends State<WhtstempWidget> {
                                         size: 32,
                                       ),
                                       onPressed: () {
-                                        selectImages();
+                                        // selectImages();
+                                        _model.pickFile();
                                         print('IconButton pressed ...');
                                       },
                                     ),
@@ -343,16 +343,7 @@ class _WhtstempWidgetState extends State<WhtstempWidget> {
     );
   }
 
-  void showToast() {
-    String text = _model.textController.text;
-    Fluttertoast.showToast(
-      msg: text.isNotEmpty ? text : 'Text field is empty',
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-    );
-  }
+
 
 
   // void selectImages() async {
@@ -366,16 +357,16 @@ class _WhtstempWidgetState extends State<WhtstempWidget> {
   //   print("Image List Length:" + imageFileList!.length.toString());
   //   setState(() {});
   // }
-  void selectImages() async {
-    final ImagePicker imagePicker = ImagePicker();
-    List<XFile>? imageFileList = [];
-
-    final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
-    if (selectedImages != null && selectedImages.isNotEmpty) {
-      // Only proceed if images are selected
-      setState(() {
-        _selectedImagePath = selectedImages[0].path; // Store the path of the first selected image
-      });
-    }
-  }
+  // void selectImages() async {
+  //   final ImagePicker imagePicker = ImagePicker();
+  //   List<XFile>? imageFileList = [];
+  //
+  //   final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
+  //   if (selectedImages != null && selectedImages.isNotEmpty) {
+  //     // Only proceed if images are selected
+  //     setState(() {
+  //       _selectedImagePath = selectedImages[0].path; // Store the path of the first selected image
+  //     });
+  //   }
+  // }
 }
