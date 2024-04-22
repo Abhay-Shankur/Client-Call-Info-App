@@ -8,11 +8,14 @@ import 'vendorSubscriptionWidget.dart' show ActiveSubscriptionWidget;
 import 'package:flutter/material.dart';
 import 'package:call_info/main.dart';
 
-class ActiveSubscriptionModel
-    extends FlutterFlowModel<ActiveSubscriptionWidget> {
+class ActiveSubscriptionModel extends FlutterFlowModel<ActiveSubscriptionWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for SwitchListTile widget.
+  bool? switchListTileValue1;
+  // State field(s) for SwitchListTile widget.
+  bool? switchListTileValue2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;

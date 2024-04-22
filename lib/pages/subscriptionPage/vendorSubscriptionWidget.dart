@@ -149,6 +149,64 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                   ),
                                 ),
                               ),
+                              Container(
+                                decoration: BoxDecoration(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SwitchListTile.adaptive(
+                                      value: _model.switchListTileValue1 ??= false,
+                                      onChanged: (newValue) async {
+                                        setState(() => _model.switchListTileValue1 = newValue!);
+                                      },
+                                      title: Text(
+                                        'SMS',
+                                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                                          fontFamily: 'Outfit',
+                                          letterSpacing: 0,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        'Activate SMS Service',
+                                        style: FlutterFlowTheme.of(context).labelMedium.override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0,
+                                        ),
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                      activeColor: FlutterFlowTheme.of(context).primary,
+                                      activeTrackColor: FlutterFlowTheme.of(context).accent1,
+                                      dense: false,
+                                      controlAffinity: ListTileControlAffinity.trailing,
+                                    ),
+                                    SwitchListTile.adaptive(
+                                      value: _model.switchListTileValue2 ??= false,
+                                      onChanged: (newValue) async {
+                                        setState(() => _model.switchListTileValue2 = newValue!);
+                                      },
+                                      title: Text(
+                                        'WhatsApp ',
+                                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                                          fontFamily: 'Outfit',
+                                          letterSpacing: 0,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        'Activate WhatsApp Service',
+                                        style: FlutterFlowTheme.of(context).labelMedium.override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0,
+                                        ),
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                      activeColor: FlutterFlowTheme.of(context).primary,
+                                      activeTrackColor: FlutterFlowTheme.of(context).accent1,
+                                      dense: false,
+                                      controlAffinity: ListTileControlAffinity.trailing,
+                                    ),
+                                  ],
+                                ),
+                              ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 12, 16, 0),
