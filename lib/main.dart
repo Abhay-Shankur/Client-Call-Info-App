@@ -13,6 +13,7 @@ import 'package:call_info/pages/messageTemplate/CustomTemplate.dart';
 import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart';
 import 'package:call_info/pages/permissionsPage/permission_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
+import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
@@ -138,13 +139,15 @@ var appRoutes = {
   routeKeys.vendorWPTemplate : (context) => WhatsappTemplateWidget(),
   routeKeys.vendorLogin : (context) => LoginPageWidget(),
   routeKeys.vendorOtp : (context) => OTPScreenWidget(),
-  routeKeys.callLogTemplate : (context) => CalllogsWidget(),
+  // routeKeys.callLogTemplate : (context) => CalllogsWidget(),
+  routeKeys.callLogTemplate : (context) => CallLogsPage(),
   routeKeys.editVendorProfile : (context) => EditProfileWidget(),
   routeKeys.settingsPage : (context) => SettingsWidget(),
   routeKeys.faqPage : (context) => FaqWidget(),
   routeKeys.customerSupport : (context) => CustomerSupportWidget(),
   routeKeys.customTemplates : (context) => CustomtemplateWidget(),
   routeKeys.permissionsPage : (context) => PermissionWidget(),
+  routeKeys.activeSubscriptionPage : (context) => ActiveSubscriptionWidget(),
 
 
 };
@@ -163,6 +166,7 @@ class routeKeys {
   static const String customerSupport= '/customerSupport';
   static const String customTemplates= '/customTemplates';
   static const String permissionsPage= '/permissionsPage';
+  static const String activeSubscriptionPage= '/activeSubscriptionPage';
 
 
 

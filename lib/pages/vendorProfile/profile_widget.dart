@@ -184,6 +184,11 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 12),
+                            child: GestureDetector(
+                              onTap: () {
+
+                                navigator.currentState?.pushNamed(routeKeys.activeSubscriptionPage);
+                              },
                                         child: Container(
                                           width: 34,
                                           height: 34,
@@ -196,7 +201,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           child: GestureDetector(
                                             onTap: () {
 
-                                              navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
+                                              navigator.currentState?.pushNamed(routeKeys.activeSubscriptionPage);
                                             },
                                             child: Icon(
                                               Icons.work_outline,
@@ -207,6 +212,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             ),
                                           ),
                                         ),
+                                      ),
                                       ),
                                       Text(
                                         'Active \nSubscription',

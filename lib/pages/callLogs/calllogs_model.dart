@@ -1,14 +1,20 @@
+import 'package:call_log/call_log.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/call_log/call_log_widget.dart';
 import 'calllogs_widget.dart' show CalllogsWidget;
 import 'package:flutter/material.dart';
-
+import 'calllogs_widget.dart';
+import '/pages/components/call_log/call_log_widget.dart';
 import '../components/call_log/call_log_model.dart';
-
-class CalllogsModel extends FlutterFlowModel<CalllogsWidget> {
+import 'calllogs_widget.dart';
+class CalllogsModel extends FlutterFlowModel<CallLogsPage> {
   ///  State fields for stateful widgets in this page.
-
+  late Iterable<CallLogEntry> _callLogs;
   final unfocusNode = FocusNode();
+  late String callername;
+  late int  callernumber;
+  late String callercallType;
+
   // Model for CallLog component.
   late CallLogModel callLogModel1;
   // Model for CallLog component.
@@ -20,9 +26,11 @@ class CalllogsModel extends FlutterFlowModel<CalllogsWidget> {
 
   @override
   void initState(BuildContext context) {
+
     callLogModel1 = createModel(context, () => CallLogModel());
     callLogModel2 = createModel(context, () => CallLogModel());
     callLogModel3 = createModel(context, () => CallLogModel());
+
   }
 
   @override
@@ -34,6 +42,15 @@ class CalllogsModel extends FlutterFlowModel<CalllogsWidget> {
   }
 
 /// Action blocks are added here.
+//   Future<void> _retrieveCallLogs() async {
+//     // Retrieve call logs
+//     _callLogs = await CallLog.get();
+//     final callLog = _callLogs.elementAt(1);
+//     // Update the UI after retrieving call logs
+//   }
+
 
 /// Additional helper methods are added here.
 }
+
+

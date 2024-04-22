@@ -8,10 +8,12 @@ export 'call_log_model.dart';
 class CallLogWidget extends StatefulWidget {
   const CallLogWidget({
     super.key,
-    required this.iconType,
+    required this.iconType,  required this.name, required this.number,
   });
 
   final Widget? iconType;
+  final String name;
+  final String number;
 
   @override
   State<CallLogWidget> createState() => _CallLogWidgetState();
@@ -137,4 +139,5 @@ class _CallLogWidgetState extends State<CallLogWidget> {
       ),
     );
   }
+
 }
