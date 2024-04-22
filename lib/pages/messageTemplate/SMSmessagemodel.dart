@@ -30,7 +30,7 @@ class WhtstempCopyModel extends FlutterFlowModel<SMSTemplateWidget> {
     String text = this.textController!.value.text;
     // Update message template text
     // SharedPreferencesHelper.setString('smsMsg', text);
-    FirestoreOperations firestore =FirestoreOperations();
+    FirestoreHandler firestore =FirestoreHandler();
     Map<String,dynamic> data = {
       'sms': {
         'text': text,

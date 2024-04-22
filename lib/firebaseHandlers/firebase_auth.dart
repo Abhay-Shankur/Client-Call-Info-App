@@ -101,6 +101,10 @@ class FirebaseAuthHandler {
     return _auth.currentUser;
   }
 
+  static String? getUid() {
+    return _auth.currentUser?.uid;
+  }
+
   // Get user details
   Future<User?> getUserDetails() async {
     User? user = _auth.currentUser;

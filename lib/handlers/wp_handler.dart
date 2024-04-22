@@ -1,5 +1,6 @@
 import 'package:call_info/handlers/api_handler.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:call_info/providers/wp/wp_shared.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -11,16 +12,13 @@ Future<Map<String, dynamic>> sendWP({
     WPMessageTemplate? _messageTemplate = await WPMessageTemplate.getFromShared();
 
     if(_messageTemplate != null) {
-      var firestore = FirestoreOperations();
-      Map<String, dynamic> res = await firestore.readFirestoreData("USERS", "abhay");
-      // res = res['Message'] as Map<String, dynamic>;
-      firestore.closeConnection();
-
+      String authKey = await SharedPreferencesHelper.getString("AUTH_KEY");
+      String instanceId = await SharedPreferencesHelper.getString("instance_id") ;
       var authority = 'takesolution.co.in';
       var path = '/sendMessage.php';
       var requestBody = {
-        'AUTH_KEY': res['AUTH_KEY'].toString(),
-        'instance_id': res['instance_id'].toString(),
+        'AUTH_KEY': authKey,
+        'instance_id': instanceId,
         'img': _messageTemplate.image,
         'message': _messageTemplate.text,
         'phone': phone,

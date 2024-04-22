@@ -155,8 +155,9 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                 child: TextFormField(
                                   controller: _model.textController1,
                                   focusNode: _model.textFieldFocusNode1,
+                                  keyboardType: TextInputType.number,
                                   autofocus: false,
-                                  textCapitalization: TextCapitalization.words,
+                                  // textCapitalization: TextCapitalization.words,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Access token',
@@ -234,6 +235,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                 child: TextFormField(
                                   controller: _model.textController2,
                                   focusNode: _model.textFieldFocusNode2,
+                                  keyboardType: TextInputType.number,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -318,8 +320,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                           EdgeInsetsDirectional.fromSTEB(16, 28, 16, 29),
                           child: FFButtonWidget(
                             onPressed: () {
-                              showToast("Account Saved Sucsessfully..");
-                              print('Button pressed ...');
+                              _model.save();
                             },
                             text: 'Save Account',
                             options: FFButtonOptions(

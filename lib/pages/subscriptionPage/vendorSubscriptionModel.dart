@@ -1,10 +1,12 @@
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/handlers/shared_preferences_helper.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'dart:async';
+import 'package:toastification/toastification.dart';
 import 'vendorSubscriptionWidget.dart' show ActiveSubscriptionWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:call_info/main.dart';
 
 class ActiveSubscriptionModel
     extends FlutterFlowModel<ActiveSubscriptionWidget> {
@@ -31,5 +33,47 @@ class ActiveSubscriptionModel
 
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
+  }
+
+  Future<void> save() async {
+    try {
+      String accessToken = textController1!.value.text;
+      String instanceId = textController2!.value.text;
+
+      if(accessToken.isEmpty || instanceId.isEmpty) throw Exception('Empty AccessToken or  InstanceID');
+      FirestoreHandler firestore = FirestoreHandler();
+      Map<String, dynamic> data = {
+        "WhatsAppAuth" : {
+          "AUTH_KEY" : accessToken,
+          "instance_id" : instanceId,
+        }
+      };
+      String? uid = await FirebaseAuthHandler.getUid();
+      if(uid != null) {
+        await firestore.updateFirestoreData("USERS", uid, data);
+        SharedPreferencesHelper.setString("AUTH_KEY", accessToken);
+        SharedPreferencesHelper.setString("instance_id", instanceId);
+      }
+      firestore.closeConnection();
+
+    } catch (e) {
+      debugPrint('Error: $e');
+      toastification.show(
+        context: navigator.currentState!.context,
+        title: 'Failed',
+        description: 'Ohh Something is wrong!',
+        type: ToastificationType.warning,
+        style: ToastificationStyle.minimal,
+        alignment: Alignment.bottomLeft,
+        animationDuration: const Duration(milliseconds: 300),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        autoCloseDuration: const Duration(seconds: 5),
+      );
+    }
   }
 }

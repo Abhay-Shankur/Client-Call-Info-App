@@ -69,3 +69,7 @@ Added Login Backend
 Added OTP Backend
 Added JKS
 Managed Flow of User Login.
+
+1.0.14(Abhay):
+Added Backend for SubscriptionWidget.
+Moved to SharedPreference in wp_handler instead of firestore.

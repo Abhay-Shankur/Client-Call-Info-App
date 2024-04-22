@@ -60,7 +60,7 @@ class WhtstempModel extends FlutterFlowModel<WhatsappTemplateWidget> {
       String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!);
       if (imageUrl != null) {
         print('Image uploaded. URL: $imageUrl');
-        FirestoreOperations firestore = FirestoreOperations();
+        FirestoreHandler firestore = FirestoreHandler();
         Map<String, dynamic> data = {
           'whatsapp': {
             'text': textData,

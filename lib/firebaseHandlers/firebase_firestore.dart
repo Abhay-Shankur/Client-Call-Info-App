@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
-class FirestoreOperations {
+class FirestoreHandler {
   late FirebaseFirestore _firestore;
 
-  FirestoreOperations() {
+  FirestoreHandler() {
     // Initialize Firebase
     _firestore = FirebaseFirestore.instance;
   }
