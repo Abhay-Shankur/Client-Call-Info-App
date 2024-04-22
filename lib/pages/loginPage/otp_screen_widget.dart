@@ -215,6 +215,7 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                                 child: TextFormField(
                                   controller: _model.otpController,
                                   focusNode: _model.otpFocusNode,
+                                  maxLength: 6,
                                   autofocus: true,
                                   autofillHints: [AutofillHints.oneTimeCode],
                                   obscureText: false,
@@ -272,7 +273,8 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
+                                  _model.verifyOtp();
+                                  // navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                 },
                                 text: 'Submit',
                                 options: FFButtonOptions(

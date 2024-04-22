@@ -66,6 +66,20 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    signingConfigs {
+//        debug {
+//            keyAlias 'key'
+//            keyPassword 'CallInfos'
+//            storeFile file('keystore.jks')
+//            storePassword 'CallInfos'
+//        }
+        release {
+            keyAlias 'key'
+            keyPassword 'CallInfos'
+            storeFile file('keystore.jks')
+            storePassword 'CallInfos'
+        }
+    }
 }
 
 flutter {

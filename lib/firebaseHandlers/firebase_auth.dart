@@ -21,7 +21,7 @@ class FirebaseAuthHandler {
   }
 
   // Sign in with phone number
-  Future<void> signInWithPhoneNumber(String phoneNumber) async {
+  Future<void> signInWithPhoneNumber(String phoneNumber, void Function() callback) async {
     if(phoneNumber.length == 10) phoneNumber = '+91 $phoneNumber';
     debugPrint('Phone Number $phoneNumber');
     await _auth.verifyPhoneNumber(
@@ -43,6 +43,8 @@ class FirebaseAuthHandler {
           case 'too-many-requests':
             _showSnackBar('${e.message}');
             break;
+          case 'missing-client-identifier':
+            _showSnackBar('${e.message}');
           default:
             _showSnackBar('Verification Failed');
             throw FormatException('Verification Failed: $e');
@@ -53,6 +55,7 @@ class FirebaseAuthHandler {
         _verificationId = verificationId;
         debugPrint('Verification Id in signInWithPhoneNumber: $_verificationId');
         _showSnackBar('OTP sent Successfully');
+        callback();
         // Navigator.pushReplacement(
         //   context,
         //   //TODO AUTH SCREEN
@@ -67,11 +70,24 @@ class FirebaseAuthHandler {
     );
   }
 
+  // // Sign in with verification code
+  // Future<UserCredential?> signInWithVerificationCode(String verificationId, String code) async {
+  //   try {
+  //     debugPrint('Verification Id in signInWithVerificationCode: $verificationId');
+  //     PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: code);
+  //     return await _auth.signInWithCredential(credential);
+  //   } catch (e) {
+  //     debugPrint('Error signing in with verification code: $e');
+  //     _showSnackBar('Error in OTP Verification');
+  //     return null;
+  //   }
+  // }
+
   // Sign in with verification code
-  Future<UserCredential?> signInWithVerificationCode(String verificationId, String code) async {
+  Future<UserCredential?> signInWithVerificationCode(String code) async {
     try {
-      debugPrint('Verification Id in signInWithVerificationCode: $verificationId');
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: code);
+      debugPrint('Verification Id in signInWithVerificationCode: $_verificationId');
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: _verificationId, smsCode: code);
       return await _auth.signInWithCredential(credential);
     } catch (e) {
       debugPrint('Error signing in with verification code: $e');
@@ -96,8 +112,9 @@ class FirebaseAuthHandler {
   }
 
   // Sign out
-  Future<void> signOut() async {
+  Future<void> signOut(void Function() callback) async {
     await _auth.signOut();
+    callback();
   }
 
   void _showSnackBar( String message) {

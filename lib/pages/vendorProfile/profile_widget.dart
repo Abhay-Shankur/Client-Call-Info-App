@@ -2,6 +2,7 @@
 // import '/flutter_flow/flutter_flow_theme.dart';
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/main.dart';
 import 'package:call_info/pages/Dashboard/DashboardUi.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
@@ -17,14 +18,14 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
-class Profile08Widget extends StatefulWidget {
-  const Profile08Widget({super.key});
+class SettingsWidget extends StatefulWidget {
+  const SettingsWidget({super.key});
 
   @override
-  State<Profile08Widget> createState() => _Profile08WidgetState();
+  State<SettingsWidget> createState() => _SettingsWidgetState();
 }
 
-class _Profile08WidgetState extends State<Profile08Widget> {
+class _SettingsWidgetState extends State<SettingsWidget> {
   late Profile08Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -444,7 +445,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, routeKeys.customTemaplates);
+                                Navigator.pushNamed(context, routeKeys.customTemplates);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -650,12 +651,11 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                         0, 0, 12, 0),
                                     child: GestureDetector(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  LoginPageWidget()),
-                                        );
+                                        FirebaseAuthHandler(
+                                          context: navigator.currentState!.context
+                                        ).signOut(() {
+                                          navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.splashScreen, (route) => false);
+                                        });
                                       },
                                       child: Text(
                                         'Log out of account',

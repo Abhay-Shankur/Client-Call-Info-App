@@ -1,4 +1,5 @@
 
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/handlers/call_handler.dart';
 import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/pages/callLogs/calllogs_widget.dart';
@@ -6,15 +7,20 @@ import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
 import 'package:call_info/pages/dashboard/DashboardUi.dart';
 import 'package:call_info/pages/editProfile/edit_profile_widget.dart';
 import 'package:call_info/pages/faqPage/faq_widget.dart';
+import 'package:call_info/pages/loginPage/login_page_widget.dart';
+import 'package:call_info/pages/loginPage/otp_screen_widget.dart';
 import 'package:call_info/pages/messageTemplate/CustomTemplate.dart';
 import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart';
 import 'package:call_info/pages/permissionsPage/permission_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
+import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'pages/messageTemplate/whatsappmessagetemplate.dart';
@@ -31,6 +37,10 @@ Future<void> main() async {
   // await Firebase.initializeApp();
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.debug,
+    appleProvider: AppleProvider.appAttest,
   );
 
   //Call Handler
@@ -83,6 +93,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    FirebaseAuthHandler(context: context);
   }
 
   @override
@@ -91,10 +102,12 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (_) => SMSMessageTemplateProvider()),
         ChangeNotifierProvider(create: (_) => WPMessageTemplateProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()), // Provide the ProfileProvider
+
       ],
       child: MaterialApp(
         title: 'Call Info',
-        initialRoute: routeKeys.vendorDashboard,
+        initialRoute: routeKeys.splashScreen,
         // initialRoute: routeKeys.vendorWPTemplate,
         routes: appRoutes,
         navigatorKey: navigator,
@@ -123,12 +136,14 @@ var appRoutes = {
   routeKeys.vendorDashboard : (context) => DashboardWidget(),
   routeKeys.vendorSMSTemplate : (context) => SMSTemplateWidget(),
   routeKeys.vendorWPTemplate : (context) => WhatsappTemplateWidget(),
+  routeKeys.vendorLogin : (context) => LoginPageWidget(),
+  routeKeys.vendorOtp : (context) => OTPScreenWidget(),
   routeKeys.callLogTemplate : (context) => CalllogsWidget(),
   routeKeys.editVendorProfile : (context) => EditProfileWidget(),
-  routeKeys.settingsPage : (context) => Profile08Widget(),
+  routeKeys.settingsPage : (context) => SettingsWidget(),
   routeKeys.faqPage : (context) => FaqWidget(),
   routeKeys.customerSupport : (context) => CustomerSupportWidget(),
-  routeKeys.customTemaplates : (context) => CustomtemplateWidget(),
+  routeKeys.customTemplates : (context) => CustomtemplateWidget(),
   routeKeys.permissionsPage : (context) => PermissionWidget(),
 
 
@@ -139,12 +154,14 @@ class routeKeys {
   static const String vendorDashboard = '/vendor_dashboard';
   static const String vendorSMSTemplate = '/vendor_SMSTemplate';
   static const String vendorWPTemplate = '/vendor_WPTemplate';
+  static const String vendorLogin = '/vendor_login';
+  static const String vendorOtp = '/vendor_otp';
   static const String callLogTemplate = '/call_LogTemplate';
   static const String editVendorProfile = '/edit_Vendor_Profile';
   static const String settingsPage= '/settingsPage';
   static const String faqPage= '/faqPage';
   static const String customerSupport= '/customerSupport';
-  static const String customTemaplates= '/customTemplates';
+  static const String customTemplates= '/customTemplates';
   static const String permissionsPage= '/permissionsPage';
 
 

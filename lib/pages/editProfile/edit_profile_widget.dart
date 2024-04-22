@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:call_info/pages/vendorProfile/profile_widget.dart';
+import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 import 'package:call_info/main.dart';
@@ -19,10 +20,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   late EditProfileModel _model;
   static  File? imageFile=null;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  // late ProfileProvider profileProvider;
 
   @override
   void initState() {
     super.initState();
+
     _model = createModel(context, () => EditProfileModel());
 
     _model.textController1 ??= TextEditingController();
@@ -43,15 +46,24 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // _model.provider = ProfileProvider();
+    // debugPrint('${_model.provider!.profile!.vendorName!}');
+  }
+
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // Access the ProfileProvider
+
     return WillPopScope(
       onWillPop: () async => true,
       child: Scaffold(
@@ -72,7 +84,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             ),
             onPressed: () async {
               //TODO
-              Navigator.pop(context);
+              // Navigator.pop(context);
+              navigator.currentState?.pop();
             },
           ),
           title: Text(
@@ -116,13 +129,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           padding: EdgeInsets.all(2),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            // child: Image.asset(
-                            //   'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-                            //   width: 100,
-                            //   height: 100,
-                            //   fit: BoxFit.fill,
-                            //   alignment: Alignment(0, 0),
-                            // ),
                             child: GestureDetector(
                               onTap: () async {
                                 await _model.pickFile();
@@ -351,10 +357,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 focusNode: _model.textFieldFocusNode4,
                                 obscureText: false,
                                 decoration: InputDecoration(
-                                  labelText: 'Subscription',
+                                  labelText: 'Business Name',
                                   labelStyle:
                                   MyTheme.of(context).labelMedium,
-                                  hintText: 'Subscription Details',
+                                  hintText: 'Business Name',
                                   hintStyle:
                                   MyTheme.of(context).labelMedium,
                                   enabledBorder: OutlineInputBorder(
@@ -416,10 +422,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 focusNode: _model.textFieldFocusNode5,
                                 obscureText: false,
                                 decoration: InputDecoration(
-                                  labelText: 'Team Name',
+                                  labelText: 'Business Description',
                                   labelStyle:
                                   MyTheme.of(context).labelMedium,
-                                  hintText: 'Team Name',
+                                  hintText: 'Business Description',
                                   hintStyle:
                                   MyTheme.of(context).labelMedium,
                                   enabledBorder: OutlineInputBorder(
@@ -474,7 +480,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    Navigator.pushNamed(context, routeKeys.settingsPage);  // context.pushNamed('Profile');
+                    _model.saveProfile();
+                    // _model.initState(context);
+                    // Navigator.pushNamed(context, routeKeys.settingsPage);  // context.pushNamed('Profile');
                   },
                   text: 'Save Changes',
                   options: FFButtonOptions(

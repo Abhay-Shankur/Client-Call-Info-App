@@ -1,3 +1,5 @@
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/main.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
@@ -185,6 +187,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                 child: TextFormField(
                                   controller: _model.mobileNumberController,
                                   focusNode: _model.mobileNumberFocusNode,
+                                  maxLength: 10,
                                   autofocus: true,
                                   autofillHints: [
                                     AutofillHints.telephoneNumber
@@ -245,13 +248,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => OTPScreenWidget())
-                                    );
-
+                                  _model.sendOtp();
+                                  //   Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(builder: (context) => OTPScreenWidget())
+                                  //   );
                                 },
+                                // onPressed: _model.sendOtp(),
                                 text: 'Send OTP',
                                 options: FFButtonOptions(
                                   width: double.infinity,
@@ -273,42 +276,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  Navigator.of(context).pushNamed('/vendor_otp');
-                                },
-                                text: 'Forgot password?',
-                                options: FFButtonOptions(
-                                  width: double.infinity,
-                                  height: 44,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  color: MyTheme.of(context)
-                                      .primaryBackground,
-                                  textStyle: MyTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                    fontFamily: 'Inter',
-                                    color: MyTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                  elevation: 0,
-                                  borderSide: BorderSide(
-                                    color: MyTheme.of(context)
-                                        .primaryBackground,
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(12),
-                                  hoverColor: MyTheme.of(context)
-                                      .primaryBackground,
                                 ),
                               ),
                             ),

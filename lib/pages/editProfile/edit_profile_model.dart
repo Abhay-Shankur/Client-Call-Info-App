@@ -1,8 +1,10 @@
 
 import 'dart:io';
 
+import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:provider/provider.dart';
 import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
 
@@ -33,9 +35,24 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   String? Function(BuildContext, String?)? textController5Validator;
 
   /// Initialization and disposal methods.
+  // ProfileProvider _profileProvider = ProfileProvider();
+  // ProfileProvider? provider;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    // _profileProvider = Provider.of<ProfileProvider>(context);
+    // // Access profile data
+    // Profile? profile = _profileProvider?.profile;
+    // // Set text controller value if profile is not null and not empty
+    // if (profile != null && profile.vendorName!.isNotEmpty) {
+    //   textController1.text = profile.vendorName!;
+    //   debugPrint('In IF');
+    // } else {
+    //   debugPrint('In else');
+    // }
+  }
+
+
 
   @override
   void dispose() {
@@ -55,7 +72,8 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
     textController5?.dispose();
   }
 
-/// Action blocks are added here.
+
+  /// Action blocks are added here.
   Future<File?> pickFile() async {
     try {
       final result = await FilePicker.platform.pickFiles();
@@ -72,7 +90,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
     return null;
   }
 
-
   getPickedFile()
   {
     if (pickedFile != null) {
@@ -81,6 +98,19 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
       print("Null image");
       // Handle the case where pickedFile is null
     }
+  }
+
+  saveProfile() {
+    Profile newProfile = Profile(
+        imageFile: getPickedFile(),
+        vendorName: textController1!.value.text,
+        vendorEmail: textController2!.value.text,
+        vendorContact: textController3!.value.text,
+        businessName: textController4!.value.text,
+        businessDescription: textController5!.value.text
+    );
+    // _profileProvider!.updateProfile(newProfile);
+
   }
 /// Additional helper methods are added here.
 }

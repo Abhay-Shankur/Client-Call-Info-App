@@ -1,3 +1,4 @@
+import 'package:call_info/main.dart';
 import 'package:call_info/pages/loginPage/login_page_widget.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -566,71 +567,56 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => LoginPageWidget()),
-                              );
-                            //TODO
-                            // context.pushNamed('null');
+                      FutureBuilder<bool>(
+                          future: _model.getLoginStatus(),
+                          builder: (context, AsyncSnapshot<bool> snapshot) {
+                              if(snapshot.connectionState == ConnectionState.done) {
+                                final isLoggedIn = snapshot.data ?? false;
+                                return Visibility(
+                                  visible: !(isLoggedIn),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        navigator.currentState!.pushReplacementNamed(routeKeys.vendorLogin);
+                                        // Navigator.push(
+                                        //   context,
+                                        //   MaterialPageRoute(builder: (context) => LoginPageWidget()),
+                                        // );
+                                      },
+                                      text: 'Next',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 60,
+                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                        iconPadding:
+                                        EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                        color: MyTheme.of(context).primaryText,
+                                        textStyle: MyTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: MyTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        elevation: 4,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(50),
+                                        hoverColor:
+                                        MyTheme.of(context).primaryText,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                // Placeholder widget or empty container while waiting for the future to complete
+                                return SizedBox.shrink();
+                              }
                           },
-                          text: 'Next',
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: MyTheme.of(context).primaryText,
-                            textStyle: MyTheme.of(context)
-                                .titleMedium
-                                .override(
-                              fontFamily: 'Readex Pro',
-                              color: MyTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            elevation: 4,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(50),
-                            hoverColor:
-                            MyTheme.of(context).primaryText,
-                          ),
-                        ),
                       ),
-                      // Padding(
-                      //   padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      //   child: FFButtonWidget(
-                      //     onPressed: () async {
-                      //       //TODO
-                      //       // context.pushNamed('SignUpPage');
-                      //     },
-                      //     text: 'Skip',
-                      //     options: FFButtonOptions(
-                      //       width: double.infinity,
-                      //       height: 30,
-                      //       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      //       iconPadding:
-                      //       EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      //       color: MyTheme.of(context)
-                      //           .secondaryBackground,
-                      //       textStyle: MyTheme.of(context).titleLarge,
-                      //       elevation: 0,
-                      //       borderSide: BorderSide(
-                      //         color: Colors.transparent,
-                      //         width: 1,
-                      //       ),
-                      //       borderRadius: BorderRadius.circular(50),
-                      //       hoverColor: MyTheme.of(context).alternate,
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
