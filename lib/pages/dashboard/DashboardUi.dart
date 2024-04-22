@@ -5,7 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:call_log/call_log.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-
+import 'package:call_info/main.dart';
 import 'Dashboardmodel.dart';
 export 'Dashboardmodel.dart';
 
@@ -490,11 +490,8 @@ class _DashborddemoCopyWidgetState extends State<DashboardWidget>
                               size: 40,
                             ),
                             onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => EditProfileWidget())
-                                );
-                                },
+                              Navigator.pushNamed(context, routeKeys.editVendorProfile);
+                            },
                           ),
                         ),
                       ],

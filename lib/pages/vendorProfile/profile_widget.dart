@@ -127,8 +127,8 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                             child: Image.asset(
                                               Theme.of(context).brightness ==
                                                       Brightness.dark
-                                                  ? 'assets/images/@4xff_badgeDesign_dark_small.png'
-                                                  : 'assets/images/@4xff_badgeDesign_light_small.png',
+                                                  ? 'assets/batch.jpg'
+                                                  : 'assets/batch.jpg',
                                               width: 100,
                                               height: 100,
                                               fit: BoxFit.cover,
@@ -181,12 +181,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                           alignment: AlignmentDirectional(0, 0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              // Navigator.push(
-                                              //   context,
-                                              //   MaterialPageRoute(
-                                              //       builder: (context) =>
-                                              //           DashboardUi()),
-                                              // );
+
                                               navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                             },
                                             child: Icon(
@@ -286,12 +281,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                           alignment: AlignmentDirectional(0, 0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        FaqWidget()),
-                                              );
+                                              Navigator.pushNamed(context, routeKeys.faqPage);
                                             },
                                             child: Icon(
                                               Icons.help_outline_outlined,
@@ -369,11 +359,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CalllogsWidget()),
-                                );
+                                Navigator.pushNamed(context, routeKeys.callLogTemplate);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -409,11 +395,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PermissionWidget()),
-                                );
+                                Navigator.pushNamed(context, routeKeys.permissionsPage);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -449,12 +431,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CustomtemplateWidget()),
-                                );
+                                Navigator.pushNamed(context, routeKeys.customTemaplates);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -577,12 +554,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                       0, 8, 16, 8),
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                CustomerSupportWidget()),
-                                      );
+                                      Navigator.pushNamed(context, routeKeys.customerSupport);
                                     },
                                     child: Icon(
                                       Icons.groups_3,
@@ -598,12 +570,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                         0, 0, 12, 0),
                                     child: GestureDetector(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  CustomerSupportWidget()),
-                                        );
+                                        Navigator.pushNamed(context, routeKeys.customerSupport);
                                       },
                                       child: Text(
                                         'Customer Support',

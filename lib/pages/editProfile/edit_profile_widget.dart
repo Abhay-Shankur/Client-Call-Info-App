@@ -4,6 +4,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
+import 'package:call_info/main.dart';
 
 class EditProfileWidget extends StatefulWidget {
   const EditProfileWidget({super.key});
@@ -50,7 +51,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: MyTheme.of(context).secondaryBackground,
@@ -69,7 +70,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             ),
             onPressed: () async {
               //TODO
-              // context.pop();
+              Navigator.pop(context);
             },
           ),
           title: Text(
@@ -447,14 +448,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Profile08Widget()),
-
-                    //TODO
-
-                      );  // context.pushNamed('Profile');
+                    Navigator.pushNamed(context, routeKeys.settingsPage);  // context.pushNamed('Profile');
                   },
                   text: 'Save Changes',
                   options: FFButtonOptions(

@@ -48,8 +48,7 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
         automaticallyImplyLeading: false,
         title: FFButtonWidget(
           onPressed: () async {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => CustomtemplateWidget()));
-            // context.pop();
+            Navigator.pop(context);
           },
           text: 'Cancel',
           options: FFButtonOptions(

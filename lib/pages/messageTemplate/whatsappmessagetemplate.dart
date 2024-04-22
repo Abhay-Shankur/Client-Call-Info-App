@@ -51,10 +51,7 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
         automaticallyImplyLeading: false,
         title: FFButtonWidget(
           onPressed: () async {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CustomtemplateWidget()),
-            );
+            Navigator.pop(context);
             // context.pop();
           },
           text: 'Cancel',

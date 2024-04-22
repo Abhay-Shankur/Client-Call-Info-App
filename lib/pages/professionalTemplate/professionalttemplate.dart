@@ -126,8 +126,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
               size: 30,
             ),
             onPressed: () async {
-              Navigator.push(context, MaterialPageRoute(builder: (Context) => Profile08Widget())
-              );
+              Navigator.pop(context);
               // context.pop();
             },
           ),

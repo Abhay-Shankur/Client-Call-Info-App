@@ -153,7 +153,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
             ),
             onPressed: () async {
               //TODO
-              // context.pop();
+              Navigator.pop(context);
             },
           ),
           title: Text(

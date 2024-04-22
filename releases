@@ -51,3 +51,7 @@ Connected Templates with Firestore.
 Connected FirebaseStorage to project.
 Saving Data to Shared Preference.
 Able to Send through WhatsApp and SMS.
+
+1.0.11
+Fixed All page routes
+Added batch to profile
