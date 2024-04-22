@@ -183,6 +183,11 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 12),
+                            child: GestureDetector(
+                              onTap: () {
+
+                                navigator.currentState?.pushNamed(routeKeys.activeSubcriptionPage);
+                              },
                                         child: Container(
                                           width: 34,
                                           height: 34,
@@ -195,7 +200,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                           child: GestureDetector(
                                             onTap: () {
 
-                                              navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
+                                              navigator.currentState?.pushNamed(routeKeys.activeSubcriptionPage);
                                             },
                                             child: Icon(
                                               Icons.work_outline,
@@ -206,6 +211,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                             ),
                                           ),
                                         ),
+                                      ),
                                       ),
                                       Text(
                                         'Active \nSubscription',

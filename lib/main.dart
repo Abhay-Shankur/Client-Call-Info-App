@@ -10,6 +10,7 @@ import 'package:call_info/pages/messageTemplate/CustomTemplate.dart';
 import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart';
 import 'package:call_info/pages/permissionsPage/permission_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
+import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
@@ -130,6 +131,7 @@ var appRoutes = {
   routeKeys.customerSupport : (context) => CustomerSupportWidget(),
   routeKeys.customTemaplates : (context) => CustomtemplateWidget(),
   routeKeys.permissionsPage : (context) => PermissionWidget(),
+  routeKeys.activeSubcriptionPage : (context) => ActiveSubscriptionWidget(),
 
 
 };
@@ -146,6 +148,7 @@ class routeKeys {
   static const String customerSupport= '/customerSupport';
   static const String customTemaplates= '/customTemplates';
   static const String permissionsPage= '/permissionsPage';
+  static const String activeSubcriptionPage= '/activeSubcriptionPage';
 
 
 
