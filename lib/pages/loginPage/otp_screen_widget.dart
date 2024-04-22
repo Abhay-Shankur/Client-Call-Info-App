@@ -272,10 +272,6 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(builder: (context) => DashboardUi())
-                                    // );
                                   navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                 },
                                 text: 'Submit',

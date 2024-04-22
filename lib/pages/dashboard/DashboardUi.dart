@@ -490,7 +490,7 @@ class _DashborddemoCopyWidgetState extends State<DashboardWidget>
                               size: 40,
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, routeKeys.editVendorProfile);
+                              Navigator.pushNamed(context, routeKeys.settingsPage);
                             },
                           ),
                         ),

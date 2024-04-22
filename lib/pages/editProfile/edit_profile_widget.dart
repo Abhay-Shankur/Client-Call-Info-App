@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -15,7 +17,7 @@ class EditProfileWidget extends StatefulWidget {
 
 class _EditProfileWidgetState extends State<EditProfileWidget> {
   late EditProfileModel _model;
-
+  static  File? imageFile=null;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -114,14 +116,38 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           padding: EdgeInsets.all(2),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Image.network(
-                              'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.fill,
-                              alignment: Alignment(0, 0),
+                            // child: Image.asset(
+                            //   'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+                            //   width: 100,
+                            //   height: 100,
+                            //   fit: BoxFit.fill,
+                            //   alignment: Alignment(0, 0),
+                            // ),
+                            child: GestureDetector(
+                              onTap: () async {
+                                await _model.pickFile();
+                                setState(() {
+                                  imageFile=_model.getPickedFile();
+                                });
+                              },
+                              child: imageFile != null
+                                  ? Image.file(
+                                imageFile!,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.fill,
+                                alignment: Alignment(0, 0),
+                              )
+                                  : Image.asset(
+                                'assets/vendor.jpg',
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.fill,
+                                alignment: Alignment(0, 0),
+                              ),
                             ),
                           ),
+
                         ),
                       ),
                       Row(

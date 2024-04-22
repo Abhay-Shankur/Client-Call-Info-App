@@ -86,11 +86,15 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                       ),
                                       child: Padding(
                                         padding: EdgeInsets.all(2),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            navigator.currentState?.pushNamed(routeKeys.editVendorProfile);
+                                          },
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(50),
-                                          child: Image.network(
-                                            'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+                                          child: Image.asset(
+                                            'assets/vendor.jpg',
                                             width: double.infinity,
                                             height: 80,
                                             fit: BoxFit.cover,
@@ -100,11 +104,16 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                     ),
                                   ),
                                 ),
+                                ),
                                 Align(
                                   alignment: AlignmentDirectional(1, 0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 12, 0, 0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        navigator.currentState?.pushNamed(routeKeys.editVendorProfile);
+                                      },
                                     child: ClipOval(
                                       child: Container(
                                         width: 44,
@@ -121,6 +130,10 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                         ),
                                         child: Padding(
                                           padding: EdgeInsets.all(4),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              navigator.currentState?.pushNamed(routeKeys.editVendorProfile);
+                                            },
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(50),
@@ -139,7 +152,7 @@ class _Profile08WidgetState extends State<Profile08Widget> {
                                     ),
                                   ),
                                 ),
-                              ],
+                                ))],
                             ),
                           ),
                           Padding(

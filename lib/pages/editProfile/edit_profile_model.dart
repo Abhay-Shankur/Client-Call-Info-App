@@ -1,9 +1,15 @@
+
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
 
 class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  State fields for stateful widgets in this page.
+
+  static  File? pickedFile=null;
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
@@ -50,6 +56,31 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   }
 
 /// Action blocks are added here.
+  Future<File?> pickFile() async {
+    try {
+      final result = await FilePicker.platform.pickFiles();
+      if (result != null) {
+        pickedFile = File(result.files.single.path!);
+        return pickedFile;
+      } else {
+        // User canceled the picker
+        print('No file selected.');
+      }
+    } catch (e) {
+      print('Error picking file: $e');
+    }
+    return null;
+  }
 
+
+  getPickedFile()
+  {
+    if (pickedFile != null) {
+      return pickedFile;
+    } else {
+      print("Null image");
+      // Handle the case where pickedFile is null
+    }
+  }
 /// Additional helper methods are added here.
 }

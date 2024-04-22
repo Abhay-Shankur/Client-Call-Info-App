@@ -23,7 +23,7 @@ Handled Overflow Error
 
 1.0.5(Nikhil)
 Added Image support for Whatsapp Message Template
-Optimized Prmossional Message Template Delay
+Optimized Promossional Message Template Delay
 
 1.0.6(Abhay)
 Changed Theme to MyTheme
@@ -52,6 +52,9 @@ Connected FirebaseStorage to project.
 Saving Data to Shared Preference.
 Able to Send through WhatsApp and SMS.
 
-1.0.11
+1.0.11(Nikhil)
 Fixed All page routes
 Added batch to profile
+
+1.0.12
+Upadated Ui
