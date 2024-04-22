@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 import 'package:call_info/main.dart';

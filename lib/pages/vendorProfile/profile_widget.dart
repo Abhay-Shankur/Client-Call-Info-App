@@ -3,17 +3,11 @@
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:call_info/main.dart';
-import 'package:call_info/pages/Dashboard/DashboardUi.dart';
-import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
-import 'package:call_info/pages/loginPage/login_page_widget.dart';
-import 'package:call_info/pages/messageTemplate/CustomTemplate.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutter/material.dart';
-import '../callLogs/calllogs_widget.dart';
-import '../permissionsPage/permission_widget.dart';
 import '../professionalTemplate/professionalttemplate.dart';
-import '../faqPage/faq_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
@@ -660,6 +654,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         FirebaseAuthHandler(
                                           context: navigator.currentState!.context
                                         ).signOut(() {
+                                          SharedPreferencesHelper.removeAll();
                                           navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.splashScreen, (route) => false);
                                         });
                                       },

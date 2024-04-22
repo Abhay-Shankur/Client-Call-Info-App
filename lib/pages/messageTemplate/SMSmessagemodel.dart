@@ -1,4 +1,5 @@
 
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/providers/sms/sms_shared.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -36,7 +37,8 @@ class WhtstempCopyModel extends FlutterFlowModel<SMSTemplateWidget> {
         'text': text,
       }
     };
-    await firestore.updateFirestoreData("USERS","abhay",data);
+    String? uid = await FirebaseAuthHandler.getUid();
+    await firestore.updateFirestoreData("USERS", uid ?? 'dummy', data);
     firestore.closeConnection();
     SMSMessageTemplate(text: text).saveToShared();
     debugPrint('Saving Template');

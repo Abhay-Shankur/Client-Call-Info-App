@@ -1,7 +1,6 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/handlers/shared_preferences_helper.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:toastification/toastification.dart';
 import 'vendorSubscriptionWidget.dart' show ActiveSubscriptionWidget;
@@ -26,7 +25,9 @@ class ActiveSubscriptionModel extends FlutterFlowModel<ActiveSubscriptionWidget>
   String? Function(BuildContext, String?)? textController2Validator;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+  }
+
 
   @override
   void dispose() {
@@ -38,7 +39,7 @@ class ActiveSubscriptionModel extends FlutterFlowModel<ActiveSubscriptionWidget>
     textController2?.dispose();
   }
 
-  Future<void> save() async {
+  Future<bool> save() async {
     try {
       String accessToken = textController1!.value.text;
       String instanceId = textController2!.value.text;
@@ -58,7 +59,7 @@ class ActiveSubscriptionModel extends FlutterFlowModel<ActiveSubscriptionWidget>
         SharedPreferencesHelper.setString("instance_id", instanceId);
       }
       firestore.closeConnection();
-
+      return true;
     } catch (e) {
       debugPrint('Error: $e');
       toastification.show(
@@ -78,5 +79,6 @@ class ActiveSubscriptionModel extends FlutterFlowModel<ActiveSubscriptionWidget>
         autoCloseDuration: const Duration(seconds: 5),
       );
     }
+    return false;
   }
 }

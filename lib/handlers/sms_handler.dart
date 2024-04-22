@@ -1,8 +1,7 @@
 import 'package:background_sms/background_sms.dart';
-import 'package:call_info/main.dart';
+import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:provider/provider.dart';
 
 import '../providers/sms/sms_shared.dart';
 
@@ -24,8 +23,9 @@ class SmsHandler {
   static Future<bool> sendMessage(String phoneNumber, {int? simSlot}) async {
 
     SMSMessageTemplate? _message = await SMSMessageTemplate.getFromShared();
+    bool? allowed = await SharedPreferencesHelper.getBool("allowSMS");
     // String msg = await SharedPreferencesHelper.getString('smsMsg');
-    if(_message != null) {
+    if(_message != null  && allowed !=null && allowed) {
       String msg = _message.text;
       debugPrint('Phone: $phoneNumber, Msg: $msg');
       if (await isPermissionGranted()) {

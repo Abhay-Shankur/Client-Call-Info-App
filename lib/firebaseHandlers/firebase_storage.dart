@@ -12,10 +12,6 @@ class FirebaseStorageService {
   }
 
   static Future<String?> uploadImage(File imageFile) async {
-    if (imageFile == null) {
-      print('No file selected.');
-      return null;
-    }
     try {
       String fileType = getFileType(imageFile);
       String imageName = DateTime.now().millisecondsSinceEpoch.toString() + '.$fileType';

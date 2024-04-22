@@ -1,10 +1,7 @@
-import 'package:call_info/firebaseHandlers/firebase_auth.dart';
-import 'package:call_info/main.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'otp_screen_widget.dart';
 
 import 'login_page_model.dart';
 export 'login_page_model.dart';

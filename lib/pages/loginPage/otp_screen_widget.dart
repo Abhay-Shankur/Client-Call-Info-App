@@ -1,5 +1,3 @@
-import 'package:call_info/main.dart';
-import 'package:call_info/pages/Dashboard/DashboardUi.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';

@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'package:provider/provider.dart';
 import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
 

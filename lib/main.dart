@@ -18,7 +18,6 @@ import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -109,7 +108,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'Call Info',
         initialRoute: routeKeys.splashScreen,
-        // initialRoute: routeKeys.vendorWPTemplate,
+        // initialRoute: routeKeys.activeSubscriptionPage,
         routes: appRoutes,
         navigatorKey: navigator,
         // initialRoute: '/vendor_login',

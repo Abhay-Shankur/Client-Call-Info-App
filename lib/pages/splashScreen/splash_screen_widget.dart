@@ -1,5 +1,4 @@
 import 'package:call_info/main.dart';
-import 'package:call_info/pages/loginPage/login_page_widget.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart' as smooth_page_indicator;

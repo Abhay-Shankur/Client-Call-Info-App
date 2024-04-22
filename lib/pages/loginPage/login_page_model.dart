@@ -31,8 +31,8 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     debugPrint('Mobile Number: $phoneNumber');
     FirebaseAuthHandler(
         context: navigator.currentState!.context
-    ).signInWithPhoneNumber(phoneNumber, () => {
-      navigator.currentState!.pushReplacementNamed(routeKeys.vendorOtp)
+    ).signInWithPhoneNumber(phoneNumber, () {
+      navigator.currentState!.pushReplacementNamed(routeKeys.vendorOtp);
     });
   }
 /// Additional helper methods are added here.

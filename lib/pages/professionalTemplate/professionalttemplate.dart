@@ -7,7 +7,6 @@
 // import '/flutter_flow/form_field_controller.dart';
 import 'dart:io';
 
-import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:image_picker/image_picker.dart';

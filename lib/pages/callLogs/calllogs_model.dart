@@ -1,12 +1,9 @@
 import 'package:call_log/call_log.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/call_log/call_log_widget.dart';
-import 'calllogs_widget.dart' show CalllogsWidget;
 import 'package:flutter/material.dart';
 import 'calllogs_widget.dart';
-import '/pages/components/call_log/call_log_widget.dart';
 import '../components/call_log/call_log_model.dart';
-import 'calllogs_widget.dart';
 class CalllogsModel extends FlutterFlowModel<CallLogsPage> {
   ///  State fields for stateful widgets in this page.
   late Iterable<CallLogEntry> _callLogs;

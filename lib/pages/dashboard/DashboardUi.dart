@@ -1,6 +1,5 @@
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutter/material.dart';
-import 'package:call_info/pages/editProfile/edit_profile_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:call_log/call_log.dart';
 import 'package:permission_handler/permission_handler.dart';

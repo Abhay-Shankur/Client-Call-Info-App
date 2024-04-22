@@ -3,8 +3,6 @@
 // import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:call_info/main.dart';
-import 'SMSmessagetemplate.dart';
-import 'whatsappmessagetemplate.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 

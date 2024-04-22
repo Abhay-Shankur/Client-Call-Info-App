@@ -21,15 +21,15 @@ class CallHandler {
         _phoneNumber = call.arguments['phoneNumber'];
         // onCallTypeReceived(_callType);
         if(_callType == 'Ongoing') {
-          _showNotification("Sending Incoming Message"); // Send notification
-          // TODO: Send SMS
-          // await sendWP(phone: _phoneNumber.replaceAll("+", ''));
-          // SmsHandler.sendMessage(_phoneNumber);
+          // _showNotification("Sending Incoming Message"); // Send notification
+
+          await sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
+          await SmsHandler.sendMessage(_phoneNumber) ? _showNotification("SMS Sent Successfully") : null ;
         } else if(_callType == 'Missed') {
-          _showNotification("Sending Missed Message"); // Send notification
-          // // TODO: Send SMS
-          // await sendWP(phone: _phoneNumber.replaceAll("+", ''));
-          // SmsHandler.sendMessage(_phoneNumber);
+          // _showNotification("Sending Missed Message"); // Send notification
+
+          await sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
+          await SmsHandler.sendMessage(_phoneNumber) ? _showNotification("SMS Sent Successfully") : null ;
         } else if(_callType == 'Incoming') {
           // _showNotification(_callType); // Send notification
         } else {

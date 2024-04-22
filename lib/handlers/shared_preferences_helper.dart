@@ -1,3 +1,4 @@
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
@@ -42,7 +43,18 @@ class SharedPreferencesHelper {
     _keys.remove(key);
   }
 
-  static void clearAll() {
+  static Future<void> setBool(String key, bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(key, value);
+    _keys.add(key);
+  }
+
+  static Future<bool?> getBool(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(key) ?? false;
+  }
+
+  static void removeAll() {
     _keys.forEach((element) async {
       await remove(element);
     });

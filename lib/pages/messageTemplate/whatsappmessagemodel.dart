@@ -1,12 +1,12 @@
 import 'dart:io';
 
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/firebaseHandlers/firebase_storage.dart';
 import 'package:call_info/providers/wp/wp_shared.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:toastification/toastification.dart';
 import 'whatsappmessagetemplate.dart' show WhatsappTemplateWidget;
 import 'package:flutter/material.dart';
 
@@ -64,10 +64,11 @@ class WhtstempModel extends FlutterFlowModel<WhatsappTemplateWidget> {
         Map<String, dynamic> data = {
           'whatsapp': {
             'text': textData,
-            'imageUrl': imageUrl!,
+            'imageUrl': imageUrl,
           }
         };
-        await firestore.updateFirestoreData("USERS", "abhay", data);
+        String? uid = await FirebaseAuthHandler.getUid();
+        await firestore.updateFirestoreData("USERS", uid ?? 'dummy', data);
         firestore.closeConnection();
         WPMessageTemplate(text: textData, image: imageUrl).saveToShared();
       } else {

@@ -73,3 +73,8 @@ Managed Flow of User Login.
 1.0.14(Abhay):
 Added Backend for SubscriptionWidget.
 Moved to SharedPreference in wp_handler instead of firestore.
+
+1.0.15(Abhay):
+Handling SMS and Whatsapp Service by user.
+Added switch operations for both.
+Added Loading for necessary parts.

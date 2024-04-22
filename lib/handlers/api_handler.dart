@@ -36,13 +36,16 @@ class ApiHandler {
     }
   }
 
-  static Future<Map<String, dynamic>> getRequest(Uri url) async {
+  static Future<int> getRequest(Uri url) async {
     try {
       final response = await http.get(url);
-      return _handleResponse(response);
+      Map<String, dynamic> res = await _handleResponse(response);
+      debugPrint('${res.toString()}');
+      return response.statusCode;
     } catch (e) {
       debugPrint('Error during API call: $e');
-      return {'error': 'An error occurred during the GET API call.'};
+      return 3812;
+      // return {'error': 'An error occurred during the GET API call.'};
     }
   }
 }

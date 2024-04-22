@@ -1,5 +1,4 @@
 
-import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/permission_list_item/permission_list_item_widget.dart';
