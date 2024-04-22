@@ -5,30 +5,30 @@ function Testimonial() {
   return (
     <div className="testimonial-section">
       {/* Testimonial content */}
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7 mx-auto text-center">
-            <h2 class="section-title">Testimonials</h2>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-7 mx-auto text-center">
+            <h2 className="section-title">Testimonials</h2>
           </div>
         </div>
 
-        <div class="row justify-content-center">
-          <div class="col-lg-12">
-            <div class="testimonial-slider-wrap text-center">
+        <div className="row justify-content-center">
+          <div className="col-lg-12">
+            <div className="testimonial-slider-wrap text-center">
 
               <div id="testimonial-nav">
-                <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-                <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+                <span className="prev" data-controls="prev"><span className="fa fa-chevron-left"></span></span>
+                <span className="next" data-controls="next"><span className="fa fa-chevron-right"></span></span>
               </div>
 
-              <div class="testimonial-slider">
+              <div className="testimonial-slider">
 
-                <div class="item">
-                  <div class="row justify-content-center">
-                    <div class="col-lg-8 mx-auto">
+                <div className="item">
+                  <div className="row justify-content-center">
+                    <div className="col-lg-8 mx-auto">
 
-                      <div class="testimonial-block text-center">
-                        <blockquote class="mb-5">
+                      <div className="testimonial-block text-center">
+                        <blockquote className="mb-5">
                           <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
                             odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
                             vulputate velit imperdiet dolor tempor tristique. Pellentesque
@@ -37,12 +37,12 @@ function Testimonial() {
                             scelerisque.&rdquo;</p>
                         </blockquote>
 
-                        <div class="author-info">
-                          <div class="author-pic">
-                            <img src="images/person-1.png" alt="Maria Jones" class="img-fluid"/>
+                        <div className="author-info">
+                          <div className="author-pic">
+                            <img src="images/person-1.png" alt="Maria Jones" className="img-fluid"/>
                           </div>
-                          <h3 class="font-weight-bold">Maria Jones</h3>
-                          <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+                          <h3 className="font-weight-bold">Maria Jones</h3>
+                          <span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
                         </div>
                       </div>
 
@@ -51,12 +51,12 @@ function Testimonial() {
                 </div>
                 {/* <!-- END item --> */}
 
-                <div class="item">
-                  <div class="row justify-content-center">
-                    <div class="col-lg-8 mx-auto">
+                <div className="item">
+                  <div className="row justify-content-center">
+                    <div className="col-lg-8 mx-auto">
 
-                      <div class="testimonial-block text-center">
-                        <blockquote class="mb-5">
+                      <div className="testimonial-block text-center">
+                        <blockquote className="mb-5">
                           <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
                             odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
                             vulputate velit imperdiet dolor tempor tristique. Pellentesque
@@ -65,12 +65,12 @@ function Testimonial() {
                             scelerisque.&rdquo;</p>
                         </blockquote>
 
-                        <div class="author-info">
-                          <div class="author-pic">
-                            <img src="images/person-1.png" alt="Maria Jones" class="img-fluid"/>
+                        <div className="author-info">
+                          <div className="author-pic">
+                            <img src="images/person-1.png" alt="Maria Jones" className="img-fluid"/>
                           </div>
-                          <h3 class="font-weight-bold">Maria Jones</h3>
-                          <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+                          <h3 className="font-weight-bold">Maria Jones</h3>
+                          <span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
                         </div>
                       </div>
 
@@ -79,12 +79,12 @@ function Testimonial() {
                 </div>
                 {/* <!-- END item --> */}
 
-                <div class="item">
-                  <div class="row justify-content-center">
-                    <div class="col-lg-8 mx-auto">
+                <div className="item">
+                  <div className="row justify-content-center">
+                    <div className="col-lg-8 mx-auto">
 
-                      <div class="testimonial-block text-center">
-                        <blockquote class="mb-5">
+                      <div className="testimonial-block text-center">
+                        <blockquote className="mb-5">
                           <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
                             odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
                             vulputate velit imperdiet dolor tempor tristique. Pellentesque
@@ -93,12 +93,12 @@ function Testimonial() {
                             scelerisque.&rdquo;</p>
                         </blockquote>
 
-                        <div class="author-info">
-                          <div class="author-pic">
-                            <img src="images/person-1.png" alt="Maria Jones" class="img-fluid"/>
+                        <div className="author-info">
+                          <div className="author-pic">
+                            <img src="images/person-1.png" alt="Maria Jones" className="img-fluid"/>
                           </div>
-                          <h3 class="font-weight-bold">Maria Jones</h3>
-                          <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+                          <h3 className="font-weight-bold">Maria Jones</h3>
+                          <span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
                         </div>
                       </div>
 
