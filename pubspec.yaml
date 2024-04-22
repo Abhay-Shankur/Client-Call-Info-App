@@ -42,6 +42,7 @@ dependencies:
   workmanager: ^0.5.2
   no_screenshot: ^0.0.1+6
   provider: ^6.0.4
+
   call_log: ^4.0.0
   easy_debounce: ^2.0.3
   fluttertoast: ^8.2.4
