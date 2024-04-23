@@ -528,33 +528,38 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             //       MaterialPageRoute(builder: (context) => ()),
                             //     );
                             //   },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 16, 8),
-                                  child: Icon(
-                                    Icons.adobe_rounded,
-                                    color: MyTheme.of(context)
-                                        .secondaryText,
-                                    size: 24,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!.pushNamed(routeKeys.webEditor);
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 12, 0),
-                                    child: Text(
-                                      'WebPage Editor',
-                                      textAlign: TextAlign.start,
-                                      style: MyTheme.of(context)
-                                          .bodyMedium,
+                                        0, 8, 16, 8),
+                                    child: Icon(
+                                      Icons.adobe_rounded,
+                                      color: MyTheme.of(context)
+                                          .secondaryText,
+                                      size: 24,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 12, 0),
+                                      child: Text(
+                                        'WebPage Editor',
+                                        textAlign: TextAlign.start,
+                                        style: MyTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Padding(

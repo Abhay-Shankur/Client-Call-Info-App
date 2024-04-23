@@ -78,3 +78,6 @@ Moved to SharedPreference in wp_handler instead of firestore.
 Handling SMS and Whatsapp Service by user.
 Added switch operations for both.
 Added Loading for necessary parts.
+
+1.0.16(Abhay):
+Added WebEditor Page.

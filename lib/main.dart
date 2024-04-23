@@ -15,6 +15,7 @@ import 'package:call_info/pages/permissionsPage/permission_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
+import 'package:call_info/pages/webEditor/web_page_editor_widget.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
@@ -147,6 +148,7 @@ var appRoutes = {
   routeKeys.customTemplates : (context) => CustomtemplateWidget(),
   routeKeys.permissionsPage : (context) => PermissionWidget(),
   routeKeys.activeSubscriptionPage : (context) => ActiveSubscriptionWidget(),
+  routeKeys.webEditor : (context) => WebPageEditorWidget(),
 
 
 };
@@ -166,7 +168,7 @@ class routeKeys {
   static const String customTemplates= '/customTemplates';
   static const String permissionsPage= '/permissionsPage';
   static const String activeSubscriptionPage= '/activeSubscriptionPage';
-
+  static const String webEditor = '/webEditor';
 
 
   // static const String splashScreen = '/splash';
