@@ -78,3 +78,10 @@ Moved to SharedPreference in wp_handler instead of firestore.
 Handling SMS and Whatsapp Service by user.
 Added switch operations for both.
 Added Loading for necessary parts.
+
+1.0.17
+-Added webEdior
+-Added Link Page
+-Added Metadata page
+-Added VideoGallery
+-Added WebsiteDashboard
