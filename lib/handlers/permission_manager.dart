@@ -13,6 +13,7 @@ class PermissionManager {
     // await Permission.manageExternalStorage.request();
     // await Permission.camera.request();
     // await Permission.microphone.request();
+
     await Permission.sms.request();
     await Permission.contacts.request();
     await Permission.phone.request();

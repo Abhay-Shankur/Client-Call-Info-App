@@ -1,8 +1,11 @@
 package com.callinfo.application.call_info
 
 import android.app.*
+import android.util.Log
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.Manifest
 import android.os.Build
 import android.os.IBinder
 import android.telephony.PhoneStateListener
@@ -21,14 +24,52 @@ class CallHandlingService : Service() {
     private var isOngoing = false
 
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent != null) {
-            val action = intent.action
-            if (action != null && action == "START_FOREGROUND") {
+    // Initialize FlutterEngine and MethodChannel
+    private val flutterEngine: FlutterEngine by lazy { FlutterEngine(this) }
+    private val channel: MethodChannel by lazy {
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL_NAME)
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        // Execute Dart entry point and create MethodChannel
+        flutterEngine.dartExecutor.executeDartEntrypoint(
+                DartExecutor.DartEntrypoint.createDefault()
+        )
+    }
+
+//    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+//        if (intent != null) {
+//            val action = intent.action
+//            if (action != null && action == "START_FOREGROUND") {
+//                startForegroundService()
+//            }
+//        }
+//        return super.onStartCommand(intent, flags, startId)
+//    }
+override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    if (intent != null) {
+        val action = intent.action
+        if (action != null && action == "START_FOREGROUND") {
+            if (checkPermissions()) {
                 startForegroundService()
+            } else {
+                // Permissions not granted, handle the scenario gracefully
+                Log.e("CallHandlingService", "Permissions not granted to listen for call events")
+                // You can display a message to the user or log a warning here
             }
         }
-        return super.onStartCommand(intent, flags, startId)
+    }
+    return super.onStartCommand(intent, flags, startId)
+}
+
+    private fun checkPermissions(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
+        } else {
+            // For devices running below Marshmallow, permissions are granted at installation time
+            true
+        }
     }
 
     private fun startForegroundService() {
@@ -64,6 +105,52 @@ class CallHandlingService : Service() {
         telephonyManager.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE)
     }
 
+//    private val callStateListener = object : PhoneStateListener() {
+//        override fun onCallStateChanged(state: Int, incomingNumber: String?) {
+//            super.onCallStateChanged(state, incomingNumber)
+//            when (state) {
+//                TelephonyManager.CALL_STATE_RINGING -> {
+//                    // Incoming call
+//                    isIncoming = true
+//                    if (incomingNumber != null) {
+//                        sendCallTypeToFlutter("Incoming", incomingNumber)
+//                    }
+//                }
+//                TelephonyManager.CALL_STATE_OFFHOOK -> {
+//                    // Call in progress
+//                    isOngoing = true
+//                    if (incomingNumber != null) {
+//
+//                        sendCallTypeToFlutter("Outgoing", incomingNumber)
+//                    }
+//                }
+//                TelephonyManager.CALL_STATE_IDLE -> {
+//                    // Call ended
+////                    android.util.Log.w("TAG", "onCallStateChanged: "+isIncoming.toString()+isOngoing.toString(),)
+//                    android.util.Log.w("TAG", "onCallStateChanged: "+incomingNumber.toString(),)
+//                    if (isIncoming.and(isOngoing)) {
+//                        if (incomingNumber != null) {
+//                            sendCallTypeToFlutter("Ongoing", incomingNumber)
+//                        }
+//                    } else if (isIncoming && isOngoing.not()) {
+//                        if (incomingNumber != null) {
+//                            sendCallTypeToFlutter("Missed", incomingNumber)
+//                        }
+//
+//                    }
+//
+//                    isOngoing=false
+//                    isIncoming=false
+////                    if (incomingNumber != null) {
+////                        sendCallTypeToFlutter("Missed")
+////                    } else {
+////                        sendCallTypeToFlutter("Idle")
+////                    }
+//                }
+//            }
+//        }
+//    }
+
     private val callStateListener = object : PhoneStateListener() {
         override fun onCallStateChanged(state: Int, incomingNumber: String?) {
             super.onCallStateChanged(state, incomingNumber)
@@ -71,67 +158,57 @@ class CallHandlingService : Service() {
                 TelephonyManager.CALL_STATE_RINGING -> {
                     // Incoming call
                     isIncoming = true
-                    if (incomingNumber != null) {
-                        sendCallTypeToFlutter("Incoming", incomingNumber)
-                    }
+                    incomingNumber?.let { sendCallTypeToFlutter("Incoming", it) }
                 }
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
                     // Call in progress
                     isOngoing = true
-                    if (incomingNumber != null) {
-
-                        sendCallTypeToFlutter("Outgoing", incomingNumber)
-                    }
+                    incomingNumber?.let { sendCallTypeToFlutter("Outgoing", it) }
                 }
                 TelephonyManager.CALL_STATE_IDLE -> {
                     // Call ended
-//                    android.util.Log.w("TAG", "onCallStateChanged: "+isIncoming.toString()+isOngoing.toString(),)
-                    android.util.Log.w("TAG", "onCallStateChanged: "+incomingNumber.toString(),)
-                    if (isIncoming.and(isOngoing)) {
-                        if (incomingNumber != null) {
-                            sendCallTypeToFlutter("Ongoing", incomingNumber)
-                        }
-                    } else if (isIncoming && isOngoing.not()) {
-                        if (incomingNumber != null) {
-                            sendCallTypeToFlutter("Missed", incomingNumber)
-                        }
-
+                    if (isIncoming && isOngoing) {
+                        incomingNumber?.let { sendCallTypeToFlutter("Ongoing", it) }
+                    } else if (isIncoming && !isOngoing) {
+                        incomingNumber?.let { sendCallTypeToFlutter("Missed", it) }
                     }
-
-                    isOngoing=false
-                    isIncoming=false
-//                    if (incomingNumber != null) {
-//                        sendCallTypeToFlutter("Missed")
-//                    } else {
-//                        sendCallTypeToFlutter("Idle")
-//                    }
+                    isOngoing = false
+                    isIncoming = false
                 }
             }
         }
     }
 
+//    private fun sendCallTypeToFlutter(callType: String, phoneNumber: String) {
+//        // Initialize a FlutterEngine instance
+//        val flutterEngine = FlutterEngine(this)
+//
+//        // Execute the Dart entry point
+//        flutterEngine.dartExecutor.executeDartEntrypoint(
+//                DartExecutor.DartEntrypoint.createDefault()
+//        )
+//
+//        // Create a MethodChannel with the specified channel name
+//        val channel = MethodChannel(
+//                flutterEngine.dartExecutor.binaryMessenger,
+//                CHANNEL_NAME
+//        )
+//
+//        // Create a map to pass both callType and phoneNumber to Flutter
+//        val arguments = mapOf(
+//                "callType" to callType,
+//                "phoneNumber" to phoneNumber
+//        )
+//        // Invoke the method on the MethodChannel to send the callType to Flutter
+////        channel.invokeMethod("receiveCallType", callType)
+//        channel.invokeMethod("receiveCallType", arguments)
+//    }
+
     private fun sendCallTypeToFlutter(callType: String, phoneNumber: String) {
-        // Initialize a FlutterEngine instance
-        val flutterEngine = FlutterEngine(this)
-
-        // Execute the Dart entry point
-        flutterEngine.dartExecutor.executeDartEntrypoint(
-                DartExecutor.DartEntrypoint.createDefault()
-        )
-
-        // Create a MethodChannel with the specified channel name
-        val channel = MethodChannel(
-                flutterEngine.dartExecutor.binaryMessenger,
-                CHANNEL_NAME
-        )
-
-        // Create a map to pass both callType and phoneNumber to Flutter
         val arguments = mapOf(
                 "callType" to callType,
                 "phoneNumber" to phoneNumber
         )
-        // Invoke the method on the MethodChannel to send the callType to Flutter
-//        channel.invokeMethod("receiveCallType", callType)
         channel.invokeMethod("receiveCallType", arguments)
     }
 
