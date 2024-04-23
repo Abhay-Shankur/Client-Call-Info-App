@@ -13,6 +13,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 function App(props) {
+  // Set a default value for props.document if it's not provided
+
   const [businessInfo, setBusinessInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   // const [firebaseApp, setFirebaseApp] = useState(null);
@@ -42,9 +44,9 @@ function App(props) {
 
     // Fetch business information based on the URL path
     const fetchData = async () => {
-      const path = window.location.pathname.substring(1); // Remove leading '/'
-      console.log(path);
+      let path = window.location.pathname.substring(1); // Remove leading '/'
       const db = getFirestore(app);
+      path = props.document ? props.document : path;
       const docRef = doc(db, 'businesses', path);
       try {
         const docSnap = await getDoc(docRef);
@@ -63,7 +65,7 @@ function App(props) {
 
     // Fetch data for the current business
     fetchData();
-  }, [props.firebaseApp]);
+  }, [props.document, props.firebaseApp]);
 
   // Render loading indicator if data is being fetched
   if (loading) {

@@ -33,7 +33,7 @@ root.render(
       <Routes>
         <Route path="/:businessId" element ={<App firebaseApp={app}/>} />
           {/* <LandingPage businessInfo={businessInfo} /> */}
-        <Route path='*' element={<>Error</>} />
+        <Route path='*' element={<App firebaseApp={app} document={'callinfos'}/>} />
       </Routes>
     </Router>
   </React.StrictMode>
