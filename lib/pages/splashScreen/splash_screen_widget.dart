@@ -500,7 +500,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                       MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Personalized recipe discovery',
+                                          'Personalized call discovery',
                                           textAlign: TextAlign.center,
                                           style: MyTheme.of(context)
                                               .displaySmall

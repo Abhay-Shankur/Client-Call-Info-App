@@ -1,3 +1,4 @@
+import 'package:call_info/main.dart';
 import 'package:call_info/pages/components/link_design/link_design_widget.dart';
 
 
@@ -95,16 +96,21 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel1,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Master Data',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.paste,
-                                  color:
-                                  FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                            child: GestureDetector(
+                              onTap: (){
+                                navigator.currentState!.pushNamed(routeKeys.webMetadataPage);
+                              },
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel1,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'Master Data',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.paste,
+                                    color:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
@@ -146,20 +152,25 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                             ),
                           ),
                           Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel4,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Video Gallery',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.solidFileVideo,
-                                  color:
-                                  FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!.pushNamed(routeKeys.webVideoGallery);
+                              },
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel4,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'Video Gallery',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.solidFileVideo,
+                                    color:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
+                          )
                         ],
                       ),
                       Row(

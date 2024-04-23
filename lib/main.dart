@@ -16,6 +16,9 @@ import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/pages/webEditor/web_page_editor_widget.dart';
+import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
+import 'package:call_info/pages/webEditor/VideoGallery/webVideoGallery.dart';
+import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
@@ -150,6 +153,10 @@ var appRoutes = {
   routeKeys.activeSubscriptionPage : (context) => ActiveSubscriptionWidget(),
   routeKeys.webEditor : (context) => WebPageEditorWidget(),
 
+  routeKeys.webPageEditorDashboard : (context) => WebPageEditorWidget(),
+  routeKeys.linkPage : (context) => LinksPageWidget(),
+  routeKeys.webMetadataPage : (context) => WebMetadataPageWidget(),
+  routeKeys.webVideoGallery : (context) => WebVideoGalleryWidget(),
 
 };
 
@@ -170,8 +177,9 @@ class routeKeys {
   static const String activeSubscriptionPage= '/activeSubscriptionPage';
   static const String webEditor = '/webEditor';
 
+  static const String webPageEditorDashboard= '/webPageEditorDashboard';
+  static const String linkPage= '/linkPage';
+  static const String webMetadataPage= '/webMetadataPage';
+  static const String webVideoGallery= '/wevVideoGalley';
 
-  // static const String splashScreen = '/splash';
-  // static const String splashScreen = '/splash';
-  // static const String splashScreen = '/splash';
 }
