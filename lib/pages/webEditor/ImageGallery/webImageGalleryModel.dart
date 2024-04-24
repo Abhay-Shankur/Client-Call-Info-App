@@ -1,10 +1,13 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'webVideoGallery.dart' show WebVideoGalleryWidget;
+import 'webImageGallerywidegt.dart' show WebImageGalleyWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class WebVideoGalleryModel extends FlutterFlowModel<WebVideoGalleryWidget>{
+class WebImageGalleyModel extends FlutterFlowModel<WebImageGalleyWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -15,6 +18,7 @@ class WebVideoGalleryModel extends FlutterFlowModel<WebVideoGalleryWidget>{
 
   @override
   void dispose() {
+    unfocusNode.dispose();
     emailAddressFocusNode?.dispose();
     emailAddressTextController?.dispose();
   }

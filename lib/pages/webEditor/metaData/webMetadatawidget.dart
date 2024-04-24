@@ -1,5 +1,7 @@
+import 'package:call_info/providers/webeditor/metadata/MetaData.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'webMetadatamodel.dart';
 export 'webMetadatamodel.dart';
@@ -20,6 +22,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => WebMetadataPageModel());
+
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -131,7 +134,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                               padding:
                               EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                               child: TextFormField(
-                                controller: _model.textController1,
+                                controller: _model.textController1 ,
                                 focusNode: _model.textFieldFocusNode1,
                                 autofocus: false,
                                 textCapitalization: TextCapitalization.words,

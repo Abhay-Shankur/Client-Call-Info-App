@@ -15,12 +15,15 @@ import 'package:call_info/pages/permissionsPage/permission_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
-import 'package:call_info/pages/webEditor/web_page_editor_widget.dart';
+import 'package:call_info/pages/webEditor/ImageGallery/webImageGallerywidegt.dart';
+import 'package:call_info/pages/webEditor/webServices/webServicesWidget.dart';
+import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widget.dart';
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
 import 'package:call_info/pages/webEditor/VideoGallery/webVideoGallery.dart';
 import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
+import 'package:call_info/providers/webeditor/metadata/MetaData.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -108,11 +111,11 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => SMSMessageTemplateProvider()),
         ChangeNotifierProvider(create: (_) => WPMessageTemplateProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()), // Provide the ProfileProvider
-
+        ChangeNotifierProvider(create: (context) => MetaDataProvider()),
       ],
       child: MaterialApp(
         title: 'Call Info',
-        initialRoute: routeKeys.splashScreen,
+        initialRoute: routeKeys.webPageEditorDashboard,
         // initialRoute: routeKeys.activeSubscriptionPage,
         routes: appRoutes,
         navigatorKey: navigator,
@@ -152,12 +155,14 @@ var appRoutes = {
   routeKeys.customTemplates : (context) => CustomtemplateWidget(),
   routeKeys.permissionsPage : (context) => PermissionWidget(),
   routeKeys.activeSubscriptionPage : (context) => ActiveSubscriptionWidget(),
-  routeKeys.webEditor : (context) => WebPageEditorWidget(),
-
   routeKeys.webPageEditorDashboard : (context) => WebPageEditorWidget(),
   routeKeys.linkPage : (context) => LinksPageWidget(),
   routeKeys.webMetadataPage : (context) => WebMetadataPageWidget(),
   routeKeys.webVideoGallery : (context) => WebVideoGalleryWidget(),
+
+
+  routeKeys.webImageGallery : (context) => WebImageGalleyWidget(),
+  routeKeys.webServicesPage : (context) => WeServicesPageWidget(),
 
 };
 
@@ -182,5 +187,12 @@ class routeKeys {
   static const String linkPage= '/linkPage';
   static const String webMetadataPage= '/webMetadataPage';
   static const String webVideoGallery= '/wevVideoGalley';
+
+
+  static const String webImageGallery= '/webImageGalley';
+  static const String webServicesPage= '/webServicesPage';
+
+
+
 
 }
