@@ -116,16 +116,22 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                             ),
                           ),
                           Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel2,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Products',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.cartPlus,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.webAddProductPage);
+                              },
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel2,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'Products',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.cartPlus,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
@@ -223,34 +229,41 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                navigator.currentState!.pushNamed(routeKeys.webServicesPage);
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.webServicesPage);
                               },
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel7,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Services',
-                                icon: Icon(
-                                  Icons.design_services,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel7,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'Services',
+                                  icon: Icon(
+                                    Icons.design_services,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                          ),
                           Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel8,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'We help ',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.userCheck,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.webWeHelpPage);
+                              },
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel8,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'We help ',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.userCheck,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
@@ -262,16 +275,22 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel9,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Testimonial',
-                                icon: Icon(
-                                  Icons.rate_review,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.webTestimonialPage);
+                              },
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel9,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'Testimonial',
+                                  icon: Icon(
+                                    Icons.rate_review,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
@@ -279,22 +298,23 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                navigator.currentState!.pushNamed(routeKeys.linkPage);
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.linkPage);
                               },
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel10,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Links',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.link,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel10,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'Links',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.link,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                           ),
                         ],
                       ),

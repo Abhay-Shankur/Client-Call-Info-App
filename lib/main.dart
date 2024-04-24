@@ -16,6 +16,10 @@ import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/pages/webEditor/ImageGallery/webImageGallerywidegt.dart';
+import 'package:call_info/pages/webEditor/Products/AddProduct/webAddProductsWidget.dart';
+import 'package:call_info/pages/webEditor/Products/saveProductInfo/webSaveProductPageWidget.dart';
+import 'package:call_info/pages/webEditor/testimonialPage/webTestimonailWidget.dart';
+import 'package:call_info/pages/webEditor/weHelp/webWeHelpPagewidget.dart';
 import 'package:call_info/pages/webEditor/webServices/webServicesWidget.dart';
 import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widget.dart';
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
@@ -114,7 +118,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'Call Info',
-        initialRoute: routeKeys.webPageEditorDashboard,
+        initialRoute: routeKeys.splashScreen,
         // initialRoute: routeKeys.activeSubscriptionPage,
         routes: appRoutes,
         navigatorKey: navigator,
@@ -162,6 +166,10 @@ var appRoutes = {
 
   routeKeys.webImageGallery : (context) => WebImageGalleyWidget(),
   routeKeys.webServicesPage : (context) => WeServicesPageWidget(),
+  routeKeys.webAddProductPage : (context) => WebAddProductPageWidget(),
+  routeKeys.webSaveProductPage : (context) => WebSaveProductWidget(),
+  routeKeys.webWeHelpPage : (context) => WeHelpPageWidget(),
+  routeKeys.webTestimonialPage : (context) => WebTestimonialPageWidget(),
 
 };
 
@@ -190,6 +198,10 @@ class routeKeys {
 
   static const String webImageGallery= '/webImageGalley';
   static const String webServicesPage= '/webServicesPage';
+  static const String webAddProductPage= '/webAddProductPage';
+  static const String webSaveProductPage= '/webSaveProductPage';
+  static const String webWeHelpPage= '/webWeHelpPage';
+  static const String webTestimonialPage= '/webTestimonialPage';
 
 
 

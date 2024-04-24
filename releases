@@ -94,6 +94,9 @@ Made Compatible with Android 13.
 
 
 1.0.19(Nikhil)
--Added ImageGallery page
--Added Web Services Page
+-Added ImageGallery module
+-Added Web Services module
+-Added Products Module
+-Added Testimonial module
+-Added We Help module
 -fixed WebWeditor flow
