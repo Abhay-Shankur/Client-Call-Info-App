@@ -1,7 +1,6 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/pages/components/link_design/link_design_widget.dart';
 
-
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/web_page_editor_card/web_page_editor_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -50,11 +49,11 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
           title: Text(
             'Web Page Editor',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-              fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
-              fontSize: 30,
-              letterSpacing: 0,
-            ),
+                  fontFamily: 'Outfit',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 30,
+                  letterSpacing: 0,
+                ),
           ),
           actions: [],
           centerTitle: false,
@@ -84,10 +83,10 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                              fontFamily: 'Readex Pro',
-                              fontSize: 16,
-                              letterSpacing: 0,
-                            ),
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 16,
+                                  letterSpacing: 0,
+                                ),
                           ),
                         ),
                       ),
@@ -97,8 +96,9 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                         children: [
                           Expanded(
                             child: GestureDetector(
-                              onTap: (){
-                                navigator.currentState!.pushNamed(routeKeys.webMetadataPage);
+                              onTap: () {
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.webMetadataPage);
                               },
                               child: wrapWithModel(
                                 model: _model.webPageEditorCardModel1,
@@ -107,8 +107,8 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                   text: 'Master Data',
                                   icon: FaIcon(
                                     FontAwesomeIcons.paste,
-                                    color:
-                                    FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     size: 40,
                                   ),
                                 ),
@@ -124,7 +124,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 icon: FaIcon(
                                   FontAwesomeIcons.cartPlus,
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 40,
                                 ),
                               ),
@@ -137,16 +137,22 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel3,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Photo Gallery',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.photoVideo,
-                                  color:
-                                  FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.webImageGallery);
+                              },
+                              child: wrapWithModel(
+                                model: _model.webPageEditorCardModel3,
+                                updateCallback: () => setState(() {}),
+                                child: WebPageEditorCardWidget(
+                                  text: 'Photo Gallery',
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.photoVideo,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                             ),
@@ -154,7 +160,8 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                navigator.currentState!.pushNamed(routeKeys.webVideoGallery);
+                                navigator.currentState!
+                                    .pushNamed(routeKeys.webVideoGallery);
                               },
                               child: wrapWithModel(
                                 model: _model.webPageEditorCardModel4,
@@ -163,8 +170,8 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                   text: 'Video Gallery',
                                   icon: FaIcon(
                                     FontAwesomeIcons.solidFileVideo,
-                                    color:
-                                    FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     size: 40,
                                   ),
                                 ),
@@ -173,47 +180,51 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                           )
                         ],
                       ),
+                      // Row(
+                      //   mainAxisSize: MainAxisSize.max,
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     Expanded(
+                      //       child: wrapWithModel(
+                      //         model: _model.webPageEditorCardModel5,
+                      //         updateCallback: () => setState(() {}),
+                      //         child: WebPageEditorCardWidget(
+                      //           text: 'Master Data',
+                      //           icon: FaIcon(
+                      //             FontAwesomeIcons.paste,
+                      //             color:
+                      //                 FlutterFlowTheme.of(context).primaryText,
+                      //             size: 40,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Expanded(
+                      //       child: wrapWithModel(
+                      //         model: _model.webPageEditorCardModel6,
+                      //         updateCallback: () => setState(() {}),
+                      //         child: WebPageEditorCardWidget(
+                      //           text: 'Products',
+                      //           icon: FaIcon(
+                      //             FontAwesomeIcons.cartPlus,
+                      //             color:
+                      //                 FlutterFlowTheme.of(context).primaryText,
+                      //             size: 40,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel5,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Master Data',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.paste,
-                                  color:
-                                  FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: wrapWithModel(
-                              model: _model.webPageEditorCardModel6,
-                              updateCallback: () => setState(() {}),
-                              child: WebPageEditorCardWidget(
-                                text: 'Products',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.cartPlus,
-                                  color:
-                                  FlutterFlowTheme.of(context).primaryText,
-                                  size: 40,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!.pushNamed(routeKeys.webServicesPage);
+                              },
                             child: wrapWithModel(
                               model: _model.webPageEditorCardModel7,
                               updateCallback: () => setState(() {}),
@@ -222,22 +233,23 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 icon: Icon(
                                   Icons.design_services,
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 40,
                                 ),
                               ),
                             ),
+                          ),
                           ),
                           Expanded(
                             child: wrapWithModel(
                               model: _model.webPageEditorCardModel8,
                               updateCallback: () => setState(() {}),
                               child: WebPageEditorCardWidget(
-                                text: 'Why Choose Us',
+                                text: 'We help ',
                                 icon: FaIcon(
                                   FontAwesomeIcons.userCheck,
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 40,
                                 ),
                               ),
@@ -258,26 +270,31 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 icon: Icon(
                                   Icons.rate_review,
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 40,
                                 ),
                               ),
                             ),
                           ),
                           Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                navigator.currentState!.pushNamed(routeKeys.linkPage);
+                              },
                             child: wrapWithModel(
                               model: _model.webPageEditorCardModel10,
                               updateCallback: () => setState(() {}),
                               child: WebPageEditorCardWidget(
-                                text: 'Why Choose Us',
+                                text: 'Links',
                                 icon: FaIcon(
                                   FontAwesomeIcons.link,
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 40,
                                 ),
                               ),
                             ),
+                          ),
                           ),
                         ],
                       ),
