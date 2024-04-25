@@ -60,7 +60,7 @@ class _WebAddProductPageWidgetState extends State<WebAddProductPageWidget> {
             },
           ),
           title: Text(
-            'Page Title',
+            'Add Products',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
               color: FlutterFlowTheme.of(context).primaryText,

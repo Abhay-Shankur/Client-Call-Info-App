@@ -109,6 +109,7 @@ flutter_launcher_icons:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
+    - assets/whatsappDefult.png
     - assets/customtemplate.png
     - assets/SMS.jpg
     - assets/icon.png

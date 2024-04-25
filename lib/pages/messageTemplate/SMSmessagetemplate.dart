@@ -93,10 +93,10 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                     height: 32,
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: Color(0xFF4B39EF),
+                    color: FlutterFlowTheme.of(context).primaryText,
                     textStyle: MyTheme.of(context).titleSmall.override(
                       fontFamily: 'Plus Jakarta Sans',
-                      color: Colors.white,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -164,18 +164,18 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              'assets/customtemplate.png',
-                              width: double.infinity,
-                              height: 200,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                        //   child: ClipRRect(
+                        //     borderRadius: BorderRadius.circular(8),
+                        //     child: Image.asset(
+                        //       'assets/customtemplate.png',
+                        //       width: double.infinity,
+                        //       height: 200,
+                        //       fit: BoxFit.fill,
+                        //     ),
+                        //   ),
+                        // ),
                         Container(
                           width: double.infinity,
                           decoration: BoxDecoration(),
