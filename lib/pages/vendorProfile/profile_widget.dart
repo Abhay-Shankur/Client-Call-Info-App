@@ -530,7 +530,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             //   },
                             child: GestureDetector(
                               onTap: () {
-                                navigator.currentState!.pushNamed(routeKeys.webEditor);
+                                navigator.currentState!.pushNamed(routeKeys.webPageEditorDashboard);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,

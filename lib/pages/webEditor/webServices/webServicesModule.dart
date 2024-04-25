@@ -3,10 +3,6 @@ import '/pages/components/webServiceComponent/web_service_component_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'webServicesWidget.dart' show WeServicesPageWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class WeServicesPageModel extends FlutterFlowModel<WeServicesPageWidget> {
   ///  State fields for stateful widgets in this page.

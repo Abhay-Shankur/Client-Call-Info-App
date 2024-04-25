@@ -95,7 +95,14 @@ Made Compatible with Android 13.
 1.0.19(Nikhil)
 -Added ImageGallery page
 -Added Web Services Page
+-Added Products Module
+-Added Testimonial module
+-Added We Help module
 -fixed WebEditor flow
 
 1.0.20(Abhay):
 Metadata Provider.
+Domain Provider.
+Fixed Both Provider.
+Added Backend for Domain.
+Added Backend for Metadata.

@@ -238,7 +238,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
             ClipRRect(
               child: Container(
                 width: double.infinity,
-                height: 370,
+                height: 400,
                 decoration: BoxDecoration(
                   color: MyTheme.of(context).secondaryBackground,
                 ),
@@ -400,9 +400,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                 alignment: AlignmentDirectional(0, 0),
                 child: Container(
                   width: double.infinity,
-                  height: 500,
+                  height: 400,
                   constraints: BoxConstraints(
-                    maxWidth: 600,
+                    // maxWidth: 600,
                   ),
                   decoration: BoxDecoration(
                     color: MyTheme.of(context).secondaryBackground,
@@ -412,12 +412,12 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                     children: [
                       Container(
                         width: double.infinity,
-                        height: 250,
+                        height: 200,
                         child: Stack(
                           children: [
                             Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                               child: PageView(
                                 controller: _model.pageViewController ??=
                                     PageController(initialPage: 0),
@@ -598,7 +598,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                           color: MyTheme.of(context)
                                               .secondaryBackground,
                                         ),
-                                        elevation: 4,
+                                        elevation: 1,
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1,

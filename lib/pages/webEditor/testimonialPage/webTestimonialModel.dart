@@ -1,11 +1,12 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'web_service_component_widget.dart' show WebServiceComponentWidget;
+import 'webTestimonailWidget.dart' show WebTestimonialPageWidget;
 import 'package:flutter/material.dart';
 
-class WebServiceComponentModel
-    extends FlutterFlowModel<WebServiceComponentWidget> {
-  ///  State fields for stateful widgets in this component.
+class WebTestimonialPageModel
+    extends FlutterFlowModel<WebTestimonialPageWidget> {
+  ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -20,6 +21,7 @@ class WebServiceComponentModel
 
   @override
   void dispose() {
+    unfocusNode.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 

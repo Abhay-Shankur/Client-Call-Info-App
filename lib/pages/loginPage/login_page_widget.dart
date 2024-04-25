@@ -14,8 +14,7 @@ class LoginPageWidget extends StatefulWidget {
   State<LoginPageWidget> createState() => _LoginPageWidgetState();
 }
 
-class _LoginPageWidgetState extends State<LoginPageWidget>
-    with TickerProviderStateMixin {
+class _LoginPageWidgetState extends State<LoginPageWidget>{
   late LoginPageModel _model;
   bool _saving = false;
 
@@ -249,13 +248,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      setState(() {
-                                        _saving = true;
-                                      });
-                                      _model.sendOtp();
-                                      setState(() {
-                                        _saving = false;
-                                      });
+                                      await _performBackendWork();
+                                      // setState(() {
+                                      //   _saving = true;
+                                      // });
+                                      // await _model.sendOtp();
+                                      // setState(() {
+                                      //   _saving = false;
+                                      // });
                                       //   Navigator.push(
                                       //     context,
                                       //     MaterialPageRoute(builder: (context) => OTPScreenWidget())
@@ -311,5 +311,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
         ],
       ),
     );
+  }
+
+
+  // Function to perform backend work
+  Future<bool> _performBackendWork() async {
+    // Set loading state to true
+    setState(() {
+      _saving = true;
+    });
+    // Perform backend work
+    await _model.sendOtp();
+
+    // After work is done, set loading state to false
+    setState(() {
+      _saving = false;
+    });
+    return true;
   }
 }
