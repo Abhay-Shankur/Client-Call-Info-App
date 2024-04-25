@@ -1,8 +1,6 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/ListTile/list_tile_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'ListView_Model.dart';
 export 'ListView_Model.dart';

@@ -1,5 +1,9 @@
 
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/util/custom_widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:toastification/toastification.dart';
 import '/pages/components/link_design/link_design_widget.dart';
 import '/pages/components/web_page_editor_card/web_page_editor_card_widget.dart';
 import 'web_page_editor_widget.dart' show WebPageEditorWidget;
@@ -11,6 +15,10 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
   final unfocusNode = FocusNode();
   // Model for LinkDesign component.
   late LinkDesignModel linkDesignModel;
+
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
   // Model for webPageEditorCard component.
   late WebPageEditorCardModel webPageEditorCardModel1;
   // Model for webPageEditorCard component.
@@ -61,6 +69,8 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
   void dispose() {
     unfocusNode.dispose();
     linkDesignModel.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
     webPageEditorCardModel1.dispose();
     webPageEditorCardModel2.dispose();
     webPageEditorCardModel3.dispose();
@@ -71,5 +81,36 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
     webPageEditorCardModel8.dispose();
     webPageEditorCardModel9.dispose();
     webPageEditorCardModel10.dispose();
+  }
+
+  saveDomain(BuildContext context) async {
+    debugPrint('TextDomain: ${textController!.value.text}');
+    try{
+      Map<String,dynamic> data = {
+        'webDomain' : '${textController!.value.text}',
+      };
+
+      FirestoreHandler firestore = FirestoreHandler();
+      String? uid = await FirebaseAuthHandler.getUid();
+      if(uid != null){
+        dynamic rs = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
+        if(rs == null){
+          await firestore.updateFirestoreData("USERS", uid, data);
+          await firestore.createEmptyDocument("Website", data['webDomain']);
+          showToast(context: context, type: ToastificationType.success, title: 'Domain Name', desc: 'Your Domain Name have been create.');
+          return true;
+        } else {
+          showToast(context: context, type: ToastificationType.warning, title: 'Domain Name', desc: 'You have already registered for Domain.');
+          return false;
+        }
+      } else{
+        throw Exception('Firebase Auth not Found');
+      }
+      firestore.closeConnection();
+      return false;
+    } catch(e) {
+      debugPrint('$e');
+    }
+    return false;
   }
 }

@@ -2,10 +2,7 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/webServiceComponent/web_service_component_Widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'webServicesModule.dart';
 export 'webServicesModule.dart';

@@ -18,4 +18,8 @@ class LinkDesignModel extends FlutterFlowModel<LinkDesignWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }
+
+  saveDomain() async {
+
+  }
 }

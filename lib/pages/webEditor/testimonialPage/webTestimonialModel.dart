@@ -1,8 +1,6 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'webTestimonailWidget.dart' show WebTestimonialPageWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class WebTestimonialPageModel
     extends FlutterFlowModel<WebTestimonialPageWidget> {

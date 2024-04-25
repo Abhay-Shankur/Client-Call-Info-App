@@ -23,7 +23,7 @@ Handled Overflow Error
 
 1.0.5(Nikhil)
 Added Image support for Whatsapp Message Template
-Optimized Promossional Message Template Delay
+Optimized Promotional Message Template Delay
 
 1.0.6(Abhay)
 Changed Theme to MyTheme
@@ -89,14 +89,20 @@ Added WebEditor Page.
 -Added VideoGallery
 -Added WebsiteDashboard
 
-1.0.18:
+1.0.18(Abhay):
 Made Compatible with Android 13.
 
-
 1.0.19(Nikhil)
--Added ImageGallery module
--Added Web Services module
+-Added ImageGallery page
+-Added Web Services Page
 -Added Products Module
 -Added Testimonial module
 -Added We Help module
--fixed WebWeditor flow
+-fixed WebEditor flow
+
+1.0.20(Abhay):
+Metadata Provider.
+Domain Provider.
+Fixed Both Provider.
+Added Backend for Domain.
+Added Backend for Metadata.

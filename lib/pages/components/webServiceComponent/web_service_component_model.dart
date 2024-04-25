@@ -1,8 +1,6 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'web_service_component_widget.dart' show WebServiceComponentWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class WebServiceComponentModel
     extends FlutterFlowModel<WebServiceComponentWidget> {

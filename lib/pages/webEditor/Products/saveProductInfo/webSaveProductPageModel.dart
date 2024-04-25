@@ -1,8 +1,6 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'webSaveProductPageWidget.dart' show WebSaveProductWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class WebSaveProductModel extends FlutterFlowModel<WebSaveProductWidget> {
   ///  State fields for stateful widgets in this page.
