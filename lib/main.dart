@@ -126,8 +126,8 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'Call Info',
-        // initialRoute: routeKeys.splashScreen,
-        initialRoute: routeKeys.webPageEditorDashboard,
+        initialRoute: routeKeys.splashScreen,
+        // initialRoute: routeKeys.webPageEditorDashboard,
         routes: appRoutes,
         navigatorKey: navigator,
         // initialRoute: '/vendor_login',

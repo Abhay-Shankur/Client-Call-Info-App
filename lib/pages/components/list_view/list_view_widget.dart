@@ -48,7 +48,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
           // Show an image if list is empty
           return Center(
             child: Image.asset(
-              'assets/images/newProducts.jpg', // Replace with your image asset path
+              'assets/images/noDataExists.jpg', // Replace with your image asset path
               width: 300,
               height: 300,
             ),

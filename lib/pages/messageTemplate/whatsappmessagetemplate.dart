@@ -179,13 +179,13 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                                 File(_selectedImagePath!), // Load selected image
                                 width: double.infinity,
                                 height: 200,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.scaleDown,
                               ) :
                               Image.asset(
-                                'assets/whatsappDefult.png', // Use default image if no image is selected
+                                'assets/images/uploadImage.jpg', // Use default image if no image is selected
                                 width: double.infinity,
                                 height: 200,
-                                fit: BoxFit.fitWidth,
+                                fit: BoxFit.scaleDown,
                               ),
                             ),
                           ),

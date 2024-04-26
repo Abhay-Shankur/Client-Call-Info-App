@@ -3,7 +3,6 @@ import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dar
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/list_view/list_view_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'web_video_gallery_model.dart';
