@@ -6,8 +6,9 @@
 // import '/flutter_flow/flutter_flow_widgets.dart';
 // import '/flutter_flow/form_field_controller.dart';
 import 'dart:io';
-
+// import 'package:debounce/debounce.dart';
 import 'package:call_info/theme/MyTheme.dart';
+import 'package:call_log/call_log.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -20,7 +21,6 @@ export 'promossionaltemplatesmodel.dart';
 class PromossionalmsgtempWidget extends StatefulWidget {
   const PromossionalmsgtempWidget({super.key});
 
-
   @override
   State<PromossionalmsgtempWidget> createState() =>
       _PromossionalmsgtempWidgetState();
@@ -30,7 +30,8 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
     with TickerProviderStateMixin {
   late PromossionalmsgtempModel _model;
   String? _selectedImagePath;
-
+  static File? imageFile = null;
+  int callCount = 0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
@@ -179,12 +180,11 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: MyTheme.of(context)
-                                        .secondaryBackground,
+                                    color:
+                                        MyTheme.of(context).secondaryBackground,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: MyTheme.of(context)
-                                          .alternate,
+                                      color: MyTheme.of(context).alternate,
                                       width: 2,
                                     ),
                                   ),
@@ -220,8 +220,8 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                           'Select Duration ',
                                                           textAlign:
                                                               TextAlign.start,
-                                                          style: MyTheme
-                                                                  .of(context)
+                                                          style: MyTheme.of(
+                                                                  context)
                                                               .labelSmall
                                                               .override(
                                                                 fontFamily:
@@ -242,8 +242,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                       child: Icon(
                                                         Icons.timer_sharp,
                                                         color:
-                                                            MyTheme.of(
-                                                                    context)
+                                                            MyTheme.of(context)
                                                                 .primaryText,
                                                         size: 24,
                                                       ),
@@ -251,24 +250,6 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                   ],
                                                 ),
                                               ),
-                                              // Slider(
-                                              //   activeColor:
-                                              //       MyTheme.of(context)
-                                              //           .primaryText,
-                                              //   inactiveColor:
-                                              //       MyTheme.of(context)
-                                              //           .primaryText,
-                                              //   min: 0,
-                                              //   max: 90,
-                                              //   value: _model.sliderValue ??= 0,
-                                              //   onChanged: (newValue) {
-                                              //     newValue = double.parse(
-                                              //         newValue
-                                              //             .toStringAsFixed(2));
-                                              //     setState(() => _model
-                                              //         .sliderValue = newValue);
-                                              //   },
-                                              // ),
                                             ],
                                           ),
                                         ],
@@ -288,39 +269,32 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                   ChipData('1 Week'),
                                                   ChipData('1 Month')
                                                 ],
-                                                onChanged:  (val) {
-                                                  final selectedValue = val?.firstOrNull ?? '';
-
-                                                  setState(() {
-                                                    _model.choiceChipsValue = selectedValue;
-                                                  });
-                                                  showSelectedChipValue(selectedValue);
+                                                onChanged: (val) {
+                                                  // Update the selected chip value
+                                                  final selectedValue =
+                                                      val?.firstOrNull ?? '';
+                                                  showSelectedChipValue(
+                                                      selectedValue);
                                                 },
                                                 selectedChipStyle: ChipStyle(
                                                   backgroundColor:
-                                                      MyTheme.of(
-                                                              context)
+                                                      MyTheme.of(context)
                                                           .accent2,
-                                                  textStyle: MyTheme
-                                                          .of(context)
+                                                  textStyle: MyTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
                                                         color:
-                                                            MyTheme.of(
-                                                                    context)
+                                                            MyTheme.of(context)
                                                                 .primaryText,
                                                         fontSize: 20,
                                                       ),
-                                                  iconColor:
-                                                      MyTheme.of(
-                                                              context)
-                                                          .primaryText,
+                                                  iconColor: MyTheme.of(context)
+                                                      .primaryText,
                                                   iconSize: 0,
                                                   elevation: 0,
                                                   borderColor:
-                                                      MyTheme.of(
-                                                              context)
+                                                      MyTheme.of(context)
                                                           .secondary,
                                                   borderWidth: 2,
                                                   borderRadius:
@@ -328,28 +302,22 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                 ),
                                                 unselectedChipStyle: ChipStyle(
                                                   backgroundColor:
-                                                      MyTheme.of(
-                                                              context)
+                                                      MyTheme.of(context)
                                                           .primaryBackground,
-                                                  textStyle: MyTheme
-                                                          .of(context)
+                                                  textStyle: MyTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
                                                         color:
-                                                            MyTheme.of(
-                                                                    context)
+                                                            MyTheme.of(context)
                                                                 .secondaryText,
                                                       ),
-                                                  iconColor:
-                                                      MyTheme.of(
-                                                              context)
-                                                          .secondaryText,
+                                                  iconColor: MyTheme.of(context)
+                                                      .secondaryText,
                                                   iconSize: 0,
                                                   elevation: 0,
                                                   borderColor:
-                                                      MyTheme.of(
-                                                              context)
+                                                      MyTheme.of(context)
                                                           .alternate,
                                                   borderWidth: 1,
                                                   borderRadius:
@@ -365,7 +333,6 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                                         List<String>>(
                                                   ['24 hrs'],
                                                 ),
-                                                // wrapped: true,
                                               ),
                                             ),
                                           ),
@@ -382,27 +349,92 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                       ),
                     ],
                   ),
-                  Container(
-                    decoration: BoxDecoration(),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: _selectedImagePath != null ? // Check if an image is selected
-                        Image.file(
-                          File(_selectedImagePath!), // Load selected image
-                          width: double.infinity,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        ) :
-                        Image.asset(
-                          'assets/customtemplate.png', // Use default image if no image is selected
-                          width: double.infinity,
-                          height: 200,
-                          fit: BoxFit.cover,
+                  // Container(
+                  //   decoration: BoxDecoration(),
+                  //   child: Padding(
+                  //     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  //     child: GestureDetector(
+                  //       onTap: () async {
+                  //         await _model.pickFile();
+                  //         setState(() {
+                  //           imageFile=_model.getPickedFile();
+                  //         });
+                  //       },
+                  //       child: imageFile != null
+                  //           ? Image.file(
+                  //         imageFile!,
+                  //         width: double.infinity,
+                  //         height: 200,
+                  //         fit: BoxFit.scaleDown,
+                  //         alignment: Alignment(0, 0),
+                  //       )
+                  //           : Image.asset(
+                  //         'assets/whatsappDefult.png',
+                  //         width: double.infinity,
+                  //         height: 200,
+                  //         fit: BoxFit.scaleDown,
+                  //         alignment: Alignment(0, 0),
+                  //       ),
+                  //   ),
+                  // ),
+                  //
+                  // Generated code for this Container Widget...
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                    child: Container(
+                      width: double.infinity,
+                      height: 330,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 5,
+                            color: Color(0x33000000),
+                            offset: Offset(
+                              0,
+                              2,
+                            ),
+                            spreadRadius: 2,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).alternate,
                         ),
                       ),
+                      child: Padding(
+                        padding: EdgeInsets.all(4),
+                        child: GestureDetector(
+                                onTap: () async {
+                                  await _model.pickFile();
+                                  setState(() {
+                                    imageFile=_model.getPickedFile();
+                                  });
+                                },
+                                child: imageFile != null
+                                    ? Image.file(
+                                  imageFile!,
+                                  width: double.infinity,
+                                  height: 200,
+                                  fit: BoxFit.scaleDown,
+                                  alignment: Alignment(0, 0),
+                                )
+                                    : Image.asset(
+                                  'assets/whatsappDefult.png',
+                                  width: double.infinity,
+                                  height: 200,
+                                  fit: BoxFit.scaleDown,
+                                  alignment: Alignment(0, 0),
+                                ),
+                      ),
                     ),
+                  ),
+                  ),
+                  Divider(
+                    thickness: 2,
+                    indent: 10,
+                    endIndent: 10,
+                    color: FlutterFlowTheme.of(context).primaryText,
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -414,14 +446,12 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Heading',
-                          labelStyle: MyTheme.of(context)
-                              .headlineSmall
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    MyTheme.of(context).secondaryText,
-                                fontWeight: FontWeight.w500,
-                              ),
+                          labelStyle:
+                              MyTheme.of(context).headlineSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: MyTheme.of(context).secondaryText,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                           hintStyle: MyTheme.of(context).labelMedium,
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
@@ -525,41 +555,6 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                           width: 2,
                         ),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child:
-                        GestureDetector(
-                           onTap: () {
-                           selectImages();
-                          },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.add_a_photo_rounded,
-                              color: MyTheme.of(context).primaryText,
-                              size: 32,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                              child:
-                              GestureDetector(
-                                onTap: () {
-                                  selectImages();
-                                },
-                                child: Text(
-                                'Upload Media',
-                                textAlign: TextAlign.center,
-                                style: MyTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation2']!),
                     ),
                   ),
                   Padding(
@@ -579,12 +574,11 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                         height: 54,
                         padding: EdgeInsets.all(0),
                         iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        color: Color(0xFF4A39EB),
-                        textStyle:
-                            MyTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                ),
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        textStyle: MyTheme.of(context).titleSmall.override(
+                              fontFamily: 'Inter',
+                              color: Colors.white,
+                            ),
                         elevation: 4,
                         borderSide: BorderSide(
                           color: Colors.transparent,
@@ -605,8 +599,8 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
 
   void showToast() {
     String text1 = _model.textController1.text;
-    String text2= _model.textController2.text;
-    String text=text1 +text2;
+    String text2 = _model.textController2.text;
+    String text = text1 + "\n" + text2;
     Fluttertoast.showToast(
       msg: text.isNotEmpty ? text : 'Text field is empty',
       toastLength: Toast.LENGTH_SHORT,
@@ -615,26 +609,57 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
       textColor: Colors.white,
     );
   }
+  // void showSelectedChipValue(String value) {
+  //   Fluttertoast.showToast(
+  //     msg: "Selected: $value",
+  //     toastLength: Toast.LENGTH_SHORT,
+  //     gravity: ToastGravity.CENTER,
+  //     backgroundColor: Colors.black,
+  //     textColor: Colors.white,
+  //
+  //   );
+  // }
+
   void showSelectedChipValue(String value) {
-    Fluttertoast.showToast(
-      msg: "Selected: $value",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-
-    );
-  }
-  void selectImages() async {
-    final ImagePicker imagePicker = ImagePicker();
-    List<XFile>? imageFileList = [];
-
-    final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
-    if (selectedImages != null && selectedImages.isNotEmpty) {
-      // Only proceed if images are selected
-      setState(() {
-        _selectedImagePath = selectedImages[0].path; // Store the path of the first selected image
-      });
+    switch (value) {
+      case '24 hrs':
+        // Fetch and print call logs for the last 24 hours
+        fetchAndPrintCallLogs(Duration(hours: 24));
+        break;
+      case '1 Week':
+        // Fetch and print call logs for the last 7 days (1 week)
+        fetchAndPrintCallLogs(Duration(days: 7));
+        break;
+      case '1 Month':
+        // Fetch and print call logs for the last 30 days (1 month)
+        fetchAndPrintCallLogs(Duration(days: 30));
+        break;
+      default:
+        break;
     }
+  }
+
+  void fetchAndPrintCallLogs(Duration duration) async {
+    callCount = 0;
+    // Get the current time
+    DateTime now = DateTime.now();
+
+    // Calculate the start time based on the duration
+    DateTime startTime = now.subtract(duration);
+
+    // Fetch call logs within the specified duration
+    Iterable<CallLogEntry> entries = await CallLog.query(
+      dateFrom: startTime.millisecondsSinceEpoch,
+      dateTo: now.millisecondsSinceEpoch,
+    );
+
+    // Print the call logs
+    for (final entry in entries) {
+      callCount = callCount + 1;
+
+      print(
+          'Call from: ${entry.name}, Number: ${entry.number}, Duration: ${entry.duration} seconds, Type: ${entry.callType}, Date: ${DateTime.fromMillisecondsSinceEpoch(entry.timestamp!)}');
+    }
+    print(callCount);
   }
 }

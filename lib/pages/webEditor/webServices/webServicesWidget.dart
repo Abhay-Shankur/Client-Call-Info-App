@@ -159,7 +159,7 @@ class _WeServicesPageWidgetState extends State<WeServicesPageWidget>
                                         Icon(
                                           Icons.add_a_photo_rounded,
                                           color: FlutterFlowTheme.of(context)
-                                              .primary,
+                                              .primaryText,
                                           size: 32,
                                         ),
                                         Padding(

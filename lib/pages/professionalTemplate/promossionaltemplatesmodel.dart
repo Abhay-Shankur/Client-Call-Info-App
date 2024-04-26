@@ -5,6 +5,9 @@
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
 // import '/flutter_flow/form_field_controller.dart';
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
 import 'professionalttemplate.dart' show PromossionalmsgtempWidget;
@@ -13,7 +16,7 @@ import 'package:flutter/material.dart';
 class PromossionalmsgtempModel
     extends FlutterFlowModel<PromossionalmsgtempWidget> {
   ///  State fields for stateful widgets in this page.
-
+  static  File? pickedFile=null;
   final unfocusNode = FocusNode();
   // State field(s) for Slider widget.
   double? sliderValue;
@@ -48,6 +51,32 @@ class PromossionalmsgtempModel
   }
 
 /// Action blocks are added here.
+  /// Action blocks are added here.
+  Future<File?> pickFile() async {
+    try {
+      final result = await FilePicker.platform.pickFiles();
+      if (result != null) {
+        pickedFile = File(result.files.single.path!);
+        return pickedFile;
+      } else {
+        // User canceled the picker
+        print('No file selected.');
+      }
+    } catch (e) {
+      print('Error picking file: $e');
+    }
+    return null;
+  }
+
+  getPickedFile()
+  {
+    if (pickedFile != null) {
+      return pickedFile;
+    } else {
+      print("Null image");
+      // Handle the case where pickedFile is null
+    }
+  }
 
 /// Additional helper methods are added here.
 }
