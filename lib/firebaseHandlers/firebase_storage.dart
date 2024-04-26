@@ -11,11 +11,11 @@ class FirebaseStorageService {
     return fileType;
   }
 
-  static Future<String?> uploadImage(File imageFile) async {
+  static Future<String?> uploadImage(File imageFile, String path) async {
     try {
       String fileType = getFileType(imageFile);
       String imageName = DateTime.now().millisecondsSinceEpoch.toString() + '.$fileType';
-      final Reference reference = _storage.ref().child('WhatsApp Images/$imageName');
+      final Reference reference = _storage.ref().child('$path$imageName');
       await reference.putFile(imageFile);
       String imageUrl = await reference.getDownloadURL();
       return imageUrl + '.$fileType';

@@ -22,6 +22,7 @@ class WebDomainProvider extends ChangeNotifier {
         FirestoreHandler firestore = FirestoreHandler();
         _domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
         firestore.closeConnection();
+        debugPrint('Domain Data Initialized.');
         notifyListeners();
       } else {
         throw Exception('User not Authenticated');

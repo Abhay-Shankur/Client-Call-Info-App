@@ -420,7 +420,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
                                   alignment: Alignment(0, 0),
                                 )
                                     : Image.asset(
-                                  'assets/whatsappDefult.png',
+                                  'assets/images/uploadImage.jpg',
                                   width: double.infinity,
                                   height: 200,
                                   fit: BoxFit.scaleDown,

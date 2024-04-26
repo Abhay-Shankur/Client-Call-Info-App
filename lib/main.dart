@@ -17,8 +17,8 @@ import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/pages/webEditor/ImageGallery/webImageGallerywidegt.dart';
-import 'package:call_info/pages/webEditor/Products/AddProduct/webAddProductsWidget.dart';
-import 'package:call_info/pages/webEditor/Products/saveProductInfo/webSaveProductPageWidget.dart';
+import 'package:call_info/pages/webEditor/Products/AddProduct/web_add_product_page_widget.dart';
+import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_save_product_widget.dart';
 import 'package:call_info/pages/webEditor/testimonialPage/webTestimonailWidget.dart';
 import 'package:call_info/pages/webEditor/weHelp/webWeHelpPagewidget.dart';
 import 'package:call_info/pages/webEditor/webServices/webServicesWidget.dart';
@@ -28,6 +28,7 @@ import 'package:call_info/pages/webEditor/VideoGallery/webVideoGallery.dart';
 import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
+import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -116,6 +117,8 @@ class _MyAppState extends State<MyApp> {
 
         ChangeNotifierProvider(create: (context) => WebDomainProvider()),
         ChangeNotifierProvider(create: (context) => MetaDataProvider()),
+        ChangeNotifierProvider(create: (context) => ProductsProvider()),
+
       ],
       child: MaterialApp(
         title: 'Call Info',

@@ -57,7 +57,7 @@ class WhtstempModel extends FlutterFlowModel<WhatsappTemplateWidget> {
     // Upload the picked file
     try {
       String textData = textController!.value.text;
-      String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!);
+      String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'WhatsApp Images/');
       if (imageUrl != null) {
         print('Image uploaded. URL: $imageUrl');
         FirestoreHandler firestore = FirestoreHandler();
