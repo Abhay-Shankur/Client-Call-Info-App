@@ -20,7 +20,7 @@ class MetaDataProvider extends ChangeNotifier {
   String get businessMail => _businessMail;
 
   // Constructor to set default value from Firestore
-  MetaDataProvider() {
+  MetaDataProvider()  {
     // Call a function to fetch the default value from Firestore
     _init();
   }
@@ -38,6 +38,7 @@ class MetaDataProvider extends ChangeNotifier {
         _businessContact = data['businessContact'];
         _businessMail = data['businessMail'];
         _businessAddress = data['businessAddress'];
+        debugPrint('Master Data Initialized.');
         firestore.closeConnection();
         notifyListeners();
       } else {

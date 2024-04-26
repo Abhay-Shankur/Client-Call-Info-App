@@ -1,5 +1,4 @@
 import 'package:call_info/main.dart';
-import 'package:call_info/pages/components/link_design/link_design_widget.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/theme/MyTheme.dart';
 

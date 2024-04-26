@@ -1,8 +1,10 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-import 'list_Tile_model.dart';
-export 'list_Tile_model.dart';
+import 'list_tile_model.dart';
+export 'list_tile_model.dart';
 
 class ListTileWidget extends StatefulWidget {
   const ListTileWidget({
@@ -102,8 +104,8 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                   color: FlutterFlowTheme.of(context).secondaryText,
                   size: 20,
                 ),
-                onPressed: () {
-                  print('IconButton pressed ...');
+                onPressed: () async {
+                  await widget.editFunc!.call();
                 },
               ),
               FlutterFlowIconButton(
@@ -116,8 +118,8 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                   color: FlutterFlowTheme.of(context).error,
                   size: 20,
                 ),
-                onPressed: () {
-                  print('IconButton pressed ...');
+                onPressed: () async {
+                  await widget.dltFunc!.call();
                 },
               ),
             ],

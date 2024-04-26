@@ -20,10 +20,11 @@ class WhatsappTemplateWidget extends StatefulWidget {
 
 class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
   late WhtstempModel _model;
-  bool _saving = false;
 
   String? _selectedImagePath;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool _saving = false;
 
   @override
   void initState() {
@@ -167,21 +168,6 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                             ),
                           ),
                         ),
-                        // Container(
-                        //   decoration: BoxDecoration(),
-                        //   child: Padding(
-                        //     padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                        //     child: ClipRRect(
-                        //       borderRadius: BorderRadius.circular(8),
-                        //       child: Image.asset(
-                        //         'assets/customtemplate.png',
-                        //         width: double.infinity,
-                        //         height: 171,
-                        //         fit: BoxFit.cover,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                         Container(
                           decoration: BoxDecoration(),
                           child: Padding(

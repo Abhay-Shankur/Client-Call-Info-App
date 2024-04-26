@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:toastification/toastification.dart';
 
 showToast({required BuildContext context, required ToastificationType type, required String title, required String desc}) {
@@ -22,8 +21,11 @@ showToast({required BuildContext context, required ToastificationType type, requ
       break;
 
     case ToastificationType.info:
-      // TODO: Handle this case.
+      _primary = Colors.blueAccent;
+      _background = Colors.white;
+      _foreground = Colors.black;
       break;
+
     case ToastificationType.error:
       _primary = Colors.red;
       _background = Color.fromARGB(255, 255, 110, 110);
