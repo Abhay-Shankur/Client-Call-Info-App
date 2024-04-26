@@ -1,9 +1,7 @@
 import 'package:call_info/main.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:provider/provider.dart';
 
 import 'web_save_product_model.dart';
 export 'web_save_product_model.dart';
@@ -70,7 +68,7 @@ class _WebSaveProductWidgetState extends State<WebSaveProductWidget> {
                   size: 30,
                 ),
                 onPressed: () async {
-                  // TODO: context.pop();
+                  navigator.currentState!.pop();
                 },
               ),
               title: Text(

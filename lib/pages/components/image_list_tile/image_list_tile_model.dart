@@ -1,8 +1,8 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'list_tile_widget.dart' show ListTileWidget;
+import 'image_list_tile_widget.dart' show ImageListTileWidget;
 import 'package:flutter/material.dart';
 
-class ListTileModel extends FlutterFlowModel<ListTileWidget> {
+class ImageListTileModel extends FlutterFlowModel<ImageListTileWidget> {
   @override
   void initState(BuildContext context) {}
 

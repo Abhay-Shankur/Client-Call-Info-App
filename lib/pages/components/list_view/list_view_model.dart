@@ -2,8 +2,6 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/list_tile/list_tile_widget.dart';
 import 'list_view_widget.dart' show ListViewWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ListViewModel extends FlutterFlowModel<ListViewWidget> {
   ///  State fields for stateful widgets in this component.

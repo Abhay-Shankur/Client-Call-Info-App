@@ -55,17 +55,8 @@ class ProductsProvider extends ChangeNotifier {
       String? uid = await FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
-        List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, 'ProductsList') as List<dynamic>;
-        // _ownerName = data['ownerName'];
-        // _ownerContact = data['ownerContact'];
-        // _businessName = data['businessName'];
-        // _businessContact = data['businessContact'];
-        // _businessMail = data['businessMail'];
-        // _businessAddress = data['businessAddress'];
-        if(_listProducts == null ){
-          _listProducts = [];
-        }
+        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
+        List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, 'ProductsList') ?? [];
         _listProducts.clear();
         dynlist.forEach((element) {
           if (element is Map<String, dynamic>) {

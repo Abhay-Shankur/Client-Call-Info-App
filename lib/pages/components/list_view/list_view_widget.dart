@@ -1,11 +1,9 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/list_tile/list_tile_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import 'list_view_model.dart';
-export 'list_view_model.dart';
+import '../list_view/list_view_model.dart';
+export '../list_view/list_view_model.dart';
 
 class ListViewWidget extends StatefulWidget {
   const ListViewWidget({
@@ -51,8 +49,8 @@ class _ListViewWidgetState extends State<ListViewWidget> {
           return Center(
             child: Image.asset(
               'assets/images/newProducts.jpg', // Replace with your image asset path
-              width: 100,
-              height: 100,
+              width: 300,
+              height: 300,
             ),
           );
         } else {

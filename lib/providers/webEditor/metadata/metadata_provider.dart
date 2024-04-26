@@ -30,7 +30,7 @@ class MetaDataProvider extends ChangeNotifier {
       String? uid = await FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
+        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
         Map<String, dynamic> data = await firestore.readFieldAtPath("Website", domainName, 'MasterData') as Map<String, dynamic>;
         _ownerName = data['ownerName'];
         _ownerContact = data['ownerContact'];

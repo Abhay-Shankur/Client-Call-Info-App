@@ -1,8 +1,13 @@
+import 'package:call_info/main.dart';
+import 'package:call_info/providers/webEditor/gallery/photo_gallery_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import '/pages/components/list_view/list_view_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-import 'webImageGalleryModel.dart';
-export 'webImageGalleryModel.dart';
+import 'web_image_galley_model.dart';
+export 'web_image_galley_model.dart';
 
 class WebImageGalleyWidget extends StatefulWidget {
   const WebImageGalleyWidget({super.key});
@@ -55,7 +60,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
               size: 30,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              navigator.currentState!.pop();
             },
           ),
           title: Text(
@@ -91,11 +96,12 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Flexible(
+                        Expanded(
+                          flex: 1,
                           child: Padding(
                             padding:
                             EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
@@ -198,6 +204,8 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                                     .titleSmall
                                     .override(
                                   fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   letterSpacing: 0,
                                 ),
                                 borderSide: BorderSide(
@@ -212,13 +220,33 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                       ],
                     ),
                   ),
-                  Divider(
-                    thickness: 2,
-                    indent: 10,
-                    endIndent: 10,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
                 ],
+              ),
+              Divider(
+                thickness: 2,
+                indent: 10,
+                endIndent: 10,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              wrapWithModel(
+                model: _model.listViewModel,
+                updateCallback: () => setState(() {}),
+                updateOnChange: true,
+                child: Hero(
+                  tag: 'ControllerImage',
+                  transitionOnUserGestures: true,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Consumer<PhotoGalleryProvider> (
+                      builder: (context, value, child) {
+                        debugPrint('List: ${value.list}');
+                        return ListViewWidget(
+                          listParams: value.list,
+                        );
+                      },
+                    )
+                  ),
+                ),
               ),
             ],
           ),

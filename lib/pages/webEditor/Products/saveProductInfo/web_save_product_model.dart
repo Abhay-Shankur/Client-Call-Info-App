@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/firebaseHandlers/firebase_storage.dart';
-import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
@@ -11,7 +10,6 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:toastification/toastification.dart';
 import 'web_save_product_widget.dart' show WebSaveProductWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class WebSaveProductModel extends FlutterFlowModel<WebSaveProductWidget> {
@@ -108,7 +106,7 @@ class WebSaveProductModel extends FlutterFlowModel<WebSaveProductWidget> {
       Provider.of<ProductsProvider>(context, listen: false).addProduct(list);
 
       FirestoreHandler firestore = FirestoreHandler();
-      List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, "ProductsList") as List<dynamic>;
+      List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, "ProductsList") ?? [];
       dynlist.add(product.toMap());
       debugPrint('Updated List: ${dynlist.toString()}');
       await firestore.updateFirestoreData("Website", domainName, {'ProductsList': dynlist });

@@ -1,9 +1,8 @@
 import 'package:call_info/main.dart';
-import 'package:call_info/pages/components/ListView/list_view_widget.dart';
+import 'package:call_info/pages/components/image_list_view/image_list_view_widget.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'web_add_product_page_model.dart';
@@ -161,17 +160,15 @@ class _WebAddProductPageWidgetState extends State<WebAddProductPageWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                     wrapWithModel(
-                      model: _model.listViewModel,
+                      model: _model.imageListViewModel,
                       updateCallback: () => setState(() {}),
                       child: Consumer<ProductsProvider> (
                         builder: (context, value, child) {
-                          List<String> list = [];
-                          if(value.listProducts != null) {
-                            value.listProducts!.forEach((element) {
-                              list.add(element.productName);
-                            });
-                          }
-                          return ListViewWidget(listParams: list);
+                          List<Product> list = [];
+                          value.listProducts.forEach((element) {
+                            list.add(element);
+                          });
+                          return ImageListViewWidget(listParam: list);
                         },
                       ),
                     ),

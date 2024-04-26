@@ -37,6 +37,7 @@ abstract class MyTheme {
 
   late Color primaryBtnText;
   late Color lineColor;
+  late Color backgroundComponents;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -149,6 +150,8 @@ class LightModeTheme extends MyTheme {
   late Color primaryBtnText = const Color(0xFFFFFFFF);
   @override
   late Color lineColor = const Color(0xFFE0E3E7);
+  @override
+  late Color backgroundComponents = const Color(0xFF1D2428);
 }
 
 abstract class Typography {
@@ -374,6 +377,8 @@ class DarkModeTheme extends MyTheme {
   late Color primaryBtnText = const Color(0xFFFFFFFF);
   @override
   late Color lineColor = const Color(0xFF22282F);
+  @override
+  late Color backgroundComponents = const Color(0xFF1D2428);
 }
 
 // extension TextStyleHelper on TextStyle {

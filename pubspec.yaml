@@ -109,7 +109,7 @@
   # The following section is specific to Flutter packages.
   flutter:
     assets:
-      - assests/images/
+      - assets/images/
       - assets/whatsappDefult.png
       - assets/customtemplate.png
       - assets/SMS.jpg

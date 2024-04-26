@@ -93,7 +93,7 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
       FirestoreHandler firestore = FirestoreHandler();
       String? uid = await FirebaseAuthHandler.getUid();
       if(uid != null){
-        dynamic rs = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
+        dynamic rs = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
         if(rs == null){
           await firestore.updateFirestoreData("USERS", uid, data);
           await firestore.createEmptyDocument("Website", data['webDomain']);

@@ -1,8 +1,13 @@
+import 'package:call_info/main.dart';
+import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import '/pages/components/list_view/list_view_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-import 'webVideoModel.dart';
-export 'webVideoModel.dart';
+import 'web_video_gallery_model.dart';
+export 'web_video_gallery_model.dart';
 
 class WebVideoGalleryWidget extends StatefulWidget {
   const WebVideoGalleryWidget({super.key});
@@ -40,15 +45,6 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
-        title: Text(
-          'Video Gallery',
-          style: FlutterFlowTheme.of(context).headlineMedium.override(
-            fontFamily: 'Outfit',
-            color: FlutterFlowTheme.of(context).primaryText,
-            fontSize: 30,
-            letterSpacing: 0,
-          ),
-        ),
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
           borderRadius: 30,
@@ -60,7 +56,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            navigator.currentState!.pop();
           },
         ),
         actions: [],
@@ -80,7 +76,17 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                child: Text(
+                  'Video Gallery',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Outfit',
+                    letterSpacing: 0,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 16),
                 child: Text(
                   'Add a link of a video you desire to be shown on your webpage ',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -90,11 +96,12 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Flexible(
+                    Expanded(
+                      flex: 1,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                         child: Container(
@@ -124,7 +131,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                                 borderSide: BorderSide(
                                   color:
                                   FlutterFlowTheme.of(context).primaryText,
-                                  width: 1,
+                                  width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -193,6 +200,8 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                                 .titleSmall
                                 .override(
                               fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               letterSpacing: 0,
                             ),
                             borderSide: BorderSide(
@@ -212,6 +221,25 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                 indent: 10,
                 endIndent: 10,
                 color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              wrapWithModel(
+                model: _model.listViewModel,
+                updateCallback: () => setState(() {}),
+                updateOnChange: true,
+                child: Hero(
+                  tag: 'ControllerImage',
+                  transitionOnUserGestures: true,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Consumer<VideoGalleryProvider> (
+                      builder: (context, value, child){
+                        return ListViewWidget(
+                          listParams: value.list,
+                        );
+                      },
+                    )
+                  ),
+                ),
               ),
             ],
           ),

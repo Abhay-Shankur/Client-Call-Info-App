@@ -1,11 +1,7 @@
-import 'dart:ffi';
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/permission_list_item/permission_list_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'permission_model.dart';
 export 'permission_model.dart';
 

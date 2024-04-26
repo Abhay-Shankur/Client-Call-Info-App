@@ -20,7 +20,7 @@ class WebDomainProvider extends ChangeNotifier {
       String? uid = await FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        _domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
+        _domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
         firestore.closeConnection();
         debugPrint('Domain Data Initialized.');
         notifyListeners();
