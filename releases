@@ -30,10 +30,10 @@ Changed Theme to MyTheme
 Structured Files
 
 1.0.7(Nikhil):
-updated Dashboard Graph
+Added Dashboard Backend
 Replaced static widgets with reusable components
-Handled OnBack events of pages(permissions n EditProfile)
-Big issue in Null pointer(helped Abhay for this)
+Handled OnBack events
+issue in Null pointer(helped Abhay for this)
 
 1.0.8(Abhay):
 Call Identifying
@@ -106,3 +106,6 @@ Domain Provider.
 Fixed Both Provider.
 Added Backend for Domain.
 Added Backend for Metadata.
+
+1.0.21
+-Added Permissions Backend

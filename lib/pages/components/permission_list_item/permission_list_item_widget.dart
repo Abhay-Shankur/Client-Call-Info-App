@@ -1,6 +1,105 @@
+// import 'package:call_info/theme/MyTheme.dart';
+// import 'package:flutterflow_ui/flutterflow_ui.dart';
+// import 'package:flutter/material.dart';
+//
+// import 'permission_list_item_model.dart';
+// export 'permission_list_item_model.dart';
+//
+// class PermissionListItemWidget extends StatefulWidget {
+//   const PermissionListItemWidget({
+//     super.key,
+//     required this.icon,
+//     required this.title,
+//     bool? status,
+//   }) : this.status = status ?? false;
+//
+//   final Widget? icon;
+//   final String? title;
+//   final bool status;
+//
+//   @override
+//   State<PermissionListItemWidget> createState() =>
+//       _PermissionListItemWidgetState();
+// }
+//
+// class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
+//   late PermissionListItemModel _model;
+//
+//   @override
+//   void setState(VoidCallback callback) {
+//     super.setState(callback);
+//     _model.onUpdate();
+//   }
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _model = createModel(context, () => PermissionListItemModel());
+//
+//     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+//   }
+//
+//   @override
+//   void dispose() {
+//     _model.maybeDispose();
+//
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+//       child: Container(
+//         width: double.infinity,
+//         height: 60,
+//         decoration: BoxDecoration(
+//           color: MyTheme.of(context).secondaryBackground,
+//           borderRadius: BorderRadius.circular(8),
+//         ),
+//         child: Padding(
+//           padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+//           child: Row(
+//             mainAxisSize: MainAxisSize.max,
+//             children: [
+//               widget.icon!,
+//               Expanded(
+//                 child: Padding(
+//                   padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+//                   child: Text(
+//                     valueOrDefault<String>(
+//                       widget.title,
+//                       'Title',
+//                     ),
+//                     style: MyTheme.of(context).bodyMedium.override(
+//                       fontFamily: 'Inter',
+//                       color: MyTheme.of(context).primaryText,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//               Switch(
+//                 value: _model.switchValue ??= !widget.status,
+//                 onChanged: (newValue) async {
+//                   setState(() => _model.switchValue = newValue);
+//                 },
+//                 activeColor: MyTheme.of(context).primaryText,
+//                 activeTrackColor: MyTheme.of(context).secondaryText,
+//                 inactiveTrackColor:
+//                 MyTheme.of(context).secondaryBackground,
+//                 inactiveThumbColor: MyTheme.of(context).secondaryText,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 import 'package:call_info/theme/MyTheme.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'permission_list_item_model.dart';
 export 'permission_list_item_model.dart';
@@ -10,11 +109,12 @@ class PermissionListItemWidget extends StatefulWidget {
     super.key,
     required this.icon,
     required this.title,
-    bool? status,
+    bool ? status, // Optional initial switch state
   }) : this.status = status ?? false;
 
+
   final Widget? icon;
-  final String? title;
+  final String title;
   final bool status;
 
   @override
@@ -26,15 +126,10 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
   late PermissionListItemModel _model;
 
   @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
-
-  @override
   void initState() {
     super.initState();
     _model = createModel(context, () => PermissionListItemModel());
+    _model.switchValue = widget.status; // Set initial switch state
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -42,12 +137,37 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
   @override
   void dispose() {
     _model.maybeDispose();
-
     super.dispose();
   }
 
+  Future<void> _requestPermission(String permissionTitle) async {
+    Permission permission;
+    switch (permissionTitle) {
+      case 'Location':
+        permission = Permission.location.request() as Permission;
+        break;
+      case 'Camera':
+        permission = Permission.camera.request() as Permission;
+        break;
+      case 'Photos':
+        permission = Permission.storage.request() as Permission; // Assuming Photos refers to storage access
+        break;
+      case 'Microphone':
+        permission = Permission.microphone.request() as Permission;
+        break;
+      case 'Contacts':
+        permission = Permission.contacts.request() as Permission;
+        break;
+      default:
+      // Handle unsupported permission (e.g., show a message)
+        return;
+    }
+
+
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext  context) {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
       child: Container(
@@ -67,10 +187,7 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                   child: Text(
-                    valueOrDefault<String>(
-                      widget.title,
-                      'Title',
-                    ),
+                    widget.title,
                     style: MyTheme.of(context).bodyMedium.override(
                       fontFamily: 'Inter',
                       color: MyTheme.of(context).primaryText,
@@ -79,8 +196,9 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
                 ),
               ),
               Switch(
-                value: _model.switchValue ??= !widget.status,
+                value: _model.switchValue ?? true,
                 onChanged: (newValue) async {
+                  await _requestPermission(widget.title);
                   setState(() => _model.switchValue = newValue);
                 },
                 activeColor: MyTheme.of(context).primaryText,
