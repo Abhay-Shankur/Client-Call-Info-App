@@ -1,9 +1,11 @@
+import 'dart:ffi';
 
-import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/permission_list_item/permission_list_item_widget.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'permission_model.dart';
 export 'permission_model.dart';
 
@@ -44,9 +46,9 @@ class _PermissionWidgetState extends State<PermissionWidget> {
         onWillPop: () async => true,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: MyTheme.of(context).primaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           appBar: AppBar(
-            backgroundColor: MyTheme.of(context).secondaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -55,17 +57,19 @@ class _PermissionWidgetState extends State<PermissionWidget> {
               buttonSize: 60,
               icon: Icon(
                 Icons.arrow_back_rounded,
-                color: MyTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).primaryText,
                 size: 30,
               ),
               onPressed: () async {
                 Navigator.pop(context);
-                // context.pop();
               },
             ),
             title: Text(
               'Back',
-              style: MyTheme.of(context).titleLarge,
+              style: FlutterFlowTheme.of(context).titleLarge.override(
+                fontFamily: 'Readex Pro',
+                letterSpacing: 0,
+              ),
             ),
             actions: [],
             centerTitle: false,
@@ -84,9 +88,10 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                     child: Text(
                       'Permissions',
                       style:
-                      MyTheme.of(context).headlineMedium.override(
+                      FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: MyTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        letterSpacing: 0,
                       ),
                     ),
                   ),
@@ -94,65 +99,133 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(8, 16, 0, 16),
                     child: Text(
                       'Manage the permissions you have granted to the app.',
-                      style: MyTheme.of(context).bodyMedium.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Inter',
-                        color: MyTheme.of(context).secondaryText,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        letterSpacing: 0,
                       ),
                     ),
                   ),
                   wrapWithModel(
                     model: _model.permissionListItemModel1,
                     updateCallback: () => setState(() {}),
-                    child: PermissionListItemWidget(
-                      icon: Icon(
-                        Icons.location_on,
-                      ),
-                      title: 'Location',
-                      status: false,
+                    child: FutureBuilder<bool>(
+                      future: _model.checkLocationPermissionStatus(), // Assuming this method returns a Future<bool>
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          // Return a loading indicator or placeholder widget while waiting for the future to complete
+                          return CircularProgressIndicator();
+                        } else {
+                          // Once the future completes, update the status based on the result
+                          final bool permissionStatus = snapshot.data ?? false;
+                          print(permissionStatus);
+                          return PermissionListItemWidget(
+                            icon: Icon(
+                              Icons.location_on,
+                            ),
+                            title: 'Location',
+                            status: permissionStatus,
+
+                          );
+                        }
+                      },
                     ),
                   ),
                   wrapWithModel(
-                    model: _model.permissionListItemModel2,
+                    model: _model.permissionListItemModel1,
                     updateCallback: () => setState(() {}),
-                    child: PermissionListItemWidget(
-                      icon: Icon(
-                        Icons.camera_alt,
-                      ),
-                      title: 'Camera',
-                      status: true,
+                    child: FutureBuilder<bool>(
+                      future: _model.checkCameraPermissionStatus(), // Assuming this method returns a Future<bool>
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          // Return a loading indicator or placeholder widget while waiting for the future to complete
+                          return CircularProgressIndicator();
+                        } else {
+                          // Once the future completes, update the status based on the result
+                          final bool permissionStatus = snapshot.data ?? false;
+                          print(permissionStatus);
+                          return PermissionListItemWidget(
+                            icon: Icon(
+                              Icons.camera_alt,
+                            ),
+                            title: 'Camera',
+                            status: permissionStatus,
+                          );
+                        }
+                      },
                     ),
                   ),
                   wrapWithModel(
-                    model: _model.permissionListItemModel3,
+                    model: _model.permissionListItemModel1,
                     updateCallback: () => setState(() {}),
-                    child: PermissionListItemWidget(
-                      icon: Icon(
-                        Icons.photo_sharp,
-                      ),
-                      title: 'Photos',
-                      status: true,
+                    child: FutureBuilder<bool>(
+                      future: _model.checkStoragePermissionStatus(), // Assuming this method returns a Future<bool>
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          // Return a loading indicator or placeholder widget while waiting for the future to complete
+                          return CircularProgressIndicator();
+                        } else {
+                          // Once the future completes, update the status based on the result
+                          final bool permissionStatus = snapshot.data ?? false;
+                          print(permissionStatus);
+                          return PermissionListItemWidget(
+                              icon: Icon(
+                              Icons.photo_sharp,
+                          ),
+                        title: 'Photos',
+                        status:permissionStatus ,
+                          );
+                      }
+                      },
                     ),
                   ),
                   wrapWithModel(
-                    model: _model.permissionListItemModel4,
+                    model: _model.permissionListItemModel1,
                     updateCallback: () => setState(() {}),
-                    child: PermissionListItemWidget(
-                      icon: Icon(
-                        Icons.mic_rounded,
-                      ),
-                      title: 'Microphone',
-                      status: true,
+                    child: FutureBuilder<bool>(
+                      future: _model.checkMicrophonePermissionStatus(), // Assuming this method returns a Future<bool>
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          // Return a loading indicator or placeholder widget while waiting for the future to complete
+                          return CircularProgressIndicator();
+                        } else {
+                          // Once the future completes, update the status based on the result
+                          final bool permissionStatus = snapshot.data ?? false;
+                          print(permissionStatus);
+                          return PermissionListItemWidget(
+                            icon: Icon(
+                              Icons.mic_rounded,
+                            ),
+                            title: 'Microphone',
+                            status:permissionStatus,
+                          );
+                        }
+                      },
                     ),
                   ),
                   wrapWithModel(
-                    model: _model.permissionListItemModel5,
+                    model: _model.permissionListItemModel1,
                     updateCallback: () => setState(() {}),
-                    child: PermissionListItemWidget(
-                      icon: Icon(
-                        Icons.contacts,
-                      ),
-                      title: 'Contacts',
-                      status: true,
+                    child: FutureBuilder<bool>(
+                      future: _model.checkContactsPermissionStatus(), // Assuming this method returns a Future<bool>
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          // Return a loading indicator or placeholder widget while waiting for the future to complete
+                          return CircularProgressIndicator();
+                        } else {
+                          // Once the future completes, update the status based on the result
+                          final bool permissionStatus = snapshot.data ?? false;
+                          print(permissionStatus);
+                          return PermissionListItemWidget(
+                            icon: Icon(
+                              Icons.contacts,
+                            ),
+                            title: 'Contacts',
+                            status: permissionStatus,
+
+                          );
+                        }
+                      },
                     ),
                   ),
                 ],

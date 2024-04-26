@@ -97,10 +97,10 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                     height: 32,
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: Color(0xFF4B39EF),
+                    color: FlutterFlowTheme.of(context).primaryText,
                     textStyle: MyTheme.of(context).titleSmall.override(
                       fontFamily: 'Plus Jakarta Sans',
-                      color: Colors.white,
+                      color:FlutterFlowTheme.of(context).primaryBackground,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -182,10 +182,10 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                                 fit: BoxFit.cover,
                               ) :
                               Image.asset(
-                                'assets/customtemplate.png', // Use default image if no image is selected
+                                'assets/whatsappDefult.png', // Use default image if no image is selected
                                 width: double.infinity,
                                 height: 200,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fitWidth,
                               ),
                             ),
                           ),

@@ -66,6 +66,15 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
+          title: Text(
+            'Links',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+              fontFamily: 'Outfit',
+              color: FlutterFlowTheme.of(context).primaryText,
+              fontSize: 30,
+              letterSpacing: 0,
+            ),
+          ),
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,
@@ -111,7 +120,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(12, 32, 0, 8),
+                            EdgeInsetsDirectional.fromSTEB(12, 10, 0, 8),
                             child: Text(
                               'Join us & reach with confidence',
                               textAlign: TextAlign.start,

@@ -212,6 +212,12 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                       ],
                     ),
                   ),
+                  Divider(
+                    thickness: 2,
+                    indent: 10,
+                    endIndent: 10,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
                 ],
               ),
             ],

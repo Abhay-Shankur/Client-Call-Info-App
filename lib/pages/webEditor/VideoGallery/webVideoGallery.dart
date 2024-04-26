@@ -40,6 +40,15 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
+        title: Text(
+          'Video Gallery',
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
+            fontFamily: 'Outfit',
+            color: FlutterFlowTheme.of(context).primaryText,
+            fontSize: 30,
+            letterSpacing: 0,
+          ),
+        ),
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
           borderRadius: 30,
@@ -71,17 +80,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                child: Text(
-                  'Video Gallery',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Outfit',
-                    letterSpacing: 0,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 16),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
                 child: Text(
                   'Add a link of a video you desire to be shown on your webpage ',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -125,7 +124,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                                 borderSide: BorderSide(
                                   color:
                                   FlutterFlowTheme.of(context).primaryText,
-                                  width: 2,
+                                  width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -207,6 +206,12 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                     ),
                   ],
                 ),
+              ),
+              Divider(
+                thickness: 2,
+                indent: 10,
+                endIndent: 10,
+                color: FlutterFlowTheme.of(context).primaryText,
               ),
             ],
           ),
