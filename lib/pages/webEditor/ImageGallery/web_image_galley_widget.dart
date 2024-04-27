@@ -17,6 +17,7 @@ class WebImageGalleyWidget extends StatefulWidget {
 
 class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
   late WebImageGalleyModel _model;
+  bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -189,8 +190,14 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                             padding:
                             EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button-Login pressed ...');
+                              onPressed: () async {
+                                setState(() {
+                                  _saving = true;
+                                });
+                                await _model.addLink(context);
+                                setState(() {
+                                  _saving = false;
+                                });
                               },
                               text: 'Add Link',
                               options: FFButtonOptions(
@@ -238,7 +245,6 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                     color: Colors.transparent,
                     child: Consumer<PhotoGalleryProvider> (
                       builder: (context, value, child) {
-                        debugPrint('List: ${value.list}');
                         return ListViewWidget(
                           listParams: value.list,
                         );

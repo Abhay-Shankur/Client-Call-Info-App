@@ -146,6 +146,23 @@ class FirestoreHandler {
     }
   }
 
+  Future<void> pushToArray(String collection, String document, String fieldPath, dynamic value) async {
+    try {
+      // Create a reference to the document
+      var docRef = _firestore.collection(collection).doc(document);
+
+      // Update the array field
+      await docRef.update({
+        fieldPath: FieldValue.arrayUnion([value]),
+      });
+
+      debugPrint('Value pushed to array successfully');
+    } catch (e) {
+      debugPrint('Error pushing value to array: $e');
+      throw FormatException('Error pushing value to array: $e');
+    }
+  }
+
   void closeConnection() {
     _firestore.terminate();
     debugPrint('Firestore connection closed');

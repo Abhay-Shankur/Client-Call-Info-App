@@ -29,6 +29,7 @@ import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/photo_gallery_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dart';
+import 'package:call_info/providers/webEditor/links/links_provider.dart';
 import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:flutter/material.dart';
@@ -122,12 +123,14 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => ProductsProvider()),
         ChangeNotifierProvider(create: (context) => PhotoGalleryProvider()),
         ChangeNotifierProvider(create: (context) => VideoGalleryProvider()),
+        ChangeNotifierProvider(create: (context) => WebLinksProvider()),
 
       ],
       child: MaterialApp(
         title: 'Call Info',
-        initialRoute: routeKeys.splashScreen,
-        // initialRoute: routeKeys.webPageEditorDashboard,
+        // initialRoute: routeKeys.splashScreen,
+
+        initialRoute: routeKeys.webPageEditorDashboard,
         routes: appRoutes,
         navigatorKey: navigator,
         // initialRoute: '/vendor_login',

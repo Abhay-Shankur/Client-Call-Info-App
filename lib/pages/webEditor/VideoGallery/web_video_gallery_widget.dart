@@ -1,3 +1,4 @@
+
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -17,6 +18,7 @@ class WebVideoGalleryWidget extends StatefulWidget {
 
 class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
   late WebVideoGalleryModel _model;
+  bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -185,8 +187,14 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button-Login pressed ...');
+                          onPressed: () async {
+                            setState(() {
+                              _saving = true;
+                            });
+                            await _model.addLink(context);
+                            setState(() {
+                              _saving = false;
+                            });
                           },
                           text: 'Add Link',
                           options: FFButtonOptions(

@@ -1,7 +1,9 @@
+import 'package:call_info/providers/webEditor/links/links_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:provider/provider.dart';
 
 import 'linkModel.dart';
 export 'linkModel.dart';
@@ -15,6 +17,7 @@ class LinksPageWidget extends StatefulWidget {
 
 class _LinksPageWidgetState extends State<LinksPageWidget> {
   late LinksPageModel _model;
+  bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late StreamSubscription<bool> _keyboardVisibilitySubscription;
@@ -149,224 +152,239 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           Padding(
                             padding:
                             EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                            child: TextFormField(
-                              controller: _model.textController1,
-                              focusNode: _model.textFieldFocusNode1,
-                              autofocus: false,
-                              textCapitalization: TextCapitalization.words,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'whatsapp',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                    FlutterFlowTheme.of(context).alternate,
-                                    width: 2,
+                            child: Consumer<WebLinksProvider> (
+                              builder: (context, value, child) {
+                                if(value.links != null) _model.textController1 = TextEditingController(text: value.links!.whatsappLink);
+                                return TextFormField(
+                                  controller: _model.textController1,
+                                  focusNode: _model.textFieldFocusNode1,
+                                  autofocus: false,
+                                  textCapitalization: TextCapitalization.words,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'whatsapp',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0,
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).primary,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).error,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).error,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 16, 16, 8),
                                   ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0,
+                                    lineHeight: 3,
                                   ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                filled: true,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 16, 16, 8),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                fontFamily: 'Readex Pro',
-                                letterSpacing: 0,
-                                lineHeight: 3,
-                              ),
-                              validator: _model.textController1Validator
-                                  .asValidator(context),
+                                  validator: _model.textController1Validator
+                                      .asValidator(context),
+                                );
+                              },
                             ),
                           ),
                           Padding(
                             padding:
                             EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                            child: TextFormField(
-                              controller: _model.textController2,
-                              focusNode: _model.textFieldFocusNode2,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Instagram',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                    FlutterFlowTheme.of(context).alternate,
-                                    width: 2,
+                            child: Consumer<WebLinksProvider> (
+                              builder: (context, value, child) {
+                                if(value.links != null) _model.textController2 = TextEditingController(text: value.links!.instagramLink);
+                                return TextFormField(
+                                  controller: _model.textController2,
+                                  focusNode: _model.textFieldFocusNode2,
+                                  autofocus: false,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'Instagram',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0,
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).primary,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).error,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).error,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 16, 16, 8),
                                   ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0,
+                                    lineHeight: 3,
                                   ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                filled: true,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 16, 16, 8),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                fontFamily: 'Readex Pro',
-                                letterSpacing: 0,
-                                lineHeight: 3,
-                              ),
-                              validator: _model.textController2Validator
-                                  .asValidator(context),
+                                  validator: _model.textController2Validator
+                                      .asValidator(context),
+                                );
+                              },
                             ),
                           ),
                           Padding(
                             padding:
                             EdgeInsetsDirectional.fromSTEB(16, 12, 16, 15),
-                            child: TextFormField(
-                              controller: _model.textController3,
-                              focusNode: _model.textFieldFocusNode3,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Facebook',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                    FlutterFlowTheme.of(context).alternate,
-                                    width: 2,
+                            child: Consumer<WebLinksProvider> (
+                              builder: (context, value, child) {
+                                if(value.links != null) _model.textController3 = TextEditingController(text: value.links!.facebookLink);
+                                return TextFormField(
+                                  controller: _model.textController3,
+                                  focusNode: _model.textFieldFocusNode3,
+                                  autofocus: false,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'Facebook',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0,
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).primary,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).error,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).error,
+                                        width: 2,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 16, 16, 8),
                                   ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0,
+                                    lineHeight: 3,
                                   ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                filled: true,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 16, 16, 8),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                fontFamily: 'Readex Pro',
-                                letterSpacing: 0,
-                                lineHeight: 3,
-                              ),
-                              validator: _model.textController3Validator
-                                  .asValidator(context),
+                                  validator: _model.textController3Validator
+                                      .asValidator(context),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -379,8 +397,14 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 24),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          setState(() {
+                            _saving = true;
+                          });
+                          await _model.save(context);
+                          setState(() {
+                            _saving = false;
+                          });
                         },
                         text: 'Save ',
                         options: FFButtonOptions(

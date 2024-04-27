@@ -121,3 +121,11 @@ Created ImageListView.
 Modified ListView with ImageListView for Products Page.
 Added Provider for Image Gallery.
 Added Provider for Video Gallery.
+
+1.0.24(Abhay):
+Added Backend for Image Gallery.
+Added Backend for Video Gallery.
+Added Provider for Links.
+Added Provider for Reviews.
+Added Provider for WeHelp.
+Added Backend for Links.

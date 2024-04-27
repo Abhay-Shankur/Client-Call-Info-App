@@ -62,7 +62,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
             separatorBuilder: (_, __) => SizedBox(height: 25),
             itemBuilder: (context, listItemsIndex) {
               final listItemsItem = listItems[listItemsIndex];
-              debugPrint('listItemsItem: $listItemsItem');
+
               return wrapWithModel(
                 model: _model.listTileModels.getModel(
                   (widget.listParams != null && (widget.listParams)!.isNotEmpty)
