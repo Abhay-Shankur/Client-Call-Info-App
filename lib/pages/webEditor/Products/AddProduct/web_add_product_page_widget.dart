@@ -162,7 +162,7 @@ class _WebAddProductPageWidgetState extends State<WebAddProductPageWidget> {
                     wrapWithModel(
                       model: _model.imageListViewModel,
                       updateCallback: () => setState(() {}),
-                      child: Consumer<ProductsProvider> (
+                      child: Consumer<WebProductsProvider> (
                         builder: (context, value, child) {
                           List<Product> list = [];
                           value.listProducts.forEach((element) {

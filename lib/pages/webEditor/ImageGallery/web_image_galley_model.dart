@@ -42,9 +42,9 @@ class WebImageGalleyModel extends FlutterFlowModel<WebImageGalleyWidget> {
       if(link.isNotEmpty && domain.isNotEmpty) {
         FirestoreHandler firestore = FirestoreHandler();
         await firestore.pushToArray("Website", domain, "Gallery.Photos", link);
-        List<String> listLink = Provider.of<PhotoGalleryProvider>(context, listen: false).list;
+        List<String> listLink = Provider.of<WebPhotoGalleryProvider>(context, listen: false).list;
         listLink.add(link);
-        Provider.of<PhotoGalleryProvider>(context, listen: false).updateList(listLink);
+        Provider.of<WebPhotoGalleryProvider>(context, listen: false).updateList(listLink);
         firestore.closeConnection();
         showToast(context: context, type: ToastificationType.success, title: 'Image Gallery', desc: 'Information have been saved.');
       } else {

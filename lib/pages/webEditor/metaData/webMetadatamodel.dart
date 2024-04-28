@@ -65,7 +65,7 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
   Future<bool> saveInfo(BuildContext context) async {
     try {
       // await Future.delayed(Duration(seconds: 5), ()=> print("object"));
-      MetaDataProvider provider = Provider.of<MetaDataProvider>(context, listen: false);
+      WebMetaDataProvider provider = Provider.of<WebMetaDataProvider>(context, listen: false);
       provider.updateOwnerName(textController1!.value.text);
       provider.updateOwnerContact(textController2!.value.text);
       provider.updateBusinessName(textController3!.value.text);

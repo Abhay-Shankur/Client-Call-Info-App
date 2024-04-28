@@ -243,7 +243,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                   transitionOnUserGestures: true,
                   child: Material(
                     color: Colors.transparent,
-                    child: Consumer<PhotoGalleryProvider> (
+                    child: Consumer<WebPhotoGalleryProvider> (
                       builder: (context, value, child) {
                         return ListViewWidget(
                           listParams: value.list,

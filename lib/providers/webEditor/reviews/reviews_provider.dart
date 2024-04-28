@@ -20,10 +20,10 @@ class Reviews {
   }
 }
 
-class ReviewsProvider extends ChangeNotifier {
+class WebReviewsProvider extends ChangeNotifier {
   List<Reviews> _list = [];
 
-  ReviewsProvider () {
+  WebReviewsProvider () {
     _init();
   }
 

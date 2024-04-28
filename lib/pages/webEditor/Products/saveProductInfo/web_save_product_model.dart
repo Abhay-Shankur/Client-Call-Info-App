@@ -101,9 +101,9 @@ class WebSaveProductModel extends FlutterFlowModel<WebSaveProductWidget> {
       product.productPrice = productNameTextController2!.value.text.toString();
       product.productDescription = descriptionTextController!.value.text.toString();
 
-      List<Product> list = Provider.of<ProductsProvider>(context, listen: false).listProducts;
+      List<Product> list = Provider.of<WebProductsProvider>(context, listen: false).listProducts;
       list.add(product);
-      Provider.of<ProductsProvider>(context, listen: false).addProduct(list);
+      Provider.of<WebProductsProvider>(context, listen: false).addProduct(list);
 
       FirestoreHandler firestore = FirestoreHandler();
       List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, "ProductsList") ?? [];

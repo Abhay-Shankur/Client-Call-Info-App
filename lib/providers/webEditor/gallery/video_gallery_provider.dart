@@ -2,10 +2,10 @@ import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
-class VideoGalleryProvider extends ChangeNotifier {
+class WebVideoGalleryProvider extends ChangeNotifier {
   List<String> _list = [];
 
-  VideoGalleryProvider() {
+  WebVideoGalleryProvider() {
     _init();
   }
 

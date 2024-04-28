@@ -20,7 +20,7 @@ import 'package:call_info/pages/webEditor/ImageGallery/web_image_galley_widget.d
 import 'package:call_info/pages/webEditor/Products/AddProduct/web_add_product_page_widget.dart';
 import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_save_product_widget.dart';
 import 'package:call_info/pages/webEditor/testimonialPage/webTestimonailWidget.dart';
-import 'package:call_info/pages/webEditor/weHelp/webWeHelpPagewidget.dart';
+import 'package:call_info/pages/webEditor/weHelp/we_help_page_widget.dart';
 import 'package:call_info/pages/webEditor/webServices/webServicesWidget.dart';
 import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widget.dart';
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
@@ -32,6 +32,8 @@ import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dar
 import 'package:call_info/providers/webEditor/links/links_provider.dart';
 import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
+import 'package:call_info/providers/webEditor/reviews/reviews_provider.dart';
+import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -119,11 +121,14 @@ class _MyAppState extends State<MyApp> {
         // ChangeNotifierProvider(create: (_) => ProfileProvider()),
 
         ChangeNotifierProvider(create: (context) => WebDomainProvider()),
-        ChangeNotifierProvider(create: (context) => MetaDataProvider()),
-        ChangeNotifierProvider(create: (context) => ProductsProvider()),
-        ChangeNotifierProvider(create: (context) => PhotoGalleryProvider()),
-        ChangeNotifierProvider(create: (context) => VideoGalleryProvider()),
+        ChangeNotifierProvider(create: (context) => WebMetaDataProvider()),
+        ChangeNotifierProvider(create: (context) => WebProductsProvider()),
+        ChangeNotifierProvider(create: (context) => WebPhotoGalleryProvider()),
+        ChangeNotifierProvider(create: (context) => WebVideoGalleryProvider()),
         ChangeNotifierProvider(create: (context) => WebLinksProvider()),
+        ChangeNotifierProvider(create: (context) => WebWeHelpProvider()),
+        ChangeNotifierProvider(create: (context) => WebReviewsProvider()),
+
 
       ],
       child: MaterialApp(

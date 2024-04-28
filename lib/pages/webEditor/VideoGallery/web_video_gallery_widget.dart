@@ -238,7 +238,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                   transitionOnUserGestures: true,
                   child: Material(
                     color: Colors.transparent,
-                    child: Consumer<VideoGalleryProvider> (
+                    child: Consumer<WebVideoGalleryProvider> (
                       builder: (context, value, child){
                         return ListViewWidget(
                           listParams: value.list,

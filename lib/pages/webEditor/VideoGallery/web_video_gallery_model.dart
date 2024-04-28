@@ -40,9 +40,9 @@ class WebVideoGalleryModel extends FlutterFlowModel<WebVideoGalleryWidget> {
       if(link.isNotEmpty && domain.isNotEmpty) {
         FirestoreHandler firestore = FirestoreHandler();
         await firestore.pushToArray("Website", domain, "Gallery.Videos", link);
-        List<String> listLink = Provider.of<VideoGalleryProvider>(context, listen: false).list;
+        List<String> listLink = Provider.of<WebVideoGalleryProvider>(context, listen: false).list;
         listLink.add(link);
-        Provider.of<VideoGalleryProvider>(context, listen: false).updateList(listLink);
+        Provider.of<WebVideoGalleryProvider>(context, listen: false).updateList(listLink);
         firestore.closeConnection();
         showToast(context: context, type: ToastificationType.success, title: 'Image Gallery', desc: 'Information have been saved.');
       } else {

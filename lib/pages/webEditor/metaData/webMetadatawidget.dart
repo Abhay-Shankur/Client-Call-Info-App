@@ -140,7 +140,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 Padding(
                                   padding:
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                                  child: Consumer<MetaDataProvider> (
+                                  child: Consumer<WebMetaDataProvider> (
                                     builder: (context, value, child) {
                                       _model.textController1 = TextEditingController(text: value.ownerName);
                                       return TextFormField(
@@ -223,7 +223,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 Padding(
                                   padding:
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                                  child: Consumer<MetaDataProvider>(
+                                  child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child){
                                       _model.textController2 = TextEditingController(text: value.ownerContact);
                                       return TextFormField(
@@ -306,7 +306,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 Padding(
                                   padding:
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                                  child: Consumer<MetaDataProvider>(
+                                  child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
                                       _model.textController3 = TextEditingController(text: value.businessName);
                                       return TextFormField(
@@ -389,7 +389,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 Padding(
                                   padding:
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                                  child: Consumer<MetaDataProvider>(
+                                  child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
                                       _model.textController4 = TextEditingController(text: value.businessContact);
                                       return TextFormField(
@@ -473,7 +473,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 Padding(
                                   padding:
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                                  child: Consumer<MetaDataProvider>(
+                                  child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
                                       _model.textController5 = TextEditingController(text: value.businessMail);
                                       return TextFormField(
@@ -556,7 +556,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 Padding(
                                   padding:
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                                  child: Consumer<MetaDataProvider> (
+                                  child: Consumer<WebMetaDataProvider> (
                                     builder: (context, value, child) {
                                       _model.textController6 = TextEditingController(text: value.businessAddress);
                                       return TextFormField(

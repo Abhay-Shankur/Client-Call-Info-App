@@ -2,10 +2,10 @@ import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
-class PhotoGalleryProvider extends ChangeNotifier {
+class WebPhotoGalleryProvider extends ChangeNotifier {
   List<String> _list = [];
 
-  PhotoGalleryProvider() {
+  WebPhotoGalleryProvider() {
     _init();
   }
 

@@ -43,10 +43,10 @@ class Product {
 
 }
 
-class ProductsProvider extends ChangeNotifier {
+class WebProductsProvider extends ChangeNotifier {
   List<Product> _listProducts = [];
 
-  ProductsProvider() {
+  WebProductsProvider() {
     _init();
   }
 

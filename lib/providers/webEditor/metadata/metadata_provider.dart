@@ -3,7 +3,7 @@ import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutter/material.dart';
 
 // Define a class to represent the data
-class MetaDataProvider extends ChangeNotifier {
+class WebMetaDataProvider extends ChangeNotifier {
   String _ownerName = '';
   String _ownerContact = '';
   String _businessName = '';
@@ -20,7 +20,7 @@ class MetaDataProvider extends ChangeNotifier {
   String get businessMail => _businessMail;
 
   // Constructor to set default value from Firestore
-  MetaDataProvider()  {
+  WebMetaDataProvider()  {
     // Call a function to fetch the default value from Firestore
     _init();
   }
