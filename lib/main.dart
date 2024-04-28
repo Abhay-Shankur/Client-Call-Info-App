@@ -17,11 +17,12 @@ import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/pages/webEditor/ImageGallery/web_image_galley_widget.dart';
-import 'package:call_info/pages/webEditor/Products/AddProduct/web_add_product_page_widget.dart';
 import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_save_product_widget.dart';
-import 'package:call_info/pages/webEditor/testimonialPage/webTestimonailWidget.dart';
+import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_add_widget.dart';
+import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_page_widget.dart';
 import 'package:call_info/pages/webEditor/weHelp/we_help_page_widget.dart';
-import 'package:call_info/pages/webEditor/webServices/webServicesWidget.dart';
+import 'package:call_info/pages/webEditor/webServices/web_servic_page_widget.dart';
+import 'package:call_info/pages/webEditor/webServices/web_service_add_widget.dart';
 import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widget.dart';
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
 import 'package:call_info/pages/webEditor/VideoGallery/web_video_gallery_widget.dart';
@@ -33,6 +34,7 @@ import 'package:call_info/providers/webEditor/links/links_provider.dart';
 import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:call_info/providers/webEditor/reviews/reviews_provider.dart';
+import 'package:call_info/providers/webEditor/services/services_provider.dart';
 import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -125,9 +127,10 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => WebProductsProvider()),
         ChangeNotifierProvider(create: (context) => WebPhotoGalleryProvider()),
         ChangeNotifierProvider(create: (context) => WebVideoGalleryProvider()),
-        ChangeNotifierProvider(create: (context) => WebLinksProvider()),
+        ChangeNotifierProvider(create: (context) => WebServicesProvider()),
         ChangeNotifierProvider(create: (context) => WebWeHelpProvider()),
         ChangeNotifierProvider(create: (context) => WebReviewsProvider()),
+        ChangeNotifierProvider(create: (context) => WebLinksProvider()),
 
 
       ],
@@ -179,11 +182,13 @@ var appRoutes = {
   routeKeys.webMetadataPage : (context) => WebMetadataPageWidget(),
   routeKeys.webVideoGallery : (context) => WebVideoGalleryWidget(),
   routeKeys.webImageGallery : (context) => WebImageGalleyWidget(),
-  routeKeys.webServicesPage : (context) => WeServicesPageWidget(),
-  routeKeys.webAddProductPage : (context) => WebAddProductPageWidget(),
+  routeKeys.webServicesPage : (context) => WebServicPageWidget(),
+  routeKeys.webServicesAdd : (context) => WebServicPageWidget(),
+  routeKeys.webAddProductPage : (context) => WebServiceAddWidget(),
   routeKeys.webSaveProductPage : (context) => WebSaveProductWidget(),
   routeKeys.webWeHelpPage : (context) => WeHelpPageWidget(),
   routeKeys.webTestimonialPage : (context) => WebTestimonialPageWidget(),
+  routeKeys.webTestimonialAdd : (context) => WebTestimonialAddWidget(),
 
 };
 
@@ -211,10 +216,12 @@ class routeKeys {
 
   static const String webImageGallery= '/webImageGalley';
   static const String webServicesPage= '/webServicesPage';
+  static const String webServicesAdd= '/webServicesAdd';
   static const String webAddProductPage= '/webAddProductPage';
   static const String webSaveProductPage= '/webSaveProductPage';
   static const String webWeHelpPage= '/webWeHelpPage';
   static const String webTestimonialPage= '/webTestimonialPage';
+  static const String webTestimonialAdd= '/webTestimonialAdd';
 
 
 

@@ -1,26 +1,28 @@
+import 'package:call_info/main.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
-import 'webTestimonialModel.dart';
-export 'webTestimonialModel.dart';
+import 'web_testimonial_add_model.dart';
+export 'web_testimonial_add_model.dart';
 
-class WebTestimonialPageWidget extends StatefulWidget {
-  const WebTestimonialPageWidget({super.key});
+class WebTestimonialAddWidget extends StatefulWidget {
+  const WebTestimonialAddWidget({super.key});
 
   @override
-  State<WebTestimonialPageWidget> createState() =>
-      _WebTestimonialPageWidgetState();
+  State<WebTestimonialAddWidget> createState() =>
+      _WebTestimonialAddWidgetState();
 }
 
-class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
-  late WebTestimonialPageModel _model;
+class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
+  late WebTestimonialAddModel _model;
+  bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => WebTestimonialPageModel());
+    _model = createModel(context, () => WebTestimonialAddModel());
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -48,15 +50,6 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
-          title: Text(
-            'Reviews',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-              fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
-              fontSize: 30,
-              letterSpacing: 0,
-            ),
-          ),
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,
@@ -68,7 +61,7 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
               size: 30,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              navigator.currentState!.pop();
             },
           ),
           actions: [],
@@ -232,8 +225,15 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        setState(() {
+                          _saving = true;
+                        });
+                        await _model.save(context);
+                        setState(() {
+                          _saving = false;
+                        });
+                        navigator.currentState!.pop();
                       },
                       text: 'Submit Review',
                       options: FFButtonOptions(
