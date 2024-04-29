@@ -1,8 +1,9 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import WhyChooseUs from './components/WhyChooseUs';
+import Services from './components/Services';
 import WeHelp from './components/WeHelp';
 import Product from './components/Product';
 import Testimonial from './components/Testimonial';
@@ -13,25 +14,26 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 function App(props) {
+  
   // Set a default value for props.document if it's not provided
 
-  const [businessInfo, setBusinessInfo] = useState(null);
+  const [WebsiteInfo, setWebsiteInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   // const [firebaseApp, setFirebaseApp] = useState(null);
 
-  useEffect(() =>  {
+  useEffect( () =>  {
     // Inside useEffect to adhere to React hooks rules
     let app = props.firebaseApp;
 
     if(app == null) {
       const firebaseConfig = {
-        apiKey: "Your API Key",
-        authDomain: "Your Auth Domain",
-        projectId: "Your Project ID",
-        storageBucket: "Your Storage Bucket",
-        messagingSenderId: "Your Messaging Sender ID",
-        appId: "Your App ID",
-        measurementId: "Your Measurement ID"
+        apiKey: "AIzaSyC2NOiY3zn0Xh7RSG1RGkTx7Gl8XMFsTgE",
+        authDomain: "call-infos.firebaseapp.com",
+        projectId: "call-infos",
+        storageBucket: "call-infos.appspot.com",
+        messagingSenderId: "840804333118",
+        appId: "1:840804333118:web:300562b67e266e6dd4c36f",
+        measurementId: "G-T2Y4XMBT9Y"
       };
 
       // Initialize Firebase
@@ -46,15 +48,17 @@ function App(props) {
     const fetchData = async () => {
       let path = window.location.pathname.substring(1); // Remove leading '/'
       const db = getFirestore(app);
-      path = props.document ? props.document : path;
-      const docRef = doc(db, 'businesses', path);
+      path = (path.length > 0) ? path : props.document;
+      console.log(path);
+      const docRef = doc(db, 'Website', path);
       try {
         const docSnap = await getDoc(docRef);
-        if (docSnap.exists) {
-          setBusinessInfo(docSnap.data());
+        if (docSnap.exists && docSnap._document != null) {
+          setWebsiteInfo(docSnap.data());
           console.log('Data Found');
         } else {
           console.error('No such document!');
+          window.location.assign('/');
         }
       } catch (error) {
         console.error('Error fetching document:', error);
@@ -69,27 +73,26 @@ function App(props) {
 
   // Render loading indicator if data is being fetched
   if (loading) {
-    return <div>Loading...</div>;
+    return <ReactLoading type={'spinningBubbles'} delay={3}/>;
   }
 
   return (
     
-    <div className="App">    
-      <Navbar businessName={businessInfo.businessName}/>
+    <div className="App" id='home'>    
+      <Navbar businessName={WebsiteInfo.MasterData.businessName}/>
 
       <Hero 
-        businessName={businessInfo.businessName} 
-        businessDescription={businessInfo.businessDescription} 
-        businessBanner={businessInfo.businessBanner}
+        businessName={WebsiteInfo.MasterData.businessName} 
+        businessDescription={WebsiteInfo.MasterData.businessDescription} 
+        businessBanner={WebsiteInfo.MasterData.businessBanner}
       />
       
-      <WhyChooseUs />
-      <WeHelp />
-      <Product />
-      <Testimonial />
-      <ContactForm />
-      <Footer />    
-      {console.log(businessInfo)}
+      <Services data={WebsiteInfo.Services}/>
+      <WeHelp data={WebsiteInfo.WeHelp}/>
+      <Product data={WebsiteInfo.ProductsList}/>
+      <Testimonial data={WebsiteInfo.Reviews}/>
+      <ContactForm data={WebsiteInfo.MasterData}/>
+      <Footer data={WebsiteInfo.MasterData} links={WebsiteInfo.Links}/>   
     </div>
   );
 }

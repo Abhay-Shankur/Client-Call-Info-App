@@ -1,21 +1,39 @@
 // Product.jsx
 import React from 'react';
 
-function Product() {
+function Product(props) {
+  let products = props.data;
+  products = products.map((e,i)=>{
+    return (
+      <div className="col-12 col-md-4 col-lg-3 mb-5" key={i}>
+        <a className="product-item" href="/#">
+          <img src={e.imagePath} alt='Product' className="img-fluid product-thumbnail"/>
+          <h3 className="product-title">{e.productName}</h3>
+          <strong className="product-price">₹{e.productPrice}</strong>
+
+          <span className="icon-cross">
+            <img src="images/cross.svg" alt='Product' className="img-fluid"/>
+          </span>
+        </a>
+      </div>
+    );
+  });
   return (
-    <div className="untree_co-section product-section before-footer-section">
+    <div className="untree_co-section product-section before-footer-section" id='products-section'>
       {/* Product content */}
       <div className="container">
         <div className="row">
 
           {/* <!-- Start Column 1 --> */}
           <div className="col-md-12 col-lg-3 mb-5 mb-lg-0">
-            <h2 className="mb-4 section-title">(Max 10 words)One Line Descrition What makes you uniqe</h2>
-            <p className="mb-4">Describe your specialization In 2-3 Lines onlu</p>
-            <p><a href="shop.html" className="btn">Explore</a></p>
+            <h2 className="mb-4 section-title">Our Unique Products.</h2>
+            <p className="mb-4">Describe your specialization In 2-3 Lines only</p>
+            <p><a href="/#" className="btn">Explore</a></p>
           </div>
 
-          <div className="col-12 col-md-4 col-lg-3 mb-5">
+          {products}
+
+          {/* <div className="col-12 col-md-4 col-lg-3 mb-5">
             <a className="product-item" href="/#">
               <img src="images/product-3.png" alt='Product' className="img-fluid product-thumbnail"/>
               <h3 className="product-title">Nordic Chair</h3>
@@ -25,7 +43,7 @@ function Product() {
                 <img src="images/cross.svg" alt='Product' className="img-fluid"/>
               </span>
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

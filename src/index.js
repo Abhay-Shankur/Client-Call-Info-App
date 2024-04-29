@@ -31,7 +31,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/:businessId" element ={<App firebaseApp={app}/>} />
+        {/* <Route path="/:businessId" element ={<App firebaseApp={app}/>} /> */}
           {/* <LandingPage businessInfo={businessInfo} /> */}
         <Route path='*' element={<App firebaseApp={app} document={'callinfos'}/>} />
       </Routes>

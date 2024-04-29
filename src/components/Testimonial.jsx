@@ -1,119 +1,100 @@
 // Testimonial.jsx
-import React from 'react';
 
-function Testimonial() {
+import React from "react";
+import {
+  MDBCarousel,
+  // MDBCarouselInner,
+  MDBCarouselItem,
+  MDBCol,
+  MDBRow,
+} from "mdb-react-ui-kit";
+
+
+function Testimonial(props) {
+  let testimonials = props.data;
+  testimonials = testimonials.map((e, i) => {
+    return(
+      <MDBCarouselItem key={i} className={i===0?"active":""}>
+        <p className="lead font-italic mx-4 mx-md-5">
+          "{e.description}"
+        </p>
+        <div className="mt-5 mb-4">
+          <img
+            src="images/default-profile.jpg"
+            className="rounded-circle img-fluid shadow-1-strong"
+            alt="sample "
+            width="100"
+            height="100"
+          />
+        </div>
+        <p className="text-muted mb-0">- {e.name}</p>
+      </MDBCarouselItem>
+    );
+  });
+
   return (
-    <div className="testimonial-section">
-      {/* Testimonial content */}
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-7 mx-auto text-center">
-            <h2 className="section-title">Testimonials</h2>
-          </div>
-        </div>
+    <MDBRow className="py-5 text-center">
+      <MDBCol md="12">
+        <h3 className="mb-4">Testimonials</h3>
+        <MDBCarousel showControls dark>
+          {testimonials}
 
-        <div className="row justify-content-center">
-          <div className="col-lg-12">
-            <div className="testimonial-slider-wrap text-center">
-
-              <div id="testimonial-nav">
-                <span className="prev" data-controls="prev"><span className="fa fa-chevron-left"></span></span>
-                <span className="next" data-controls="next"><span className="fa fa-chevron-right"></span></span>
+          {/* <MDBCarouselInner> */}
+            {/* <MDBCarouselItem className="active">
+              <p className="lead font-italic mx-4 mx-md-5">
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Fugit, error amet numquam iure provident voluptate esse quasi,
+                voluptas nostrum quisquam!"
+              </p>
+              <div className="mt-5 mb-4">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+                  className="rounded-circle img-fluid shadow-1-strong"
+                  alt="smaple "
+                  width="100"
+                  height="100"
+                />
               </div>
-
-              <div className="testimonial-slider">
-
-                <div className="item">
-                  <div className="row justify-content-center">
-                    <div className="col-lg-8 mx-auto">
-
-                      <div className="testimonial-block text-center">
-                        <blockquote className="mb-5">
-                          <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
-                            odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                            vulputate velit imperdiet dolor tempor tristique. Pellentesque
-                            habitant morbi tristique senectus et netus et malesuada fames ac
-                            turpis egestas. Integer convallis volutpat dui quis
-                            scelerisque.&rdquo;</p>
-                        </blockquote>
-
-                        <div className="author-info">
-                          <div className="author-pic">
-                            <img src="images/person-1.png" alt="Maria Jones" className="img-fluid"/>
-                          </div>
-                          <h3 className="font-weight-bold">Maria Jones</h3>
-                          <span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- END item --> */}
-
-                <div className="item">
-                  <div className="row justify-content-center">
-                    <div className="col-lg-8 mx-auto">
-
-                      <div className="testimonial-block text-center">
-                        <blockquote className="mb-5">
-                          <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
-                            odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                            vulputate velit imperdiet dolor tempor tristique. Pellentesque
-                            habitant morbi tristique senectus et netus et malesuada fames ac
-                            turpis egestas. Integer convallis volutpat dui quis
-                            scelerisque.&rdquo;</p>
-                        </blockquote>
-
-                        <div className="author-info">
-                          <div className="author-pic">
-                            <img src="images/person-1.png" alt="Maria Jones" className="img-fluid"/>
-                          </div>
-                          <h3 className="font-weight-bold">Maria Jones</h3>
-                          <span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- END item --> */}
-
-                <div className="item">
-                  <div className="row justify-content-center">
-                    <div className="col-lg-8 mx-auto">
-
-                      <div className="testimonial-block text-center">
-                        <blockquote className="mb-5">
-                          <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
-                            odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                            vulputate velit imperdiet dolor tempor tristique. Pellentesque
-                            habitant morbi tristique senectus et netus et malesuada fames ac
-                            turpis egestas. Integer convallis volutpat dui quis
-                            scelerisque.&rdquo;</p>
-                        </blockquote>
-
-                        <div className="author-info">
-                          <div className="author-pic">
-                            <img src="images/person-1.png" alt="Maria Jones" className="img-fluid"/>
-                          </div>
-                          <h3 className="font-weight-bold">Maria Jones</h3>
-                          <span className="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                {/* <!-- END item --> */}
-
+              <p className="text-muted mb-0">- Anna Morian</p>
+            </MDBCarouselItem>
+            <MDBCarouselItem>
+              <p className="lead font-italic mx-4 mx-md-5">
+                "Neque cupiditate assumenda in maiores repudiandae mollitia
+                adipisci maiores repudiandae mollitia consectetur adipisicing
+                architecto elit sed adipiscing elit."
+              </p>
+              <div className="mt-5 mb-4">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp"
+                  className="rounded-circle img-fluid shadow-1-strong"
+                  alt="smaple"
+                  width="100"
+                  height="100"
+                />
               </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              <p className="text-muted mb-0">- Teresa May</p>
+            </MDBCarouselItem>
+            <MDBCarouselItem>
+              <p className="lead font-italic mx-4 mx-md-5">
+                "Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur est laborum neque
+                cupiditate assumenda in maiores."
+              </p>
+              <div className="mt-5 mb-4">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
+                  className="rounded-circle img-fluid shadow-1-strong"
+                  alt="smaple "
+                  width="100"
+                  height="100"
+                />
+              </div>
+              <p className="text-muted mb-0">- Kate Allise</p>
+            </MDBCarouselItem> */}
+          {/* </MDBCarouselInner> */}
+        </MDBCarousel>
+      </MDBCol>
+    </MDBRow>
   );
 }
 

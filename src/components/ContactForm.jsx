@@ -1,9 +1,10 @@
 // ContactForm.jsx
 import React from 'react';
 
-function ContactForm() {
+function ContactForm(props) {
+  const data = props.data;
   return (
-    <div className="untree_co-section">
+    <div className="untree_co-section" id='contactus-section'>
       {/* Contact Form content */}
       <div className="container">
         <div className="block">
@@ -21,7 +22,7 @@ function ContactForm() {
                       </svg>
                     </div> 
                     <div className="service-contents">
-                      <p>43 Raymouth Rd. Baltemoer, London 3910</p>
+                      <p>{data.businessAddress}</p>
                     </div> 
                   </div> 
                 </div>
@@ -37,7 +38,7 @@ function ContactForm() {
                       </svg>
                     </div> 
                     <div className="service-contents">
-                      <p>info@yourdomain.com</p>
+                      <p>{data.businessMail}</p>
                     </div> 
                   </div>
                 </div>
@@ -53,7 +54,7 @@ function ContactForm() {
                       </svg>
                     </div> 
                     <div className="service-contents">
-                      <p>+1 294 3925 3939</p>
+                      <p>{data.businessContact}</p>
                     </div> 
                   </div>
                 </div>

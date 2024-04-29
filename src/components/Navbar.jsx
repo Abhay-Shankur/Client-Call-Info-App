@@ -16,13 +16,12 @@ function Navbar(props) {
 			<div className="collapse navbar-collapse" id="navbarsFurni">
 				<ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					<li className="nav-item active">
-						<a href='/#'  className="nav-link" >Home</a>
+						<a href='#home'  className="nav-link" >Home</a>
 					</li>
-					<li><a href='/#'  className="nav-link">Shop</a></li>
-					<li><a href='/#'  className="nav-link">About us</a></li>
-					<li><a href='/#'  className="nav-link">Services</a></li>
-					<li><a href='/#'  className="nav-link">Blog</a></li>
-					<li><a href='/#' className="nav-link">Contact us</a></li>
+					<li><a href='#services-section'  className="nav-link">Services</a></li>
+					<li><a href='#wehelp-section'  className="nav-link">We Help To</a></li>
+					<li><a href='#products-section'  className="nav-link">Products</a></li>
+					<li><a href='#contactus-section' className="nav-link">Contact us</a></li>
 				</ul>
 
 

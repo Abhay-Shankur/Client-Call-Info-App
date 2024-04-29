@@ -1,23 +1,21 @@
 import React from 'react';
 
-function WeHelp() {
+function WeHelp(props) {
+  const data = props.data;
   return (
-    <div className="we-help-section">
+    <div className="we-help-section" id='wehelp-section'>
       <div className="container">
         <div className="row justify-content-between">
           <div className="col-lg-7 mb-5 mb-lg-0">
             <div className="imgs-grid">
-              <div className="grid grid-1"><img src="images/img-grid-1.jpg" alt="Untree.co"/></div>
-              <div className="grid grid-2"><img src="images/img-grid-2.jpg" alt="Untree.co"/></div>
-              <div className="grid grid-3"><img src="images/img-grid-3.jpg" alt="Untree.co"/></div>
+              <div className="grid grid-1"><img src={data.image1} alt="Untree.co"/></div>
+              <div className="grid grid-2"><img src={data.image2} alt="Untree.co"/></div>
+              <div className="grid grid-3"><img src={data.image3} alt="Untree.co"/></div>
             </div>
           </div>
           <div className="col-lg-5 ps-lg-5">
-            <h2 className="section-title mb-4">We Help You Make Modern Interior Design</h2>
-            <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada.
-              Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque
-              habitant morbi tristique senectus et netus et malesuada</p>
-
+            <h2 className="section-title mb-4">We Help You {data.heading}</h2>
+            <p>{data.description}</p>
             {/* Corrected href attribute */}
             <p><a href="/#" className="btn">Explore</a></p>
           </div>
