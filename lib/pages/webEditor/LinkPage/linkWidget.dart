@@ -1,3 +1,4 @@
+import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/links/links_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:async';
@@ -405,6 +406,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           setState(() {
                             _saving = false;
                           });
+                          navigator.currentState!.pop();
                         },
                         text: 'Save ',
                         options: FFButtonOptions(

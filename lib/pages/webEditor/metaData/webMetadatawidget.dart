@@ -1,4 +1,5 @@
 
+import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
@@ -650,19 +651,11 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                               setState(() {
                                 _saving = true;
                               });
-                              // value.updateOwnerName(name)
-                              // value.updateOwnerName(_model.textController1!.value.text);
-                              // value.updateOwnerContact(_model.textController2!.value.text);
-                              // value.updateBusinessName(_model.textController3!.value.text);
-                              // value.updateBusinessContact(_model.textController4!.value.text);
-                              // value.updateBusinessMail(_model.textController5!.value.text);
-                              // value.updateBusinessAddress(_model.textController6!.value.text);
                               await _model.saveInfo(context);
-                              // _model.showToast(context: context, res: res);
                               setState(() {
                                 _saving = false;
                               });
-
+                              navigator.currentState!.pop();
                             },
                             text: 'Save Information',
                             options: FFButtonOptions(

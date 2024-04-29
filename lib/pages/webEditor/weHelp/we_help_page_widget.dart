@@ -567,6 +567,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                     child: FFButtonWidget(
                       onPressed: () async {
                         await _model.save(context);
+                        navigator.currentState!.pop();
                       },
                       text: 'Save',
                       icon: Icon(

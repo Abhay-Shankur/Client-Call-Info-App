@@ -97,6 +97,7 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
         if(rs == null){
           await firestore.updateFirestoreData("USERS", uid, data);
           await firestore.createEmptyDocument("Website", data['webDomain']);
+          firestore.closeConnection();
           showToast(context: context, type: ToastificationType.success, title: 'Domain Name', desc: 'Your Domain Name have been create.');
           return true;
         } else {
@@ -104,6 +105,7 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
           return false;
         }
       } else{
+        firestore.closeConnection();
         throw Exception('Firebase Auth not Found');
       }
       firestore.closeConnection();

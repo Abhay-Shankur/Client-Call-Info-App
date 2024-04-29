@@ -74,11 +74,6 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    // wrapWithModel(
-                    //   model: _model.linkDesignModel,
-                    //   updateCallback: () => setState(() {}),
-                    //   child: LinkDesignWidget(),
-                    // ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -88,9 +83,11 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                             child: Consumer<WebDomainProvider>(
                               builder: (context, value, child) {
                                 _model.textController = TextEditingController(text: value.domainName);
+                                bool readOnly = (value.domainName.isNotEmpty) ? true : false;
                                 return TextFormField(
                                   controller: _model.textController,
                                   focusNode: _model.textFieldFocusNode,
+                                  readOnly: readOnly ,
                                   autofocus: false,
                                   textCapitalization: TextCapitalization.words,
                                   obscureText: false,
