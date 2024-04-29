@@ -1,16 +1,22 @@
 
 import 'dart:io';
 
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/firebaseHandlers/firebase_storage.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
+import 'package:call_info/util/custom_widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
 
 class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
-  static  File? pickedFile=null;
+  File? pickedFile;
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
@@ -99,9 +105,9 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
     }
   }
 
-  saveProfile() {
+  Future<void> saveProfile(BuildContext context) async{
     Profile newProfile = Profile(
-        imageFile: getPickedFile(),
+        imageFile: pickedFile!.path,
         vendorName: textController1!.value.text,
         vendorEmail: textController2!.value.text,
         vendorContact: textController3!.value.text,
@@ -109,7 +115,33 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
         businessDescription: textController5!.value.text
     );
     // _profileProvider!.updateProfile(newProfile);
-
+    try{
+      String uid = FirebaseAuthHandler.getUid() ?? '';
+      if(uid.isNotEmpty) {
+        FirestoreHandler firestore = FirestoreHandler();
+        String image = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/') ?? '';
+        Profile profile = Profile(
+          imageFile: image,
+          vendorName: textController1!.value.text,
+          vendorEmail: textController2!.value.text,
+          vendorContact: textController3!.value.text,
+          businessName: textController4!.value.text,
+          businessDescription: textController5!.value.text
+        );
+        Map<String,dynamic> data = {
+          'Profile' : profile.toMap()
+        };
+        await firestore.updateFirestoreData("USERS", uid, data);
+        Provider.of<ProfileProvider>(context, listen: false).updateProfile(profile);
+        firestore.closeConnection();
+        showToast(context: context, type: ToastificationType.success, title: 'Profile', desc: 'Profile Updated');
+      } else {
+        showToast(context: context, type: ToastificationType.warning, title: 'Profile', desc: 'User Not Authenticated');
+      }
+    } catch (e) {
+      debugPrint('Exception: $e');
+      showToast(context: context, type: ToastificationType.error, title: 'Profile', desc: 'Exception occurred');
+    }
   }
 /// Additional helper methods are added here.
 }

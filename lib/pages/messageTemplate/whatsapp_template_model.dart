@@ -7,7 +7,7 @@ import 'package:call_info/providers/wp/wp_shared.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'whatsappmessagetemplate.dart' show WhatsappTemplateWidget;
+import 'whatsapp_template_widget.dart' show WhatsappTemplateWidget;
 import 'package:flutter/material.dart';
 
 class WhtstempModel extends FlutterFlowModel<WhatsappTemplateWidget> {
@@ -57,22 +57,25 @@ class WhtstempModel extends FlutterFlowModel<WhatsappTemplateWidget> {
     // Upload the picked file
     try {
       String textData = textController!.value.text;
-      String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'WhatsApp Images/');
-      if (imageUrl != null) {
-        print('Image uploaded. URL: $imageUrl');
-        FirestoreHandler firestore = FirestoreHandler();
-        Map<String, dynamic> data = {
-          'whatsapp': {
-            'text': textData,
-            'imageUrl': imageUrl,
-          }
-        };
-        String? uid = await FirebaseAuthHandler.getUid();
-        await firestore.updateFirestoreData("USERS", uid ?? 'dummy', data);
-        firestore.closeConnection();
-        WPMessageTemplate(text: textData, image: imageUrl).saveToShared();
-      } else {
-        print('Image upload failed.');
+      String uid = await FirebaseAuthHandler.getUid() ?? '';
+      if(uid.isNotEmpty) {
+        String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/WhatsApp Images/');
+        if (imageUrl != null) {
+          print('Image uploaded. URL: $imageUrl');
+          FirestoreHandler firestore = FirestoreHandler();
+          Map<String, dynamic> data = {
+            'whatsapp': {
+              'text': textData,
+              'imageUrl': imageUrl,
+            }
+          };
+          String? uid = await FirebaseAuthHandler.getUid();
+          await firestore.updateFirestoreData("USERS", uid ?? 'dummy', data);
+          firestore.closeConnection();
+          WPMessageTemplate(text: textData, image: imageUrl).saveToShared();
+        } else {
+          print('Image upload failed.');
+        }
       }
     } catch (e) {
       debugPrint('Error While saving: $e');

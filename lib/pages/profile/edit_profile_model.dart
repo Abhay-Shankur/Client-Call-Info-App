@@ -1,5 +1,5 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'profile_widget.dart' show ProfileWidget;
+import 'edit_profile_widget.dart' show ProfileWidget;
 import 'package:flutter/material.dart';
 
 class ProfileModel extends FlutterFlowModel<ProfileWidget> {

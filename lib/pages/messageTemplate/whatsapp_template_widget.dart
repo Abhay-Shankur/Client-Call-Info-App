@@ -7,8 +7,8 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import 'whatsappmessagemodel.dart';
-export 'whatsappmessagemodel.dart';
+import 'whatsapp_template_model.dart';
+export 'whatsapp_template_model.dart';
 
 
 class WhatsappTemplateWidget extends StatefulWidget {

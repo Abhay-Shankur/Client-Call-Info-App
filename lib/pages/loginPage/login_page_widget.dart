@@ -248,7 +248,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await _performBackendWork();
+                                      setState(() {
+                                        _saving = true;
+                                      });
+                                      // Perform backend work
+                                      await _model.sendOtp(context);
+
+                                      // After work is done, set loading state to false
+                                      // setState(() {
+                                      //   _saving = false;
+                                      // });
+                                      // await _performBackendWork();
                                       // setState(() {
                                       //   _saving = true;
                                       // });
@@ -321,7 +331,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
       _saving = true;
     });
     // Perform backend work
-    await _model.sendOtp();
+    await _model.sendOtp(context);
 
     // After work is done, set loading state to false
     setState(() {

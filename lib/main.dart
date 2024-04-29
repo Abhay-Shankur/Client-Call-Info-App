@@ -2,22 +2,24 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/handlers/call_handler.dart';
 import 'package:call_info/handlers/permission_manager.dart';
-import 'package:call_info/pages/callLogs/calllogs_widget.dart';
+import 'package:call_info/pages/callLogs/call_logs_widget.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
 import 'package:call_info/pages/dashboard/DashboardUi.dart';
 import 'package:call_info/pages/editProfile/edit_profile_widget.dart';
 import 'package:call_info/pages/faqPage/faq_widget.dart';
 import 'package:call_info/pages/loginPage/login_page_widget.dart';
 import 'package:call_info/pages/loginPage/otp_screen_widget.dart';
-import 'package:call_info/pages/messageTemplate/CustomTemplate.dart';
-import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart';
-import 'package:call_info/pages/messageTemplate/whatsappmessagetemplate.dart';
+import 'package:call_info/pages/messageTemplate/custom_template_widget.dart';
+import 'package:call_info/pages/messageTemplate/sms_template_widget.dart';
+import 'package:call_info/pages/messageTemplate/whatsapp_template_widget.dart';
 import 'package:call_info/pages/permissionsPage/permission_widget.dart';
+import 'package:call_info/pages/promotionalTemplate/promotional_template_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/pages/webEditor/ImageGallery/web_image_galley_widget.dart';
-import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_save_product_widget.dart';
+import 'package:call_info/pages/webEditor/Products/AddProduct/web_product_page_widget.dart';
+import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_product_add_widget.dart';
 import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_add_widget.dart';
 import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_page_widget.dart';
 import 'package:call_info/pages/webEditor/weHelp/we_help_page_widget.dart';
@@ -27,6 +29,7 @@ import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widge
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
 import 'package:call_info/pages/webEditor/VideoGallery/web_video_gallery_widget.dart';
 import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
+import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/photo_gallery_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dart';
@@ -120,7 +123,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         // ChangeNotifierProvider(create: (_) => SMSMessageTemplateProvider()),
         // ChangeNotifierProvider(create: (_) => WPMessageTemplateProvider()),
-        // ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
 
         ChangeNotifierProvider(create: (context) => WebDomainProvider()),
         ChangeNotifierProvider(create: (context) => WebMetaDataProvider()),
@@ -136,9 +139,8 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'Call Info',
-        // initialRoute: routeKeys.splashScreen,
-
-        initialRoute: routeKeys.webPageEditorDashboard,
+        initialRoute: routeKeys.splashScreen,
+        // initialRoute: routeKeys.settingsPage,
         routes: appRoutes,
         navigatorKey: navigator,
         // initialRoute: '/vendor_login',
@@ -166,6 +168,7 @@ var appRoutes = {
   routeKeys.vendorDashboard : (context) => DashboardWidget(),
   routeKeys.vendorSMSTemplate : (context) => SMSTemplateWidget(),
   routeKeys.vendorWPTemplate : (context) => WhatsappTemplateWidget(),
+  routeKeys.vendorPromoTemplate : (context) => PromotionalTemplateWidget(),
   routeKeys.vendorLogin : (context) => LoginPageWidget(),
   routeKeys.vendorOtp : (context) => OTPScreenWidget(),
   routeKeys.callLogTemplate : (context) => CallLogsPage(),
@@ -183,9 +186,9 @@ var appRoutes = {
   routeKeys.webVideoGallery : (context) => WebVideoGalleryWidget(),
   routeKeys.webImageGallery : (context) => WebImageGalleyWidget(),
   routeKeys.webServicesPage : (context) => WebServicPageWidget(),
-  routeKeys.webServicesAdd : (context) => WebServicPageWidget(),
-  routeKeys.webAddProductPage : (context) => WebServiceAddWidget(),
-  routeKeys.webSaveProductPage : (context) => WebSaveProductWidget(),
+  routeKeys.webServicesAdd : (context) => WebServiceAddWidget(),
+  routeKeys.webProductsPage : (context) => WebProductsPageWidget(),
+  routeKeys.webProductsAdd : (context) => WebProductsAddWidget(),
   routeKeys.webWeHelpPage : (context) => WeHelpPageWidget(),
   routeKeys.webTestimonialPage : (context) => WebTestimonialPageWidget(),
   routeKeys.webTestimonialAdd : (context) => WebTestimonialAddWidget(),
@@ -197,6 +200,7 @@ class routeKeys {
   static const String vendorDashboard = '/vendor_dashboard';
   static const String vendorSMSTemplate = '/vendor_SMSTemplate';
   static const String vendorWPTemplate = '/vendor_WPTemplate';
+  static const String vendorPromoTemplate = '/vendor_PromoTemplate';
   static const String vendorLogin = '/vendor_login';
   static const String vendorOtp = '/vendor_otp';
   static const String callLogTemplate = '/call_LogTemplate';
@@ -217,8 +221,8 @@ class routeKeys {
   static const String webImageGallery= '/webImageGalley';
   static const String webServicesPage= '/webServicesPage';
   static const String webServicesAdd= '/webServicesAdd';
-  static const String webAddProductPage= '/webAddProductPage';
-  static const String webSaveProductPage= '/webSaveProductPage';
+  static const String webProductsPage= '/webProductPage';
+  static const String webProductsAdd= '/webProductAdd';
   static const String webWeHelpPage= '/webWeHelpPage';
   static const String webTestimonialPage= '/webTestimonialPage';
   static const String webTestimonialAdd= '/webTestimonialAdd';

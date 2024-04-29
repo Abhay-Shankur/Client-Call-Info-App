@@ -229,7 +229,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webAddProductPage);
+                                        .pushNamed(routeKeys.webProductsPage);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel2,

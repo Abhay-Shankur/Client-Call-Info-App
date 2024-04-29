@@ -26,11 +26,11 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   }
 
 /// Action blocks are added here.
-  sendOtp() async{
+  Future<void> sendOtp(BuildContext context) async{
     String phoneNumber = mobileNumberController!.value.text;
     debugPrint('Mobile Number: $phoneNumber');
     await FirebaseAuthHandler(
-        context: navigator.currentState!.context
+        context: context
     ).signInWithPhoneNumber(phoneNumber, () {
       navigator.currentState!.pushReplacementNamed(routeKeys.vendorOtp);
     });

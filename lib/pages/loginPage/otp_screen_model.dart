@@ -29,12 +29,12 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
 
 /// Action blocks are added here.
 
-  void verifyOtp() async {
+  Future<void> verifyOtp(BuildContext context) async {
     try {
       String otp = otpController!.value.text;
       debugPrint('OTP: $otp');
       UserCredential? user = await FirebaseAuthHandler(
-          context: navigator.currentState!.context
+          context: context
       ).signInWithVerificationCode(otp);
       if(user!=null) {
         navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.vendorDashboard, (route) => false);

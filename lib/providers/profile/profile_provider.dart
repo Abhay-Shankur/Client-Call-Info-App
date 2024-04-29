@@ -1,10 +1,11 @@
-import 'dart:io';
 
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutter/material.dart';
 
 // Define a data class to represent the Profile data
 class Profile {
-  File? imageFile;
+  String? imageFile;
   String? vendorName;
   String? vendorEmail;
   String? vendorContact;
@@ -19,26 +20,63 @@ class Profile {
     this.businessName,
     this.businessDescription,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'imageFile': this.imageFile,
+      'vendorName': this.vendorName,
+      'vendorEmail': this.vendorEmail,
+      'vendorContact': this.vendorContact,
+      'businessName': this.businessName,
+      'businessDescription': this.businessDescription,
+    };
+  }
+
+  factory Profile.fromJson(Map<String,dynamic> map) {
+    return Profile(
+      imageFile: map['imageFile'],
+      vendorName: map['vendorName'],
+      vendorEmail: map['vendorEmail'],
+      vendorContact: map['vendorContact'],
+      businessName: map['businessName'],
+      businessDescription: map['businessDescription']
+    );
+  }
 }
 // Create a Singleton Provider class to manage the state of the Profile data
 class ProfileProvider extends ChangeNotifier {
-  static final ProfileProvider _instance = ProfileProvider._internal();
+  Profile? _profile;
 
-  factory ProfileProvider() {
-    return _instance;
+  ProfileProvider() {
+    _init();
   }
 
-  ProfileProvider._internal();
+  Future<void> _init() async{
+    try {
+      String? uid = await FirebaseAuthHandler.getUid();
+      if(uid != null) {
+        FirestoreHandler firestore = FirestoreHandler();
+        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'Profile') ?? null;
+        if(data != null) {
+          _profile = Profile.fromJson(data);
+          notifyListeners();
+        }
+        debugPrint('Profile Data Initialized.');
+        firestore.closeConnection();
+        notifyListeners();
+      } else {
+        throw Exception('User not Authenticated');
+      }
+    } catch (e) {
+      debugPrint('Failed to Initialize ProfileProvider: $e');
+    }
+  }
 
-  static Profile? _profile;
-
-  // Getter to access the current Profile data
   Profile? get profile => _profile;
 
-  // Function to update the Profile data
-  void updateProfile(Profile newProfile) {
-    _profile = newProfile;
-    notifyListeners(); // Notify listeners that the state has changed
-    debugPrint('Saving Provider ${_profile!.vendorName}');
+  void updateProfile(Profile profile) {
+    _profile = profile;
+    notifyListeners();
   }
+
 }

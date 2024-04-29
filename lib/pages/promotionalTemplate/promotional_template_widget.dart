@@ -1,10 +1,4 @@
-// import '/flutter_flow/flutter_flow_animations.dart';
-// import '/flutter_flow/flutter_flow_choice_chips.dart';
-// import '/flutter_flow/flutter_flow_icon_button.dart';
-// import '/flutter_flow/flutter_flow_theme.dart';
-// import '/flutter_flow/flutter_flow_util.dart';
-// import '/flutter_flow/flutter_flow_widgets.dart';
-// import '/flutter_flow/form_field_controller.dart';
+
 import 'dart:io';
 // import 'package:debounce/debounce.dart';
 import 'package:call_info/theme/MyTheme.dart';
@@ -14,20 +8,20 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import 'promossionaltemplatesmodel.dart';
-export 'promossionaltemplatesmodel.dart';
+import '../promotionalTemplate/promotional_template_model.dart';
+export '../promotionalTemplate/promotional_template_model.dart';
 
-class PromossionalmsgtempWidget extends StatefulWidget {
-  const PromossionalmsgtempWidget({super.key});
+class PromotionalTemplateWidget extends StatefulWidget {
+  const PromotionalTemplateWidget({super.key});
 
   @override
-  State<PromossionalmsgtempWidget> createState() =>
-      _PromossionalmsgtempWidgetState();
+  State<PromotionalTemplateWidget> createState() =>
+      _PromotionalTemplateWidgetState();
 }
 
-class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
+class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
     with TickerProviderStateMixin {
-  late PromossionalmsgtempModel _model;
+  late PromotionalTemplateModel _model;
   String? _selectedImagePath;
   static File? imageFile = null;
   int callCount = 0;
@@ -77,7 +71,7 @@ class _PromossionalmsgtempWidgetState extends State<PromossionalmsgtempWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PromossionalmsgtempModel());
+    _model = createModel(context, () => PromotionalTemplateModel());
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();

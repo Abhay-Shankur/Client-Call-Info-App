@@ -1,8 +1,9 @@
-import 'dart:io';
 
+import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 import 'package:call_info/main.dart';
@@ -16,7 +17,8 @@ class EditProfileWidget extends StatefulWidget {
 
 class _EditProfileWidgetState extends State<EditProfileWidget> {
   late EditProfileModel _model;
-  static  File? imageFile=null;
+  bool _saving = false;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   // late ProfileProvider profileProvider;
 
@@ -81,8 +83,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               size: 30,
             ),
             onPressed: () async {
-              //TODO
-              // Navigator.pop(context);
               navigator.currentState?.pop();
             },
           ),
@@ -131,23 +131,37 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               onTap: () async {
                                 await _model.pickFile();
                                 setState(() {
-                                  imageFile=_model.getPickedFile();
+                                  _model.pickedFile;
                                 });
                               },
-                              child: imageFile != null
-                                  ? Image.file(
-                                imageFile!,
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.fill,
-                                alignment: Alignment(0, 0),
-                              )
-                                  : Image.asset(
-                                'assets/vendor.jpg',
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.fill,
-                                alignment: Alignment(0, 0),
+                              child: Consumer<ProfileProvider> (
+                                builder: (context, value, child) {
+                                  if(value.profile != null) {
+                                    return FadeInImage(
+                                      placeholder: AssetImage('assets/vendor.jpg'), // Placeholder image while loading
+                                      image: NetworkImage(value.profile!.imageFile!),
+                                      width: 150,
+                                      height: 150,
+                                      fit: BoxFit.contain,
+                                    );
+                                  } else {
+                                    if(_model.pickedFile != null) {
+                                      return Image.file(
+                                        _model.pickedFile!,
+                                        width: 150,
+                                        height: 150,
+                                        fit: BoxFit.contain,
+                                      );
+                                    } else {
+                                      return Image.asset(
+                                        'assets/vendor.jpg',
+                                        width: 150,
+                                        height: 150,
+                                        fit: BoxFit.contain,
+                                      );
+                                    }
+                                  }
+                                },
                               ),
                             ),
                           ),
@@ -161,53 +175,58 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: Padding(
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                              child: TextFormField(
-                                controller: _model.textController1,
-                                focusNode: _model.textFieldFocusNode1,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Your Name',
-                                  labelStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  hintStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context)
-                                          .alternate,
-                                      width: 2,
+                              child: Consumer<ProfileProvider> (
+                                builder: (context, value, child) {
+                                  if(value.profile != null) _model.textController1 = TextEditingController(text: value.profile!.vendorName!);
+                                  return TextFormField(
+                                    controller: _model.textController1,
+                                    focusNode: _model.textFieldFocusNode1,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Your Name',
+                                      labelStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      hintStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context)
+                                              .alternate,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                          MyTheme.of(context).primary,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: MyTheme.of(context)
+                                          .secondaryBackground,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                      MyTheme.of(context).primary,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  filled: true,
-                                  fillColor: MyTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: MyTheme.of(context).bodyMedium,
-                                validator: _model.textController1Validator
-                                    .asValidator(context),
+                                    style: MyTheme.of(context).bodyMedium,
+                                    validator: _model.textController1Validator
+                                        .asValidator(context),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -220,59 +239,61 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: Padding(
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                              child: TextFormField(
-                                controller: _model.textController2,
-                                focusNode: _model.textFieldFocusNode2,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Email',
-                                  labelStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  hintText: 'Email',
-                                  hintStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context)
-                                          .alternate,
-                                      width: 2,
+                              child: Consumer<ProfileProvider> (
+                                builder: (context, value, child) {
+                                  if(value.profile != null) _model.textController2=TextEditingController(text: value.profile!.vendorEmail!);
+                                  return TextFormField(
+                                    controller: _model.textController2,
+                                    focusNode: _model.textFieldFocusNode2,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Email',
+                                      labelStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      hintText: 'Email',
+                                      hintStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context)
+                                              .alternate,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                          MyTheme.of(context).primary,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: MyTheme.of(context)
+                                          .secondaryBackground,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                      MyTheme.of(context).primary,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  filled: true,
-                                  fillColor: MyTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: MyTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                  fontFamily: 'Inter',
-                                  color: Color(0xFFDBE2E7),
-                                ),
-                                validator: _model.textController2Validator
-                                    .asValidator(context),
+                                    style: MyTheme.of(context)
+                                        .bodyMedium
+                                        ,
+                                    validator: _model.textController2Validator
+                                        .asValidator(context),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -285,59 +306,61 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: Padding(
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                              child: TextFormField(
-                                controller: _model.textController3,
-                                focusNode: _model.textFieldFocusNode3,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Contact',
-                                  labelStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  hintText: 'Mobile Number',
-                                  hintStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context)
-                                          .alternate,
-                                      width: 2,
+                              child: Consumer<ProfileProvider> (
+                                builder: (context, value, child) {
+                                  if(value.profile != null) _model.textController3 = TextEditingController(text: value.profile!.vendorContact!);
+                                  return TextFormField(
+                                    controller: _model.textController3,
+                                    focusNode: _model.textFieldFocusNode3,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Contact',
+                                      labelStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      hintText: 'Mobile Number',
+                                      hintStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context)
+                                              .alternate,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                          MyTheme.of(context).primary,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: MyTheme.of(context)
+                                          .secondaryBackground,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                      MyTheme.of(context).primary,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  filled: true,
-                                  fillColor: MyTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: MyTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                  fontFamily: 'Inter',
-                                  color: Color(0xFFDBE2E7),
-                                ),
-                                validator: _model.textController3Validator
-                                    .asValidator(context),
+                                    style: MyTheme.of(context)
+                                        .bodyMedium
+                                        ,
+                                    validator: _model.textController3Validator
+                                        .asValidator(context),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -350,59 +373,61 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: Padding(
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                              child: TextFormField(
-                                controller: _model.textController4,
-                                focusNode: _model.textFieldFocusNode4,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Business Name',
-                                  labelStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  hintText: 'Business Name',
-                                  hintStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context)
-                                          .alternate,
-                                      width: 2,
+                              child: Consumer<ProfileProvider> (
+                                builder: (context, value, child) {
+                                  if(value.profile != null) _model.textController4 = TextEditingController(text: value.profile!.businessName!);
+                                  return TextFormField(
+                                    controller: _model.textController4,
+                                    focusNode: _model.textFieldFocusNode4,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Business Name',
+                                      labelStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      hintText: 'Business Name',
+                                      hintStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context)
+                                              .alternate,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                          MyTheme.of(context).primary,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: MyTheme.of(context)
+                                          .secondaryBackground,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                      MyTheme.of(context).primary,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  filled: true,
-                                  fillColor: MyTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: MyTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                  fontFamily: 'Inter',
-                                  color: Color(0xFFDBE2E7),
-                                ),
-                                validator: _model.textController4Validator
-                                    .asValidator(context),
+                                    style: MyTheme.of(context)
+                                        .bodyMedium
+                                        ,
+                                    validator: _model.textController4Validator
+                                        .asValidator(context),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -415,59 +440,62 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: Padding(
                               padding:
                               EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                              child: TextFormField(
-                                controller: _model.textController5,
-                                focusNode: _model.textFieldFocusNode5,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Business Description',
-                                  labelStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  hintText: 'Business Description',
-                                  hintStyle:
-                                  MyTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context)
-                                          .alternate,
-                                      width: 2,
+                              child: Consumer<ProfileProvider> (
+                                builder: (context, value, child) {
+                                  if(value.profile != null) _model.textController5 = TextEditingController(text: value.profile!.businessDescription!);
+                                  return TextFormField(
+                                    controller: _model.textController5,
+                                    focusNode: _model.textFieldFocusNode5,
+                                    maxLines: 3,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Business Description',
+                                      labelStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      hintText: 'Business Description',
+                                      hintStyle:
+                                      MyTheme.of(context).labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context)
+                                              .alternate,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                          MyTheme.of(context).primary,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: MyTheme.of(context).error,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      filled: true,
+                                      fillColor: MyTheme.of(context)
+                                          .secondaryBackground,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                      MyTheme.of(context).primary,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: MyTheme.of(context).error,
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  filled: true,
-                                  fillColor: MyTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: MyTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                  fontFamily: 'Inter',
-                                  color: Color(0xFFDBE2E7),
-                                ),
-                                validator: _model.textController5Validator
-                                    .asValidator(context),
+                                    style: MyTheme.of(context)
+                                        .bodyMedium
+                                        ,
+                                    validator: _model.textController5Validator
+                                        .asValidator(context),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -478,7 +506,14 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.saveProfile();
+                    setState(() {
+                      _saving = true;
+                    });
+                    await _model.saveProfile(context);
+                    setState(() {
+                      _saving = false;
+                    });
+                    navigator.currentState!.pop();
                     // _model.initState(context);
                     // Navigator.pushNamed(context, routeKeys.settingsPage);  // context.pushNamed('Profile');
                   },

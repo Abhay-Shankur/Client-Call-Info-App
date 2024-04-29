@@ -2,7 +2,7 @@ import 'package:call_log/call_log.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/call_log/call_log_widget.dart';
 import 'package:flutter/material.dart';
-import 'calllogs_widget.dart';
+import 'call_logs_widget.dart';
 import '../components/call_log/call_log_model.dart';
 class CalllogsModel extends FlutterFlowModel<CallLogsPage> {
   ///  State fields for stateful widgets in this page.

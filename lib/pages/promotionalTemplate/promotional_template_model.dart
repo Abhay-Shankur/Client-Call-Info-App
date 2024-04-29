@@ -1,20 +1,14 @@
-// import '/flutter_flow/flutter_flow_animations.dart';
-// import '/flutter_flow/flutter_flow_choice_chips.dart';
-// import '/flutter_flow/flutter_flow_icon_button.dart';
-// import '/flutter_flow/flutter_flow_theme.dart';
-// import '/flutter_flow/flutter_flow_util.dart';
-// import '/flutter_flow/flutter_flow_widgets.dart';
-// import '/flutter_flow/form_field_controller.dart';
+
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
-import 'professionalttemplate.dart' show PromossionalmsgtempWidget;
+import 'promotional_template_widget.dart' show PromotionalTemplateWidget;
 import 'package:flutter/material.dart';
 
-class PromossionalmsgtempModel
-    extends FlutterFlowModel<PromossionalmsgtempWidget> {
+class PromotionalTemplateModel
+    extends FlutterFlowModel<PromotionalTemplateWidget> {
   ///  State fields for stateful widgets in this page.
   static  File? pickedFile=null;
   final unfocusNode = FocusNode();

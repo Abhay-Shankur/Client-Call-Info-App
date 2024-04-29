@@ -8,11 +8,11 @@ import 'package:call_info/util/custom_widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:toastification/toastification.dart';
-import 'web_save_product_widget.dart' show WebSaveProductWidget;
+import 'web_product_add_widget.dart' show WebProductsAddWidget;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class WebSaveProductModel extends FlutterFlowModel<WebSaveProductWidget> {
+class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
   ///  State fields for stateful widgets in this page.
   File? pickedFile = null;
 
@@ -91,7 +91,6 @@ class WebSaveProductModel extends FlutterFlowModel<WebSaveProductWidget> {
 
   Future<bool> createProduct(BuildContext context) async {
     try {
-
       String domainName = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       String? imagePath = await FirebaseStorageService.uploadImage(pickedFile!,'$domainName/');
 

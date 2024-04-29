@@ -1,9 +1,9 @@
 import 'package:call_info/pages/components/image_list_view/image_list_view_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'web_add_product_page_widget.dart' show WebAddProductPageWidget;
+import 'web_product_page_widget.dart' show WebProductsPageWidget;
 import 'package:flutter/material.dart';
 
-class WebAddProductPageModel extends FlutterFlowModel<WebAddProductPageWidget> {
+class WebAddProductPageModel extends FlutterFlowModel<WebProductsPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

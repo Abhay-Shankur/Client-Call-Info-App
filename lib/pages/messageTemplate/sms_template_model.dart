@@ -3,7 +3,7 @@ import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/providers/sms/sms_shared.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'package:call_info/pages/messageTemplate/SMSmessagetemplate.dart' show SMSTemplateWidget;
+import 'package:call_info/pages/messageTemplate/sms_template_widget.dart' show SMSTemplateWidget;
 import 'package:flutter/material.dart';
 
 class WhtstempCopyModel extends FlutterFlowModel<SMSTemplateWidget> {

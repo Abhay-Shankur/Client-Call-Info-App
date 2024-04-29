@@ -138,3 +138,8 @@ Added WebTestimonial Pages.
 Added Provider for WebServices.
 Added Backend for WebServices.
 Added Backend for WebTestimonial.
+
+1.0.26(Abhay):
+Added Provider for Profile.
+Added Backend for Profile.
+Managed Flow of Application.

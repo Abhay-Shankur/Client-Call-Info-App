@@ -1,3 +1,4 @@
+
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class OTPScreenWidget extends StatefulWidget {
 class _OTPScreenWidgetState extends State<OTPScreenWidget>
     with TickerProviderStateMixin {
   late OTPScreenModel _model;
+  bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -271,7 +273,13 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  _model.verifyOtp();
+                                  setState(() {
+                                    _saving = true;
+                                  });
+                                  await _model.verifyOtp(context);
+                                  setState(() {
+                                    _saving = false;
+                                  });
                                   // navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                 },
                                 text: 'Submit',

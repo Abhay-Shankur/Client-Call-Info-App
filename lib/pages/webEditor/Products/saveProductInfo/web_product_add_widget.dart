@@ -3,17 +3,17 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import 'web_save_product_model.dart';
-export 'web_save_product_model.dart';
+import 'web_product_add_model.dart';
+export 'web_product_add_model.dart';
 
-class WebSaveProductWidget extends StatefulWidget {
-  const WebSaveProductWidget({super.key});
+class WebProductsAddWidget extends StatefulWidget {
+  const WebProductsAddWidget({super.key});
 
   @override
-  State<WebSaveProductWidget> createState() => _WebSaveProductWidgetState();
+  State<WebProductsAddWidget> createState() => _WebProductsAddWidgetState();
 }
 
-class _WebSaveProductWidgetState extends State<WebSaveProductWidget> {
+class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
   late WebSaveProductModel _model;
   bool imagePicked = false;
 

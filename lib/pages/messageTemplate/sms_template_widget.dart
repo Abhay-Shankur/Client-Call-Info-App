@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import 'SMSmessagemodel.dart';
-export 'SMSmessagemodel.dart';
+import 'sms_template_model.dart';
+export 'sms_template_model.dart';
 
 class SMSTemplateWidget extends StatefulWidget {
   const SMSTemplateWidget({super.key});

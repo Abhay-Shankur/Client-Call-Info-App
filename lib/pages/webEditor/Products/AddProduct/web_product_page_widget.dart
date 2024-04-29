@@ -5,18 +5,18 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'web_add_product_page_model.dart';
-export 'web_add_product_page_model.dart';
+import 'web_product_page_model.dart';
+export 'web_product_page_model.dart';
 
-class WebAddProductPageWidget extends StatefulWidget {
-  const WebAddProductPageWidget({super.key});
+class WebProductsPageWidget extends StatefulWidget {
+  const WebProductsPageWidget({super.key});
 
   @override
-  State<WebAddProductPageWidget> createState() =>
-      _WebAddProductPageWidgetState();
+  State<WebProductsPageWidget> createState() =>
+      _WebProductsPageWidgetState();
 }
 
-class _WebAddProductPageWidgetState extends State<WebAddProductPageWidget> {
+class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
   late WebAddProductPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -122,7 +122,7 @@ class _WebAddProductPageWidgetState extends State<WebAddProductPageWidget> {
                                 EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                                 child: FFButtonWidget(
                                   onPressed: () {
-                                    navigator.currentState!.pushNamed(routeKeys.webSaveProductPage);
+                                    navigator.currentState!.pushNamed(routeKeys.webProductsAdd);
                                   },
                                   text: 'Add Products',
                                   options: FFButtonOptions(

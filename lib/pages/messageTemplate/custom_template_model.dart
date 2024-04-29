@@ -1,5 +1,5 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'CustomTemplate.dart' show CustomtemplateWidget;
+import 'custom_template_widget.dart' show CustomtemplateWidget;
 import 'package:flutter/material.dart';
 
 class CustomtemplateModel extends FlutterFlowModel<CustomtemplateWidget> {

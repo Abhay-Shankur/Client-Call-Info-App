@@ -1,9 +1,10 @@
+import 'package:call_info/main.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
-import 'profile_model.dart';
-export 'profile_model.dart';
+import 'edit_profile_model.dart';
+export 'edit_profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({super.key});
@@ -57,8 +58,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                //TODO
-                // context.pop();
+                navigator.currentState!.pop();
               },
             ),
             actions: [],
@@ -88,14 +88,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             shape: BoxShape.circle,
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(2),
+                            padding: EdgeInsets.all(4),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(50),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+                              child: Image.asset(
+                                'assets/batch.jpg',
                                 width: 100,
                                 height: 100,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.contain,
                               ),
                             ),
                           ),

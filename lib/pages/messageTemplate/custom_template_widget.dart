@@ -6,8 +6,8 @@ import 'package:call_info/main.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
-import 'customtemplatemodel.dart';
-export 'customtemplatemodel.dart';
+import 'custom_template_model.dart';
+export 'custom_template_model.dart';
 
 class CustomtemplateWidget extends StatefulWidget {
   const CustomtemplateWidget({super.key});
