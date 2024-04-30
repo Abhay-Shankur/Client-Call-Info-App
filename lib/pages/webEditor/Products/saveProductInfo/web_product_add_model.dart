@@ -92,7 +92,9 @@ class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
   Future<bool> createProduct(BuildContext context) async {
     try {
       String domainName = Provider.of<WebDomainProvider>(context, listen: false).domainName;
-      String? imagePath = await FirebaseStorageService.uploadImage(pickedFile!,'$domainName/');
+      List<Product> list = Provider.of<WebProductsProvider>(context, listen: false).listProducts;
+
+      String? imagePath = await FirebaseStorageService.uploadImage(pickedFile!,'$domainName/', 'Product${list.length+1}');
 
       Product product = new Product();
       product.imagePath = imagePath.toString();
@@ -100,7 +102,6 @@ class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
       product.productPrice = productNameTextController2!.value.text.toString();
       product.productDescription = descriptionTextController!.value.text.toString();
 
-      List<Product> list = Provider.of<WebProductsProvider>(context, listen: false).listProducts;
       list.add(product);
       Provider.of<WebProductsProvider>(context, listen: false).addProduct(list);
 

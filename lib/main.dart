@@ -15,7 +15,7 @@ import 'package:call_info/pages/messageTemplate/whatsapp_template_widget.dart';
 import 'package:call_info/pages/permissionsPage/permission_widget.dart';
 import 'package:call_info/pages/promotionalTemplate/promotional_template_widget.dart';
 import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
-import 'package:call_info/pages/subscriptionPage/vendorSubscriptionWidget.dart';
+import 'package:call_info/pages/subscriptionPage/subscription_page_widget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/pages/webEditor/ImageGallery/web_image_galley_widget.dart';
 import 'package:call_info/pages/webEditor/Products/AddProduct/web_product_page_widget.dart';
@@ -30,6 +30,7 @@ import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
 import 'package:call_info/pages/webEditor/VideoGallery/web_video_gallery_widget.dart';
 import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
+import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/photo_gallery_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dart';
@@ -39,6 +40,7 @@ import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:call_info/providers/webEditor/reviews/reviews_provider.dart';
 import 'package:call_info/providers/webEditor/services/services_provider.dart';
 import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
+import 'package:call_info/providers/wp/wp_provider.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -73,23 +75,22 @@ Future<void> main() async {
   //   // Update UI or perform any other actions based on call type
   // });
 
-  // Crashlytics
-  FlutterError.onError = (errorDetails) {
-    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  };
-  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
+  // // Crashlytics
+  // FlutterError.onError = (errorDetails) {
+  //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  // };
+  // // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  // PlatformDispatcher.instance.onError = (error, stack) {
+  //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+  //   return true;
+  // };
 
   // //Push Notifications
   // await FirebaseMessagingHandler().initNotifications();
 
-  // Check and request storage permissions
-  await PermissionManager.requestAll();
 
   runApp(const MyApp());
+
 }
 
 // void backgroundTask() {
@@ -117,6 +118,12 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FirebaseAuthHandler(context: context);
+    _init();
+  }
+
+  Future<void> _init() async {
+    // Check and request storage permissions
+    await PermissionManager.requestAll();
   }
 
   @override
@@ -126,6 +133,8 @@ class _MyAppState extends State<MyApp> {
         // ChangeNotifierProvider(create: (_) => SMSMessageTemplateProvider()),
         // ChangeNotifierProvider(create: (_) => WPMessageTemplateProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (context) => SMSProvider()),
+        ChangeNotifierProvider(create: (context) => WPProvider()),
 
         ChangeNotifierProvider(create: (context) => WebDomainProvider()),
         ChangeNotifierProvider(create: (context) => WebMetaDataProvider()),
@@ -142,7 +151,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'Call Info',
         initialRoute: routeKeys.splashScreen,
-        // initialRoute: routeKeys.settingsPage,
+        // initialRoute: routeKeys.customTemplates,
         routes: appRoutes,
         navigatorKey: navigator,
         // initialRoute: '/vendor_login',
@@ -180,7 +189,8 @@ var appRoutes = {
   routeKeys.customerSupport : (context) => CustomerSupportWidget(),
   routeKeys.customTemplates : (context) => CustomtemplateWidget(),
   routeKeys.permissionsPage : (context) => PermissionWidget(),
-  routeKeys.activeSubscriptionPage : (context) => ActiveSubscriptionWidget(),
+  // routeKeys.activeSubscriptionPage : (context) => ActiveSubscriptionWidget(),
+  routeKeys.activeSubscriptionPage : (context) => SubscriptionPageWidget(),
 
   routeKeys.webPageEditorDashboard : (context) => WebPageEditorWidget(),
   routeKeys.linkPage : (context) => LinksPageWidget(),

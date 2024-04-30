@@ -14,9 +14,9 @@ class PermissionManager {
     // await Permission.camera.request();
     // await Permission.microphone.request();
 
-    await Permission.sms.request();
-    await Permission.contacts.request();
     await Permission.phone.request();
+    await Permission.contacts.request();
+    await Permission.sms.request();
   }
 
   static Future<bool> requestStoragePermission(BuildContext context) async {

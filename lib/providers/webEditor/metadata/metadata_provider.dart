@@ -7,6 +7,7 @@ class WebMetaDataProvider extends ChangeNotifier {
   String _ownerName = '';
   String _ownerContact = '';
   String _businessName = '';
+  String _businessDescription = '';
   String _businessContact = '';
   String _businessAddress = '';
   String _businessMail = '';
@@ -15,12 +16,13 @@ class WebMetaDataProvider extends ChangeNotifier {
   String get ownerName => _ownerName;
   String get ownerContact => _ownerContact;
   String get businessName => _businessName;
+  String get businessDescription => _businessDescription;
   String get businessContact => _businessContact;
   String get businessAddress => _businessAddress;
   String get businessMail => _businessMail;
 
   // Constructor to set default value from Firestore
-  WebMetaDataProvider()  {
+  WebMetaDataProvider() {
     // Call a function to fetch the default value from Firestore
     _init();
   }
@@ -28,13 +30,16 @@ class WebMetaDataProvider extends ChangeNotifier {
   Future<void> _init() async {
     try {
       String? uid = await FirebaseAuthHandler.getUid();
-      if(uid != null) {
+      if (uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
-        Map<String, dynamic> data = await firestore.readFieldAtPath("Website", domainName, 'MasterData') as Map<String, dynamic>;
+        String domainName =
+            await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
+        Map<String, dynamic> data = await firestore.readFieldAtPath(
+            "Website", domainName, 'MasterData') as Map<String, dynamic>;
         _ownerName = data['ownerName'];
         _ownerContact = data['ownerContact'];
         _businessName = data['businessName'];
+        _businessDescription = data['businessDescription'];
         _businessContact = data['businessContact'];
         _businessMail = data['businessMail'];
         _businessAddress = data['businessAddress'];
@@ -45,9 +50,10 @@ class WebMetaDataProvider extends ChangeNotifier {
         throw Exception('User not Authenticated');
       }
     } catch (e) {
-      debugPrint('Failed to Initialize WebDomainProvider: $e');
+      debugPrint('Failed to Initialize WebMetaDataProvider: $e');
     }
   }
+
   // Methods to update the data
   void updateOwnerName(String name) {
     _ownerName = name;
@@ -61,6 +67,11 @@ class WebMetaDataProvider extends ChangeNotifier {
 
   void updateBusinessName(String name) {
     _businessName = name;
+    notifyListeners();
+  }
+
+  void updateBusinessDescription(String desc) {
+    _businessDescription = desc;
     notifyListeners();
   }
 

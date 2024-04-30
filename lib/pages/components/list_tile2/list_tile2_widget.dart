@@ -68,7 +68,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
           child: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
@@ -107,6 +107,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
+                          maxLines: 2,
                         ),
                       ),
                     ],

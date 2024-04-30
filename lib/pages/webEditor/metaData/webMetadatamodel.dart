@@ -36,6 +36,10 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
   FocusNode? textFieldFocusNode6;
   TextEditingController? textController6;
   String? Function(BuildContext, String?)? textController6Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode7;
+  TextEditingController? textController7;
+  String? Function(BuildContext, String?)? textController7Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -60,6 +64,9 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
 
     textFieldFocusNode6?.dispose();
     textController6?.dispose();
+
+    textFieldFocusNode7?.dispose();
+    textController7?.dispose();
   }
 
   Future<bool> saveInfo(BuildContext context) async {
@@ -72,6 +79,7 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
       provider.updateBusinessContact(textController4!.value.text);
       provider.updateBusinessMail(textController5!.value.text);
       provider.updateBusinessAddress(textController6!.value.text);
+      provider.updateBusinessDescription(textController7!.value.text);
 
       Map<String, dynamic> data ={
         'MasterData' : {

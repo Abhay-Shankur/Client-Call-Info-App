@@ -75,9 +75,9 @@ class WeHelpPageModel extends FlutterFlowModel<WeHelpPageWidget> {
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       if((pickedFile1 != null) && (pickedFile2 != null) && (pickedFile3 != null) && domain.isNotEmpty && heading.isNotEmpty && desc.isNotEmpty) {
         FirestoreHandler firestore = FirestoreHandler();
-        String image1 = await FirebaseStorageService.uploadImage(pickedFile1!, "$domain/") ?? '';
-        String image2 = await FirebaseStorageService.uploadImage(pickedFile2!, "$domain/") ?? '';
-        String image3 = await FirebaseStorageService.uploadImage(pickedFile3!, "$domain/") ?? '';
+        String image1 = await FirebaseStorageService.uploadImage(pickedFile1!, "$domain/", "WeHelp1") ?? '';
+        String image2 = await FirebaseStorageService.uploadImage(pickedFile2!, "$domain/", "WeHelp2") ?? '';
+        String image3 = await FirebaseStorageService.uploadImage(pickedFile3!, "$domain/", "WeHelp3") ?? '';
         Map<String,dynamic> data = {
           'WeHelp' : {
             'image1' : image1,

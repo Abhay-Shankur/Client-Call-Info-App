@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:call_info/main.dart';
+import 'package:call_info/providers/wp/wp_provider.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
 
 import 'whatsapp_template_model.dart';
 export 'whatsapp_template_model.dart';
@@ -19,7 +22,7 @@ class WhatsappTemplateWidget extends StatefulWidget {
 }
 
 class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
-  late WhtstempModel _model;
+  late WhatsappTemplateModel _model;
 
   String? _selectedImagePath;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -29,7 +32,7 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => WhtstempModel());
+    _model = createModel(context, () => WhatsappTemplateModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -86,10 +89,11 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                     setState(() {
                       _saving = true;
                     });
-                    await _model.saveTemplate();
+                    await _model.saveTemplate(context);
                     setState(() {
                       _saving = false;
                     });
+                    navigator.currentState!.pop();
                   },
                   text: 'Save',
                   options: FFButtonOptions(
@@ -174,19 +178,46 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
-                              child: _selectedImagePath != null ? // Check if an image is selected
-                              Image.file(
-                                File(_selectedImagePath!), // Load selected image
-                                width: double.infinity,
-                                height: 200,
-                                fit: BoxFit.scaleDown,
-                              ) :
-                              Image.asset(
-                                'assets/images/uploadImage.jpg', // Use default image if no image is selected
-                                width: double.infinity,
-                                height: 200,
-                                fit: BoxFit.scaleDown,
-                              ),
+                              child: Consumer<WPProvider> (
+                                builder: (_, value, __) {
+                                  if (_model.pickedFile != null){
+                                    return Image.file(
+                                      _model.pickedFile!, // Load selected image
+                                      width: double.infinity,
+                                      height: 200,
+                                      fit: BoxFit.scaleDown,
+                                    );
+                                  } else if(value.image != null && value.image!.isNotEmpty) {
+                                    return FadeInImage(
+                                      placeholder: AssetImage('assets/images/productImage.jpg'),
+                                      image: NetworkImage(value.image!), // Use default image if no image is selected
+                                      width: double.infinity,
+                                      height: 200,
+                                      fit: BoxFit.scaleDown,
+                                    );
+                                  } else {
+                                    return Image.asset(
+                                      'assets/images/uploadImage.jpg', // Use default image if no image is selected
+                                      width: double.infinity,
+                                      height: 200,
+                                      fit: BoxFit.scaleDown,
+                                    );
+                                  }
+                                },
+                              )
+                              // _selectedImagePath != null ? // Check if an image is selected
+                              // Image.file(
+                              //   File(_selectedImagePath!), // Load selected image
+                              //   width: double.infinity,
+                              //   height: 200,
+                              //   fit: BoxFit.scaleDown,
+                              // ) :
+                              // Image.asset(
+                              //   'assets/images/uploadImage.jpg', // Use default image if no image is selected
+                              //   width: double.infinity,
+                              //   height: 200,
+                              //   fit: BoxFit.scaleDown,
+                              // ),
                             ),
                           ),
                         ),
@@ -205,86 +236,87 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10, 12, 10, 12),
-                                        child: TextFormField(
-                                          controller: _model.textController,
-                                          focusNode: _model.textFieldFocusNode,
-                                          onChanged: (_) => EasyDebounce.debounce(
-                                            '_model.textController',
-                                            Duration(milliseconds: 2000),
-                                                () => setState(() {}),
-                                          ),
-                                          autofocus: true,
-                                          textCapitalization:
-                                          TextCapitalization.none,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            hintText: 'What\'s happening?',
-                                            hintStyle: MyTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                              fontFamily: 'Plus Jakarta Sans',
-                                              color: Color(0xFF57636C),
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0xFFE0E3E7),
-                                                width: 2,
+                                        child: Consumer<WPProvider> (
+                                          builder: (_, value, __) {
+                                            if(value.text != null && value.text!.isNotEmpty)
+                                              _model.textController = TextEditingController(text: value.text!);
+                                            return TextFormField(
+                                              controller: _model.textController,
+                                              focusNode: _model.textFieldFocusNode,
+                                              autofocus: true,
+                                              textCapitalization:
+                                              TextCapitalization.none,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                hintText: 'What\'s happening?',
+                                                hintStyle: MyTheme.of(context)
+                                                    .labelLarge
+                                                    .override(
+                                                  fontFamily: 'Plus Jakarta Sans',
+                                                  color: Color(0xFF57636C),
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFE0E3E7),
+                                                    width: 2,
+                                                  ),
+                                                  borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(4.0),
+                                                    topRight: Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFF4B39EF),
+                                                    width: 2,
+                                                  ),
+                                                  borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(4.0),
+                                                    topRight: Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFFF5963),
+                                                    width: 2,
+                                                  ),
+                                                  borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(4.0),
+                                                    topRight: Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                focusedErrorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFFF5963),
+                                                    width: 2,
+                                                  ),
+                                                  borderRadius: const BorderRadius.only(
+                                                    topLeft: Radius.circular(4.0),
+                                                    topRight: Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                contentPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 8, 16, 12),
                                               ),
-                                              borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
+                                              style: MyTheme.of(context)
+                                                  .bodyLarge
+                                                  .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color: Color(0xFF14181B),
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
                                               ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0xFF4B39EF),
-                                                width: 2,
-                                              ),
-                                              borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0xFFFF5963),
-                                                width: 2,
-                                              ),
-                                              borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                            focusedErrorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0xFFFF5963),
-                                                width: 2,
-                                              ),
-                                              borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                            contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                16, 8, 16, 12),
-                                          ),
-                                          style: MyTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: Color(0xFF14181B),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          maxLines: null,
-                                          minLines: 10,
-                                          cursorColor: Color(0xFF4B39EF),
-                                          validator: _model.textControllerValidator
-                                              .asValidator(context),
+                                              textAlign: TextAlign.start,
+                                              maxLines: null,
+                                              minLines: 10,
+                                              cursorColor: Color(0xFF4B39EF),
+                                              validator: _model.textControllerValidator
+                                                  .asValidator(context),
+                                            );
+                                          },
                                         ),
                                       ),
                                     ),
@@ -309,10 +341,12 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                                                 .primaryText,
                                             size: 32,
                                           ),
-                                          onPressed: () {
+                                          onPressed: () async {
                                             // selectImages();
-                                            _model.pickFile();
-                                            print('IconButton pressed ...');
+                                            await _model.pickFile();
+                                            setState(() {
+                                              _model.pickedFile;
+                                            });
                                           },
                                         ),
                                       ),

@@ -29,8 +29,7 @@ class WebPhotoGalleryProvider extends ChangeNotifier {
         throw Exception('User not Authenticated');
       }
     } catch (e) {
-      debugPrint("Exception: $e");
-
+      debugPrint("Failed to initialize WebPhotoGalleryProvider: $e");
     }
   }
 

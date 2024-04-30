@@ -143,3 +143,11 @@ Added Backend for WebTestimonial.
 Added Provider for Profile.
 Added Backend for Profile.
 Managed Flow of Application.
+
+1.0.27(Abhay):
+Added New Subscription Page.
+Added Provider for Subscription Page.
+Added Backend for Subscription Page.
+Modified SMS Provider.
+Modified WP Provider.
+SetUp the Flow.

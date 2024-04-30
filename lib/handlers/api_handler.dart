@@ -39,8 +39,8 @@ class ApiHandler {
   static Future<int> getRequest(Uri url) async {
     try {
       final response = await http.get(url);
-      Map<String, dynamic> res = await _handleResponse(response);
-      debugPrint('${res.toString()}');
+      // Map<String, dynamic> res = await _handleResponse(response);
+      debugPrint(' ${response.statusCode}: ${response.toString()}');
       return response.statusCode;
     } catch (e) {
       debugPrint('Error during API call: $e');

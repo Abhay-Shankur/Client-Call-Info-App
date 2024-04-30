@@ -45,6 +45,9 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
 
     _model.textController6 ??= TextEditingController();
     _model.textFieldFocusNode6 ??= FocusNode();
+
+    _model.textController7 ??= TextEditingController();
+    _model.textFieldFocusNode7 ??= FocusNode();
   }
 
   @override
@@ -634,6 +637,80 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         keyboardType: TextInputType.streetAddress,
                                         validator: _model.textController6Validator
                                             .asValidator(context),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                // Generated code for this TextField Widget...
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  child: Consumer<WebMetaDataProvider> (
+                                    builder:(context, value, child) {
+                                      _model.textController7 = TextEditingController(text: value.businessDescription);
+                                      return TextFormField(
+                                        controller: _model.textController7,
+                                        focusNode: _model.textFieldFocusNode7,
+                                        autofocus: false,
+                                        textCapitalization: TextCapitalization.words,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText: 'Business Description',
+                                          labelStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0,
+                                          ),
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: FlutterFlowTheme.of(context).alternate,
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: FlutterFlowTheme.of(context).primary,
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          errorBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: FlutterFlowTheme.of(context).error,
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedErrorBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: FlutterFlowTheme.of(context).error,
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          filled: true,
+                                          fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                          contentPadding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
+                                        ),
+                                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0,
+                                          lineHeight: 2,
+                                        ),
+                                        maxLines: 3,
+                                        keyboardType: TextInputType.multiline,
+                                        validator: _model.textController7Validator.asValidator(context),
                                       );
                                     },
                                   ),

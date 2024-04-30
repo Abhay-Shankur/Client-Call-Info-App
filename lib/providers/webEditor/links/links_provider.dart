@@ -54,7 +54,7 @@ class WebLinksProvider extends ChangeNotifier {
         throw Exception('User not Authenticated');
       }
     } catch (e) {
-      debugPrint('Failed to Initialize WebDomainProvider: $e');
+      debugPrint('Failed to Initialize WebLinksProvider: $e');
     }
   }
 

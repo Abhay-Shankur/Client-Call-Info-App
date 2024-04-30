@@ -1,4 +1,5 @@
 
+import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -6,6 +7,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
 
 import 'sms_template_model.dart';
 export 'sms_template_model.dart';
@@ -18,7 +20,7 @@ class SMSTemplateWidget extends StatefulWidget {
 }
 
 class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
-  late WhtstempCopyModel _model;
+  late SMSTemplateModel _model;
   bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -26,7 +28,7 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => WhtstempCopyModel());
+    _model = createModel(context, () => SMSTemplateModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -81,8 +83,7 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                     setState(() {
                       _saving = true;
                     });
-                    await _model.saveTemplate();
-                    print('Button pressed ...');
+                    await _model.saveTemplate(context);
                     setState(() {
                       _saving = false;
                     });
@@ -187,86 +188,92 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 12, 10, 12),
-                                  child: TextFormField(
-                                    controller: _model.textController,
-                                    focusNode: _model.textFieldFocusNode,
-                                    maxLength: 160,
-                                    onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.textController',
-                                      Duration(milliseconds: 2000),
-                                          () => setState(() {}),
-                                    ),
-                                    autofocus: true,
-                                    textCapitalization: TextCapitalization.none,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      hintText: 'What\'s happening?',
-                                      hintStyle: MyTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        color: Color(0xFF57636C),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFFE0E3E7),
-                                          width: 2,
+                                  child: Consumer<SMSProvider> (
+                                    builder: (_, value, __) {
+                                      if(value.text != null && value.text!.isNotEmpty)
+                                        _model.textController = TextEditingController(text: value.text!);
+                                      return TextFormField(
+                                        controller: _model.textController,
+                                        focusNode: _model.textFieldFocusNode,
+                                        maxLength: 160,
+                                        onChanged: (_) => EasyDebounce.debounce(
+                                          '_model.textController',
+                                          Duration(milliseconds: 2000),
+                                              () => setState(() {}),
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
+                                        autofocus: true,
+                                        textCapitalization: TextCapitalization.none,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          hintText: 'What\'s happening?',
+                                          hintStyle: MyTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                            fontFamily: 'Plus Jakarta Sans',
+                                            color: Color(0xFF57636C),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFE0E3E7),
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF4B39EF),
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFFF5963),
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedErrorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFFF5963),
+                                              width: 2,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              16, 8, 16, 12),
                                         ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFF4B39EF),
-                                          width: 2,
+                                        style: MyTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                          fontFamily: 'Plus Jakarta Sans',
+                                          color: Color(0xFF14181B),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
                                         ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFFFF5963),
-                                          width: 2,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xFFFF5963),
-                                          width: 2,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          16, 8, 16, 12),
-                                    ),
-                                    style: MyTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                      fontFamily: 'Plus Jakarta Sans',
-                                      color: Color(0xFF14181B),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    textAlign: TextAlign.start,
-                                    maxLines: null,
-                                    minLines: 10,
-                                    cursorColor: Color(0xFF4B39EF),
-                                    validator: _model.textControllerValidator
-                                        .asValidator(context),
+                                        textAlign: TextAlign.start,
+                                        maxLines: null,
+                                        minLines: 10,
+                                        cursorColor: Color(0xFF4B39EF),
+                                        validator: _model.textControllerValidator
+                                            .asValidator(context),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),

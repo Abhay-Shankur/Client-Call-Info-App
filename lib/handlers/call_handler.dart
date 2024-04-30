@@ -2,8 +2,12 @@
 
 import 'package:call_info/handlers/sms_handler.dart';
 import 'package:call_info/handlers/wp_handler.dart';
+import 'package:call_info/main.dart';
+import 'package:call_info/providers/sms/sms_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:provider/provider.dart';
 
 class CallHandler {
   static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
@@ -12,9 +16,6 @@ class CallHandler {
   static String _callType = '';
 
   static void setupCallHandler() {
-    // Retrieve the singleton instance
-
-
     _channel.setMethodCallHandler((call) async {
       if (call.method == 'receiveCallType') {
         _callType = call.arguments['callType'];
@@ -23,12 +24,11 @@ class CallHandler {
         if(_callType == 'Ongoing') {
           // _showNotification("Sending Incoming Message"); // Send notification
 
-          await sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
+          await WhatsappHandler.sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
           await SmsHandler.sendMessage(_phoneNumber) ? _showNotification("SMS Sent Successfully") : null ;
         } else if(_callType == 'Missed') {
           // _showNotification("Sending Missed Message"); // Send notification
-
-          await sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
+          await WhatsappHandler.sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
           await SmsHandler.sendMessage(_phoneNumber) ? _showNotification("SMS Sent Successfully") : null ;
         } else if(_callType == 'Incoming') {
           // _showNotification(_callType); // Send notification

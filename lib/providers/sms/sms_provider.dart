@@ -1,33 +1,86 @@
-// Define the SMSMessageTemplate class
+
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/handlers/shared_preferences_helper.dart';
+import 'package:call_info/providers/sms/sms_shared.dart';
 import 'package:flutter/material.dart';
 
-class SMSMessageTemplate {
-  final String text;
+class SMSProvider extends ChangeNotifier {
+  bool _allowed = false;
+  String? _text;
 
-  SMSMessageTemplate({required this.text});
-}
-
-class SMSMessageTemplateProvider extends ChangeNotifier {
-  // Singleton instance
-  static final SMSMessageTemplateProvider _instance = SMSMessageTemplateProvider._internal();
-
-  // Private constructor for singleton
-  SMSMessageTemplateProvider._internal();
-
-  // Factory method to return the singleton instance
-  factory SMSMessageTemplateProvider() {
-    return _instance;
+  SMSProvider() {
+    _init();
   }
 
-  late SMSMessageTemplate _messageTemplate;
+  Future<void> _init() async {
+    try {
+      String? uid = await FirebaseAuthHandler.getUid();
+      if(uid != null) {
+        FirestoreHandler firestore = FirestoreHandler();
+        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'SMS') ?? null;
+        if(data != null) {
+          _allowed = data['allowed'];
+          _text = data['text'];
+          notifyListeners();
+        }
+        debugPrint('SMS Data Initialized.');
+        firestore.closeConnection();
+        notifyListeners();
+        await SharedPreferencesHelper.setBool('allowSMS', _allowed);
+        if(_text != null)
+          SMSMessageTemplate(text: _text!).saveToShared();
+      } else {
+        throw Exception('User not Authenticated');
+      }
+    } catch (e) {
+      debugPrint('Failed to Initialize SMSProvider: $e');
+    }
+  }
 
-  // Getter for message template
-  SMSMessageTemplate get messageTemplate => _messageTemplate;
+  String? get text => _text;
 
-  // Method to update message template text
-  void updateMessageTemplate(String newText) {
-    _messageTemplate = SMSMessageTemplate(text: newText);
-    debugPrint('Saving Text: ${_messageTemplate.text}');
+  bool get allowed => _allowed;
+
+  void updateText(String text) {
+    _text = text;
     notifyListeners();
   }
+
+  Future<void> updateAllowed(bool value) async {
+    try {
+      _allowed = value;
+      notifyListeners();
+      String? uid = await FirebaseAuthHandler.getUid();
+      if(uid != null) {
+        FirestoreHandler firestore = FirestoreHandler();
+        Map<String, dynamic>? data = {
+          'SMS' : {
+            'allowed' : _allowed,
+          }
+        };
+        await firestore.updateFirestoreData("USERS", uid, data);
+        await SharedPreferencesHelper.setBool('allowSMS', _allowed);
+        debugPrint('SMS Data Saved to Firestore.');
+        firestore.closeConnection();
+      } else {
+        throw Exception('User not Authenticated');
+      }
+    } catch (e) {
+      debugPrint('Exception : $e');
+    }
+  }
+
+  // Method to retrieve the latest value
+  Future<bool> getLatestValue() async {
+    // Simulate asynchronous operation
+    await Future.delayed(Duration(seconds: 1));
+    return _allowed;
+  }
 }
+
+// class SMSProviderSingleton {
+//   static final SMSProvider _instance = SMSProvider();
+//
+//   static SMSProvider get instance => _instance;
+// }

@@ -1,13 +1,17 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:toastification/toastification.dart';
 
-showToast({required BuildContext context, required ToastificationType type, required String title, required String desc}) {
+showToast(
+    {required BuildContext context,
+    required ToastificationType type,
+    required String title,
+    required String desc}) {
   Color? _primary;
   Color? _background;
   Color? _foreground;
 
-  switch(type){
+  switch (type) {
     case ToastificationType.success:
       _primary = Colors.green;
       _background = Colors.green.shade50;
@@ -52,7 +56,7 @@ showToast({required BuildContext context, required ToastificationType type, requ
         child: child,
       );
     },
-    icon: const Icon(Icons.check),
+    icon: const Icon(Icons.check, color: Colors.black),
     primaryColor: _primary,
     backgroundColor: _background,
     foregroundColor: _foreground,
@@ -72,5 +76,34 @@ showToast({required BuildContext context, required ToastificationType type, requ
     closeOnClick: false,
     pauseOnHover: true,
     dragToClose: true,
+  );
+}
+
+void showNotification(String title, String message) async {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  final InitializationSettings initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+  const AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails(
+    'com.callinfo.application.call_info',
+    'Call Infos',
+    channelDescription: 'Notification channel for call infos',
+    importance: Importance.max,
+    priority: Priority.high,
+    showWhen: false,
+  );
+  const NotificationDetails platformChannelSpecifics =
+      NotificationDetails(android: androidPlatformChannelSpecifics);
+  await flutterLocalNotificationsPlugin.show(
+    0,
+    title,
+    message,
+    platformChannelSpecifics,
   );
 }

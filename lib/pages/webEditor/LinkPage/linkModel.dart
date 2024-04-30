@@ -62,7 +62,6 @@ class LinksPageModel extends FlutterFlowModel<LinksPageWidget> {
         firestore.closeConnection();
         showToast(context: context, type: ToastificationType.success, title: 'Links Page', desc: 'Information have been saved.');
       } else {
-
         showToast(context: context, type: ToastificationType.warning, title: 'Links Page', desc: 'Failed to Update.');
       }
       return true;

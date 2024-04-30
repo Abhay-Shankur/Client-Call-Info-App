@@ -81,7 +81,7 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
@@ -153,26 +153,29 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                         ],
                       ),
                     ),
-                    Divider(
-                      thickness: 2,
-                      indent: 10,
-                      endIndent: 10,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                    wrapWithModel(
-                      model: _model.imageListViewModel,
-                      updateCallback: () => setState(() {}),
-                      child: Consumer<WebProductsProvider> (
-                        builder: (context, value, child) {
-                          List<Product> list = [];
-                          value.listProducts.forEach((element) {
-                            list.add(element);
-                          });
-                          return ImageListViewWidget(listParam: list);
-                        },
-                      ),
-                    ),
                   ],
+                ),
+              ),
+              Divider(
+                thickness: 2,
+                indent: 10,
+                endIndent: 10,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              Expanded(
+                flex: 1,
+                child: wrapWithModel(
+                  model: _model.imageListViewModel,
+                  updateCallback: () => setState(() {}),
+                  child: Consumer<WebProductsProvider> (
+                    builder: (context, value, child) {
+                      List<Product> list = [];
+                      value.listProducts.forEach((element) {
+                        list.add(element);
+                      });
+                      return ImageListViewWidget(listParam: list);
+                    },
+                  ),
                 ),
               ),
             ],

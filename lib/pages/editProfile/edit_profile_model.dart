@@ -119,7 +119,7 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
       String uid = FirebaseAuthHandler.getUid() ?? '';
       if(uid.isNotEmpty) {
         FirestoreHandler firestore = FirestoreHandler();
-        String image = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/') ?? '';
+        String image = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/', 'profile') ?? '';
         Profile profile = Profile(
           imageFile: image,
           vendorName: textController1!.value.text,

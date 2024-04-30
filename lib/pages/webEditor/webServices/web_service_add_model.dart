@@ -64,7 +64,8 @@ class WebServiceAddModel extends FlutterFlowModel<WebServiceAddWidget> {
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       if((pickedFile != null) && domain.isNotEmpty && heading.isNotEmpty && desc.isNotEmpty) {
         FirestoreHandler firestore = FirestoreHandler();
-        String image1 = await FirebaseStorageService.uploadImage(pickedFile!, "$domain/") ?? '';
+        int count=Provider.of<WebServicesProvider>(context, listen: false).list.length;
+        String image1 = await FirebaseStorageService.uploadImage(pickedFile!, "$domain/", 'Services${count+1}') ?? '';
         Map<String,dynamic> data = {
           'image' : image1,
           'heading' : heading,

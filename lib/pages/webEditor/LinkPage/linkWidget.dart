@@ -392,47 +392,47 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                       ),
                     ),
                   ),
-                  if (!(isWeb
-                      ? MediaQuery.viewInsetsOf(context).bottom > 0
-                      : _isKeyboardVisible))
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 24),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          setState(() {
-                            _saving = true;
-                          });
-                          await _model.save(context);
-                          setState(() {
-                            _saving = false;
-                          });
-                          navigator.currentState!.pop();
-                        },
-                        text: 'Save ',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 60,
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          textStyle:
-                          FlutterFlowTheme.of(context).titleMedium.override(
-                            fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            letterSpacing: 0,
-                          ),
-                          elevation: 4,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(50),
-                          hoverColor: FlutterFlowTheme.of(context).primaryText,
+                  // if (!(isWeb
+                  //     ? MediaQuery.viewInsetsOf(context).bottom > 0
+                  //     : _isKeyboardVisible))
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 24),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        setState(() {
+                          _saving = true;
+                        });
+                        await _model.save(context);
+                        setState(() {
+                          _saving = false;
+                        });
+                        navigator.currentState!.pop();
+                      },
+                      text: 'Save ',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 60,
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        textStyle:
+                        FlutterFlowTheme.of(context).titleMedium.override(
+                          fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context)
+                              .secondaryBackground,
+                          letterSpacing: 0,
                         ),
+                        elevation: 4,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                        hoverColor: FlutterFlowTheme.of(context).primaryText,
                       ),
                     ),
+                  ),
                 ],
               ),
             ),

@@ -3,28 +3,31 @@ import 'dart:io';
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/firebaseHandlers/firebase_storage.dart';
+import 'package:call_info/providers/wp/wp_provider.dart';
 import 'package:call_info/providers/wp/wp_shared.dart';
+import 'package:call_info/util/custom_widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 import 'whatsapp_template_widget.dart' show WhatsappTemplateWidget;
 import 'package:flutter/material.dart';
 
-class WhtstempModel extends FlutterFlowModel<WhatsappTemplateWidget> {
+class WhatsappTemplateModel extends FlutterFlowModel<WhatsappTemplateWidget> {
   ///  State fields for stateful widgets in this page.
-  late BuildContext _context;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
 
-  static late File? pickedFile;
+  File? pickedFile;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    _context = context;
+
   }
 
   @override
@@ -53,45 +56,54 @@ class WhtstempModel extends FlutterFlowModel<WhatsappTemplateWidget> {
     return null;
   }
 
-  saveTemplate() async {
+  Future<void> saveTemplate(BuildContext context) async {
     // Upload the picked file
     try {
       String textData = textController!.value.text;
+      if(textData.isEmpty || pickedFile == null){
+        showToast(context: context, type: ToastificationType.info, title: 'Whatsapp Template', desc: 'Please fill the template..');
+        return;
+      }
+
       String uid = await FirebaseAuthHandler.getUid() ?? '';
       if(uid.isNotEmpty) {
-        String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/WhatsApp Images/');
-        if (imageUrl != null) {
-          print('Image uploaded. URL: $imageUrl');
+        // String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/WhatsApp Images/');
+        String imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/WhatsApp Images/', 'WhatsappImage') ?? '';
+        if (imageUrl.isNotEmpty) {
           FirestoreHandler firestore = FirestoreHandler();
           Map<String, dynamic> data = {
-            'whatsapp': {
+            'Whatsapp': {
               'text': textData,
-              'imageUrl': imageUrl,
+              'image': imageUrl,
             }
           };
-          String? uid = await FirebaseAuthHandler.getUid();
-          await firestore.updateFirestoreData("USERS", uid ?? 'dummy', data);
+          await firestore.updateFirestoreData("USERS", uid, data);
           firestore.closeConnection();
           WPMessageTemplate(text: textData, image: imageUrl).saveToShared();
+          Provider.of<WPProvider>(context, listen: false).updateText(textData);
+          Provider.of<WPProvider>(context, listen: false).updateImage(imageUrl);
+          showToast(context: context, type: ToastificationType.success, title: 'Whatsapp Template', desc: 'Whatsapp Template have been saved.');
         } else {
           print('Image upload failed.');
+          showToast(context: context, type: ToastificationType.warning, title: 'Whatsapp Template', desc: 'Please Try Again Later !.');
         }
       }
     } catch (e) {
       debugPrint('Error While saving: $e');
+      showToast(context: context, type: ToastificationType.error, title: 'Whatsapp Template', desc: 'Whatsapp Template Exception.');
     }
   }
 
-  void showToast() {
-    String text = textController.text;
-    Fluttertoast.showToast(
-      msg: text.isNotEmpty ? text : 'Text field is empty',
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-    );
-  }
+  // void showToast() {
+  //   String text = textController.text;
+  //   Fluttertoast.showToast(
+  //     msg: text.isNotEmpty ? text : 'Text field is empty',
+  //     toastLength: Toast.LENGTH_SHORT,
+  //     gravity: ToastGravity.CENTER,
+  //     backgroundColor: Colors.black,
+  //     textColor: Colors.white,
+  //   );
+  // }
 
   // showToast() {
   //   return toastification.show(
