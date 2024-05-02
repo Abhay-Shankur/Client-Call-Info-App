@@ -84,7 +84,7 @@ function App(props) {
       <Hero 
         businessName={WebsiteInfo.MasterData.businessName} 
         businessDescription={WebsiteInfo.MasterData.businessDescription} 
-        businessBanner={WebsiteInfo.MasterData.businessBanner}
+        imageBanner={WebsiteInfo.MasterData.imageBanner}
       />
       
       <Services data={WebsiteInfo.Services}/>

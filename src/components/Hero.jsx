@@ -15,13 +15,7 @@ function Hero(props) {
             </div>
           </div>
           <div className="col-lg-7">
-            {
-              props.businessBanner ? (
-                <img src={props.businessBanner} alt='CoverImage' className="img-fluid" />
-              ) : (
-                <img src="/images/CallInfosBanner.jpg" alt='Placeholder' className="img-fluid" />
-              )
-            }
+            <img src={props.imageBanner} alt='CoverImage' className="img-fluid" />
           </div>
         </div>
       </div>
