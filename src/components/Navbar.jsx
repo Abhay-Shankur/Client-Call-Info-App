@@ -1,12 +1,13 @@
 // Navbar.jsx
 import React from 'react';
 
-function Navbar(props) {
+function Navbar({businessName}) {
+
   return (
     <nav className="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="Furni navigation bar">
       {/* Navbar content */}
       <div className="container">
-			<span className="navbar-brand" >{props.businessName}.</span>
+			<span className="navbar-brand" >{businessName}.</span>
 
 			<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
 				aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
