@@ -118,13 +118,13 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FirebaseAuthHandler(context: context);
-    _init();
+    // _init();
   }
-
-  Future<void> _init() async {
-    // Check and request storage permissions
-    await PermissionManager.requestAll();
-  }
+  //
+  // Future<void> _init() async {
+  //   // Check and request storage permissions
+  //   await PermissionManager.requestAll();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -151,25 +151,9 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'Call Info',
         initialRoute: routeKeys.splashScreen,
-        // initialRoute: routeKeys.customTemplates,
+        // initialRoute: routeKeys.webPageEditorDashboard,
         routes: appRoutes,
         navigatorKey: navigator,
-        // initialRoute: '/vendor_login',
-        // routes: {
-        //   '/vendor_dashboard': (context) => const DashboradPageWidget(),
-        //   '/vendor_settings': (context) => const SettingsPageWidget(),
-        //   // '/vendor_logs': (context) => const CallLogsWidget(),
-        //   '/vendor_logs': (context) => const CalllogsWidget(),
-        //   '/vendor_faq': (context) => const FaqWidget(),
-        //   '/vendor_support': (context) => const CustomerSupportWidget(),
-        //   '/vendor_permission': (context) => const PermissionWidget(),
-        //   '/vendor_editProfile': (context) => const EditProfileWidget(),
-        //   '/vendor_profile': (context) => const ProfileWidget(),
-        //   '/vendor_otp': (context) => const OTPScreenWidget(),
-        //   '/vendor_login': (context) => const LoginPageWidget(),
-        //   '/splash': (context) => const SplashScreenWidget(),
-        //   // '/login': (context) => const LoginPhone(),
-        // },
       ),
     );
   }

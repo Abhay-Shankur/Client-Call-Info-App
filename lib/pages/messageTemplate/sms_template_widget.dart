@@ -5,7 +5,6 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -301,16 +300,6 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
       ],
     );
 
-  }
-  void showToast() {
-    String text = _model.textController.text;
-    Fluttertoast.showToast(
-      msg: text.isNotEmpty ? text : 'Text field is empty',
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-    );
   }
 
 }

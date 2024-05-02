@@ -58,4 +58,11 @@ class WebReviewsProvider extends ChangeNotifier {
     _list = value;
     notifyListeners();
   }
+
+  void removeAt(int index) {
+    if(index < _list.length){
+      _list.removeAt(index);
+      notifyListeners();
+    }
+  }
 }

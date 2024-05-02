@@ -22,7 +22,7 @@ class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
   @override
   void initState(BuildContext context) {
     modelContext = context;
-    _isLoggedIn();
+    // _isLoggedIn();
   }
 
   Future<void> _isLoggedIn() async {

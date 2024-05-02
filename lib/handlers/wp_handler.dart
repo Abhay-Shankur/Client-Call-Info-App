@@ -9,8 +9,10 @@ class WhatsappHandler {
 
   static Future<bool> sendWP({required String phone}) async {
     try {
+      await SharedPreferencesHelper.reload();
       WPMessageTemplate? _messageTemplate = await WPMessageTemplate.getFromShared();
       bool allowed = await SharedPreferencesHelper.getBool("allowWP") ?? false;
+
       if(_messageTemplate == null) {
         showNotification('Call Infos', 'Whatsapp Template is Empty.');
         return false;

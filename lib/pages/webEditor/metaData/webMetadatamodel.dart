@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/firebaseHandlers/firebase_storage.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
@@ -40,6 +44,8 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
   FocusNode? textFieldFocusNode7;
   TextEditingController? textController7;
   String? Function(BuildContext, String?)? textController7Validator;
+
+  File? pickedFile;
 
   @override
   void initState(BuildContext context) {}
@@ -89,10 +95,19 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
           'businessContact' : textController4!.value.text,
           'businessMail' : textController5!.value.text,
           'businessAddress' : textController6!.value.text,
+          'businessDescription' : textController7!.value.text,
         },
       };
-      debugPrint('Data: ${data.toString()}');
+
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
+
+      if(pickedFile != null) {
+        String imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, '$domain/', 'banner') ?? '';
+        data['MasterData']['imageBanner'] = imageUrl;
+        provider.updateImageBanner(imageUrl);
+      }
+
+      debugPrint('Data: ${data.toString()}');
       FirestoreHandler firestoreHandler = FirestoreHandler();
       await firestoreHandler.updateFirestoreData("Website", domain, data);
       firestoreHandler.closeConnection();
@@ -105,85 +120,19 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
     }
   }
 
-  showToasti({required BuildContext context, required bool res}){
-    if(res) {
-      return toastification.show(
-        context: context,
-        type: ToastificationType.success,
-        style: ToastificationStyle.minimal,
-        autoCloseDuration: const Duration(seconds: 5),
-        title: 'Metadata',
-        // you can also use RichText widget for title and description parameters
-        description: 'Information have been saved.',
-        alignment: Alignment.bottomLeft,
-        animationDuration: const Duration(milliseconds: 300),
-        animationBuilder: (context, animation, alignment, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-        icon: const Icon(Icons.check),
-        primaryColor: Colors.green,
-        backgroundColor: Colors.green.shade50,
-        foregroundColor: Colors.black,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x07000000),
-            blurRadius: 16,
-            offset: Offset(0, 16),
-            spreadRadius: 0,
-          )
-        ],
-        showProgressBar: true,
-        closeButtonShowType: CloseButtonShowType.onHover,
-        closeOnClick: false,
-        pauseOnHover: true,
-        dragToClose: true,
-      );
-    } else {
-      return toastification.show(
-        context: context,
-        type: ToastificationType.warning,
-        style: ToastificationStyle.minimal,
-        autoCloseDuration: const Duration(seconds: 5),
-        title: 'Metadata',
-        // you can also use RichText widget for title and description parameters
-        description: 'Failed to save information!',
-        alignment: Alignment.bottomLeft,
-        animationDuration: const Duration(milliseconds: 300),
-        animationBuilder: (context, animation, alignment, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-        icon: const Icon(Icons.check),
-        primaryColor: Colors.red,
-        backgroundColor: Color.fromARGB(255, 255, 110, 110),
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x07000000),
-            blurRadius: 16,
-            offset: Offset(0, 16),
-            spreadRadius: 0,
-          )
-        ],
-        showProgressBar: true,
-        closeButtonShowType: CloseButtonShowType.onHover,
-        closeOnClick: false,
-        pauseOnHover: true,
-        dragToClose: true,
-      );
+  Future<File?> pickFile() async {
+    try {
+      final result = await FilePicker.platform.pickFiles();
+      if (result != null) {
+        pickedFile = File(result.files.single.path!);
+        return pickedFile;
+      } else {
+        // User canceled the picker
+        print('No file selected.');
+      }
+    } catch (e) {
+      print('Error picking file: $e');
     }
-
+    return null;
   }
-
 }

@@ -60,4 +60,11 @@ class WebServicesProvider extends ChangeNotifier {
     _list.add(services);
     notifyListeners();
   }
+
+  void removeAt(int index) {
+    if(index < _list.length){
+      _list.removeAt(index);
+      notifyListeners();
+    }
+  }
 }

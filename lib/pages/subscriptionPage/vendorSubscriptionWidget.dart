@@ -174,7 +174,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                           value: _model.switchListTileValue1 ??= false,
                                           onChanged: (newValue) async {
                                             setState(() => _model.switchListTileValue1 = newValue);
-                                            SharedPreferencesHelper.setBool("allowSMS", newValue);
+                                            await SharedPreferencesHelper.setBool("allowSMS", newValue);
                                           },
                                           title: Text(
                                             'SMS',
@@ -200,7 +200,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                           value: _model.switchListTileValue2 ??= false,
                                           onChanged: (newValue) async {
                                             setState(() => _model.switchListTileValue2 = newValue);
-                                            SharedPreferencesHelper.setBool("allowWP", newValue);
+                                            await SharedPreferencesHelper.setBool("allowWP", newValue);
                                           },
                                           title: Text(
                                             'WhatsApp ',

@@ -51,18 +51,22 @@ class LinksPageModel extends FlutterFlowModel<LinksPageWidget> {
       instagram.trim();
       facebook.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
-      if(whatsapp.isNotEmpty && instagram.isNotEmpty && facebook.isNotEmpty && domain.isNotEmpty) {
-        FirestoreHandler firestore = FirestoreHandler();
-        Links links = Links(whatsappLink: whatsapp, instagramLink: instagram, facebookLink: facebook);
-        Map<String, dynamic> data = {
-          'Links' : links.toMap()
-        };
-        await firestore.updateFirestoreData("Website", domain, data);
-        Provider.of<WebLinksProvider>(context, listen: false).updateLinks(links);
-        firestore.closeConnection();
-        showToast(context: context, type: ToastificationType.success, title: 'Links Page', desc: 'Information have been saved.');
+      if(domain.isNotEmpty) {
+        if(whatsapp.isNotEmpty && instagram.isNotEmpty && facebook.isNotEmpty) {
+          FirestoreHandler firestore = FirestoreHandler();
+          Links links = Links(whatsappLink: whatsapp, instagramLink: instagram, facebookLink: facebook);
+          Map<String, dynamic> data = {
+            'Links' : links.toMap()
+          };
+          await firestore.updateFirestoreData("Website", domain, data);
+          Provider.of<WebLinksProvider>(context, listen: false).updateLinks(links);
+          firestore.closeConnection();
+          showToast(context: context, type: ToastificationType.success, title: 'Links Page', desc: 'Information have been saved.');
+        } else {
+          showToast(context: context, type: ToastificationType.warning, title: 'Links Page', desc: 'Failed to Update.');
+        }
       } else {
-        showToast(context: context, type: ToastificationType.warning, title: 'Links Page', desc: 'Failed to Update.');
+        showToast(context: context, type: ToastificationType.warning, title: 'Links Page', desc: 'Please Register your Domain.');
       }
       return true;
     } catch (e) {

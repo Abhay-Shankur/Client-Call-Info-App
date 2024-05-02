@@ -248,9 +248,9 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                             value: _model.switchListTileValue1 ??=
                                             false,
                                             onChanged: (newValue) async {
-                                              setState(() =>
-                                              _model.switchListTileValue1 =
-                                                  newValue);
+                                              setState(()  {
+                                                _model.switchListTileValue1 = newValue;
+                                              });
                                               await Provider.of<SMSProvider>(context, listen: false).updateAllowed(newValue);
                                             },
                                             title: Text(

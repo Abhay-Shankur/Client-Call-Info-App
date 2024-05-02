@@ -96,4 +96,11 @@ class WebProductsProvider extends ChangeNotifier {
     _listProducts = list;
     notifyListeners();
   }
+
+  void removeAt(int index) {
+    if(index < _listProducts.length){
+      _listProducts.removeAt(index);
+      notifyListeners();
+    }
+  }
 }

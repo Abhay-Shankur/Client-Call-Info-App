@@ -4,6 +4,7 @@ import 'package:call_info/main.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../providers/sms/sms_shared.dart';
@@ -11,6 +12,11 @@ import '../providers/sms/sms_shared.dart';
 class SmsHandler {
 
   // static SMSProvider provider = SMSProviderSingleton.instance;
+  static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
+
+  void updatePermissionStatus(bool newStatus) {
+    _channel.invokeMethod('updatePermissionStatus', {'permissionStatus': newStatus});
+  }
 
   static Future<bool> requestPermission() async {
     var permissions = await [Permission.sms].request();
@@ -27,9 +33,10 @@ class SmsHandler {
 
   static Future<bool> sendMessage(String phoneNumber, {int? simSlot}) async {
     try {
+      await SharedPreferencesHelper.reload();
       SMSMessageTemplate? _message = await SMSMessageTemplate.getFromShared();
-      bool? allowed = await SharedPreferencesHelper.getBool("allowSMS") ?? false;
-      // String msg = await SharedPreferencesHelper.getString('smsMsg');
+      bool allowed = await SharedPreferencesHelper.getBool("allowSMS") ?? false;
+
       if(_message == null) {
         showNotification('Call Infos', 'SMS Template is Empty.');
         return false;

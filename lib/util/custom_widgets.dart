@@ -107,3 +107,16 @@ void showNotification(String title, String message) async {
     platformChannelSpecifics,
   );
 }
+
+
+// void showToast() {
+//   String text = _model.textController.text;
+//
+//   Fluttertoast.showToast(
+//     msg: text.isNotEmpty ? text : 'Text field is empty',
+//     toastLength: Toast.LENGTH_SHORT,
+//     gravity: ToastGravity.CENTER,
+//     backgroundColor: Colors.black,
+//     textColor: Colors.white,
+//   );
+// }

@@ -4,22 +4,24 @@ import 'package:flutter/material.dart';
 
 // Define a class to represent the data
 class WebMetaDataProvider extends ChangeNotifier {
-  String _ownerName = '';
-  String _ownerContact = '';
-  String _businessName = '';
-  String _businessDescription = '';
-  String _businessContact = '';
-  String _businessAddress = '';
-  String _businessMail = '';
+  String? _imageBanner;
+  String? _ownerName ;
+  String? _ownerContact ;
+  String? _businessName ;
+  String? _businessDescription ;
+  String? _businessContact ;
+  String? _businessAddress ;
+  String? _businessMail ;
 
   // Getters for accessing the data
-  String get ownerName => _ownerName;
-  String get ownerContact => _ownerContact;
-  String get businessName => _businessName;
-  String get businessDescription => _businessDescription;
-  String get businessContact => _businessContact;
-  String get businessAddress => _businessAddress;
-  String get businessMail => _businessMail;
+  String? get imageBanner => _imageBanner;
+  String? get ownerName => _ownerName;
+  String? get ownerContact => _ownerContact;
+  String? get businessName => _businessName;
+  String? get businessDescription => _businessDescription;
+  String? get businessContact => _businessContact;
+  String? get businessAddress => _businessAddress;
+  String? get businessMail => _businessMail;
 
   // Constructor to set default value from Firestore
   WebMetaDataProvider() {
@@ -33,16 +35,25 @@ class WebMetaDataProvider extends ChangeNotifier {
       if (uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
         String domainName =
-            await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
+            await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? '';
         Map<String, dynamic> data = await firestore.readFieldAtPath(
             "Website", domainName, 'MasterData') as Map<String, dynamic>;
-        _ownerName = data['ownerName'];
-        _ownerContact = data['ownerContact'];
-        _businessName = data['businessName'];
-        _businessDescription = data['businessDescription'];
-        _businessContact = data['businessContact'];
-        _businessMail = data['businessMail'];
-        _businessAddress = data['businessAddress'];
+        debugPrint('${data.toString()}');
+        updateImageBanner(data['imageBanner']);
+        // _ownerName = data['ownerName'];
+        updateOwnerName(data['ownerName']);
+        // _ownerContact = data['ownerContact'];
+        updateOwnerContact(data['ownerContact']);
+        // _businessName = data['businessName'];
+        updateBusinessName(data['businessName']);
+        // _businessContact = data['businessContact'];
+        updateBusinessContact(data['businessContact']);
+        // _businessMail = data['businessMail'];
+        updateBusinessMail(data['businessMail']);
+        // _businessAddress = data['businessAddress'];
+        updateBusinessAddress(data['businessAddress']);
+        // _businessDescription = data['businessDescription'];
+        updateBusinessDescription(data['businessDescription']) ;
         debugPrint('Master Data Initialized.');
         firestore.closeConnection();
         notifyListeners();
@@ -55,37 +66,42 @@ class WebMetaDataProvider extends ChangeNotifier {
   }
 
   // Methods to update the data
-  void updateOwnerName(String name) {
+  void updateImageBanner(String? value) {
+    _imageBanner = value;
+    notifyListeners();
+  }
+
+  void updateOwnerName(String? name) {
     _ownerName = name;
     notifyListeners();
   }
 
-  void updateOwnerContact(String contact) {
+  void updateOwnerContact(String? contact) {
     _ownerContact = contact;
     notifyListeners();
   }
 
-  void updateBusinessName(String name) {
+  void updateBusinessName(String? name) {
     _businessName = name;
     notifyListeners();
   }
 
-  void updateBusinessDescription(String desc) {
+  void updateBusinessDescription(String? desc) {
     _businessDescription = desc;
     notifyListeners();
   }
 
-  void updateBusinessContact(String contact) {
+  void updateBusinessContact(String? contact) {
     _businessContact = contact;
     notifyListeners();
   }
 
-  void updateBusinessAddress(String address) {
+  void updateBusinessAddress(String? address) {
     _businessAddress = address;
     notifyListeners();
   }
 
-  void updateBusinessMail(String mail) {
+  void updateBusinessMail(String? mail) {
     _businessMail = mail;
     notifyListeners();
   }

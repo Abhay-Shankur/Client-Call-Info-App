@@ -62,25 +62,29 @@ class WebServiceAddModel extends FlutterFlowModel<WebServiceAddWidget> {
       String desc = textController2!.value.text ?? '';
       desc.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
-      if((pickedFile != null) && domain.isNotEmpty && heading.isNotEmpty && desc.isNotEmpty) {
-        FirestoreHandler firestore = FirestoreHandler();
-        int count=Provider.of<WebServicesProvider>(context, listen: false).list.length;
-        String image1 = await FirebaseStorageService.uploadImage(pickedFile!, "$domain/", 'Services${count+1}') ?? '';
-        Map<String,dynamic> data = {
-          'image' : image1,
-          'heading' : heading,
-          'description' : desc
-        };
-        await firestore.pushToArray("Website", domain, "Services", data);
-        firestore.closeConnection();
-        WebServices services = WebServices.fromMap(data);
-        Provider.of<WebServicesProvider>(context, listen: false).updateList(services);
-        showToast(context: context, type: ToastificationType.success, title: 'WebServices', desc: 'Information have been saved.');
+      if(domain.isNotEmpty) {
+        if((pickedFile != null) && domain.isNotEmpty && heading.isNotEmpty && desc.isNotEmpty) {
+          FirestoreHandler firestore = FirestoreHandler();
+          int count=Provider.of<WebServicesProvider>(context, listen: false).list.length;
+          String image1 = await FirebaseStorageService.uploadImage(pickedFile!, "$domain/", 'Services${count+1}') ?? '';
+          Map<String,dynamic> data = {
+            'image' : image1,
+            'heading' : heading,
+            'description' : desc
+          };
+          await firestore.pushToArray("Website", domain, "Services", data);
+          firestore.closeConnection();
+          WebServices services = WebServices.fromMap(data);
+          Provider.of<WebServicesProvider>(context, listen: false).updateList(services);
+          showToast(context: context, type: ToastificationType.success, title: 'WebServices', desc: 'Information have been saved.');
+          return true;
+        } else {
+          showToast(context: context, type: ToastificationType.warning, title: 'WebServices', desc: 'Failed to Update.');
+        }
       } else {
-
-        showToast(context: context, type: ToastificationType.warning, title: 'WebServices', desc: 'Failed to Update.');
+        showToast(context: context, type: ToastificationType.warning, title: 'WebServices', desc: 'Please Register domain first.');
       }
-      return true;
+      return false;
     } catch (e) {
       debugPrint('Exception: $e');
       showToast(context: context, type: ToastificationType.error, title: 'WebServices', desc: 'Exception');

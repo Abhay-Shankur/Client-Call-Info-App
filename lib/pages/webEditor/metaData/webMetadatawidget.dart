@@ -125,19 +125,70 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // Generated code for this Container Widget...
                                 Padding(
-                                  padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 8),
-                                  child: Text(
-                                    'Basic  Information',
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayMedium
-                                        .override(
-                                      fontFamily: 'Outfit',
-                                      fontSize: 30,
-                                      letterSpacing: 0,
-                                      decoration: TextDecoration.underline,
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      await _model.pickFile();
+                                      setState(() {
+                                        _model.pickedFile;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 175,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 5,
+                                            color: Color(0x33000000),
+                                            offset: Offset(
+                                              0,
+                                              2,
+                                            ),
+                                            spreadRadius: 2,
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.circular(24),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context).alternate,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(4),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(24),
+                                          child: Consumer<WebMetaDataProvider> (
+                                            builder: (context, value, child) {
+                                              if(_model.pickedFile != null) {
+                                                return Image.file(
+                                                  _model.pickedFile!,
+                                                  width: 300,
+                                                  height: 63,
+                                                  fit: BoxFit.contain,
+                                                );
+                                              } else if (value.imageBanner != null) {
+                                                return FadeInImage(
+                                                    placeholder: AssetImage('assets/images/productImage.jpg'),
+                                                    image: NetworkImage(value.imageBanner!),
+                                                    width: 300,
+                                                    height: 63,
+                                                    fit: BoxFit.contain,
+                                                );
+                                              } else {
+                                                return Image.asset(
+                                                  'assets/images/uploadImage.jpg',
+                                                  width: 300,
+                                                  height: 63,
+                                                  fit: BoxFit.contain,
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -146,7 +197,8 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider> (
                                     builder: (context, value, child) {
-                                      _model.textController1 = TextEditingController(text: value.ownerName);
+                                      if(value.ownerName != null)
+                                        _model.textController1 = TextEditingController(text: value.ownerName);
                                       return TextFormField(
                                         controller: _model.textController1,
                                         focusNode: _model.textFieldFocusNode1,
@@ -229,7 +281,8 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child){
-                                      _model.textController2 = TextEditingController(text: value.ownerContact);
+                                      if(value.ownerContact != null)
+                                        _model.textController2 = TextEditingController(text: value.ownerContact);
                                       return TextFormField(
                                         controller: _model.textController2,
                                         focusNode: _model.textFieldFocusNode2,
@@ -312,7 +365,8 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
-                                      _model.textController3 = TextEditingController(text: value.businessName);
+                                      if(value.businessName != null)
+                                        _model.textController3 = TextEditingController(text: value.businessName);
                                       return TextFormField(
                                         controller: _model.textController3,
                                         focusNode: _model.textFieldFocusNode3,
@@ -395,7 +449,8 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
-                                      _model.textController4 = TextEditingController(text: value.businessContact);
+                                      if(value.businessContact != null)
+                                        _model.textController4 = TextEditingController(text: value.businessContact);
                                       return TextFormField(
                                         controller: _model.textController4,
                                         focusNode: _model.textFieldFocusNode4,
@@ -479,7 +534,8 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
-                                      _model.textController5 = TextEditingController(text: value.businessMail);
+                                      if(value.businessMail != null)
+                                        _model.textController5 = TextEditingController(text: value.businessMail);
                                       return TextFormField(
                                         controller: _model.textController5,
                                         focusNode: _model.textFieldFocusNode5,
@@ -562,7 +618,8 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider> (
                                     builder: (context, value, child) {
-                                      _model.textController6 = TextEditingController(text: value.businessAddress);
+                                      if(value.businessAddress != null)
+                                        _model.textController6 = TextEditingController(text: value.businessAddress);
                                       return TextFormField(
                                         controller: _model.textController6,
                                         focusNode: _model.textFieldFocusNode6,
@@ -646,7 +703,8 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider> (
                                     builder:(context, value, child) {
-                                      _model.textController7 = TextEditingController(text: value.businessDescription);
+                                      if(value.businessDescription != null)
+                                        _model.textController7 = TextEditingController(text: value.businessDescription);
                                       return TextFormField(
                                         controller: _model.textController7,
                                         focusNode: _model.textFieldFocusNode7,

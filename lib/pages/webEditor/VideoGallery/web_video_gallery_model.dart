@@ -37,22 +37,27 @@ class WebVideoGalleryModel extends FlutterFlowModel<WebVideoGalleryWidget> {
       String link = emailAddressTextController!.value.text ?? '';
       link.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
-      if(link.isNotEmpty && domain.isNotEmpty) {
-        FirestoreHandler firestore = FirestoreHandler();
-        await firestore.pushToArray("Website", domain, "Gallery.Videos", link);
-        List<String> listLink = Provider.of<WebVideoGalleryProvider>(context, listen: false).list;
-        listLink.add(link);
-        Provider.of<WebVideoGalleryProvider>(context, listen: false).updateList(listLink);
-        firestore.closeConnection();
-        showToast(context: context, type: ToastificationType.success, title: 'Image Gallery', desc: 'Information have been saved.');
-      } else {
 
-        showToast(context: context, type: ToastificationType.warning, title: 'Image Gallery', desc: 'Failed to Update.');
+      if(domain.isNotEmpty) {
+        if(link.isNotEmpty && domain.isNotEmpty) {
+          FirestoreHandler firestore = FirestoreHandler();
+          await firestore.pushToArray("Website", domain, "Gallery.Videos", link);
+          List<String> listLink = Provider.of<WebVideoGalleryProvider>(context, listen: false).list;
+          listLink.add(link);
+          Provider.of<WebVideoGalleryProvider>(context, listen: false).updateList(listLink);
+          firestore.closeConnection();
+          showToast(context: context, type: ToastificationType.success, title: 'Video Gallery', desc: 'Information have been saved.');
+          return true;
+        } else {
+          showToast(context: context, type: ToastificationType.warning, title: 'Video Gallery', desc: 'Failed to Update.');
+        }
+      } else {
+        showToast(context: context, type: ToastificationType.warning, title: 'Video Gallery', desc: 'Please Register domain first.');
       }
-      return true;
+      return false;
     } catch (e) {
       debugPrint('Exception: $e');
-      showToast(context: context, type: ToastificationType.error, title: 'Image Gallery', desc: 'Exception');
+      showToast(context: context, type: ToastificationType.error, title: 'Video Gallery', desc: 'Exception');
       return false;
     }
   }

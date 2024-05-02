@@ -1,5 +1,6 @@
 // call_handler.dart
 
+import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:call_info/handlers/sms_handler.dart';
 import 'package:call_info/handlers/wp_handler.dart';
 import 'package:call_info/main.dart';
@@ -11,16 +12,21 @@ import 'package:provider/provider.dart';
 
 class CallHandler {
   static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
+  static const MethodChannel _permission = MethodChannel('com.callinfo.application.call_info/permission');
 
   static String _phoneNumber = '';
   static String _callType = '';
+  static bool _smsAllowed = false;
 
   static void setupCallHandler() {
     _channel.setMethodCallHandler((call) async {
       if (call.method == 'receiveCallType') {
         _callType = call.arguments['callType'];
         _phoneNumber = call.arguments['phoneNumber'];
+
         // onCallTypeReceived(_callType);
+        // _smsAllowed = await SharedPreferencesHelper.getBool('allowSMS') ?? false;
+        // debugPrint('Permission: $_smsAllowed');
         if(_callType == 'Ongoing') {
           // _showNotification("Sending Incoming Message"); // Send notification
 

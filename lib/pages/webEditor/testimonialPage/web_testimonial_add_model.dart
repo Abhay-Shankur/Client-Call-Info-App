@@ -41,28 +41,34 @@ class WebTestimonialAddModel extends FlutterFlowModel<WebTestimonialAddWidget> {
       String desc = textController2!.value.text ?? '';
       desc.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
-      if(domain.isNotEmpty && name.isNotEmpty && desc.isNotEmpty) {
-        FirestoreHandler firestore = FirestoreHandler();
-        Map<String,dynamic> data = {
+
+      if(domain.isNotEmpty) {
+        if(name.isNotEmpty && desc.isNotEmpty) {
+          FirestoreHandler firestore = FirestoreHandler();
+          Map<String,dynamic> data = {
             'name' : name,
             'description' : desc
-        };
-        await firestore.pushToArray("Website", domain, "Reviews", data);
-        List<dynamic> dynlist= await firestore.readFieldAtPath("Website", domain, "Reviews") ?? [];
-        // List<Reviews> list= await firestore.readFieldAtPath("Website", domain, "Reviews") ?? [];
-        List<Reviews> list = [];
-        dynlist.forEach((element) {
-          if(element is Map<String, dynamic>){
-            list.add(Reviews.fromMap(element));
-          }
-        });
-        Provider.of<WebReviewsProvider>(context, listen: false).updateList(list);
-        firestore.closeConnection();
-        showToast(context: context, type: ToastificationType.success, title: 'Testimonials', desc: 'Information have been saved.');
+          };
+          await firestore.pushToArray("Website", domain, "Reviews", data);
+          List<dynamic> dynlist= await firestore.readFieldAtPath("Website", domain, "Reviews") ?? [];
+          // List<Reviews> list= await firestore.readFieldAtPath("Website", domain, "Reviews") ?? [];
+          List<Reviews> list = [];
+          dynlist.forEach((element) {
+            if(element is Map<String, dynamic>){
+              list.add(Reviews.fromMap(element));
+            }
+          });
+          Provider.of<WebReviewsProvider>(context, listen: false).updateList(list);
+          firestore.closeConnection();
+          showToast(context: context, type: ToastificationType.success, title: 'Testimonials', desc: 'Information have been saved.');
+          return true;
+        } else {
+          showToast(context: context, type: ToastificationType.warning, title: 'Testimonials', desc: 'Failed to Update.');
+        }
       } else {
-        showToast(context: context, type: ToastificationType.warning, title: 'Testimonials', desc: 'Failed to Update.');
+        showToast(context: context, type: ToastificationType.warning, title: 'Testimonials', desc: 'Please Register domain first.');
       }
-      return true;
+      return false;
     } catch (e) {
       debugPrint('Exception: $e');
       showToast(context: context, type: ToastificationType.error, title: 'Testimonials', desc: 'Exception');

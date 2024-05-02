@@ -39,17 +39,20 @@ class WebImageGalleyModel extends FlutterFlowModel<WebImageGalleyWidget> {
       String link = emailAddressTextController!.value.text ?? '';
       link.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
-      if(link.isNotEmpty && domain.isNotEmpty) {
-        FirestoreHandler firestore = FirestoreHandler();
-        await firestore.pushToArray("Website", domain, "Gallery.Photos", link);
-        List<String> listLink = Provider.of<WebPhotoGalleryProvider>(context, listen: false).list;
-        listLink.add(link);
-        Provider.of<WebPhotoGalleryProvider>(context, listen: false).updateList(listLink);
-        firestore.closeConnection();
-        showToast(context: context, type: ToastificationType.success, title: 'Image Gallery', desc: 'Information have been saved.');
+      if(domain.isNotEmpty) {
+        if(link.isNotEmpty) {
+          FirestoreHandler firestore = FirestoreHandler();
+          await firestore.pushToArray("Website", domain, "Gallery.Photos", link);
+          List<String> listLink = Provider.of<WebPhotoGalleryProvider>(context, listen: false).list;
+          listLink.add(link);
+          Provider.of<WebPhotoGalleryProvider>(context, listen: false).updateList(listLink);
+          firestore.closeConnection();
+          showToast(context: context, type: ToastificationType.success, title: 'Image Gallery', desc: 'Information have been saved.');
+        } else {
+          showToast(context: context, type: ToastificationType.warning, title: 'Image Gallery', desc: 'Failed to Update.');
+        }
       } else {
-
-        showToast(context: context, type: ToastificationType.warning, title: 'Image Gallery', desc: 'Failed to Update.');
+        showToast(context: context, type: ToastificationType.warning, title: 'Image Gallery', desc: 'Please Register Domain first.');
       }
       return true;
     } catch (e) {

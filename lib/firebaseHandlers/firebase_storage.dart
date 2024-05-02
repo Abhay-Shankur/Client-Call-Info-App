@@ -26,23 +26,23 @@ class FirebaseStorageService {
     }
   }
 
-  static Future<String> uploadFile(File file, String folderName, String fileName) async {
-    try {
-      // Create a reference to the Firebase storage bucket
-      Reference storageReference = _storage.ref().child(folderName).child(fileName);
-
-      // Upload the file to Firebase Cloud Storage
-      TaskSnapshot uploadTask = await storageReference.putFile(file);
-
-      // Get the download URL of the uploaded file
-      String downloadURL = await uploadTask.ref.getDownloadURL();
-
-      // Return the download URL
-      return downloadURL;
-    } catch (e) {
-      // Handle any errors that occur during the upload process
-      print('Error uploading file: $e');
-      return '';
-    }
-  }
+  // static Future<String> uploadFile(File file, String folderName, String fileName) async {
+  //   try {
+  //     // Create a reference to the Firebase storage bucket
+  //     Reference storageReference = _storage.ref().child(folderName).child(fileName);
+  //
+  //     // Upload the file to Firebase Cloud Storage
+  //     TaskSnapshot uploadTask = await storageReference.putFile(file);
+  //
+  //     // Get the download URL of the uploaded file
+  //     String downloadURL = await uploadTask.ref.getDownloadURL();
+  //
+  //     // Return the download URL
+  //     return downloadURL;
+  //   } catch (e) {
+  //     // Handle any errors that occur during the upload process
+  //     print('Error uploading file: $e');
+  //     return '';
+  //   }
+  // }
 }

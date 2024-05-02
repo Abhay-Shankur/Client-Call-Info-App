@@ -2,6 +2,7 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/handlers/shared_preferences_helper.dart';
+import 'package:call_info/handlers/sms_handler.dart';
 import 'package:call_info/providers/sms/sms_shared.dart';
 import 'package:flutter/material.dart';
 
@@ -61,6 +62,8 @@ class SMSProvider extends ChangeNotifier {
         };
         await firestore.updateFirestoreData("USERS", uid, data);
         await SharedPreferencesHelper.setBool('allowSMS', _allowed);
+        //TODO:
+        // SmsHandler().updatePermissionStatus(_allowed);
         debugPrint('SMS Data Saved to Firestore.');
         firestore.closeConnection();
       } else {

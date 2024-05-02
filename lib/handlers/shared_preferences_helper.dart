@@ -6,6 +6,11 @@ class SharedPreferencesHelper {
 
   static String deviceTokenKey = 'deviceToken';
 
+  static Future<void> reload() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
+  }
+
   // Save authentication token to SharedPreferences
   static Future<void> saveDeviceToken(String authToken) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

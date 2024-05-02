@@ -91,28 +91,35 @@ class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
 
   Future<bool> createProduct(BuildContext context) async {
     try {
-      String domainName = Provider.of<WebDomainProvider>(context, listen: false).domainName;
+      String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       List<Product> list = Provider.of<WebProductsProvider>(context, listen: false).listProducts;
 
-      String? imagePath = await FirebaseStorageService.uploadImage(pickedFile!,'$domainName/', 'Product${list.length+1}');
+      if(domain.isNotEmpty) {
 
-      Product product = new Product();
-      product.imagePath = imagePath.toString();
-      product.productName = productNameTextController1!.value.text.toString();
-      product.productPrice = productNameTextController2!.value.text.toString();
-      product.productDescription = descriptionTextController!.value.text.toString();
+        String? imagePath = await FirebaseStorageService.uploadImage(pickedFile!,'$domain/', 'Product${list.length+1}');
 
-      list.add(product);
-      Provider.of<WebProductsProvider>(context, listen: false).addProduct(list);
+        Product product = new Product();
+        product.imagePath = imagePath.toString();
+        product.productName = productNameTextController1!.value.text.toString();
+        product.productPrice = productNameTextController2!.value.text.toString();
+        product.productDescription = descriptionTextController!.value.text.toString();
 
-      FirestoreHandler firestore = FirestoreHandler();
-      List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, "ProductsList") ?? [];
-      dynlist.add(product.toMap());
-      debugPrint('Updated List: ${dynlist.toString()}');
-      await firestore.updateFirestoreData("Website", domainName, {'ProductsList': dynlist });
-      firestore.closeConnection();
-      showToast(context: context, type: ToastificationType.success, title: 'Products', desc: 'Products have been Added.');
-      return true;
+        list.add(product);
+        Provider.of<WebProductsProvider>(context, listen: false).addProduct(list);
+
+        FirestoreHandler firestore = FirestoreHandler();
+        List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domain, "ProductsList") ?? [];
+        dynlist.add(product.toMap());
+        debugPrint('Updated List: ${dynlist.toString()}');
+        await firestore.updateFirestoreData("Website", domain, {'ProductsList': dynlist });
+        firestore.closeConnection();
+        showToast(context: context, type: ToastificationType.success, title: 'Products', desc: 'Products have been Added.');
+        return true;
+      } else {
+        showToast(context: context, type: ToastificationType.warning, title: 'Products', desc: 'Please Register domain first.');
+        return false;
+      }
+
     } catch (e) {
       debugPrint('Exception...$e');
       showToast(context: context, type: ToastificationType.error, title: 'Products', desc: 'Failed to save product information!');

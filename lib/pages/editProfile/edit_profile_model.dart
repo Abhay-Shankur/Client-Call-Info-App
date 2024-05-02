@@ -106,28 +106,22 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   }
 
   Future<void> saveProfile(BuildContext context) async{
-    Profile newProfile = Profile(
-        imageFile: pickedFile!.path,
-        vendorName: textController1!.value.text,
-        vendorEmail: textController2!.value.text,
-        vendorContact: textController3!.value.text,
-        businessName: textController4!.value.text,
-        businessDescription: textController5!.value.text
-    );
     // _profileProvider!.updateProfile(newProfile);
     try{
       String uid = FirebaseAuthHandler.getUid() ?? '';
       if(uid.isNotEmpty) {
         FirestoreHandler firestore = FirestoreHandler();
-        String image = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/', 'profile') ?? '';
         Profile profile = Profile(
-          imageFile: image,
           vendorName: textController1!.value.text,
           vendorEmail: textController2!.value.text,
           vendorContact: textController3!.value.text,
           businessName: textController4!.value.text,
           businessDescription: textController5!.value.text
         );
+        if(pickedFile != null) {
+          String image = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/', 'profile') ?? '';
+          profile.imageFile = image;
+        }
         Map<String,dynamic> data = {
           'Profile' : profile.toMap()
         };

@@ -92,6 +92,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                   textCapitalization: TextCapitalization.words,
                                   obscureText: false,
                                   decoration: InputDecoration(
+                                    prefix: Text('https://call-infos.web.app/'),
                                     labelText: 'Enter your domain',
                                     labelStyle: MyTheme.of(context).labelLarge.override(
                                       fontFamily: 'Readex Pro',

@@ -1,3 +1,5 @@
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/main.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -214,6 +216,19 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     _model = createModel(context, () => SplashScreenModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    _init();
+    _isLoggedIn();
+  }
+
+  Future<void> _init() async {
+    // Check and request storage permissions
+    await PermissionManager.requestAll();
+  }
+
+  Future<void> _isLoggedIn() async {
+    if(await FirebaseAuthHandler(context: navigator.currentState!.context).checkLoginStatus()) {
+      navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.vendorDashboard, (route) => false);
+    }
   }
 
   @override

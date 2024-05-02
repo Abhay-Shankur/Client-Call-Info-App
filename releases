@@ -151,3 +151,9 @@ Added Backend for Subscription Page.
 Modified SMS Provider.
 Modified WP Provider.
 SetUp the Flow.
+
+1.0.28(Abhay):
+Added delete functionality.
+Resolved Handlers Status.
+Added Domain Warning for WebEditors.
+Added Banner Image and Description for WebMasterData.

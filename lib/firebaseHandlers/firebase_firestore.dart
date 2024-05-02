@@ -93,6 +93,48 @@ class FirestoreHandler {
     return null; // Return null if document not found or field doesn't exist
   }
 
+  Future<void> deleteListItemAtIndexAtPath(String collection, String document, String listPath, int index) async {
+    try {
+      // Create a reference to the document
+      var docRef = _firestore.collection(collection).doc(document);
+
+      // Get the current list
+      var snapshot = await docRef.get();
+      var currentList = snapshot.data()?[listPath] ?? [];
+
+      // Check if the index is valid
+      if (index >= 0 && index < currentList.length) {
+        // Remove the item at the specified index from the list
+        currentList.removeAt(index);
+
+        // Update the list in Firestore
+        await docRef.update({
+          listPath: currentList,
+        });
+
+        debugPrint('Item deleted from list at index $index and path $listPath successfully');
+      } else {
+        debugPrint('Invalid index');
+        throw Exception('Invalid index');
+      }
+    } catch (e) {
+      debugPrint('Error deleting item from list at index and path: $e');
+      throw FormatException('Error deleting item from list at index and path: $e');
+    }
+  }
+
+  Future<bool> isExists(String collection, String documentId) async {
+    // Create a reference to the document
+    var docRef = _firestore.collection(collection).doc(documentId);
+
+    // Check if the document already exists
+    var snapshot = await docRef.get();
+    if (snapshot.exists) {
+      return true;
+    }
+    return false;
+  }
+
   Future<void> createEmptyDocument(String collection, String documentId) async {
     try {
       // Create a reference to the document
