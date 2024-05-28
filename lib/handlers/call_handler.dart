@@ -1,14 +1,9 @@
 // call_handler.dart
 
-import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:call_info/handlers/sms_handler.dart';
 import 'package:call_info/handlers/wp_handler.dart';
-import 'package:call_info/main.dart';
-import 'package:call_info/providers/sms/sms_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:provider/provider.dart';
 
 class CallHandler {
   static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');

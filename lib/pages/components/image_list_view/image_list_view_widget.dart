@@ -1,6 +1,5 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
-import 'package:call_info/main.dart';
 import 'package:call_info/pages/components/image_list_tile/image_list_tile_widget.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';

@@ -66,6 +66,7 @@ override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
     private fun checkPermissions(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
+            checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED
         } else {
             // For devices running below Marshmallow, permissions are granted at installation time
             true

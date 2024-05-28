@@ -157,3 +157,7 @@ Added delete functionality.
 Resolved Handlers Status.
 Added Domain Warning for WebEditors.
 Added Banner Image and Description for WebMasterData.
+
+1.0.29(Abhay):
+Added Permission provider.
+Updated Permission Page.

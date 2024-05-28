@@ -1,7 +1,5 @@
 import 'package:background_sms/background_sms.dart';
 import 'package:call_info/handlers/shared_preferences_helper.dart';
-import 'package:call_info/main.dart';
-import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';

@@ -1,7 +1,6 @@
 
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/handlers/call_handler.dart';
-import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/pages/callLogs/call_logs_widget.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
 import 'package:call_info/pages/dashboard/DashboardUi.dart';
@@ -29,6 +28,7 @@ import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widge
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
 import 'package:call_info/pages/webEditor/VideoGallery/web_video_gallery_widget.dart';
 import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
+import 'package:call_info/providers/permissions/permissions_provider.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
@@ -41,8 +41,6 @@ import 'package:call_info/providers/webEditor/reviews/reviews_provider.dart';
 import 'package:call_info/providers/webEditor/services/services_provider.dart';
 import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -132,7 +130,8 @@ class _MyAppState extends State<MyApp> {
       providers: [
         // ChangeNotifierProvider(create: (_) => SMSMessageTemplateProvider()),
         // ChangeNotifierProvider(create: (_) => WPMessageTemplateProvider()),
-        ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (context) => PermissionsProvider()),
+        ChangeNotifierProvider(create: (context) => ProfileProvider()),
         ChangeNotifierProvider(create: (context) => SMSProvider()),
         ChangeNotifierProvider(create: (context) => WPProvider()),
 
@@ -173,7 +172,6 @@ var appRoutes = {
   routeKeys.customerSupport : (context) => CustomerSupportWidget(),
   routeKeys.customTemplates : (context) => CustomtemplateWidget(),
   routeKeys.permissionsPage : (context) => PermissionWidget(),
-  // routeKeys.activeSubscriptionPage : (context) => ActiveSubscriptionWidget(),
   routeKeys.activeSubscriptionPage : (context) => SubscriptionPageWidget(),
 
   routeKeys.webPageEditorDashboard : (context) => WebPageEditorWidget(),
@@ -212,8 +210,6 @@ class routeKeys {
   static const String linkPage= '/linkPage';
   static const String webMetadataPage= '/webMetadataPage';
   static const String webVideoGallery= '/wevVideoGalley';
-
-
   static const String webImageGallery= '/webImageGalley';
   static const String webServicesPage= '/webServicesPage';
   static const String webServicesAdd= '/webServicesAdd';

@@ -7,17 +7,11 @@ class PermissionListItemModel
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Switch widget.
-  bool? switchValue;
-
-  /// Initialization and disposal methods.
+  bool switchValue = false;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {}
-
-/// Action blocks are added here.
-
-/// Additional helper methods are added here.
 }

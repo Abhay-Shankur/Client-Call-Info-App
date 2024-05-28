@@ -18,6 +18,9 @@ class FirebaseMessagingHandler {
   static final _firebaseMessaging = FirebaseMessaging.instance;
   static late NotificationSettings notificationSettings;
 
+
+  static get firebaseMessaging => _firebaseMessaging;
+
   final _androidChannel = const AndroidNotificationChannel(
       'high_importance_channel', 'High Importance Notifications',
       description: 'This channel is used for important notification',
@@ -27,7 +30,17 @@ class FirebaseMessagingHandler {
   Future<void> initNotifications() async {
     // await FirebaseMessaging.instance.setAutoInitEnabled(true);
 
-    notificationSettings = await _firebaseMessaging.requestPermission(provisional: true);
+    notificationSettings = await _firebaseMessaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,);
+    if(notificationSettings.authorizationStatus == AuthorizationStatus.denied) {
+      notificationSettings = await _firebaseMessaging.requestPermission(provisional: true);
+    }
 
 // TODO:For apple platforms, ensure the APNS token is available before making any FCM plugin API calls
 //     final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
