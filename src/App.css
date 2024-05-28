@@ -37,3 +37,10 @@
     transform: rotate(360deg);
   }
 }
+
+.fixed-size-img {
+  width: 300px; /* Adjust this value to your desired width */
+  height: 200px; /* Adjust this value to your desired height */
+  object-fit: cover; /* This ensures the image covers the given dimensions without stretching */
+}
+

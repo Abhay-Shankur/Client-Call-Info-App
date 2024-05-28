@@ -21,14 +21,15 @@ function Services(props) {
       {/* Why Choose Us content */}
       <div className="container">
         <div className="row justify-content-between">
-          <div className="col-lg-6">
-            <h2 className="section-title">Services We Provide</h2>
+      <br></br>
+            <h2 className="section-title"><br></br>Services We Provide</h2>
             {/* <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit
               imperdiet dolor tempor tristique.</p> */}
 
             <div className="row my-5">
+              
               {services}
-
+            
               {/* <div className="col-6 col-md-6">
                 <div className="feature">
                   <div className="icon">
@@ -73,15 +74,10 @@ function Services(props) {
                 </div>
               </div> */}
 
-            </div>
+           
           </div>
 
-          <div className="col-lg-5">
-            <div className="img-wrap">
-              <img src="images/6075528.jpg" alt="Services" className="img-fluid"/>
-            </div>
-          </div>
-
+      
         </div>
       </div>
     </div>
