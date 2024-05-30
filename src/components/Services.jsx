@@ -1,5 +1,6 @@
 // WhyChooseUs.jsx
 import React from 'react';
+import staticIcon from '../icons8-service-64.png';
 
 function Services(props) {
   let services = props.data;
@@ -8,7 +9,7 @@ function Services(props) {
       <div className="col-6 col-md-6" key={i}>
         <div className="feature">
           <div className="icon">
-            <img src={e.image} alt="Bag" className="imf-fluid" height='80px'/>
+            <img src={staticIcon} alt="Service " className="img-fluid" height='80px' width='80px' />
           </div>
           <h3>{e.heading}</h3>
           <p>{e.description}</p>
@@ -21,8 +22,7 @@ function Services(props) {
       {/* Why Choose Us content */}
       <div className="container">
         <div className="row justify-content-between">
-      <br></br>
-            <h2 className="section-title"><br></br>Services We Provide</h2>
+            <h2 className="section-title">Services We Provide</h2>
             {/* <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit
               imperdiet dolor tempor tristique.</p> */}
 
@@ -74,11 +74,18 @@ function Services(props) {
                 </div>
               </div> */}
 
-           
-          </div>
+
+
 
       
         </div>
+
+        {/* <div className="col-lg-5">
+            <div className="img-wrap">
+              <img src="images/6075528.jpg" alt="Services" className="img-fluid"/>
+            </div>
+          </div> */}
+      </div>
       </div>
     </div>
   );
