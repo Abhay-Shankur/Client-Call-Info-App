@@ -3,6 +3,7 @@ import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutter/material.dart';
 
 class WebWeHelpProvider extends ChangeNotifier {
+  //TODO: Remove Images;
   String? _image1;
   String? _image2;
   String? _image3;
@@ -21,9 +22,6 @@ class WebWeHelpProvider extends ChangeNotifier {
         String _domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
         Map<String,dynamic>? data = await firestore.readFieldAtPath("Website", _domainName, "WeHelp") ?? null;
         if(data != null) {
-          _image1 = data['image1'];
-          _image2 = data['image2'];
-          _image3 = data['image3'];
           _heading = data['heading'];
           _description = data['description'];
         }

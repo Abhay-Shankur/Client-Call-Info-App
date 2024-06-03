@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:call_info/main.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'web_service_add_model.dart';
 export 'web_service_add_model.dart';
@@ -12,12 +15,15 @@ class WebServiceAddWidget extends StatefulWidget {
   State<WebServiceAddWidget> createState() => _WebServiceAddWidgetState();
 }
 
-class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
+class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
+    with TickerProviderStateMixin {
   late WebServiceAddModel _model;
+  bool _picked = false;
+  bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  bool _saving = false;
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -29,6 +35,34 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effects: [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0,
+            end: 1,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(0, 110),
+            end: Offset(0, 0),
+          ),
+        ],
+      ),
+    });
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+      anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -85,6 +119,88 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Align(
+                    alignment: AlignmentDirectional(-1, 0),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 10),
+                      child: Text(
+                        'Select Disaply  Image',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding:
+                            EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                            child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: 500,
+                              ),
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      InkWell(
+                                        onTap: () async {
+                                          await _model.pickFile();
+                                          setState(() {
+                                            // _picked = true;
+                                            _model.pickedFile;
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.add_a_photo_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 32,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16, 0, 0, 0),
+                                        child: Text(
+                                          (_model.pickedFile != null) ? basename(_model.pickedFile!.path) : 'Upload  Cover Image',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ).animateOnPageLoad(
+                                animationsMap['containerOnPageLoadAnimation']!),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -96,7 +212,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Label here...',
+                            labelText: 'Service heading here...',
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -271,5 +387,9 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
         ),
       ),
     );
+  }
+
+  basename(String path) {
+    return path.split(Platform.pathSeparator).last;
   }
 }

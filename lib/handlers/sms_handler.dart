@@ -35,10 +35,12 @@ class SmsHandler {
       SMSMessageTemplate? _message = await SMSMessageTemplate.getFromShared();
       bool allowed = await SharedPreferencesHelper.getBool("allowSMS") ?? false;
 
-      if(_message == null) {
-        showNotification('Call Infos', 'SMS Template is Empty.');
-        return false;
-      } else if(allowed) {
+      if(allowed) {
+        if(_message == null) {
+          showNotification('Call Infos', 'SMS Template is Empty.');
+          return false;
+        }
+
         String msg = _message.text;
         if (await isPermissionGranted()) {
           var isCustomSimSupported = await supportCustomSim;

@@ -1,4 +1,5 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -37,6 +38,8 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
           context: context
       ).signInWithVerificationCode(otp);
       if(user!=null) {
+        // debugPrint('Phone: ${user.user!.phoneNumber?.substring(3)},  UID: ${user.user!.uid}');
+        await updateUid(user.user!.uid, user.user!.phoneNumber!.substring(3));
         navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.vendorDashboard, (route) => false);
       } else {
         toastification.show(
@@ -62,4 +65,19 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
 
   }
 /// Additional helper methods are added here.
+  Future<void> updateUid(String uid, String phone) async {
+    try {
+      FirestoreHandler firestoreHandler = FirestoreHandler();
+      final value = await firestoreHandler.readFieldAtPath("ADMIN", "Document", phone);
+      if(value != uid) {
+        Map<String, dynamic> data = {
+          phone : uid,
+        };
+        await firestoreHandler.updateFirestoreData("ADMIN", "USERS", data);
+      }
+      firestoreHandler.closeConnection();
+    } catch(e) {
+      debugPrint('Exception: $e');
+    }
+  }
 }

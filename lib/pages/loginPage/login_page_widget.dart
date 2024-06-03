@@ -1,8 +1,10 @@
 import 'package:call_info/theme/MyTheme.dart';
+import 'package:call_info/util/custom_widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:toastification/toastification.dart';
 
 import 'login_page_model.dart';
 export 'login_page_model.dart';
@@ -252,7 +254,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                         _saving = true;
                                       });
                                       // Perform backend work
-                                      await _model.sendOtp(context);
+                                      if(await _model.checkPhone()) {
+                                        await _model.sendOtp(context);
+                                      } else {
+                                        setState(() {
+                                          _saving = false;
+                                        });
+                                        showToast(
+                                            context: context,
+                                            type: ToastificationType.warning,
+                                            title: "Authentication",
+                                            desc: "Vendor not Registered!"
+                                        );
+                                      }
 
                                       // After work is done, set loading state to false
                                       // setState(() {
@@ -323,20 +337,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
     );
   }
 
-
-  // Function to perform backend work
-  Future<bool> _performBackendWork() async {
-    // Set loading state to true
-    setState(() {
-      _saving = true;
-    });
-    // Perform backend work
-    await _model.sendOtp(context);
-
-    // After work is done, set loading state to false
-    setState(() {
-      _saving = false;
-    });
-    return true;
-  }
+  //
+  // // Function to perform backend work
+  // Future<bool> _performBackendWork() async {
+  //   // Set loading state to true
+  //   setState(() {
+  //     _saving = true;
+  //   });
+  //   // Perform backend work
+  //   await _model.sendOtp(context);
+  //
+  //   // After work is done, set loading state to false
+  //   setState(() {
+  //     _saving = false;
+  //   });
+  //   return true;
+  // }
 }

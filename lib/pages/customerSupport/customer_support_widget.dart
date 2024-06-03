@@ -152,7 +152,6 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
               size: 30,
             ),
             onPressed: () async {
-              //TODO
               Navigator.pop(context);
             },
           ),
@@ -307,7 +306,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  //TODO
+                                  //TODO : pushNamed('FAQ');
                                   // context.pushNamed('FAQ');
                                 },
                                 child: Column(

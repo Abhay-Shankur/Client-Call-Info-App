@@ -31,6 +31,7 @@ import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
 import 'package:call_info/providers/permissions/permissions_provider.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
+import 'package:call_info/providers/subscription/subscription_provider.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/photo_gallery_provider.dart';
 import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dart';
@@ -134,6 +135,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => ProfileProvider()),
         ChangeNotifierProvider(create: (context) => SMSProvider()),
         ChangeNotifierProvider(create: (context) => WPProvider()),
+        ChangeNotifierProvider(create: (context) => SubscriptionProvider()),
 
         ChangeNotifierProvider(create: (context) => WebDomainProvider()),
         ChangeNotifierProvider(create: (context) => WebMetaDataProvider()),

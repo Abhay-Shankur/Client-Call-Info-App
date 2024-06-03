@@ -580,7 +580,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                             padding: EdgeInsets.zero,
                             primary: false,
                             scrollDirection: Axis.horizontal,
-                            // TODO
                             children: [
                               wrapWithModel(
                                 model: _model.cardCallModel4,

@@ -56,7 +56,6 @@ class _FaqWidgetState extends State<FaqWidget> {
               size: 30,
             ),
             onPressed: () async {
-              //TODO
               Navigator.pop(context);
             },
           ),

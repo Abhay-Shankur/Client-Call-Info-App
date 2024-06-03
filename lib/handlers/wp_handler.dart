@@ -13,10 +13,12 @@ class WhatsappHandler {
       WPMessageTemplate? _messageTemplate = await WPMessageTemplate.getFromShared();
       bool allowed = await SharedPreferencesHelper.getBool("allowWP") ?? false;
 
-      if(_messageTemplate == null) {
-        showNotification('Call Infos', 'Whatsapp Template is Empty.');
-        return false;
-      }else if(allowed) {
+      if(allowed) {
+        if(_messageTemplate == null) {
+          showNotification('Call Infos', 'Whatsapp Template is Empty.');
+          return false;
+        }
+
         String authKey = await SharedPreferencesHelper.getString("AUTH_KEY");
         String instanceId = await SharedPreferencesHelper.getString("instance_id") ;
         var authority = 'takesolution.co.in';

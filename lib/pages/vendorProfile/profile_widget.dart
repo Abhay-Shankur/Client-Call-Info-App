@@ -598,7 +598,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
-                                // TODO:
+                                // TODO: Privacy Policy
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,

@@ -61,8 +61,6 @@ class SMSProvider extends ChangeNotifier {
         };
         await firestore.updateFirestoreData("USERS", uid, data);
         await SharedPreferencesHelper.setBool('allowSMS', _allowed);
-        //TODO:
-        // SmsHandler().updatePermissionStatus(_allowed);
         debugPrint('SMS Data Saved to Firestore.');
         firestore.closeConnection();
       } else {
