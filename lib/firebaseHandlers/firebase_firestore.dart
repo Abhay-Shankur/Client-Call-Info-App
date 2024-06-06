@@ -62,13 +62,13 @@ class FirestoreHandler {
     }
   }
 
-  Future<dynamic> readFieldAtPath(String collection, String document, String fieldPath) async {
+  Future<dynamic> readFieldAtPath(String collection, String document, String fieldPath, {String separator = "/"}) async {
     try {
       DocumentSnapshot documentSnapshot = await _firestore.collection(collection).doc(document).get();
 
       if (documentSnapshot.exists) {
         // Split the field path into segments
-        List<String> segments = fieldPath.split('/');
+        List<String> segments = fieldPath.split(separator);
 
         // Get the value of the field at the specified path
         dynamic fieldValue = documentSnapshot.data();

@@ -136,7 +136,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               },
                               child: Consumer<ProfileProvider> (
                                 builder: (context, value, child) {
-                                  if(value.profile != null) {
+                                  if(value.profile != null && value.profile?.imageFile != null) {
                                     return FadeInImage(
                                       placeholder: AssetImage('assets/vendor.jpg'), // Placeholder image while loading
                                       image: NetworkImage(value.profile!.imageFile!),

@@ -1,6 +1,7 @@
 
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
+import 'package:call_info/providers/subscription/subscription_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
 import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -165,18 +166,26 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                             padding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 12, 0, 0, 8),
-                                            child: Text(
-                                              'You been part of family since ',
-                                              textAlign: TextAlign.start,
-                                              style:
-                                              MyTheme.of(context)
-                                                  .bodyLarge
-                                                  .override(
-                                                fontFamily:
-                                                'Readex Pro',
-                                                fontSize: 20,
-                                                letterSpacing: 0,
-                                              ),
+                                            child: Consumer<SubscriptionProvider> (
+                                              builder: (context, value, child) {
+                                                String date = value.start ?? "";
+                                                return Text(
+                                                  // 'You been part of family since ${date}',
+                                                  date.isNotEmpty
+                                                    ? 'Your Subscription started since ${date}'
+                                                    : 'No Active Subscription',
+                                                  textAlign: TextAlign.start,
+                                                  style:
+                                                  MyTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                    fontFamily:
+                                                    'Readex Pro',
+                                                    fontSize: 20,
+                                                    letterSpacing: 0,
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ),
@@ -187,18 +196,25 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                             padding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 12, 0, 0, 8),
-                                            child: Text(
-                                              'Your journey ends on',
-                                              textAlign: TextAlign.start,
-                                              style:
-                                              MyTheme.of(context)
-                                                  .bodyLarge
-                                                  .override(
-                                                fontFamily:
-                                                'Readex Pro',
-                                                fontSize: 20,
-                                                letterSpacing: 0,
-                                              ),
+                                            child: Consumer<SubscriptionProvider> (
+                                              builder: (context, value, child) {
+                                                String date = value.end ?? "";
+                                                return Text(
+                                                  date.isNotEmpty
+                                                      ? 'Your Subscription ends on '
+                                                      : 'Please Activate your Subscription.',
+                                                  textAlign: TextAlign.start,
+                                                  style:
+                                                  MyTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                    fontFamily:
+                                                    'Readex Pro',
+                                                    fontSize: 20,
+                                                    letterSpacing: 0,
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ),

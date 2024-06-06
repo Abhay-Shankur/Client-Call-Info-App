@@ -90,7 +90,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                 BorderRadius.circular(50),
                                             child: Consumer<ProfileProvider>(
                                               builder: (context, value, child) {
-                                                if (value.profile != null) {
+                                                if (value.profile != null && value.profile?.imageFile != null) {
                                                   return FadeInImage(
                                                     placeholder: AssetImage(
                                                         'assets/vendor.jpg'), // Placeholder image while loading

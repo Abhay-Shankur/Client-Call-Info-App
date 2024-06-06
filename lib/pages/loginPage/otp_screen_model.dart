@@ -1,6 +1,7 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/main.dart';
+import 'package:call_info/util/date_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:toastification/toastification.dart';
@@ -74,6 +75,20 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
           phone : uid,
         };
         await firestoreHandler.updateFirestoreData("ADMIN", "USERS", data);
+      }
+      String? id = await FirebaseAuthHandler.getCurrentUser()?.uid;
+      if(id != null) {
+        final date = await firestoreHandler.readFieldAtPath("USERS", id, "Subscription/created");
+        if(date == null) {
+          DateTime? creationDate = await FirebaseAuthHandler.getCurrentUser()?.metadata.creationTime;
+          String created = MyDateUtils.formatDate(creationDate!);
+          Map<String,dynamic> data = {
+            "Subscription" : {
+              "created" : created
+            }
+          };
+          await firestoreHandler.updateFirestoreData("ADMIN", "USERS", data);
+        }
       }
       firestoreHandler.closeConnection();
     } catch(e) {
