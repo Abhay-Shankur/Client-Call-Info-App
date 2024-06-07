@@ -87,7 +87,7 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
               "created" : created
             }
           };
-          await firestoreHandler.updateFirestoreData("ADMIN", "USERS", data);
+          await firestoreHandler.updateFirestoreData("USERS", id, data);
         }
       }
       firestoreHandler.closeConnection();

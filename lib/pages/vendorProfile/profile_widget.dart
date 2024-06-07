@@ -633,8 +633,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             child: GestureDetector(
                                 onTap: () async {
                                   await FirebaseAuthHandler(context: navigator.currentState!.context)
-                                    .signOut(() {
-                                      SharedPreferencesHelper.removeAll();
+                                    .signOut(() async {
+                                      await SharedPreferencesHelper.removeAll();
                                       navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.splashScreen,(route) => false);
                                     });
                                 },

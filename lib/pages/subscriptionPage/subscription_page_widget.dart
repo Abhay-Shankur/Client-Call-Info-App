@@ -201,7 +201,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                                 String date = value.end ?? "";
                                                 return Text(
                                                   date.isNotEmpty
-                                                      ? 'Your Subscription ends on '
+                                                      ? 'Your Subscription ends on $date'
                                                       : 'Please Activate your Subscription.',
                                                   textAlign: TextAlign.start,
                                                   style:

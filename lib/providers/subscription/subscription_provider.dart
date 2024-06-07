@@ -34,30 +34,34 @@ class SubscriptionProvider extends ChangeNotifier {
     }
   }
 
-  void updateCreated(String value) {
+  Future<void> updateCreated(String value) async {
     created = value;
+    await updateShared();
     notifyListeners();
   }
 
-  void updateStart(String value) {
+  Future<void> updateStart(String value) async {
     start = value;
+    await updateShared();
     notifyListeners();
   }
 
-  void updateEnd(String value) {
+  Future<void> updateEnd(String value) async {
     end = value;
+    await updateShared();
     notifyListeners();
   }
 
-  void updateType(String value) {
+  Future<void> updateType(String value) async {
     type = value;
+    await updateShared();
     notifyListeners();
   }
 
   Future<void> updateShared() async {
-    await SharedPreferencesHelper.setString("start", start!);
-    await SharedPreferencesHelper.setString("end", end!);
-    await SharedPreferencesHelper.setString("created", created!);
-    await SharedPreferencesHelper.setString("type", type!);
+    if(start != null) await SharedPreferencesHelper.setString("start", start!);
+    if(end != null)await SharedPreferencesHelper.setString("end", end!);
+    if(created != null)await SharedPreferencesHelper.setString("created", created!);
+    if(type != null)await SharedPreferencesHelper.setString("type", type!);
   }
 }

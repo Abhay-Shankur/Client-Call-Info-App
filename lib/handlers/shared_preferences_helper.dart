@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
@@ -46,6 +47,7 @@ class SharedPreferencesHelper {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(key);
     _keys.remove(key);
+    debugPrint("$key removed from SharedPreference");
   }
 
   static Future<void> setBool(String key, bool value) async {
@@ -59,7 +61,8 @@ class SharedPreferencesHelper {
     return prefs.getBool(key) ?? false;
   }
 
-  static void removeAll() {
+  static Future<void> removeAll() async {
+    reload();
     _keys.forEach((element) async {
       await remove(element);
     });

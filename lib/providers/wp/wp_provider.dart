@@ -1,5 +1,3 @@
-
-
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/handlers/shared_preferences_helper.dart';
