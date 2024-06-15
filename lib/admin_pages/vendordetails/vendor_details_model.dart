@@ -29,7 +29,7 @@ class VendorDetailsModel extends FlutterFlowModel<VendorDetailsWidget> {
     FirestoreHandler fh = FirestoreHandler();
     try {
       String? domain = await fh.readFieldAtPath("USERS", id, "webDomain");
-      if(domain != null && domain!.isNotEmpty) {
+      if(domain != null && domain.isNotEmpty) {
         await FirebaseStorageService.deleteFolder(domain);
         await fh.deleteFirestoreData("Website", domain);
         await fh.removeField("USERS", id, "webDomain");

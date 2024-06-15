@@ -1,3 +1,4 @@
+import 'package:app/main.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -193,7 +194,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             await _model.addVendor();
-                            Navigator.pop(context);
+                            navigator.currentState!.pop();
                           },
                           text: 'Submit',
                           options: FFButtonOptions(
@@ -208,6 +209,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget> {
                                 .override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0,
+                              color: FlutterFlowTheme.of(context).primaryBtnText,
                             ),
                             elevation: 2,
                             borderSide: const BorderSide(

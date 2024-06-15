@@ -1,4 +1,10 @@
 
+
+
+
+import 'package:app/admin_pages/home/home_page_widget.dart';
+import 'package:app/admin_pages/profile/admin_profile_widget.dart';
+import 'package:app/admin_pages/splashscreen/splash_screen_widget.dart';
 import 'package:app/admin_pages/vendordetails/vendor_details_widget.dart';
 import 'package:app/admin_pages/vendorslist/vendor_list_widget.dart';
 import 'package:app/firebase_options.dart';
@@ -41,8 +47,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Call Info Admin',
-        // initialRoute: routeKeys.splashScreen,
-        initialRoute: RouteKeys.vendorList,
+        // initialRoute: RouteKeys.splash,
+        initialRoute: RouteKeys.homePage,
         routes: appRoutes,
         navigatorKey: navigator,
       ),
@@ -51,14 +57,18 @@ class MyApp extends StatelessWidget {
 }
 
 var appRoutes = {
+  RouteKeys.splash : (context) => const SplashScreenWidget(),
+  RouteKeys.homePage : (context) => const HomePageWidget(),
+  RouteKeys.profile : (context) => const AdminProfileWidget(),
   RouteKeys.vendorList : (context)=> const VendorListWidget(),
   RouteKeys.vendorDetails : (context) => const VendorDetailsWidget(),
-  // RouteKeys.vendorSubscription : (context) => EditSubscriptionWidget(),
 };
 
 class RouteKeys {
+  static const String splash = '/splashScreen';
+  static const String homePage = '/homePage';
+  static const String profile = '/profile';
   static const String vendorList= '/vendorsList';
   static const String vendorDetails= '/vendorsDetails';
-  // static const String vendorSubscription= '/vendorSubscription';
 
 }
