@@ -55,11 +55,11 @@ class _ListViewWidgetState extends State<ListViewWidget> {
           );
         } else {
           return ListView.separated(
-            padding: EdgeInsets.symmetric(vertical: 25),
+            padding: const EdgeInsets.symmetric(vertical: 25),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             itemCount: listItems.length,
-            separatorBuilder: (_, __) => SizedBox(height: 25),
+            separatorBuilder: (_, __) => const SizedBox(height: 25),
             itemBuilder: (context, listItemsIndex) {
               final listItemsItem = listItems[listItemsIndex];
 

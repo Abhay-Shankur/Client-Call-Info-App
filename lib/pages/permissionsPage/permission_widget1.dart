@@ -67,20 +67,20 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                 letterSpacing: 0,
               ),
             ),
-            actions: [],
+            actions: const [],
             centerTitle: false,
             elevation: 0,
           ),
           body: SafeArea(
             top: true,
             child: Align(
-              alignment: AlignmentDirectional(1, -1),
+              alignment: const AlignmentDirectional(1, -1),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+                    padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
                     child: Text(
                       'Permissions',
                       style:
@@ -92,7 +92,7 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 16, 0, 16),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 16, 0, 16),
                     child: Text(
                       'Manage the permissions you have granted to the app.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -110,13 +110,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Return a loading indicator or placeholder widget while waiting for the future to complete
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else {
                           // Once the future completes, update the status based on the result
                           final bool permissionStatus = snapshot.data ?? false;
                           print(permissionStatus);
                           return PermissionListItemWidget(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.location_on,
                             ),
                             title: 'Location',
@@ -135,13 +135,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Return a loading indicator or placeholder widget while waiting for the future to complete
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else {
                           // Once the future completes, update the status based on the result
                           final bool permissionStatus = snapshot.data ?? false;
                           print(permissionStatus);
                           return PermissionListItemWidget(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.camera_alt,
                             ),
                             title: 'Camera',
@@ -159,13 +159,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Return a loading indicator or placeholder widget while waiting for the future to complete
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else {
                           // Once the future completes, update the status based on the result
                           final bool permissionStatus = snapshot.data ?? false;
                           print(permissionStatus);
                           return PermissionListItemWidget(
-                              icon: Icon(
+                              icon: const Icon(
                               Icons.photo_sharp,
                           ),
                         title: 'Photos',
@@ -183,13 +183,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Return a loading indicator or placeholder widget while waiting for the future to complete
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else {
                           // Once the future completes, update the status based on the result
                           final bool permissionStatus = snapshot.data ?? false;
                           print(permissionStatus);
                           return PermissionListItemWidget(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.mic_rounded,
                             ),
                             title: 'Microphone',
@@ -207,13 +207,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Return a loading indicator or placeholder widget while waiting for the future to complete
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else {
                           // Once the future completes, update the status based on the result
                           final bool permissionStatus = snapshot.data ?? false;
                           print(permissionStatus);
                           return PermissionListItemWidget(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.contacts,
                             ),
                             title: 'Contacts',

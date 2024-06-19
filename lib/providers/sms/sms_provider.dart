@@ -15,10 +15,10 @@ class SMSProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'SMS') ?? null;
+        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'SMS');
         if(data != null) {
           _allowed = data['allowed'];
           _text = data['text'];
@@ -28,8 +28,9 @@ class SMSProvider extends ChangeNotifier {
         firestore.closeConnection();
         notifyListeners();
         await SharedPreferencesHelper.setBool('allowSMS', _allowed);
-        if(_text != null)
+        if(_text != null) {
           SMSMessageTemplate(text: _text!).saveToShared();
+        }
       } else {
         throw Exception('User not Authenticated');
       }
@@ -51,7 +52,7 @@ class SMSProvider extends ChangeNotifier {
     try {
       _allowed = value;
       notifyListeners();
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
         Map<String, dynamic>? data = {
@@ -74,7 +75,7 @@ class SMSProvider extends ChangeNotifier {
   // Method to retrieve the latest value
   Future<bool> getLatestValue() async {
     // Simulate asynchronous operation
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return _allowed;
   }
 }

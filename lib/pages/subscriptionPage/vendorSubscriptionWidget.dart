@@ -98,32 +98,32 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                   // context.pop();
                 },
               ),
-              actions: [],
+              actions: const [],
               centerTitle: false,
               elevation: 0,
             ),
             body: SafeArea(
               top: true,
               child: Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 670,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    alignment: AlignmentDirectional(0, -1),
+                    alignment: const AlignmentDirectional(0, -1),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -131,9 +131,9 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(-1, -1),
+                                    alignment: const AlignmentDirectional(-1, -1),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12, 32, 0, 8),
                                       child: Text(
                                         'Activate Subscription',
@@ -149,9 +149,9 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(-1, 0),
+                                    alignment: const AlignmentDirectional(-1, 0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12, 0, 0, 8),
                                       child: Text(
                                         'Join us & get extream reach',
@@ -166,7 +166,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                     ),
                                   ),
                                   Container(
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -226,7 +226,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 16, 0),
                                     child: TextFormField(
                                       controller: _model.textController1,
@@ -291,7 +291,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         fillColor: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
+                                        const EdgeInsetsDirectional.fromSTEB(
                                             0, 16, 16, 8),
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -306,7 +306,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 16, 0),
                                     child: TextFormField(
                                       controller: _model.textController2,
@@ -370,7 +370,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         fillColor: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
+                                        const EdgeInsetsDirectional.fromSTEB(
                                             0, 16, 16, 8),
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -393,7 +393,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                               : _isKeyboardVisible))
                             Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 28, 16, 29),
+                              const EdgeInsetsDirectional.fromSTEB(16, 28, 16, 29),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   setState(() {
@@ -409,9 +409,9 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                   width: double.infinity,
                                   height: 60,
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                   iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                   color: FlutterFlowTheme.of(context).primaryText,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleMedium
@@ -422,7 +422,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                     letterSpacing: 0,
                                   ),
                                   elevation: 4,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1,
                                   ),

@@ -52,7 +52,7 @@ class ActiveSubscriptionModel extends FlutterFlowModel<ActiveSubscriptionWidget>
           "instance_id" : instanceId,
         }
       };
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         await firestore.updateFirestoreData("USERS", uid, data);
         SharedPreferencesHelper.setString("AUTH_KEY", accessToken);

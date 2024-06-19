@@ -69,7 +69,7 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
@@ -79,15 +79,15 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
                       child: Text(
-                        'To add products to your website, simply click on \"Add Products\" button and showcase your items with elegance and flair.',
+                        'To add products to your website, simply click on "Add Products" button and showcase your items with elegance and flair.',
                         style:
                         FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Readex Pro',
@@ -96,13 +96,13 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                             child: Text(
                               'Add New Product ',
                               style: FlutterFlowTheme.of(context)
@@ -116,10 +116,10 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                           ),
                           Flexible(
                             child: Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: const AlignmentDirectional(0, 0),
                               child: Padding(
                                 padding:
-                                EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                                const EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                                 child: FFButtonWidget(
                                   onPressed: () {
                                     navigator.currentState!.pushNamed(routeKeys.webProductsAdd);
@@ -127,8 +127,8 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                                   text: 'Add Products',
                                   options: FFButtonOptions(
                                     height: 50,
-                                    padding: EdgeInsets.all(6),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsets.all(6),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 0),
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
@@ -140,7 +140,7 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                                           .secondaryBackground,
                                       letterSpacing: 0,
                                     ),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
@@ -170,9 +170,9 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                   child: Consumer<WebProductsProvider> (
                     builder: (context, value, child) {
                       List<Product> list = [];
-                      value.listProducts.forEach((element) {
+                      for (var element in value.listProducts) {
                         list.add(element);
-                      });
+                      }
                       return ImageListViewWidget(listParam: list);
                     },
                   ),

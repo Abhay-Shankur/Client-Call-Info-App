@@ -60,24 +60,24 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
             navigator.currentState!.pop();
           },
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 0,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0, -1),
+        alignment: const AlignmentDirectional(0, -1),
         child: Container(
           width: 500,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 570,
           ),
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: Text(
                   'Video Gallery',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -87,7 +87,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 16),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 16),
                 child: Text(
                   'Add a link of a video you desire to be shown on your webpage ',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -97,20 +97,20 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       flex: 1,
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        child: Container(
+                        padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                        child: SizedBox(
                           width: double.infinity,
                           child: TextFormField(
                             controller: _model.emailAddressTextController,
                             focusNode: _model.emailAddressFocusNode,
-                            autofillHints: [AutofillHints.email],
+                            autofillHints: const [AutofillHints.email],
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Your link here...',
@@ -160,7 +160,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   24, 24, 20, 24),
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -183,9 +183,9 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             setState(() {
@@ -199,9 +199,9 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                           text: 'Add Link',
                           options: FFButtonOptions(
                             height: 50,
-                            padding: EdgeInsets.all(6),
+                            padding: const EdgeInsets.all(6),
                             iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: FlutterFlowTheme.of(context).primaryText,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -211,7 +211,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                                   .secondaryBackground,
                               letterSpacing: 0,
                             ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1,
                             ),

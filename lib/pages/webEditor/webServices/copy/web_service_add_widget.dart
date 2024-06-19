@@ -18,7 +18,7 @@ class WebServiceAddWidget extends StatefulWidget {
 class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
     with TickerProviderStateMixin {
   late WebServiceAddModel _model;
-  bool _picked = false;
+  final bool _picked = false;
   bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -51,8 +51,8 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0, 110),
-            end: Offset(0, 0),
+            begin: const Offset(0, 110),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -107,22 +107,22 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(-1, 0),
+                    alignment: const AlignmentDirectional(-1, 0),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 0, 10),
                       child: Text(
                         'Select Disaply  Image',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -133,16 +133,16 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                            const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                             child: Container(
-                              constraints: BoxConstraints(
+                              constraints: const BoxConstraints(
                                 maxWidth: 500,
                               ),
                               decoration: BoxDecoration(
@@ -155,7 +155,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -177,7 +177,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             16, 0, 0, 0),
                                         child: Text(
                                           (_model.pickedFile != null) ? basename(_model.pickedFile!.path) : 'Upload  Cover Image',
@@ -205,7 +205,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: TextFormField(
                           controller: _model.textController1,
                           focusNode: _model.textFieldFocusNode1,
@@ -272,7 +272,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                         color: FlutterFlowTheme.of(context).primaryText,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                         child: TextFormField(
                           controller: _model.textController2,
                           focusNode: _model.textFieldFocusNode2,
@@ -339,7 +339,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
                         child: FFButtonWidget(
                           onPressed: () async {
                             setState(() {
@@ -355,9 +355,9 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 60,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: FlutterFlowTheme.of(context).primaryText,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleMedium
@@ -368,7 +368,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
                               letterSpacing: 0,
                             ),
                             elevation: 4,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1,
                             ),

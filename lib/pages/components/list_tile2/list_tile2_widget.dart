@@ -47,13 +47,13 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
       child: Container(
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4,
               color: Color(0x320E151B),
@@ -66,21 +66,21 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: Text(
                           valueOrDefault<String>(
                             widget.tileName,
@@ -96,7 +96,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                         child: Text(
                           valueOrDefault<String>(
                             widget.tileDescription,

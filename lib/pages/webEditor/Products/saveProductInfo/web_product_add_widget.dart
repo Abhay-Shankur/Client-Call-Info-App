@@ -78,7 +78,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                   letterSpacing: 0,
                 ),
               ),
-              actions: [],
+              actions: const [],
               centerTitle: true,
               elevation: 2,
             ),
@@ -92,9 +92,9 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(-1, 0),
+                      alignment: const AlignmentDirectional(-1, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 10),
+                        padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 0, 10),
                         child: Text(
                           'Fill out the information below to post a product',
                           style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -110,15 +110,15 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(0, -1),
+                              alignment: const AlignmentDirectional(0, -1),
                               child: Container(
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 1270,
                                 ),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Wrap(
                                     spacing: 16,
                                     runSpacing: 16,
@@ -130,10 +130,10 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                     clipBehavior: Clip.none,
                                     children: [
                                       Container(
-                                        constraints: BoxConstraints(
+                                        constraints: const BoxConstraints(
                                           maxWidth: 570,
                                         ),
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -154,7 +154,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(context)
                                                       .primaryBackground,
-                                                  boxShadow: [
+                                                  boxShadow: const [
                                                     BoxShadow(
                                                       blurRadius: 5,
                                                       color: Color(0x33000000),
@@ -174,7 +174,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(4),
+                                                  padding: const EdgeInsets.all(4),
                                                   child: ClipRRect(
                                                     borderRadius:
                                                     BorderRadius.circular(24),
@@ -284,7 +284,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                                 contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16, 20, 16, 20),
                                               ),
                                               style: FlutterFlowTheme.of(context)
@@ -391,7 +391,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                                 contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16, 20, 16, 20),
                                               ),
                                               style: FlutterFlowTheme.of(context)
@@ -494,7 +494,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                                 contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16, 16, 16, 16),
                                               ),
                                               style: FlutterFlowTheme.of(context)
@@ -512,14 +512,14 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                   .descriptionTextControllerValidator
                                                   .asValidator(context),
                                             ),
-                                          ].divide(SizedBox(height: 12)),
+                                          ].divide(const SizedBox(height: 12)),
                                         ),
                                       ),
                                       Container(
-                                        constraints: BoxConstraints(
+                                        constraints: const BoxConstraints(
                                           maxWidth: 570,
                                         ),
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                       ),
                                     ],
                                   ),
@@ -536,12 +536,12 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                       desktop: false,
                     ))
                       Container(
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 770,
                         ),
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                          padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                           child: FFButtonWidget(
                             onPressed: () async {
                               setState(() {
@@ -557,9 +557,9 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 48,
-                              padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                               iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               color: FlutterFlowTheme.of(context).primaryText,
                               textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -569,7 +569,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                 letterSpacing: 0,
                               ),
                               elevation: 3,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
                               ),

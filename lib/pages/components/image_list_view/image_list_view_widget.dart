@@ -69,7 +69,7 @@ class _ImageListViewWidgetState extends State<ImageListViewWidget> {
             itemCount: listParams.length,
             itemBuilder: (context, listParamsIndex) {
               Product listParamsItem = listParams[listParamsIndex];
-              return Container(
+              return SizedBox(
                 height: 200,
                 child: wrapWithModel(
                   model: _model.imageListTileModels.getModel(

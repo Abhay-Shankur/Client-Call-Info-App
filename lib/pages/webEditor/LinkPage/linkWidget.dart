@@ -93,18 +93,18 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
               Navigator.pop(context);
             },
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: SingleChildScrollView(
             child: Container(
               width: double.infinity,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 670,
               ),
               decoration: BoxDecoration(
@@ -115,7 +115,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -124,7 +124,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(12, 10, 0, 8),
+                            const EdgeInsetsDirectional.fromSTEB(12, 10, 0, 8),
                             child: Text(
                               'Join us & reach with confidence',
                               textAlign: TextAlign.start,
@@ -138,7 +138,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(12, 0, 0, 12),
+                            const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 12),
                             child: Text(
                               'Provide your social media handler link ',
                               textAlign: TextAlign.start,
@@ -152,7 +152,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                            const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                             child: Consumer<WebLinksProvider> (
                               builder: (context, value, child) {
                                 if(value.links != null) _model.textController1 = TextEditingController(text: value.links!.whatsappLink);
@@ -214,7 +214,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                    contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 16, 16, 8),
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -232,7 +232,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                            const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                             child: Consumer<WebLinksProvider> (
                               builder: (context, value, child) {
                                 if(value.links != null) _model.textController2 = TextEditingController(text: value.links!.instagramLink);
@@ -293,7 +293,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                    contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 16, 16, 8),
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -311,7 +311,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(16, 12, 16, 15),
+                            const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 15),
                             child: Consumer<WebLinksProvider> (
                               builder: (context, value, child) {
                                 if(value.links != null) _model.textController3 = TextEditingController(text: value.links!.facebookLink);
@@ -372,7 +372,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                    contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 16, 16, 8),
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -396,7 +396,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                   //     ? MediaQuery.viewInsetsOf(context).bottom > 0
                   //     : _isKeyboardVisible))
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 24),
+                    padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 24),
                     child: FFButtonWidget(
                       onPressed: () async {
                         setState(() {
@@ -412,9 +412,9 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 60,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: FlutterFlowTheme.of(context).primaryText,
                         textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -424,7 +424,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           letterSpacing: 0,
                         ),
                         elevation: 4,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),

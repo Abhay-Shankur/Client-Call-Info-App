@@ -73,14 +73,14 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget> {
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -142,7 +142,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget> {
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                              const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                             ),
                             style:
                             FlutterFlowTheme.of(context).headlineSmall.override(
@@ -205,7 +205,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget> {
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
+                              const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
@@ -220,23 +220,23 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget> {
                         },
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
                         child: FFButtonWidget(
                           onPressed: () async {
                             await _model.save(context);
                             navigator.currentState!.pop();
                           },
                           text: 'Save',
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.receipt_long,
                             size: 15,
                           ),
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 54,
-                            padding: EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: FlutterFlowTheme.of(context).primaryText,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -247,7 +247,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget> {
                               letterSpacing: 0,
                             ),
                             elevation: 4,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1,
                             ),
@@ -256,8 +256,8 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget> {
                         ),
                       ),
                     ]
-                        .divide(SizedBox(height: 16))
-                        .addToStart(SizedBox(height: 12)),
+                        .divide(const SizedBox(height: 16))
+                        .addToStart(const SizedBox(height: 12)),
                   ),
                 ],
               ),

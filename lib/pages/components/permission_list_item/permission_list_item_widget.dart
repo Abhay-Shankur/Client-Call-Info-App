@@ -10,7 +10,7 @@ class PermissionListItemWidget extends StatefulWidget {
     required this.icon,
     required this.title,
     bool? status,
-  }) : this.status = status ?? false;
+  }) : status = status ?? false;
 
   final Widget? icon;
   final String? title;
@@ -48,7 +48,7 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
       child: Container(
         width: double.infinity,
         height: 60,
@@ -57,14 +57,14 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
               widget.icon!,
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                   child: Text(
                     valueOrDefault<String>(
                       widget.title,

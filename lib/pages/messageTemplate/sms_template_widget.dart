@@ -58,8 +58,8 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
               options: FFButtonOptions(
                 width: 80,
                 height: 40,
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                 color: Colors.transparent,
                 textStyle: MyTheme.of(context).labelMedium.override(
                   fontFamily: 'Plus Jakarta Sans',
@@ -68,7 +68,7 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                   fontWeight: FontWeight.normal,
                 ),
                 elevation: 0,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1,
                 ),
@@ -76,7 +76,7 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
             ),
             actions: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 16, 8),
                 child: FFButtonWidget(
                   onPressed: () async {
                     setState(() {
@@ -91,8 +91,8 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                   options: FFButtonOptions(
                     width: 70,
                     height: 32,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     color: FlutterFlowTheme.of(context).primaryText,
                     textStyle: MyTheme.of(context).titleSmall.override(
                       fontFamily: 'Plus Jakarta Sans',
@@ -101,7 +101,7 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                       fontWeight: FontWeight.w500,
                     ),
                     elevation: 2,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1,
                     ),
@@ -123,23 +123,23 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 15),
                                         child: AutoSizeText(
                                           'Customize Your Message \nTemple Here',
@@ -178,26 +178,27 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                         // ),
                         Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Container(
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10, 12, 10, 12),
                                   child: Consumer<SMSProvider> (
                                     builder: (_, value, __) {
-                                      if(value.text != null && value.text!.isNotEmpty)
+                                      if(value.text != null && value.text!.isNotEmpty) {
                                         _model.textController = TextEditingController(text: value.text!);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController,
                                         focusNode: _model.textFieldFocusNode,
                                         maxLength: 160,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.textController',
-                                          Duration(milliseconds: 2000),
+                                          const Duration(milliseconds: 2000),
                                               () => setState(() {}),
                                         ),
                                         autofocus: true,
@@ -209,66 +210,66 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                                               .labelLarge
                                               .override(
                                             fontFamily: 'Plus Jakarta Sans',
-                                            color: Color(0xFF57636C),
+                                            color: const Color(0xFF57636C),
                                             fontSize: 20,
                                             fontWeight: FontWeight.normal,
                                           ),
-                                          enabledBorder: OutlineInputBorder(
+                                          enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFE0E3E7),
                                               width: 2,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
+                                          focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFF4B39EF),
                                               width: 2,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
-                                          errorBorder: OutlineInputBorder(
+                                          errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFFF5963),
                                               width: 2,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
-                                          focusedErrorBorder: OutlineInputBorder(
+                                          focusedErrorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFFF5963),
                                               width: 2,
                                             ),
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               16, 8, 16, 12),
                                         ),
                                         style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Plus Jakarta Sans',
-                                          color: Color(0xFF14181B),
+                                          color: const Color(0xFF14181B),
                                           fontSize: 16,
                                           fontWeight: FontWeight.normal,
                                         ),
                                         textAlign: TextAlign.start,
                                         maxLines: null,
                                         minLines: 10,
-                                        cursorColor: Color(0xFF4B39EF),
+                                        cursorColor: const Color(0xFF4B39EF),
                                         validator: _model.textControllerValidator
                                             .asValidator(context),
                                       );

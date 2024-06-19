@@ -72,7 +72,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
@@ -86,7 +86,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
+                    padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
                     child: Text(
                       'Add link of  your image asset from google drive to  be shown on website',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -96,7 +96,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -104,13 +104,13 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                           flex: 1,
                           child: Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                            child: Container(
+                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                            child: SizedBox(
                               width: double.infinity,
                               child: TextFormField(
                                 controller: _model.emailAddressTextController,
                                 focusNode: _model.emailAddressFocusNode,
-                                autofillHints: [AutofillHints.email],
+                                autofillHints: const [AutofillHints.email],
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Your link here...',
@@ -162,7 +162,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
-                                  EdgeInsetsDirectional.fromSTEB(
+                                  const EdgeInsetsDirectional.fromSTEB(
                                       24, 24, 20, 24),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -185,10 +185,10 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                            const EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 setState(() {
@@ -202,9 +202,9 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                               text: 'Add Link',
                               options: FFButtonOptions(
                                 height: 50,
-                                padding: EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(6),
                                 iconPadding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
@@ -214,7 +214,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                                       .secondaryBackground,
                                   letterSpacing: 0,
                                 ),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1,
                                 ),

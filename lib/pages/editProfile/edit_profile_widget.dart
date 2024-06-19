@@ -90,7 +90,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             'Back',
             style: MyTheme.of(context).titleLarge,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -101,12 +101,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0, 0),
+                        alignment: const AlignmentDirectional(0, 0),
                         child: Text(
                           'Your information',
                           style: MyTheme.of(context).headlineMedium,
@@ -116,15 +116,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0, 1),
+                        alignment: const AlignmentDirectional(0, 1),
                         child: Padding(
-                          padding: EdgeInsets.all(2),
+                          padding: const EdgeInsets.all(2),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: GestureDetector(
@@ -138,7 +138,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 builder: (context, value, child) {
                                   if(value.profile != null && value.profile?.imageFile != null) {
                                     return FadeInImage(
-                                      placeholder: AssetImage('assets/vendor.jpg'), // Placeholder image while loading
+                                      placeholder: const AssetImage('assets/vendor.jpg'), // Placeholder image while loading
                                       image: NetworkImage(value.profile!.imageFile!),
                                       width: 150,
                                       height: 150,
@@ -174,7 +174,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: Consumer<ProfileProvider> (
                                 builder: (context, value, child) {
                                   if(value.profile != null) _model.textController1 = TextEditingController(text: value.profile!.vendorName!);
@@ -238,7 +238,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: Consumer<ProfileProvider> (
                                 builder: (context, value, child) {
                                   if(value.profile != null) _model.textController2=TextEditingController(text: value.profile!.vendorEmail!);
@@ -305,7 +305,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: Consumer<ProfileProvider> (
                                 builder: (context, value, child) {
                                   if(value.profile != null) _model.textController3 = TextEditingController(text: value.profile!.vendorContact!);
@@ -372,7 +372,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: Consumer<ProfileProvider> (
                                 builder: (context, value, child) {
                                   if(value.profile != null) _model.textController4 = TextEditingController(text: value.profile!.businessName!);
@@ -439,7 +439,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                               child: Consumer<ProfileProvider> (
                                 builder: (context, value, child) {
                                   if(value.profile != null) _model.textController5 = TextEditingController(text: value.profile!.businessDescription!);
@@ -521,15 +521,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   options: FFButtonOptions(
                     width: 270,
                     height: 50,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     color: MyTheme.of(context).primary,
                     textStyle: MyTheme.of(context).titleSmall.override(
                       fontFamily: 'Inter',
                       color: Colors.white,
                     ),
                     elevation: 3,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1,
                     ),

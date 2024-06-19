@@ -11,7 +11,7 @@ class SMSMessageTemplate {
 
   // Function to convert SMSMessageTemplate object to JSON string
   String toJson() {
-    return jsonEncode({"text": this.text});
+    return jsonEncode({"text": text});
   }
 
   // Static function to create SMSMessageTemplate object from JSON string
@@ -21,7 +21,7 @@ class SMSMessageTemplate {
   }
 
   void saveToShared() {
-    String value = this.toJson();
+    String value = toJson();
     SharedPreferencesHelper.setString('smsMsg', value);
     debugPrint('Saving to Shared Preference');
   }

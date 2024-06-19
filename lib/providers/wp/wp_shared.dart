@@ -16,8 +16,8 @@ class WPMessageTemplate {
   String toJson() {
     return jsonEncode(
         {
-          "text": this.text,
-          "image": this.image
+          "text": text,
+          "image": image
         }
     );
   }
@@ -29,7 +29,7 @@ class WPMessageTemplate {
   }
 
   void saveToShared() {
-    String value = this.toJson();
+    String value = toJson();
     SharedPreferencesHelper.setString('wpMsg', value);
     debugPrint('Saving to Shared Preference');
   }

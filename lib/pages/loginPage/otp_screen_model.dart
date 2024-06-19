@@ -76,11 +76,11 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
         };
         await firestoreHandler.updateFirestoreData("ADMIN", "USERS", data);
       }
-      String? id = await FirebaseAuthHandler.getCurrentUser()?.uid;
+      String? id = FirebaseAuthHandler.getCurrentUser()?.uid;
       if(id != null) {
         final date = await firestoreHandler.readFieldAtPath("USERS", id, "Subscription/created");
         if(date == null) {
-          DateTime? creationDate = await FirebaseAuthHandler.getCurrentUser()?.metadata.creationTime;
+          DateTime? creationDate = FirebaseAuthHandler.getCurrentUser()?.metadata.creationTime;
           String created = MyDateUtils.formatDate(creationDate!);
           Map<String,dynamic> data = {
             "Subscription" : {

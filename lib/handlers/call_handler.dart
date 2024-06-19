@@ -70,7 +70,7 @@ class CallHandler {
 
     const AndroidInitializationSettings initializationSettingsAndroid =
     AndroidInitializationSettings('@mipmap/ic_launcher');
-    final InitializationSettings initializationSettings =
+    const InitializationSettings initializationSettings =
     InitializationSettings(android: initializationSettingsAndroid);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
@@ -78,7 +78,7 @@ class CallHandler {
     AndroidNotificationDetails(
       'com.callinfo.application.call_info',
       'Call Infos',
-      channelDescription:'Notification channel for call detection',
+      'Notification channel for call detection',
       importance: Importance.max,
       priority: Priority.high,
       showWhen: false,
@@ -88,7 +88,7 @@ class CallHandler {
     await flutterLocalNotificationsPlugin.show(
       0,
       title,
-      callType.isNotEmpty ? '$desc $callType' : '$desc',
+      callType.isNotEmpty ? '$desc $callType' : desc,
       platformChannelSpecifics,
     );
   }

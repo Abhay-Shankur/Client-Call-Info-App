@@ -29,18 +29,18 @@ class WebReviewsProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        String _domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
-        List<dynamic> dynlist = await firestore.readFieldAtPath("Website", _domainName, "Reviews") ?? [];
-        dynlist.forEach((element) {
+        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
+        List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, "Reviews") ?? [];
+        for (var element in dynlist) {
           if(element is Map<String,dynamic>){
-            Reviews _r = Reviews.fromMap(element);
-            _list.add(_r);
+            Reviews r = Reviews.fromMap(element);
+            _list.add(r);
             notifyListeners();
           }
-        });
+        }
         firestore.closeConnection();
         debugPrint('Reviews Data Initialized.');
         notifyListeners();

@@ -34,15 +34,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           curve: Curves.easeOut,
           delay: 0.ms,
           duration: 3200.ms,
-          begin: Offset(0, -80),
-          end: Offset(0, 0),
+          begin: const Offset(0, -80),
+          end: const Offset(0, 0),
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 3200.ms,
           duration: 3200.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -80),
+          begin: const Offset(0, 0),
+          end: const Offset(0, -80),
         ),
       ],
     ),
@@ -61,15 +61,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 300.ms,
-          begin: Offset(0, 20),
-          end: Offset(0, 0),
+          begin: const Offset(0, 20),
+          end: const Offset(0, 0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 300.ms,
-          begin: Offset(0.9, 0.9),
-          end: Offset(1, 1),
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
         ),
       ],
     ),
@@ -88,15 +88,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 300.ms,
-          begin: Offset(0, 20),
-          end: Offset(0, 0),
+          begin: const Offset(0, 20),
+          end: const Offset(0, 0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 300.ms,
-          begin: Offset(0.9, 0.9),
-          end: Offset(1, 1),
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
         ),
       ],
     ),
@@ -115,15 +115,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 300.ms,
-          begin: Offset(0, 20),
-          end: Offset(0, 0),
+          begin: const Offset(0, 20),
+          end: const Offset(0, 0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 300.ms,
-          begin: Offset(0.9, 0.9),
-          end: Offset(1, 1),
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
         ),
       ],
     ),
@@ -142,15 +142,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 300.ms,
-          begin: Offset(0, 20),
-          end: Offset(0, 0),
+          begin: const Offset(0, 20),
+          end: const Offset(0, 0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 300.ms,
-          begin: Offset(0.9, 0.9),
-          end: Offset(1, 1),
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
         ),
       ],
     ),
@@ -169,15 +169,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 300.ms,
-          begin: Offset(0, 20),
-          end: Offset(0, 0),
+          begin: const Offset(0, 20),
+          end: const Offset(0, 0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 300.ms,
-          begin: Offset(0.9, 0.9),
-          end: Offset(1, 1),
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
         ),
       ],
     ),
@@ -196,15 +196,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 300.ms,
-          begin: Offset(0, 20),
-          end: Offset(0, 0),
+          begin: const Offset(0, 20),
+          end: const Offset(0, 0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 300.ms,
-          begin: Offset(0.9, 0.9),
-          end: Offset(1, 1),
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
         ),
       ],
     ),
@@ -269,7 +269,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                       child: MasonryGridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate:
-                        SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                         ),
                         crossAxisSpacing: 10,
@@ -278,7 +278,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                         itemBuilder: (context, index) {
                           return [
                                 () => ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(16),
                                 topLeft: Radius.circular(0),
@@ -301,7 +301,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                               ),
                             ),
                                 () => ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(16),
                                 topLeft: Radius.circular(0),
@@ -315,7 +315,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                               ),
                             ),
                                 () => ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(16),
                                 bottomRight: Radius.circular(0),
                                 topLeft: Radius.circular(16),
@@ -347,7 +347,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                               ),
                             ),
                                 () => ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(16),
                                 bottomRight: Radius.circular(0),
                                 topLeft: Radius.circular(16),
@@ -379,7 +379,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                               ),
                             ),
                                 () => ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(16),
                                 bottomRight: Radius.circular(0),
                                 topLeft: Radius.circular(16),
@@ -412,11 +412,11 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
             ),
             Expanded(
               child: Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Container(
                   width: double.infinity,
                   height: 400,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     // maxWidth: 600,
                   ),
                   decoration: BoxDecoration(
@@ -425,21 +425,21 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         height: 200,
                         child: Stack(
                           children: [
                             Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                               child: PageView(
                                 controller: _model.pageViewController ??=
                                     PageController(initialPage: 0),
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         48, 0, 48, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -459,7 +459,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                         'textOnPageLoadAnimation1']!),
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 0, 0),
                                           child: Text(
                                             'Start Your Journey from today',
@@ -473,7 +473,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         48, 0, 48, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -493,7 +493,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                         'textOnPageLoadAnimation3']!),
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 0, 0),
                                           child: Text(
                                             'I have some great food options here!! Yum yum!!',
@@ -507,7 +507,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         48, 0, 48, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -525,7 +525,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                           ),
                                         ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation5']!),
-                                        Padding(
+                                        const Padding(
                                           padding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               0, 8, 0, 0),
@@ -544,10 +544,10 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0, 1),
+                              alignment: const AlignmentDirectional(0, 1),
                               child: Padding(
                                 padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                 child:
                                 smooth_page_indicator.SmoothPageIndicator(
                                   controller: _model.pageViewController ??=
@@ -558,7 +558,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                     await _model.pageViewController!
                                         .animateToPage(
                                       i,
-                                      duration: Duration(milliseconds: 500),
+                                      duration: const Duration(milliseconds: 500),
                                       curve: Curves.ease,
                                     );
                                   },
@@ -589,7 +589,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                 return Visibility(
                                   visible: !(isLoggedIn),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         navigator.currentState!.pushReplacementNamed(routeKeys.vendorLogin);
@@ -602,9 +602,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 60,
-                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                         iconPadding:
-                                        EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                        const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                         color: MyTheme.of(context).primaryText,
                                         textStyle: MyTheme.of(context)
                                             .titleMedium
@@ -614,7 +614,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                               .secondaryBackground,
                                         ),
                                         elevation: 1,
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
@@ -627,7 +627,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                 );
                               } else {
                                 // Placeholder widget or empty container while waiting for the future to complete
-                                return SizedBox.shrink();
+                                return const SizedBox.shrink();
                               }
                           },
                       ),

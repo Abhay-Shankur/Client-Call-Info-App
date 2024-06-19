@@ -105,7 +105,7 @@ Future<void> main() async {
 
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -160,34 +160,34 @@ class _MyAppState extends State<MyApp> {
   }
 }
 var appRoutes = {
-  routeKeys.splashScreen : (context) => SplashScreenWidget(),
-  routeKeys.vendorDashboard : (context) => DashboardWidget(),
-  routeKeys.vendorSMSTemplate : (context) => SMSTemplateWidget(),
-  routeKeys.vendorWPTemplate : (context) => WhatsappTemplateWidget(),
-  routeKeys.vendorPromoTemplate : (context) => PromotionalTemplateWidget(),
-  routeKeys.vendorLogin : (context) => LoginPageWidget(),
-  routeKeys.vendorOtp : (context) => OTPScreenWidget(),
-  routeKeys.callLogTemplate : (context) => CallLogsPage(),
-  routeKeys.editVendorProfile : (context) => EditProfileWidget(),
-  routeKeys.settingsPage : (context) => SettingsWidget(),
-  routeKeys.faqPage : (context) => FaqWidget(),
-  routeKeys.customerSupport : (context) => CustomerSupportWidget(),
-  routeKeys.customTemplates : (context) => CustomtemplateWidget(),
-  routeKeys.permissionsPage : (context) => PermissionWidget(),
-  routeKeys.activeSubscriptionPage : (context) => SubscriptionPageWidget(),
+  routeKeys.splashScreen : (context) => const SplashScreenWidget(),
+  routeKeys.vendorDashboard : (context) => const DashboardWidget(),
+  routeKeys.vendorSMSTemplate : (context) => const SMSTemplateWidget(),
+  routeKeys.vendorWPTemplate : (context) => const WhatsappTemplateWidget(),
+  routeKeys.vendorPromoTemplate : (context) => const PromotionalTemplateWidget(),
+  routeKeys.vendorLogin : (context) => const LoginPageWidget(),
+  routeKeys.vendorOtp : (context) => const OTPScreenWidget(),
+  routeKeys.callLogTemplate : (context) => const CallLogsPage(),
+  routeKeys.editVendorProfile : (context) => const EditProfileWidget(),
+  routeKeys.settingsPage : (context) => const SettingsWidget(),
+  routeKeys.faqPage : (context) => const FaqWidget(),
+  routeKeys.customerSupport : (context) => const CustomerSupportWidget(),
+  routeKeys.customTemplates : (context) => const CustomtemplateWidget(),
+  routeKeys.permissionsPage : (context) => const PermissionWidget(),
+  routeKeys.activeSubscriptionPage : (context) => const SubscriptionPageWidget(),
 
-  routeKeys.webPageEditorDashboard : (context) => WebPageEditorWidget(),
-  routeKeys.linkPage : (context) => LinksPageWidget(),
-  routeKeys.webMetadataPage : (context) => WebMetadataPageWidget(),
-  routeKeys.webVideoGallery : (context) => WebVideoGalleryWidget(),
-  routeKeys.webImageGallery : (context) => WebImageGalleyWidget(),
-  routeKeys.webServicesPage : (context) => WebServicPageWidget(),
-  routeKeys.webServicesAdd : (context) => WebServiceAddWidget(),
-  routeKeys.webProductsPage : (context) => WebProductsPageWidget(),
-  routeKeys.webProductsAdd : (context) => WebProductsAddWidget(),
-  routeKeys.webWeHelpPage : (context) => WeHelpPageWidget(),
-  routeKeys.webTestimonialPage : (context) => WebTestimonialPageWidget(),
-  routeKeys.webTestimonialAdd : (context) => WebTestimonialAddWidget(),
+  routeKeys.webPageEditorDashboard : (context) => const WebPageEditorWidget(),
+  routeKeys.linkPage : (context) => const LinksPageWidget(),
+  routeKeys.webMetadataPage : (context) => const WebMetadataPageWidget(),
+  routeKeys.webVideoGallery : (context) => const WebVideoGalleryWidget(),
+  routeKeys.webImageGallery : (context) => const WebImageGalleyWidget(),
+  routeKeys.webServicesPage : (context) => const WebServicPageWidget(),
+  routeKeys.webServicesAdd : (context) => const WebServiceAddWidget(),
+  routeKeys.webProductsPage : (context) => const WebProductsPageWidget(),
+  routeKeys.webProductsAdd : (context) => const WebProductsAddWidget(),
+  routeKeys.webWeHelpPage : (context) => const WeHelpPageWidget(),
+  routeKeys.webTestimonialPage : (context) => const WebTestimonialPageWidget(),
+  routeKeys.webTestimonialAdd : (context) => const WebTestimonialAddWidget(),
 
 };
 

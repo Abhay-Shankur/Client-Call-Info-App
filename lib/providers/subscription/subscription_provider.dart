@@ -19,10 +19,10 @@ class SubscriptionProvider extends ChangeNotifier {
       final id = FirebaseAuthHandler.getCurrentUser()?.uid;
       final data = await fh.readFieldAtPath("USERS", id!, "Subscription");
       if(data != null) {
-        created = data['created'] ?? null;
-        start = data['start'] ?? null;
-        end = data['end'] ?? null;
-        type = data['type'] ?? null;
+        created = data['created'];
+        start = data['start'];
+        end = data['end'];
+        type = data['type'];
         await updateShared();
       }
       fh.closeConnection();

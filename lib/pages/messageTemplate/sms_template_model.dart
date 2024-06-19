@@ -33,7 +33,7 @@ class SMSTemplateModel extends FlutterFlowModel<SMSTemplateWidget> {
 
   Future<void> saveTemplate(BuildContext context) async {
     try {
-      String text = this.textController!.value.text;
+      String text = textController!.value.text;
       if(text.isEmpty){
         showToast(context: context, type: ToastificationType.info, title: 'SMS Template', desc: 'Please fill the template..');
         return;
@@ -45,7 +45,7 @@ class SMSTemplateModel extends FlutterFlowModel<SMSTemplateWidget> {
           'text': text,
         }
       };
-      String? uid = await FirebaseAuthHandler.getUid() ?? '';
+      String? uid = FirebaseAuthHandler.getUid() ?? '';
       await firestore.updateFirestoreData("USERS", uid, data);
       firestore.closeConnection();
       SMSMessageTemplate(text: text).saveToShared();

@@ -14,8 +14,8 @@ class CardCallWidget extends StatefulWidget {
     String? cardTitle,
     int? cardValue,
     required this.cardIcon,
-  })  : this.cardTitle = cardTitle ?? 'cardTitle',
-        this.cardValue = cardValue ?? 0;
+  })  : cardTitle = cardTitle ?? 'cardTitle',
+        cardValue = cardValue ?? 0;
 
   final String cardTitle;
   final int cardValue;
@@ -45,8 +45,8 @@ class _CardCallWidgetState extends State<CardCallWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(100, 0),
-          end: Offset(0, 0),
+          begin: const Offset(100, 0),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -65,8 +65,8 @@ class _CardCallWidgetState extends State<CardCallWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1, 1),
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1, 1),
         ),
       ],
     ),
@@ -85,8 +85,8 @@ class _CardCallWidgetState extends State<CardCallWidget>
           curve: Curves.easeInOut,
           delay: 180.ms,
           duration: 600.ms,
-          begin: Offset(20, 0),
-          end: Offset(0, 0),
+          begin: const Offset(20, 0),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -105,8 +105,8 @@ class _CardCallWidgetState extends State<CardCallWidget>
           curve: Curves.easeInOut,
           delay: 200.ms,
           duration: 600.ms,
-          begin: Offset(40, 0),
-          end: Offset(0, 0),
+          begin: const Offset(40, 0),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -141,12 +141,12 @@ class _CardCallWidgetState extends State<CardCallWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 12),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 12),
       child: Container(
         height: 140,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4,
               color: Color(0x1F000000),
@@ -163,7 +163,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
           ),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -174,7 +174,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   shape: BoxShape.circle,
                 ),
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   color: FlutterFlowTheme.of(context).primary,
@@ -182,14 +182,14 @@ class _CardCallWidgetState extends State<CardCallWidget>
                     borderRadius: BorderRadius.circular(40),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     child: widget.cardIcon!,
                   ),
                 ),
               ).animateOnPageLoad(
                   animationsMap['containerOnPageLoadAnimation2']!),
               Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -205,7 +205,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
                     ).animateOnPageLoad(
                         animationsMap['textOnPageLoadAnimation1']!),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                       child: Text(
                         widget.cardValue.toString(),
                         style:

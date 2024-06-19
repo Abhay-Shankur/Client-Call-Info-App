@@ -95,32 +95,32 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
               child: Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 670,
                 ),
                 decoration: BoxDecoration(
                   color: MyTheme.of(context).secondaryBackground,
                 ),
-                alignment: AlignmentDirectional(0, -1),
+                alignment: const AlignmentDirectional(0, -1),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -128,21 +128,21 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1, 0),
+                                alignment: const AlignmentDirectional(-1, 0),
                                 child: Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 10, 0, 10),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Align(
                                           alignment:
-                                          AlignmentDirectional(-1, -1),
+                                          const AlignmentDirectional(-1, -1),
                                           child: Padding(
                                             padding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0, 0, 0, 8),
                                             child: Text(
                                               'Subscription Details',
@@ -161,10 +161,10 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                          AlignmentDirectional(-1, 0),
+                                          const AlignmentDirectional(-1, 0),
                                           child: Padding(
                                             padding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 12, 0, 0, 8),
                                             child: Consumer<SubscriptionProvider> (
                                               builder: (context, value, child) {
@@ -172,7 +172,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                                 return Text(
                                                   // 'You been part of family since ${date}',
                                                   date.isNotEmpty
-                                                    ? 'Your Subscription started since ${date}'
+                                                    ? 'Your Subscription started since $date'
                                                     : 'No Active Subscription',
                                                   textAlign: TextAlign.start,
                                                   style:
@@ -191,10 +191,10 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                          AlignmentDirectional(-1, 0),
+                                          const AlignmentDirectional(-1, 0),
                                           child: Padding(
                                             padding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 12, 0, 0, 8),
                                             child: Consumer<SubscriptionProvider> (
                                               builder: (context, value, child) {
@@ -231,18 +231,18 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                 ),
                               ),
                               Container(
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
-                                        alignment: AlignmentDirectional(-1, -1),
+                                        alignment: const AlignmentDirectional(-1, -1),
                                         child: Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 0, 0, 8),
                                           child: Text(
                                             'Available Services',
@@ -356,14 +356,14 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                 ),
                               ),
                               Container(
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(-1, -1),
+                                      alignment: const AlignmentDirectional(-1, -1),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 8),
                                         child: Text(
                                           'Repeating Message ',
@@ -386,9 +386,9 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 10),
-                                        child: Container(
+                                        child: SizedBox(
                                           width: double.infinity,
                                           child: Slider(
                                             activeColor:
@@ -421,7 +421,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                           .primaryText,
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 10, 0, 10),
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -430,7 +430,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               10, 10, 10, 10),
                                           child: ListTile(
                                             title: Text(
@@ -455,7 +455,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                                 .primaryText,
                                             dense: false,
                                             contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0, 0, 0, 0),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -476,14 +476,14 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                 ),
                               ),
                               Container(
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(-1, -1),
+                                      alignment: const AlignmentDirectional(-1, -1),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 10),
                                         child: Text(
                                           'Connect Your Whatsapp Account',
@@ -499,12 +499,13 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16, 12, 16, 0),
                                       child: Consumer<WPProvider> (
                                         builder: (context, value, child) {
-                                          if(value.accessToken != null && value.accessToken!.isNotEmpty)
+                                          if(value.accessToken != null && value.accessToken!.isNotEmpty) {
                                             _model.textController1 = TextEditingController(text: value.accessToken!);
+                                          }
                                           return TextFormField(
                                             controller: _model.textController1,
                                             focusNode: _model.textFieldFocusNode1,
@@ -578,7 +579,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                               MyTheme.of(context)
                                                   .secondaryBackground,
                                               contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 16, 16, 8),
                                             ),
                                             style: MyTheme.of(context)
@@ -596,12 +597,13 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16, 12, 16, 0),
                                       child: Consumer<WPProvider> (
                                         builder: (context, value, child) {
-                                          if(value.instanceId != null && value.instanceId!.isNotEmpty)
+                                          if(value.instanceId != null && value.instanceId!.isNotEmpty) {
                                             _model.textController2 = TextEditingController(text: value.instanceId!);
+                                          }
                                           return TextFormField(
                                             controller: _model.textController2,
                                             focusNode: _model.textFieldFocusNode2,
@@ -675,7 +677,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                               MyTheme.of(context)
                                                   .secondaryBackground,
                                               contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 16, 16, 8),
                                             ),
                                             style: MyTheme.of(context)
@@ -704,7 +706,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                           : _isKeyboardVisible))
                         Padding(
                           padding:
-                          EdgeInsetsDirectional.fromSTEB(16, 28, 16, 29),
+                          const EdgeInsetsDirectional.fromSTEB(16, 28, 16, 29),
                           child: FFButtonWidget(
                             onPressed: () async {
                               await _model.save(context);
@@ -714,9 +716,9 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                               width: double.infinity,
                               height: 60,
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               color: MyTheme.of(context).primaryText,
                               textStyle: MyTheme.of(context)
                                   .titleMedium
@@ -727,7 +729,7 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                 letterSpacing: 0,
                               ),
                               elevation: 4,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
                               ),

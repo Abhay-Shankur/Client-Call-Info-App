@@ -32,16 +32,16 @@ class SmsHandler {
   static Future<bool> sendMessage(String phoneNumber, {int? simSlot}) async {
     try {
       await SharedPreferencesHelper.reload();
-      SMSMessageTemplate? _message = await SMSMessageTemplate.getFromShared();
+      SMSMessageTemplate? message = await SMSMessageTemplate.getFromShared();
       bool allowed = await SharedPreferencesHelper.getBool("allowSMS") ?? false;
 
       if(allowed) {
-        if(_message == null) {
+        if(message == null) {
           showNotification('Call Infos', 'SMS Template is Empty.');
           return false;
         }
 
-        String msg = _message.text;
+        String msg = message.text;
         if (await isPermissionGranted()) {
           var isCustomSimSupported = await supportCustomSim;
           if (isCustomSimSupported != null && isCustomSimSupported) {

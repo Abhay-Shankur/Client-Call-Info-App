@@ -17,24 +17,25 @@ class WPProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'Whatsapp') ?? null;
+        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'Whatsapp');
         if(data != null) {
           _allowed = data['allowed'] ?? false;
-          _text = data['text'] ?? null;
-          _image = data['image'] ?? null;
-          _authKey = data['AUTH_KEY'] ?? null;
-          _instanceId = data['instance_id'] ?? null;
+          _text = data['text'];
+          _image = data['image'];
+          _authKey = data['AUTH_KEY'];
+          _instanceId = data['instance_id'];
           notifyListeners();
         }
         debugPrint('Whatsapp Data Initialized.');
         firestore.closeConnection();
         notifyListeners();
         await SharedPreferencesHelper.setBool('allowWP', _allowed);
-        if(_text != null && _image != null)
+        if(_text != null && _image != null) {
           WPMessageTemplate(text: _text!, image: _image!).saveToShared();
+        }
         if(_authKey != null ) await SharedPreferencesHelper.setString('AUTH_KEY', _authKey!);
         if(_instanceId != null ) await SharedPreferencesHelper.setString('instance_id', _instanceId!);
       } else {
@@ -59,7 +60,7 @@ class WPProvider extends ChangeNotifier {
     try {
       _allowed = value;
       notifyListeners();
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
         Map<String, dynamic>? data = {

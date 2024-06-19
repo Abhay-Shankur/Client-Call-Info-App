@@ -86,17 +86,17 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
   saveDomain(BuildContext context) async {
     try{
       Map<String,dynamic> data = {
-        'webDomain' : '${textController!.value.text}',
+        'webDomain' : textController!.value.text,
       };
 
       FirestoreHandler firestore = FirestoreHandler();
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null){
         if(await firestore.isExists("Website", data['webDomain'])){
           showToast(context: context, type: ToastificationType.error, title: 'Domain Name', desc: 'Domain Name already exists.');
           return false;
         }
-        dynamic rs = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
+        dynamic rs = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
         if(rs == null){
           await firestore.updateFirestoreData("USERS", uid, data);
           await firestore.createEmptyDocument("Website", data['webDomain']);

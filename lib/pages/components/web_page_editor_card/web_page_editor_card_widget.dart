@@ -10,7 +10,7 @@ class WebPageEditorCardWidget extends StatefulWidget {
     super.key,
     String? text,
     required this.icon,
-  }) : this.text = text ?? 'Card Text';
+  }) : text = text ?? 'Card Text';
 
   final String text;
   final Widget? icon;
@@ -45,7 +45,7 @@ class _WebPageEditorCardWidgetState extends State<WebPageEditorCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+      padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
       child: Container(
         width: 100,
         height: 100,
@@ -54,13 +54,13 @@ class _WebPageEditorCardWidgetState extends State<WebPageEditorCardWidget> {
           borderRadius: BorderRadius.circular(9),
         ),
         child: Align(
-          alignment: AlignmentDirectional(0, 0),
+          alignment: const AlignmentDirectional(0, 0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: widget.icon!,
               ),
               Text(

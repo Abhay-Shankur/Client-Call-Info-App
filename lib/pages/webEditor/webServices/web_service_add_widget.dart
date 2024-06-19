@@ -73,14 +73,14 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -89,7 +89,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: TextFormField(
                           controller: _model.textController1,
                           focusNode: _model.textFieldFocusNode1,
@@ -156,7 +156,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                         color: FlutterFlowTheme.of(context).primaryText,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                         child: TextFormField(
                           controller: _model.textController2,
                           focusNode: _model.textFieldFocusNode2,
@@ -223,7 +223,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
                         child: FFButtonWidget(
                           onPressed: () async {
                             setState(() {
@@ -239,9 +239,9 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 60,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: FlutterFlowTheme.of(context).primaryText,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleMedium
@@ -252,7 +252,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                               letterSpacing: 0,
                             ),
                             elevation: 4,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1,
                             ),

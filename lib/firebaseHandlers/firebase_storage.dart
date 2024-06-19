@@ -15,11 +15,11 @@ class FirebaseStorageService {
   static Future<String?> uploadImage(File imageFile, String path, String? name) async {
     try {
       String fileType = getFileType(imageFile);
-      String imageName =  (name ?? DateTime.now().millisecondsSinceEpoch.toString()) + '.$fileType';
+      String imageName =  '${name ?? DateTime.now().millisecondsSinceEpoch.toString()}.$fileType';
       final Reference reference = _storage.ref().child('$path$imageName');
       await reference.putFile(imageFile);
       String imageUrl = await reference.getDownloadURL();
-      return imageUrl + '.$fileType';
+      return '$imageUrl.$fileType';
     } catch (e) {
       print('Error uploading image: $e');
       return null;

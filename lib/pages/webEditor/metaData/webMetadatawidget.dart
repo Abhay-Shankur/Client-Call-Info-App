@@ -95,30 +95,30 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                   letterSpacing: 0,
                 ),
               ),
-              actions: [],
+              actions: const [],
               centerTitle: true,
               elevation: 1,
             ),
             body: SafeArea(
               top: true,
               child: Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Container(
                   width: double.infinity,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxWidth: 670,
                   ),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: AlignmentDirectional(0, -1),
+                  alignment: const AlignmentDirectional(0, -1),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -127,7 +127,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                               children: [
                                 // Generated code for this Container Widget...
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                                   child: GestureDetector(
                                     onTap: () async {
                                       await _model.pickFile();
@@ -140,7 +140,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                       height: 175,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context).primaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 5,
                                             color: Color(0x33000000),
@@ -157,7 +157,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(4),
+                                        padding: const EdgeInsets.all(4),
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(24),
                                           child: Consumer<WebMetaDataProvider> (
@@ -171,7 +171,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                                 );
                                               } else if (value.imageBanner != null) {
                                                 return FadeInImage(
-                                                    placeholder: AssetImage('assets/images/productImage.jpg'),
+                                                    placeholder: const AssetImage('assets/images/productImage.jpg'),
                                                     image: NetworkImage(value.imageBanner!),
                                                     width: 300,
                                                     height: 63,
@@ -194,11 +194,12 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider> (
                                     builder: (context, value, child) {
-                                      if(value.ownerName != null)
+                                      if(value.ownerName != null) {
                                         _model.textController1 = TextEditingController(text: value.ownerName);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController1,
                                         focusNode: _model.textFieldFocusNode1,
@@ -259,7 +260,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           fillColor: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -278,11 +279,12 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child){
-                                      if(value.ownerContact != null)
+                                      if(value.ownerContact != null) {
                                         _model.textController2 = TextEditingController(text: value.ownerContact);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController2,
                                         focusNode: _model.textFieldFocusNode2,
@@ -343,7 +345,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           fillColor: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -362,11 +364,12 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
-                                      if(value.businessName != null)
+                                      if(value.businessName != null) {
                                         _model.textController3 = TextEditingController(text: value.businessName);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController3,
                                         focusNode: _model.textFieldFocusNode3,
@@ -427,7 +430,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           fillColor: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -446,11 +449,12 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
-                                      if(value.businessContact != null)
+                                      if(value.businessContact != null) {
                                         _model.textController4 = TextEditingController(text: value.businessContact);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController4,
                                         focusNode: _model.textFieldFocusNode4,
@@ -512,7 +516,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           fillColor: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -531,11 +535,12 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider>(
                                     builder: (context, value, child) {
-                                      if(value.businessMail != null)
+                                      if(value.businessMail != null) {
                                         _model.textController5 = TextEditingController(text: value.businessMail);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController5,
                                         focusNode: _model.textFieldFocusNode5,
@@ -596,7 +601,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           fillColor: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -615,11 +620,12 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider> (
                                     builder: (context, value, child) {
-                                      if(value.businessAddress != null)
+                                      if(value.businessAddress != null) {
                                         _model.textController6 = TextEditingController(text: value.businessAddress);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController6,
                                         focusNode: _model.textFieldFocusNode6,
@@ -681,7 +687,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           fillColor: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -700,11 +706,12 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 ),
                                 // Generated code for this TextField Widget...
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                   child: Consumer<WebMetaDataProvider> (
                                     builder:(context, value, child) {
-                                      if(value.businessDescription != null)
+                                      if(value.businessDescription != null) {
                                         _model.textController7 = TextEditingController(text: value.businessDescription);
+                                      }
                                       return TextFormField(
                                         controller: _model.textController7,
                                         focusNode: _model.textFieldFocusNode7,
@@ -759,7 +766,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           filled: true,
                                           fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                          contentPadding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
+                                          contentPadding: const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
                                         ),
                                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                                           fontFamily: 'Readex Pro',
@@ -774,13 +781,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                   ),
                                 ),
                               ]
-                                  .divide(SizedBox(height: 15))
-                                  .around(SizedBox(height: 15)),
+                                  .divide(const SizedBox(height: 15))
+                                  .around(const SizedBox(height: 15)),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 24),
+                          padding: const EdgeInsetsDirectional.fromSTEB(16, 30, 16, 24),
                           child: FFButtonWidget(
                             onPressed: () async {
                               setState(() {
@@ -796,9 +803,9 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 60,
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               color: FlutterFlowTheme.of(context).primaryText,
                               textStyle:
                               FlutterFlowTheme.of(context).titleMedium.override(
@@ -808,7 +815,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 letterSpacing: 0,
                               ),
                               elevation: 4,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
                               ),

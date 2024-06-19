@@ -41,7 +41,7 @@ class _FaqWidgetState extends State<FaqWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFF1F4F8),
+        backgroundColor: const Color(0xFFF1F4F8),
         appBar: AppBar(
           backgroundColor: MyTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -63,7 +63,7 @@ class _FaqWidgetState extends State<FaqWidget> {
             'Call Logs',
             style: MyTheme.of(context).titleLarge,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -75,12 +75,12 @@ class _FaqWidgetState extends State<FaqWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
                   child: Text(
                     'Frequently Asked Questions',
                     style: MyTheme.of(context).headlineMedium.override(
                       fontFamily: 'Sora',
-                      color: Color(0xFF14181B),
+                      color: const Color(0xFF14181B),
                       fontSize: 32,
                       fontWeight: FontWeight.normal,
                     ),
@@ -89,7 +89,7 @@ class _FaqWidgetState extends State<FaqWidget> {
                 wrapWithModel(
                   model: _model.fAQListItemModel1,
                   updateCallback: () => setState(() {}),
-                  child: FAQListItemWidget(
+                  child: const FAQListItemWidget(
                     faqTitle: 'How do I log in?',
                     faqContent:
                     'To log in, navigate to the Login page and enter your registered email address and password. If you\'ve forgotten your password, you can reset it by clicking the \'Forgot Password\' link.',
@@ -98,7 +98,7 @@ class _FaqWidgetState extends State<FaqWidget> {
                 wrapWithModel(
                   model: _model.fAQListItemModel2,
                   updateCallback: () => setState(() {}),
-                  child: FAQListItemWidget(
+                  child: const FAQListItemWidget(
                     faqTitle: 'How can I edit my profile?',
                     faqContent:
                     'Once logged in, go to the Profile Page and click on the \'Edit Profile\' option. From there, you can update your personal information, profile picture, and other details.',
@@ -107,7 +107,7 @@ class _FaqWidgetState extends State<FaqWidget> {
                 wrapWithModel(
                   model: _model.fAQListItemModel3,
                   updateCallback: () => setState(() {}),
-                  child: FAQListItemWidget(
+                  child: const FAQListItemWidget(
                     faqTitle: 'What should I do if I encounter an error?',
                     faqContent:
                     'If you encounter any errors, please try refreshing the page or logging out and logging back in. If the problem persists, you can contact our support team through the \'Support\' option in the app.',
@@ -116,7 +116,7 @@ class _FaqWidgetState extends State<FaqWidget> {
                 wrapWithModel(
                   model: _model.fAQListItemModel4,
                   updateCallback: () => setState(() {}),
-                  child: FAQListItemWidget(
+                  child: const FAQListItemWidget(
                     faqTitle: 'How do I deactivate my account?',
                     faqContent:
                     'To deactivate your account, please go to the \'Settings\' section of your Profile Page and select the \'Deactivate Account\' option. Follow the steps provided to confirm the deactivation.',

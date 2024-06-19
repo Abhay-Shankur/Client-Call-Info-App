@@ -23,12 +23,12 @@ class Profile {
 
   Map<String, dynamic> toMap() {
     return {
-      'imageFile': this.imageFile,
-      'vendorName': this.vendorName,
-      'vendorEmail': this.vendorEmail,
-      'vendorContact': this.vendorContact,
-      'businessName': this.businessName,
-      'businessDescription': this.businessDescription,
+      'imageFile': imageFile,
+      'vendorName': vendorName,
+      'vendorEmail': vendorEmail,
+      'vendorContact': vendorContact,
+      'businessName': businessName,
+      'businessDescription': businessDescription,
     };
   }
 
@@ -53,10 +53,10 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> _init() async{
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'Profile') ?? null;
+        Map<String, dynamic>? data = await firestore.readFieldAtPath("USERS", uid, 'Profile');
         if(data != null) {
           _profile = Profile.fromJson(data);
           notifyListeners();

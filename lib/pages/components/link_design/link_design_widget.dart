@@ -48,7 +48,7 @@ class _LinkDesignWidgetState extends State<LinkDesignWidget> {
       children: [
         Expanded(
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 13),
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 13),
             child: Consumer<WebDomainProvider>(
               builder: (context, value, child) {
                 return TextFormField(
@@ -105,7 +105,7 @@ class _LinkDesignWidgetState extends State<LinkDesignWidget> {
                     ),
                     filled: true,
                     fillColor: MyTheme.of(context).secondaryBackground,
-                    contentPadding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
+                    contentPadding: const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
                   ),
                   style: MyTheme.of(context).bodyLarge.override(
                     fontFamily: 'Readex Pro',
@@ -119,7 +119,7 @@ class _LinkDesignWidgetState extends State<LinkDesignWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Stack(
             children: [
               FlutterFlowIconButton(

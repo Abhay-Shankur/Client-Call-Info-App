@@ -10,7 +10,7 @@ class ListTileWidget extends StatefulWidget {
     String? text,
     required this.editFunc,
     required this.dltFunc,
-  }) : this.text = text ?? 'List Tile Text';
+  }) : text = text ?? 'List Tile Text';
 
   final String text;
   final Future Function()? editFunc;
@@ -45,13 +45,13 @@ class _ListTileWidgetState extends State<ListTileWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
       child: Container(
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4,
               color: Color(0x320E151B),
@@ -64,21 +64,21 @@ class _ListTileWidgetState extends State<ListTileWidget> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                         child: Text(
                           widget.text,
                           style:

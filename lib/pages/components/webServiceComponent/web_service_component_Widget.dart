@@ -46,7 +46,7 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
           child: TextFormField(
             controller: _model.textController1,
             focusNode: _model.textFieldFocusNode1,
@@ -106,7 +106,7 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
           color: FlutterFlowTheme.of(context).primaryText,
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
           child: TextFormField(
             controller: _model.textController2,
             focusNode: _model.textFieldFocusNode2,
@@ -163,7 +163,7 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+          padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
           child: FFButtonWidget(
             onPressed: () {
               print('Button pressed ...');
@@ -172,8 +172,8 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
             options: FFButtonOptions(
               width: double.infinity,
               height: 60,
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
               color: FlutterFlowTheme.of(context).primaryText,
               textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                 fontFamily: 'Readex Pro',
@@ -181,7 +181,7 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
                 letterSpacing: 0,
               ),
               elevation: 4,
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.transparent,
                 width: 1,
               ),

@@ -33,7 +33,7 @@ class Links {
 }
 
 class WebLinksProvider extends ChangeNotifier {
-  Links? _links = null;
+  Links? _links;
 
   WebLinksProvider(){
     _init();
@@ -41,11 +41,11 @@ class WebLinksProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        String _domainName = await firestore.readFieldAtPath("USERS", uid, "webDomain") ?? null;
-        Map<String,dynamic>? data = await firestore.readFieldAtPath("Website", _domainName, "Links") ?? null;
+        String domainName = await firestore.readFieldAtPath("USERS", uid, "webDomain");
+        Map<String,dynamic>? data = await firestore.readFieldAtPath("Website", domainName, "Links");
         if(data != null) _links = Links.fromMap(data);
         firestore.closeConnection();
         debugPrint('Links Data Initialized.');

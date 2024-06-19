@@ -16,11 +16,11 @@ class WebWeHelpProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        String _domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
-        Map<String,dynamic>? data = await firestore.readFieldAtPath("Website", _domainName, "WeHelp") ?? null;
+        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
+        Map<String,dynamic>? data = await firestore.readFieldAtPath("Website", domainName, "WeHelp");
         if(data != null) {
           _heading = data['heading'];
           _description = data['description'];

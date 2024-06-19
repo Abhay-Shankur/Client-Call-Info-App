@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class PromotionalTemplateModel
     extends FlutterFlowModel<PromotionalTemplateWidget> {
   ///  State fields for stateful widgets in this page.
-  static  File? pickedFile=null;
+  static  File? pickedFile;
   final unfocusNode = FocusNode();
   // State field(s) for Slider widget.
   double? sliderValue;

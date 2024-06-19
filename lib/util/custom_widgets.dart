@@ -7,33 +7,33 @@ showToast(
     required ToastificationType type,
     required String title,
     required String desc}) {
-  Color? _primary;
-  Color? _background;
-  Color? _foreground;
+  Color? primary;
+  Color? background;
+  Color? foreground;
 
   switch (type) {
     case ToastificationType.success:
-      _primary = Colors.green;
-      _background = Colors.green.shade50;
-      _foreground = Colors.black;
+      primary = Colors.green;
+      background = Colors.green.shade50;
+      foreground = Colors.black;
       break;
 
     case ToastificationType.warning:
-      _primary = Colors.amber;
-      _background = Color.fromARGB(203, 230, 200, 133);
-      _foreground = Colors.deepPurple;
+      primary = Colors.amber;
+      background = const Color.fromARGB(203, 230, 200, 133);
+      foreground = Colors.deepPurple;
       break;
 
     case ToastificationType.info:
-      _primary = Colors.blueAccent;
-      _background = Colors.white;
-      _foreground = Colors.black;
+      primary = Colors.blueAccent;
+      background = Colors.white;
+      foreground = Colors.black;
       break;
 
     case ToastificationType.error:
-      _primary = Colors.red;
-      _background = Color.fromARGB(255, 255, 110, 110);
-      _foreground = Colors.white;
+      primary = Colors.red;
+      background = const Color.fromARGB(255, 255, 110, 110);
+      foreground = Colors.white;
       break;
 
     default:
@@ -57,9 +57,9 @@ showToast(
       );
     },
     icon: const Icon(Icons.check, color: Colors.black),
-    primaryColor: _primary,
-    backgroundColor: _background,
-    foregroundColor: _foreground,
+    primaryColor: primary,
+    backgroundColor: background,
+    foregroundColor: foreground,
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
     margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     borderRadius: BorderRadius.circular(12),
@@ -85,7 +85,7 @@ void showNotification(String title, String message) async {
 
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
-  final InitializationSettings initializationSettings =
+  const InitializationSettings initializationSettings =
       InitializationSettings(android: initializationSettingsAndroid);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
@@ -93,7 +93,7 @@ void showNotification(String title, String message) async {
       AndroidNotificationDetails(
     'com.callinfo.application.call_info',
     'Call Infos',
-    channelDescription: 'Notification channel for call infos',
+    'Notification channel for call infos',
     importance: Importance.max,
     priority: Priority.high,
     showWhen: false,

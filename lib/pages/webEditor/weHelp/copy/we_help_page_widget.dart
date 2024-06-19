@@ -18,8 +18,8 @@ class WeHelpPageWidget extends StatefulWidget {
 class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
     with TickerProviderStateMixin {
   late WeHelpPageModel _model;
-  List<bool> _pick = [false, false, false];
-  bool _saving = false;
+  final List<bool> _pick = [false, false, false];
+  final bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -51,8 +51,8 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0, 110),
-            end: Offset(0, 0),
+            begin: const Offset(0, 110),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -70,8 +70,8 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0, 110),
-            end: Offset(0, 0),
+            begin: const Offset(0, 110),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -89,8 +89,8 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0, 110),
-            end: Offset(0, 0),
+            begin: const Offset(0, 110),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -108,8 +108,8 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0, 110),
-            end: Offset(0, 0),
+            begin: const Offset(0, 110),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -164,21 +164,21 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                     child: Text(
                       'Upload 3 Cover Images  And Fill The Information',
                       style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -192,7 +192,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                     children: [
                       Container(
                         width: double.infinity,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 500,
                         ),
                         decoration: BoxDecoration(
@@ -205,14 +205,14 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
                                 child: Container(
                                   width: 120,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
@@ -226,7 +226,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8),
+                                    padding: const EdgeInsets.all(8),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -249,7 +249,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                               builder: (context, value, child) {
                                                 if(value.image1 != null) {
                                                   return FadeInImage(
-                                                    placeholder: AssetImage('assets/images/loading.gif'), // Placeholder image while loading
+                                                    placeholder: const AssetImage('assets/images/loading.gif'), // Placeholder image while loading
                                                     image: NetworkImage(value.image1!), // Network image to load
                                                     width: 300,
                                                     fit: BoxFit.cover,
@@ -282,7 +282,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                               Expanded(
                                 child: Container(
                                   width: 120,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
@@ -296,7 +296,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8),
+                                    padding: const EdgeInsets.all(8),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -318,7 +318,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                               builder: (context, value, child) {
                                                 if(value.image2 != null) {
                                                   return FadeInImage(
-                                                    placeholder: AssetImage('assets/images/loading.gif'), // Placeholder image while loading
+                                                    placeholder: const AssetImage('assets/images/loading.gif'), // Placeholder image while loading
                                                     image: NetworkImage(value.image2!), // Network image to load
                                                     width: 300,
                                                     fit: BoxFit.cover,
@@ -351,7 +351,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                               Expanded(
                                 child: Container(
                                   width: 120,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
@@ -365,7 +365,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8),
+                                    padding: const EdgeInsets.all(8),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -387,7 +387,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                               builder: (context, value, child) {
                                                 if(value.image3 != null ){
                                                   return FadeInImage(
-                                                    placeholder: AssetImage('assets/images/loading.gif'), // Placeholder image while loading
+                                                    placeholder: const AssetImage('assets/images/loading.gif'), // Placeholder image while loading
                                                     image: NetworkImage(value.image3!), // Network image to load
                                                     width: 300,
                                                     fit: BoxFit.cover,
@@ -418,8 +418,8 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                 'containerOnPageLoadAnimation4']!),
                               ),
                             ]
-                                .divide(SizedBox(width: 8))
-                                .around(SizedBox(width: 8)),
+                                .divide(const SizedBox(width: 8))
+                                .around(const SizedBox(width: 8)),
                           ),
                         ),
                       ).animateOnPageLoad(
@@ -481,7 +481,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                              const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                             ),
                             style:
                             FlutterFlowTheme.of(context).headlineSmall.override(
@@ -544,7 +544,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
+                              const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
@@ -559,26 +559,26 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                         },
                       ),
                     ]
-                        .divide(SizedBox(height: 16))
-                        .addToStart(SizedBox(height: 12)),
+                        .divide(const SizedBox(height: 16))
+                        .addToStart(const SizedBox(height: 12)),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
                     child: FFButtonWidget(
                       onPressed: () async {
                         await _model.save(context);
                         navigator.currentState!.pop();
                       },
                       text: 'Save',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.receipt_long,
                         size: 15,
                       ),
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 54,
-                        padding: EdgeInsets.all(0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding: const EdgeInsets.all(0),
+                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: FlutterFlowTheme.of(context).primaryText,
                         textStyle:
                         FlutterFlowTheme.of(context).titleSmall.override(
@@ -588,7 +588,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                           letterSpacing: 0,
                         ),
                         elevation: 4,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),

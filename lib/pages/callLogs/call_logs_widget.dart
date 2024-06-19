@@ -150,6 +150,8 @@ import 'package:call_log/call_log.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CallLogsPage extends StatefulWidget {
+  const CallLogsPage({super.key});
+
   @override
   _CallLogsPageState createState() => _CallLogsPageState();
 }
@@ -175,13 +177,13 @@ class _CallLogsPageState extends State<CallLogsPage> {
   Icon getCallIcon(CallType? callType) {
     switch (callType) {
       case CallType.incoming:
-        return Icon(Icons.call_received, color: Colors.green);
+        return const Icon(Icons.call_received, color: Colors.green);
       case CallType.outgoing:
-        return Icon(Icons.call_made, color: Colors.blue);
+        return const Icon(Icons.call_made, color: Colors.blue);
       case CallType.missed:
-        return Icon(Icons.call_missed, color: Colors.red);
+        return const Icon(Icons.call_missed, color: Colors.red);
       default:
-        return Icon(Icons.phone);
+        return const Icon(Icons.phone);
     }
   }
 
@@ -203,7 +205,7 @@ class _CallLogsPageState extends State<CallLogsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Call Logs'),
+        title: const Text('Call Logs'),
       ),
       body: ListView.builder(
         itemCount: _callLogs.length,
@@ -213,15 +215,15 @@ class _CallLogsPageState extends State<CallLogsPage> {
             leading: getCallIcon(call.callType),
             title: Text(
               call.name ?? 'Unknown',
-              style: TextStyle(color: Colors.black87),
+              style: const TextStyle(color: Colors.black87),
             ),
             subtitle: Text(
               call.number ?? 'Unknown',
-              style: TextStyle(color: Colors.black54),
+              style: const TextStyle(color: Colors.black54),
             ),
             trailing: Text(
               call.callType.toString(),
-              style: TextStyle(color: Colors.black87),
+              style: const TextStyle(color: Colors.black87),
             ),
             tileColor: getBackgroundColor(call.callType),
           );
@@ -232,7 +234,7 @@ class _CallLogsPageState extends State<CallLogsPage> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: CallLogsPage(),
   ));
 }

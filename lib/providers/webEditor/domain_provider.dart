@@ -17,7 +17,7 @@ class WebDomainProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
         _domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? '';

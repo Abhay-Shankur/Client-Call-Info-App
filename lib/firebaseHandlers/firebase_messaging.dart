@@ -22,8 +22,9 @@ class FirebaseMessagingHandler {
   static get firebaseMessaging => _firebaseMessaging;
 
   final _androidChannel = const AndroidNotificationChannel(
-      'high_importance_channel', 'High Importance Notifications',
-      description: 'This channel is used for important notification',
+      'high_importance_channel',
+      'High Importance Notifications',
+      'This channel is used for important notification',
       importance: Importance.defaultImportance);
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
@@ -149,7 +150,7 @@ class FirebaseMessagingHandler {
             android: AndroidNotificationDetails(
           _androidChannel.id,
           _androidChannel.name,
-          channelDescription: _androidChannel.description,
+          _androidChannel.description,
           icon: '@drawable/ic_launcher',
         )),
         payload: jsonEncode(event.toMap()),

@@ -23,7 +23,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
     with TickerProviderStateMixin {
   late PromotionalTemplateModel _model;
   String? _selectedImagePath;
-  static File? imageFile = null;
+  static File? imageFile;
   int callCount = 0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -42,8 +42,8 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0, 110),
-          end: Offset(0, 0),
+          begin: const Offset(0, 110),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -61,8 +61,8 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0, 110),
-          end: Offset(0, 0),
+          begin: const Offset(0, 110),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -131,14 +131,14 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                   fontSize: 22,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -149,7 +149,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                     style: MyTheme.of(context).headlineMedium,
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                     child: Text(
                       'Fill out the form below to create new  promossion',
                       style: MyTheme.of(context).labelLarge,
@@ -159,17 +159,17 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
                               child: Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                                    const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                                 child: Container(
                                   width: 120,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
@@ -191,7 +191,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 15, 0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -202,11 +202,11 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                                                   children: [
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1, 0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(20, 4,
                                                                     0, 0),
                                                         child: Text(
@@ -229,7 +229,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0, 6, 0, 0),
                                                       child: Icon(
@@ -254,10 +254,10 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 0, 15),
                                               child: FlutterFlowChoiceChips(
-                                                options: [
+                                                options: const [
                                                   ChipData('24 hrs'),
                                                   ChipData('1 Week'),
                                                   ChipData('1 Month')
@@ -337,7 +337,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                                     'containerOnPageLoadAnimation1']!),
                               ),
                             ),
-                          ].divide(SizedBox(width: 12)),
+                          ].divide(const SizedBox(width: 12)),
                         ),
                       ),
                     ],
@@ -373,13 +373,13 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                   //
                   // Generated code for this Container Widget...
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
                     child: Container(
                       width: double.infinity,
                       height: 330,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             blurRadius: 5,
                             color: Color(0x33000000),
@@ -396,7 +396,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(4),
                         child: GestureDetector(
                                 onTap: () async {
                                   await _model.pickFile();
@@ -410,14 +410,14 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                                   width: double.infinity,
                                   height: 200,
                                   fit: BoxFit.scaleDown,
-                                  alignment: Alignment(0, 0),
+                                  alignment: const Alignment(0, 0),
                                 )
                                     : Image.asset(
                                   'assets/images/uploadImage.jpg',
                                   width: double.infinity,
                                   height: 200,
                                   fit: BoxFit.scaleDown,
-                                  alignment: Alignment(0, 0),
+                                  alignment: const Alignment(0, 0),
                                 ),
                       ),
                     ),
@@ -475,7 +475,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                             borderRadius: BorderRadius.circular(0),
                           ),
                           contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                              const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                         ),
                         style: MyTheme.of(context).headlineSmall,
                         cursorColor: MyTheme.of(context).primary,
@@ -520,7 +520,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                             borderRadius: BorderRadius.circular(1),
                           ),
                           contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
+                              const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                         ),
                         style: MyTheme.of(context).bodyMedium,
                         maxLines: 16,
@@ -530,14 +530,14 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                             .asValidator(context),
                       ),
                     ]
-                        .divide(SizedBox(height: 16))
-                        .addToStart(SizedBox(height: 12)),
+                        .divide(const SizedBox(height: 16))
+                        .addToStart(const SizedBox(height: 12)),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                     child: Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 500,
                       ),
                       decoration: BoxDecoration(
@@ -551,29 +551,29 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
                     child: FFButtonWidget(
                       onPressed: () {
                         showToast();
                         print('save Button pressed ...');
                       },
                       text: 'Save Teamplate',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.receipt_long,
                         size: 15,
                       ),
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 54,
-                        padding: EdgeInsets.all(0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding: const EdgeInsets.all(0),
+                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: FlutterFlowTheme.of(context).primaryText,
                         textStyle: MyTheme.of(context).titleSmall.override(
                               fontFamily: 'Inter',
                               color: Colors.white,
                             ),
                         elevation: 4,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),
@@ -593,7 +593,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
   void showToast() {
     String text1 = _model.textController1.text;
     String text2 = _model.textController2.text;
-    String text = text1 + "\n" + text2;
+    String text = "$text1\n$text2";
     Fluttertoast.showToast(
       msg: text.isNotEmpty ? text : 'Text field is empty',
       toastLength: Toast.LENGTH_SHORT,
@@ -617,15 +617,15 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
     switch (value) {
       case '24 hrs':
         // Fetch and print call logs for the last 24 hours
-        fetchAndPrintCallLogs(Duration(hours: 24));
+        fetchAndPrintCallLogs(const Duration(hours: 24));
         break;
       case '1 Week':
         // Fetch and print call logs for the last 7 days (1 week)
-        fetchAndPrintCallLogs(Duration(days: 7));
+        fetchAndPrintCallLogs(const Duration(days: 7));
         break;
       case '1 Month':
         // Fetch and print call logs for the last 30 days (1 month)
-        fetchAndPrintCallLogs(Duration(days: 30));
+        fetchAndPrintCallLogs(const Duration(days: 30));
         break;
       default:
         break;

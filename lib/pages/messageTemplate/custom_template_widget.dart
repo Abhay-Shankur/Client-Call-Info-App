@@ -50,7 +50,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
             'Custom Template',
             style: MyTheme.of(context).displaySmall,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -59,7 +59,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -71,7 +71,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
@@ -83,7 +83,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -91,13 +91,13 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                           MyTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 3,
                               color: Color(0x411D2429),
@@ -107,13 +107,13 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 1, 1, 1),
+                                const EdgeInsetsDirectional.fromSTEB(0, 1, 1, 1),
                           child:
                           GestureDetector(
                             onTap: () {
@@ -132,7 +132,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                         ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8, 8, 4, 0),
                                   child:
                                   GestureDetector(
@@ -170,7 +170,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 4, 0, 0),
                                     child:
                                     GestureDetector(
@@ -193,13 +193,13 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                           MyTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 3,
                               color: Color(0x411D2429),
@@ -209,13 +209,13 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 1, 1, 1),
+                                const EdgeInsetsDirectional.fromSTEB(0, 1, 1, 1),
                                 child:
                                 GestureDetector(
                                   onTap: () {
@@ -233,7 +233,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8, 8, 4, 0),
                                   child:
                                   GestureDetector(
@@ -271,7 +271,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 4, 0, 0),
                                     child:
                                     GestureDetector(

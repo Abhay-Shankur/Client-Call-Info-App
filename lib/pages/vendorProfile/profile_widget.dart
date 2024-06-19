@@ -50,25 +50,25 @@ class _SettingsWidgetState extends State<SettingsWidget> {
             Flexible(
               flex: 2,
               child: Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Container(
                   // height: MediaQuery.sizeOf(context).height * 0.4,
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 140,
                             child: Stack(
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 12, 0, 0),
                                     child: Container(
                                       width: 100,
@@ -79,7 +79,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(2),
+                                        padding: const EdgeInsets.all(2),
                                         child: GestureDetector(
                                           onTap: () {
                                             navigator.currentState?.pushNamed(
@@ -92,7 +92,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               builder: (context, value, child) {
                                                 if (value.profile != null && value.profile?.imageFile != null) {
                                                   return FadeInImage(
-                                                    placeholder: AssetImage(
+                                                    placeholder: const AssetImage(
                                                         'assets/vendor.jpg'), // Placeholder image while loading
                                                     image: NetworkImage(value
                                                         .profile!
@@ -170,12 +170,13 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+                                const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
                             child: Consumer<ProfileProvider>(
                               builder: (context, value, child) {
                                 String name = 'Vendor Name';
-                                if (value.profile != null)
+                                if (value.profile != null) {
                                   name = value.profile!.vendorName!;
+                                }
                                 return Text(
                                   name,
                                   textAlign: TextAlign.center,
@@ -191,7 +192,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 8, 16, 10),
+                                const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 10),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -207,7 +208,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                 0, 0, 0, 12),
                                             child: Container(
                                               width: 34,
@@ -218,7 +219,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                 shape: BoxShape.circle,
                                               ),
                                               alignment:
-                                              AlignmentDirectional(0, 0),
+                                              const AlignmentDirectional(0, 0),
                                               child: Icon(
                                                 Icons.work_outline,
                                                 color: MyTheme.of(context)
@@ -249,14 +250,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             .vendorDashboard);
                                       },
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             4, 0, 4, 0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
                                               padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 12),
                                               child: Container(
                                                 width: 34,
@@ -267,7 +268,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   shape: BoxShape.circle,
                                                 ),
                                                 alignment:
-                                                AlignmentDirectional(0, 0),
+                                                const AlignmentDirectional(0, 0),
                                                 child: Icon(
                                                   Icons.notifications_outlined,
                                                   color: MyTheme.of(context)
@@ -301,7 +302,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                 0, 0, 0, 12),
                                             child: Container(
                                               width: 34,
@@ -311,7 +312,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                     .secondaryBackground,
                                                 shape: BoxShape.circle,
                                               ),
-                                              alignment: AlignmentDirectional(0, 0),
+                                              alignment: const AlignmentDirectional(0, 0),
                                               child: Icon(
                                                 Icons.help_outline_outlined,
                                                 color: MyTheme.of(context)
@@ -348,29 +349,29 @@ class _SettingsWidgetState extends State<SettingsWidget> {
             Flexible(
               flex: 3,
               child: Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Container(
                   // width: double.infinity,
                   // height: MediaQuery.sizeOf(context).height * 0.5,
                   decoration: BoxDecoration(
                     color: MyTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 3,
                         color: Color(0x33000000),
                         offset: Offset(0, -1),
                       )
                     ],
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(0),
                       bottomRight: Radius.circular(0),
                       topLeft: Radius.circular(16),
                       topRight: Radius.circular(16),
                     ),
                   ),
-                  alignment: AlignmentDirectional(0, -1),
+                  alignment: const AlignmentDirectional(0, -1),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -379,14 +380,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                                const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                             child: Text(
                               'Settings',
                               style: MyTheme.of(context).headlineSmall,
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
@@ -397,7 +398,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
                                       Icons.history_outlined,
@@ -407,7 +408,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 12, 0),
                                       child: Text(
                                         'Call Logs',
@@ -421,7 +422,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
@@ -432,7 +433,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
                                       Icons.edit,
@@ -442,7 +443,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 12, 0),
                                       child: Text(
                                         'Manage Permissions',
@@ -456,7 +457,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
@@ -467,7 +468,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
                                       Icons.terminal,
@@ -477,7 +478,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 12, 0),
                                       child: Text(
                                         'Custom Template',
@@ -491,7 +492,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
                                 navigator.currentState!.pushNamed(routeKeys.vendorPromoTemplate);
@@ -501,7 +502,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
                                       Icons.adobe_rounded,
@@ -511,7 +512,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 12, 0),
                                       child: Text(
                                         'Promotional Messages ',
@@ -525,7 +526,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
                                 navigator.currentState!.pushNamed(
@@ -536,7 +537,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
                                       Icons.adobe_rounded,
@@ -546,7 +547,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 12, 0),
                                       child: Text(
                                         'WebPage Editor',
@@ -560,7 +561,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                                 onTap: () {
                                   Navigator.pushNamed(context, routeKeys.customerSupport);
@@ -570,7 +571,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 8, 16, 8),
                                       child: Icon(
                                         Icons.groups_3,
@@ -580,7 +581,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 12, 0),
                                         child: Text(
                                           'Customer Support',
@@ -595,7 +596,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
                                 // TODO: Privacy Policy
@@ -605,7 +606,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 16, 8),
                                     child: Icon(
                                       Icons.privacy_tip_outlined,
@@ -615,7 +616,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 12, 0),
                                       child: Text(
                                         'Privacy Policy',
@@ -629,7 +630,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                                 onTap: () async {
                                   await FirebaseAuthHandler(context: navigator.currentState!.context)
@@ -643,7 +644,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 8, 16, 8),
                                       child: Icon(
                                         Icons.login_rounded,
@@ -653,7 +654,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 12, 0),
                                         child: Text(
                                           'Log out of account',

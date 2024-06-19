@@ -46,7 +46,7 @@ class _CallLogWidgetState extends State<CallLogWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
       child: Container(
         width: MediaQuery.sizeOf(context).width,
         height: 100,
@@ -55,14 +55,14 @@ class _CallLogWidgetState extends State<CallLogWidget> {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
               widget.iconType!,
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 10, 20, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8, 10, 20, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -92,9 +92,9 @@ class _CallLogWidgetState extends State<CallLogWidget> {
                             options: FFButtonOptions(
                               height: 40,
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                              const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                               iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               color: MyTheme.of(context).primary,
                               textStyle: MyTheme.of(context)
                                   .titleSmall
@@ -103,7 +103,7 @@ class _CallLogWidgetState extends State<CallLogWidget> {
                                 color: Colors.white,
                               ),
                               elevation: 3,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
                               ),
@@ -114,7 +114,7 @@ class _CallLogWidgetState extends State<CallLogWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
                           child: Text(
                             '702823####',
                             maxLines: 1,

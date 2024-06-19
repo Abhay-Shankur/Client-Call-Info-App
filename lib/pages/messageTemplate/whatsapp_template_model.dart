@@ -64,7 +64,7 @@ class WhatsappTemplateModel extends FlutterFlowModel<WhatsappTemplateWidget> {
         return;
       }
 
-      String uid = await FirebaseAuthHandler.getUid() ?? '';
+      String uid = FirebaseAuthHandler.getUid() ?? '';
       if(uid.isNotEmpty) {
         // String? imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/WhatsApp Images/');
         String imageUrl = await FirebaseStorageService.uploadImage(pickedFile!, 'Users/$uid/WhatsApp Images/', 'WhatsappImage') ?? '';

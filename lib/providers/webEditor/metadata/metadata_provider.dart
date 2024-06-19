@@ -31,14 +31,14 @@ class WebMetaDataProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if (uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
         String domainName =
             await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? '';
         Map<String, dynamic> data = await firestore.readFieldAtPath(
             "Website", domainName, 'MasterData') as Map<String, dynamic>;
-        debugPrint('${data.toString()}');
+        debugPrint(data.toString());
         updateImageBanner(data['imageBanner']);
         // _ownerName = data['ownerName'];
         updateOwnerName(data['ownerName']);

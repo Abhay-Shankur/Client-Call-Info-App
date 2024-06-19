@@ -68,7 +68,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
@@ -81,19 +81,19 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: Text(
                                   'Click To Add Service',
                                   style: FlutterFlowTheme.of(context)
@@ -107,7 +107,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 10, 0),
                                   child: FFButtonWidget(
                                     onPressed: () {
@@ -118,19 +118,19 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                                       width: MediaQuery.sizeOf(context).width *
                                           0.23,
                                       height: 50,
-                                      padding: EdgeInsets.all(6),
+                                      padding: const EdgeInsets.all(6),
                                       iconPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 0),
                                       color: Colors.black,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
                                         fontFamily: 'Readex Pro',
-                                        color: Color(0xFFFFFFFFFFFFF),
+                                        color: const Color(0xfffffffffffff),
                                         letterSpacing: 0,
                                       ),
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1,
                                       ),

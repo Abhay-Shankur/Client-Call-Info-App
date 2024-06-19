@@ -70,20 +70,20 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                 letterSpacing: 0,
               ),
             ),
-            actions: [],
+            actions: const [],
             centerTitle: false,
             elevation: 0,
           ),
           body: SafeArea(
             top: true,
             child: Align(
-              alignment: AlignmentDirectional(1, -1),
+              alignment: const AlignmentDirectional(1, -1),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
+                    padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 16),
                     child: Text(
                       'Permissions',
                       style:
@@ -95,7 +95,7 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 16, 0, 16),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 16, 0, 16),
                     child: Text(
                       'Manage the permissions you have granted to the app.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -111,12 +111,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       return wrapWithModel(
                         model: _model.permissionListItemModel1,
                         updateCallback: () => setState(() {
-                          if(_model.permissionListItemModel1.switchValue != value.notifications)
+                          if(_model.permissionListItemModel1.switchValue != value.notifications) {
                             value.updateNotification(!value.notifications);
+                          }
                         }),
                         updateOnChange: true,
                         child: PermissionListItemWidget(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.notifications_active,
                           ),
                           title: 'Notification',
@@ -131,12 +132,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       return wrapWithModel(
                         model: _model.permissionListItemModel2,
                         updateCallback: () => setState(() {
-                          if(_model.permissionListItemModel2.switchValue != value.calls)
+                          if(_model.permissionListItemModel2.switchValue != value.calls) {
                             value.updateCalls(!value.calls);
+                          }
                         }),
                         updateOnChange: true,
                         child: PermissionListItemWidget(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.phone,
                           ),
                           title: 'Call Logs',
@@ -151,12 +153,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       return wrapWithModel(
                         model: _model.permissionListItemModel3,
                         updateCallback: () => setState(() {
-                          if(_model.permissionListItemModel3.switchValue != value.storage)
+                          if(_model.permissionListItemModel3.switchValue != value.storage) {
                             value.updateStorage(!value.storage);
+                          }
                         }),
                         updateOnChange: true,
                         child: PermissionListItemWidget(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.sd_storage,
                           ),
                           title: 'Storage',
@@ -171,12 +174,13 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                       return wrapWithModel(
                         model: _model.permissionListItemModel4,
                         updateCallback: () => setState(() {
-                          if(_model.permissionListItemModel4.switchValue != value.contacts)
+                          if(_model.permissionListItemModel4.switchValue != value.contacts) {
                             value.updateContacts(!value.contacts);
+                          }
                         }),
                         updateOnChange: true,
                         child: PermissionListItemWidget(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.contacts,
                           ),
                           title: 'Contacts',

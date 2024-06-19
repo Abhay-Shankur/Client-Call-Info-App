@@ -69,7 +69,7 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
               letterSpacing: 0,
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2,
         ),
@@ -82,16 +82,16 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding:
-                          EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
+                          const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
                           child: Text(
-                            'To add Reviews to your website, simply click on \"Add Review\" button and showcase your quality with elegance and flair.',
+                            'To add Reviews to your website, simply click on "Add Review" button and showcase your quality with elegance and flair.',
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -101,13 +101,13 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 15),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 15),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: Text(
                                   'Add New Review',
                                   style: FlutterFlowTheme.of(context)
@@ -121,9 +121,9 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                               ),
                               Flexible(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: const AlignmentDirectional(0, 0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         5, 0, 10, 0),
                                     child: FFButtonWidget(
                                       onPressed: () {
@@ -132,9 +132,9 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                                       text: 'Add Review',
                                       options: FFButtonOptions(
                                         height: 50,
-                                        padding: EdgeInsets.all(6),
+                                        padding: const EdgeInsets.all(6),
                                         iconPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
+                                        const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 0),
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
@@ -147,7 +147,7 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                                               .secondaryBackground,
                                           letterSpacing: 0,
                                         ),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
@@ -172,13 +172,13 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                 child: wrapWithModel(
                   model: _model.listView2Model,
                   updateCallback: () => setState(() {}),
                   child: Consumer<WebReviewsProvider> (
                     builder: (context, value, child) {
-                      List<Reviews> listR = value.list ?? [];
+                      List<Reviews> listR = value.list;
                        return ListView2Widget(
                         listParam: listR,
                       );

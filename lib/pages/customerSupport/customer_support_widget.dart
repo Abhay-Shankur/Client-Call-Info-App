@@ -34,8 +34,8 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0, 110),
-          end: Offset(0, 0),
+          begin: const Offset(0, 110),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -53,8 +53,8 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0, 110),
-          end: Offset(0, 0),
+          begin: const Offset(0, 110),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -72,8 +72,8 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0, 110),
-          end: Offset(0, 0),
+          begin: const Offset(0, 110),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -91,8 +91,8 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(0, 110),
-          end: Offset(0, 0),
+          begin: const Offset(0, 110),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -159,14 +159,14 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
             'Customer Support',
             style: MyTheme.of(context).titleLarge,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -177,7 +177,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                     style: MyTheme.of(context).labelLarge,
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                     child: Text(
                       'Get Support',
                       style: MyTheme.of(context).headlineMedium,
@@ -188,10 +188,10 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: Container(
                             width: 120,
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 500,
                             ),
                             decoration: BoxDecoration(
@@ -205,7 +205,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                             ),
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(8, 16, 8, 16),
+                              const EdgeInsetsDirectional.fromSTEB(8, 16, 8, 16),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -217,7 +217,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                                     size: 36,
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 12, 0, 0),
                                     child: Text(
                                       'Call Us',
@@ -235,10 +235,10 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: Container(
                             width: 120,
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 500,
                             ),
                             decoration: BoxDecoration(
@@ -252,7 +252,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                             ),
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(8, 16, 8, 16),
+                              const EdgeInsetsDirectional.fromSTEB(8, 16, 8, 16),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -264,7 +264,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                                     size: 36,
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 12, 0, 0),
                                     child: Text(
                                       'Email Us',
@@ -282,10 +282,10 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: Container(
                             width: 120,
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 500,
                             ),
                             decoration: BoxDecoration(
@@ -299,7 +299,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                             ),
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(8, 16, 8, 16),
+                              const EdgeInsetsDirectional.fromSTEB(8, 16, 8, 16),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -321,7 +321,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                                       size: 36,
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 12, 0, 0),
                                       child: Text(
                                         'Search FAQs',
@@ -338,10 +338,10 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                               animationsMap['containerOnPageLoadAnimation3']!),
                         ),
                       ),
-                    ].divide(SizedBox(width: 12)),
+                    ].divide(const SizedBox(width: 12)),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -384,7 +384,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                               borderRadius: BorderRadius.circular(12),
                             ),
                             contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                            const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                           ),
                           style: MyTheme.of(context).bodyMedium,
                           cursorColor: MyTheme.of(context).primary,
@@ -430,7 +430,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                               borderRadius: BorderRadius.circular(12),
                             ),
                             contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                            const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                           ),
                           style: MyTheme.of(context).bodyMedium,
                           cursorColor: MyTheme.of(context).primary,
@@ -477,7 +477,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                               borderRadius: BorderRadius.circular(12),
                             ),
                             contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
+                            const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                           ),
                           style: MyTheme.of(context).bodyMedium,
                           maxLines: 16,
@@ -486,14 +486,14 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                           validator: _model.textController3Validator
                               .asValidator(context),
                         ),
-                      ].divide(SizedBox(height: 12)),
+                      ].divide(const SizedBox(height: 12)),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                     child: Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 500,
                       ),
                       decoration: BoxDecoration(
@@ -505,7 +505,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -516,7 +516,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                             ),
                             Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                               child: Text(
                                 'Upload Screenshot',
                                 textAlign: TextAlign.center,
@@ -530,21 +530,21 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                         animationsMap['containerOnPageLoadAnimation4']!),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
                     child: FFButtonWidget(
                       onPressed: () {
                         print('Button pressed ...');
                       },
                       text: 'Submit ',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.receipt_long,
                         size: 15,
                       ),
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 48,
-                        padding: EdgeInsets.all(0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding: const EdgeInsets.all(0),
+                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: MyTheme.of(context).primary,
                         textStyle:
                         MyTheme.of(context).titleSmall.override(
@@ -552,7 +552,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
                           color: Colors.white,
                         ),
                         elevation: 4,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),

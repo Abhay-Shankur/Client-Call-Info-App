@@ -47,7 +47,7 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
       child: Material(
         color: Colors.transparent,
         elevation: 2,
@@ -61,7 +61,7 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+            padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,13 +73,13 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
                   ),
                   style: GoogleFonts.getFont(
                     'Inter',
-                    color: Color(0xFF14181B),
+                    color: const Color(0xFF14181B),
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                   child: Text(
                     valueOrDefault<String>(
                       widget.faqContent,
@@ -87,7 +87,7 @@ class _FAQListItemWidgetState extends State<FAQListItemWidget> {
                     ),
                     style: MyTheme.of(context).bodyMedium.override(
                       fontFamily: 'Inter',
-                      color: Color(0xFF14181B),
+                      color: const Color(0xFF14181B),
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),

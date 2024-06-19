@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 
 class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
   ///  State fields for stateful widgets in this page.
-  File? pickedFile = null;
+  File? pickedFile;
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
@@ -98,7 +98,7 @@ class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
 
         String? imagePath = await FirebaseStorageService.uploadImage(pickedFile!,'$domain/', 'Product${list.length+1}');
 
-        Product product = new Product();
+        Product product = Product();
         product.imagePath = imagePath.toString();
         product.productName = productNameTextController1!.value.text.toString();
         product.productPrice = productNameTextController2!.value.text.toString();

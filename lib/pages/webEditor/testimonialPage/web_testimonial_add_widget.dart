@@ -64,14 +64,14 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
               navigator.currentState!.pop();
             },
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -86,7 +86,7 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 10),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 10),
                     child: Text(
                       'Fill out the form below to submit a review.',
                       style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -149,7 +149,7 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                             borderRadius: BorderRadius.circular(0),
                           ),
                           contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                          const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                         ),
                         style:
                         FlutterFlowTheme.of(context).headlineSmall.override(
@@ -206,7 +206,7 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                             borderRadius: BorderRadius.circular(0),
                           ),
                           contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
+                          const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
@@ -219,11 +219,11 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                             .asValidator(context),
                       ),
                     ]
-                        .divide(SizedBox(height: 16))
-                        .addToStart(SizedBox(height: 12)),
+                        .divide(const SizedBox(height: 16))
+                        .addToStart(const SizedBox(height: 12)),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
                     child: FFButtonWidget(
                       onPressed: () async {
                         setState(() {
@@ -239,8 +239,8 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 54,
-                        padding: EdgeInsets.all(0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding: const EdgeInsets.all(0),
+                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: FlutterFlowTheme.of(context).primaryText,
                         textStyle:
                         FlutterFlowTheme.of(context).titleSmall.override(
@@ -250,7 +250,7 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                           letterSpacing: 0,
                         ),
                         elevation: 4,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),

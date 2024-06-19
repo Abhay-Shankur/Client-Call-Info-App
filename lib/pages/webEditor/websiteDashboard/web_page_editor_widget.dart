@@ -64,7 +64,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                   letterSpacing: 0,
                 ),
               ),
-              actions: [],
+              actions: const [],
               centerTitle: false,
               elevation: 2,
             ),
@@ -79,7 +79,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 13),
+                            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 13),
                             child: Consumer<WebDomainProvider>(
                               builder: (context, value, child) {
                                 _model.textController = TextEditingController(text: value.domainName);
@@ -92,7 +92,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                   textCapitalization: TextCapitalization.words,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    prefix: Text('https://call-infos.web.app/'),
+                                    prefix: const Text('https://call-infos.web.app/'),
                                     labelText: 'Enter your domain',
                                     labelStyle: MyTheme.of(context).labelLarge.override(
                                       fontFamily: 'Readex Pro',
@@ -140,7 +140,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                     ),
                                     filled: true,
                                     fillColor: MyTheme.of(context).secondaryBackground,
-                                    contentPadding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
+                                    contentPadding: const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
                                   ),
                                   style: MyTheme.of(context).bodyLarge.override(
                                     fontFamily: 'Readex Pro',
@@ -154,7 +154,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Consumer<WebDomainProvider> (
                             builder: (context, value, child) {
                               return FlutterFlowIconButton(
@@ -183,9 +183,9 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1, 0),
+                            alignment: const AlignmentDirectional(-1, 0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Text(
                                 'Quick services',
                                 style: FlutterFlowTheme.of(context)

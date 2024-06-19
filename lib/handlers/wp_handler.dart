@@ -10,11 +10,11 @@ class WhatsappHandler {
   static Future<bool> sendWP({required String phone}) async {
     try {
       await SharedPreferencesHelper.reload();
-      WPMessageTemplate? _messageTemplate = await WPMessageTemplate.getFromShared();
+      WPMessageTemplate? messageTemplate = await WPMessageTemplate.getFromShared();
       bool allowed = await SharedPreferencesHelper.getBool("allowWP") ?? false;
 
       if(allowed) {
-        if(_messageTemplate == null) {
+        if(messageTemplate == null) {
           showNotification('Call Infos', 'Whatsapp Template is Empty.');
           return false;
         }
@@ -26,8 +26,8 @@ class WhatsappHandler {
         var requestBody = {
           'AUTH_KEY': authKey,
           'instance_id': instanceId,
-          'img': _messageTemplate.image,
-          'message': _messageTemplate.text,
+          'img': messageTemplate.image,
+          'message': messageTemplate.text,
           'phone': phone,
         };
 

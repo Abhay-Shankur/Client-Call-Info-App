@@ -52,15 +52,15 @@ class WebProductsProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     try {
-      String? uid = await FirebaseAuthHandler.getUid();
+      String? uid = FirebaseAuthHandler.getUid();
       if(uid != null) {
         FirestoreHandler firestore = FirestoreHandler();
-        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain') ?? null;
+        String domainName = await firestore.readFieldAtPath("USERS", uid, 'webDomain');
         List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, 'ProductsList') ?? [];
         _listProducts.clear();
-        dynlist.forEach((element) {
+        for (var element in dynlist) {
           if (element is Map<String, dynamic>) {
-            Product product = new Product();
+            Product product = Product();
             product.imagePath = element['imagePath'];
             product.productName = element['productName'];
             product.productDescription = element['productDescription'];
@@ -68,7 +68,7 @@ class WebProductsProvider extends ChangeNotifier {
             _listProducts.add(product);
             notifyListeners();
           }
-        });
+        }
         debugPrint('Products Data Initialized.');
         firestore.closeConnection();
         notifyListeners();

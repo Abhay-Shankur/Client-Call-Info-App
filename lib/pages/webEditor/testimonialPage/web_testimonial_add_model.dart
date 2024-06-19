@@ -53,11 +53,11 @@ class WebTestimonialAddModel extends FlutterFlowModel<WebTestimonialAddWidget> {
           List<dynamic> dynlist= await firestore.readFieldAtPath("Website", domain, "Reviews") ?? [];
           // List<Reviews> list= await firestore.readFieldAtPath("Website", domain, "Reviews") ?? [];
           List<Reviews> list = [];
-          dynlist.forEach((element) {
+          for (var element in dynlist) {
             if(element is Map<String, dynamic>){
               list.add(Reviews.fromMap(element));
             }
-          });
+          }
           Provider.of<WebReviewsProvider>(context, listen: false).updateList(list);
           firestore.closeConnection();
           showToast(context: context, type: ToastificationType.success, title: 'Testimonials', desc: 'Information have been saved.');

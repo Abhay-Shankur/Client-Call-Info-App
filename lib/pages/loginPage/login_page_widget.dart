@@ -38,22 +38,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 300.ms,
-          begin: Offset(0, 140),
-          end: Offset(0, 0),
+          begin: const Offset(0, 140),
+          end: const Offset(0, 0),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 300.ms,
-          begin: Offset(0.9, 0.9),
-          end: Offset(1, 1),
+          begin: const Offset(0.9, 0.9),
+          end: const Offset(1, 1),
         ),
         TiltEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 300.ms,
-          begin: Offset(-0.349, 0),
-          end: Offset(0, 0),
+          begin: const Offset(-0.349, 0),
+          end: const Offset(0, 0),
         ),
       ],
     ),
@@ -96,32 +96,32 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                     MyTheme.of(context).secondaryText,
                     MyTheme.of(context).accent1
                   ],
-                  stops: [0, 1],
-                  begin: AlignmentDirectional(0.87, -1),
-                  end: AlignmentDirectional(-0.87, 1),
+                  stops: const [0, 1],
+                  begin: const AlignmentDirectional(0.87, -1),
+                  end: const AlignmentDirectional(-0.87, 1),
                 ),
               ),
-              alignment: AlignmentDirectional(0, -1),
+              alignment: const AlignmentDirectional(0, -1),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 70, 0, 32),
                       child: Container(
                         width: double.infinity,
                         height: 70,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        alignment: AlignmentDirectional(0, 0),
+                        alignment: const AlignmentDirectional(0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                               child: Icon(
                                 Icons.flourescent_rounded,
                                 color: MyTheme.of(context).info,
@@ -142,15 +142,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       child: Container(
                         width: double.infinity,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 570,
                         ),
                         decoration: BoxDecoration(
                           color: MyTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 4,
                               color: Color(0x33000000),
@@ -160,9 +160,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: EdgeInsets.all(32),
+                            padding: const EdgeInsets.all(32),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +174,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 24),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 24),
                                   child: Text(
                                     'Fill out the information below in order to access your account.',
                                     textAlign: TextAlign.start,
@@ -183,15 +183,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                                  child: Container(
+                                  const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                  child: SizedBox(
                                     width: double.infinity,
                                     child: TextFormField(
                                       controller: _model.mobileNumberController,
                                       focusNode: _model.mobileNumberFocusNode,
                                       maxLength: 10,
                                       autofocus: true,
-                                      autofillHints: [
+                                      autofillHints: const [
                                         AutofillHints.telephoneNumber
                                       ],
                                       obscureText: false,
@@ -247,7 +247,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       setState(() {
@@ -290,9 +290,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 44,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 0),
-                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 0),
                                       color: MyTheme.of(context).primary,
                                       textStyle: MyTheme.of(context)
@@ -302,7 +302,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                         color: Colors.white,
                                       ),
                                       elevation: 3,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1,
                                       ),
