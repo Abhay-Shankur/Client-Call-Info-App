@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1+1
+version: 1.0.2+1
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -55,6 +55,9 @@ dependencies:
   auto_size_text: any
   google_fonts: any
 dev_dependencies:
+  flutter_app_name: ^0.1.1
+  icons_launcher: ^2.0.4
+
   flutter_test:
     sdk: flutter
 
@@ -67,6 +70,17 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+flutter_app_name:
+  name: "Call Infos Admin"
+
+icons_launcher:
+  image_path: "assets/images/logoAdmin.jpg"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
 
 # The following section is specific to Flutter packages.
 flutter:

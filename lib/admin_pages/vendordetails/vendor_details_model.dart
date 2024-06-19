@@ -48,6 +48,9 @@ class VendorDetailsModel extends FlutterFlowModel<VendorDetailsWidget> {
     try {
       await FirebaseStorageService.deleteFolder("Users/$id");
       await fh.deleteFirestoreData("USERS", id);
+      final vendor = await Provider.of<VendorsListProvider>(localContext, listen: false).getVendor(id);
+      final phone = vendor["Profile"]["vendorContact"].toString();
+      await fh.removeField("ADMIN", "USERS", phone);
       await Provider.of<VendorsListProvider>(localContext, listen: false).deleteVendor(id);
       fh.closeConnection();
       return true;

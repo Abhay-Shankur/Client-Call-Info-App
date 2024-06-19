@@ -1,7 +1,4 @@
-
-
-
-
+import 'package:app/admin_pages/login/login_widget.dart';
 import 'package:app/admin_pages/home/home_page_widget.dart';
 import 'package:app/admin_pages/profile/admin_profile_widget.dart';
 import 'package:app/admin_pages/splashscreen/splash_screen_widget.dart';
@@ -47,8 +44,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Call Info Admin',
-        // initialRoute: RouteKeys.splash,
-        initialRoute: RouteKeys.homePage,
+        initialRoute: RouteKeys.splash,
+        // initialRoute: RouteKeys.homePage,
         routes: appRoutes,
         navigatorKey: navigator,
       ),
@@ -60,6 +57,7 @@ var appRoutes = {
   RouteKeys.splash : (context) => const SplashScreenWidget(),
   RouteKeys.homePage : (context) => const HomePageWidget(),
   RouteKeys.profile : (context) => const AdminProfileWidget(),
+  RouteKeys.login : (context) => const LoginWidget(),
   RouteKeys.vendorList : (context)=> const VendorListWidget(),
   RouteKeys.vendorDetails : (context) => const VendorDetailsWidget(),
 };
@@ -68,6 +66,7 @@ class RouteKeys {
   static const String splash = '/splashScreen';
   static const String homePage = '/homePage';
   static const String profile = '/profile';
+  static const String login = "/login";
   static const String vendorList= '/vendorsList';
   static const String vendorDetails= '/vendorsDetails';
 

@@ -15,13 +15,13 @@ class FirebaseAuthHandler {
       return user != null;
     } catch (e) {
       // Handle any errors that occur during the process
-      print('Error checking login status: $e');
+      debugPrint('Error checking login status: $e');
       return false; // Return false in case of errors
     }
   }
 
   // Sign in with phone number
-  Future<void> signInWithPhoneNumber(String phoneNumber, void Function() callback) async {
+  Future<void> beginPhoneAuth(String phoneNumber, void Function() callback) async {
     if(phoneNumber.length == 10) phoneNumber = '+91 $phoneNumber';
     debugPrint('Phone Number $phoneNumber');
     await _auth.verifyPhoneNumber(
@@ -84,7 +84,7 @@ class FirebaseAuthHandler {
   // }
 
   // Sign in with verification code
-  Future<UserCredential?> signInWithVerificationCode(String code) async {
+  Future<UserCredential?> verifySmsCode(String code) async {
     try {
       debugPrint('Verification Id in signInWithVerificationCode: $_verificationId');
       PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: _verificationId, smsCode: code);

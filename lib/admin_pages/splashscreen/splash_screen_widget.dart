@@ -1,3 +1,4 @@
+import 'package:app/firebaseHandlers/firebase_auth.dart';
 import 'package:app/main.dart';
 import 'package:app/providers/vendors/vendors_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -112,6 +113,20 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+
+    checkAuth();
+  }
+
+  Future<void> checkAuth() async {
+    try {
+      if(await FirebaseAuthHandler(context: context).checkLoginStatus()) {
+        navigator.currentState!.pushReplacementNamed(RouteKeys.homePage);
+      } else {
+        navigator.currentState!.pushReplacementNamed(RouteKeys.login);
+      }
+    } catch (e) {
+      debugPrint("Exception: $e");
+    }
   }
 
   @override
@@ -131,17 +146,18 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
-      child: FutureBuilder(
-        future: initializeProviders(context),
-        builder: (context, snapshot) {
-          if(snapshot.connectionState == ConnectionState.waiting) {
-            return screen();
-          } else {
-            navigator.currentState!.pushReplacementNamed(RouteKeys.homePage);
-            return Container();
-          }
-        },
-      ),
+      child: screen(),
+      // child: FutureBuilder(
+      //   future: initializeProviders(context),
+      //   builder: (context, snapshot) {
+      //     if(snapshot.connectionState == ConnectionState.waiting) {
+      //       return screen();
+      //     } else {
+      //       navigator.currentState!.pushReplacementNamed(RouteKeys.homePage);
+      //       return Container();
+      //     }
+      //   },
+      // ),
     );
   }
 

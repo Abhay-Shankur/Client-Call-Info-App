@@ -1127,11 +1127,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                               setState(() {
                                                 _loading = true;
                                               });
-                                              await _model.deleteVendor(vendorId);
-                                              navigator.currentState!.pop();
-                                              // setState(() {
-                                              //   _loading = false;
-                                              // });
+                                              await _model.deleteVendor(vendorId)
+                                                  ? navigator.currentState!.pop()
+                                                  : setState(() {
+                                                      _loading = false;
+                                                    }) ;
+
                                             }
 
                                           },
