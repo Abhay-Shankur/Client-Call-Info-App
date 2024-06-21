@@ -33,11 +33,11 @@ class SmsHandler {
     try {
       await SharedPreferencesHelper.reload();
       SMSMessageTemplate? message = await SMSMessageTemplate.getFromShared();
-      bool allowed = await SharedPreferencesHelper.getBool("allowSMS") ?? false;
+      bool allowed = await SharedPreferencesHelper.getBool("allowSMS");
 
       if(allowed) {
         if(message == null) {
-          showNotification('Call Infos', 'SMS Template is Empty.');
+          showNotification('CALL INFOS', 'SMS Template is Empty.');
           return false;
         }
 
@@ -47,10 +47,12 @@ class SmsHandler {
           if (isCustomSimSupported != null && isCustomSimSupported) {
             var result = await BackgroundSms.sendMessage(
                 phoneNumber: phoneNumber, message: msg, simSlot: simSlot);
+            debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
             return result == SmsStatus.sent;
           } else {
             var result = await BackgroundSms.sendMessage(
                 phoneNumber: phoneNumber, message: msg);
+            debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
             return result == SmsStatus.sent;
           }
         } else {
@@ -60,10 +62,12 @@ class SmsHandler {
             if (isCustomSimSupported != null && isCustomSimSupported) {
               var result = await BackgroundSms.sendMessage(
                   phoneNumber: phoneNumber, message: msg, simSlot: simSlot);
+              debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
               return result == SmsStatus.sent;
             } else {
               var result = await BackgroundSms.sendMessage(
                   phoneNumber: phoneNumber, message: msg);
+              debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
               return result == SmsStatus.sent;
             }
           } else {

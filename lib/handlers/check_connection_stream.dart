@@ -46,7 +46,7 @@ class CheckConnectionStream extends GetxController {
   showDialogIfNotConnect() {
     Get.defaultDialog(
         barrierDismissible: false,
-        title: "check your network".tr,
+        title: "Check your Internet Connectivity".tr,
         onWillPop: () async {
           return false;
         },
@@ -72,8 +72,8 @@ class CheckConnectionStream extends GetxController {
                     });
                   },
                   child: Text(
-                    'try again'.tr,
-                    style: const TextStyle(color: Colors.white),
+                    'Try again'.tr,
+                    style: const TextStyle(color: Colors.black),
                   ),
               )
           )

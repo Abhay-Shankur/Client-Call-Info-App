@@ -157,7 +157,7 @@ class _MyAppState extends State<MyApp> {
     try {
       result = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
-      developer.log('Couldn\'t check connectivity status', error: e);
+      developer.log("Couldn't check connectivity status", error: e);
       return;
     }
 

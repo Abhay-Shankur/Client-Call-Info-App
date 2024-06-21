@@ -27,7 +27,7 @@ class SMSMessageTemplate {
   }
 
   static Future<SMSMessageTemplate?> getFromShared() async {
-    String value = await SharedPreferencesHelper.getString('smsMsg');
-    return value.isNotEmpty ? SMSMessageTemplate.fromJson(value) : null;
+    String? value = await SharedPreferencesHelper.getString('smsMsg');
+    return (value != null) ? SMSMessageTemplate.fromJson(value) : null;
   }
 }

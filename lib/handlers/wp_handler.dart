@@ -19,8 +19,8 @@ class WhatsappHandler {
           return false;
         }
 
-        String authKey = await SharedPreferencesHelper.getString("AUTH_KEY");
-        String instanceId = await SharedPreferencesHelper.getString("instance_id") ;
+        String authKey = await SharedPreferencesHelper.getString("AUTH_KEY") ?? "";
+        String instanceId = await SharedPreferencesHelper.getString("instance_id") ?? "";
         var authority = 'takesolution.co.in';
         var path = '/sendMessage.php';
         var requestBody = {

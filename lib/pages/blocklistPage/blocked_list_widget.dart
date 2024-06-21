@@ -27,11 +27,15 @@ class _BlockedListWidgetState extends State<BlockedListWidget> {
     super.initState();
     _model = createModel(context, () => BlockedListModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() async {
-      if(await PermissionManager.requestContactsPermission() == false) {
-        showSnackbar(context, "Please Allow to access Contacts");
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(()  {
+      init();
     }));
+  }
+
+  Future<void> init() async {
+    if(await PermissionManager.requestContactsPermission() == false) {
+      showSnackbar(context, "Please Allow to access Contacts");
+    }
   }
 
   @override

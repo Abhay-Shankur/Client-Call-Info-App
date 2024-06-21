@@ -35,7 +35,7 @@ class WPMessageTemplate {
   }
 
   static Future<WPMessageTemplate?> getFromShared() async {
-    String value = await SharedPreferencesHelper.getString('wpMsg');
-    return value.isNotEmpty ? WPMessageTemplate.fromJson(value) : null;
+    String? value = await SharedPreferencesHelper.getString('wpMsg');
+    return (value != null) ? WPMessageTemplate.fromJson(value) : null;
   }
 }

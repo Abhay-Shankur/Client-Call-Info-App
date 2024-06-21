@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/handlers/check_connection_stream.dart';
-import 'package:call_info/handlers/connectivity_service.dart';
 import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/main.dart' as main;
 import 'package:call_info/main.dart';
@@ -263,14 +262,15 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
   //   }
   // }
 
-  Future<bool> _initializeProviders() async {
+  Future<bool?> _initializeProviders() async {
     try {
       final isLogin = await FirebaseAuthHandler(context: main.navigator.currentState!.context).checkLoginStatus();
-      final status = isLogin &&
-          await Provider.of<ProfileProvider>(context, listen: false).initialize() &&
-          await ConnectivityService.isConnected();
-
-      return status;
+      if(isLogin) {
+        final status = await Provider.of<ProfileProvider>(context, listen: false).initialize();
+        return status;
+      } else {
+        return null;
+      }
     } catch (e){
       debugPrint("Exception: $e");
       return false;
@@ -308,34 +308,16 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
       child: FutureBuilder(
         future: _initializeProviders(),
         builder: (context, snapshot) {
-          // snapshot.connectionState == ConnectionState.waiting)
-          // switch(snapshot.connectionState) {
-          //   case ConnectionState.waiting:
-          //     return const Text("Loading");
-          //   case ConnectionState.none:
-          //     return const Text("Error");
-          //   case ConnectionState.active:
-          //     return const Text("active");
-          //   case ConnectionState.done:
-          //     if(snapshot.data!) {
-          //       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          //         navigate();
-          //       });
-          //     }
-          //     break;
-          // }
-          // return getScreen();
-          // if (snapshot.connectionState == ConnectionState.waiting) {
-          //   return const Scaffold(
-          //     body: Center(
-          //       child: CircularProgressIndicator(),
-          //     ),
-          //   );
-          // } else
-          if (snapshot.hasError || snapshot.data == false) {
+          if (snapshot.hasError) {
             return const Scaffold(
               body: Center(
-                child: Text('Error loading providers'),
+                child: Text('Error Please Try Again.'),
+              ),
+            );
+          } else if (snapshot.data == false) {
+            return const Scaffold(
+              body: Center(
+                child: Text('Error loading Content.'),
               ),
             );
           } else if ((snapshot.connectionState == ConnectionState.done) && snapshot.data == true) {

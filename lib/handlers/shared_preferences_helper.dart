@@ -38,9 +38,9 @@ class SharedPreferencesHelper {
     _keys.add(key);
   }
 
-  static Future<String> getString(String key) async {
+  static Future<String?> getString(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key) ?? '';
+    return prefs.getString(key);
   }
 
   static Future<void> remove(String key) async {
@@ -56,7 +56,7 @@ class SharedPreferencesHelper {
     _keys.add(key);
   }
 
-  static Future<bool?> getBool(String key) async {
+  static Future<bool> getBool(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool(key) ?? false;
   }

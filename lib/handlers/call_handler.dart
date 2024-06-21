@@ -1,56 +1,135 @@
 // call_handler.dart
 
+import 'dart:async';
+
 import 'package:call_info/handlers/shared_preferences_helper.dart';
+import 'package:call_info/providers/repeat/repeat_numbers_provider.dart';
+import 'package:call_info/util/custom_widgets.dart';
 import 'package:call_info/util/date_utils.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class CallHandler {
   static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
 
-  static String _callType = '';
+  static String? _callType;
+
+  static String? _phoneNumber;
 
   static void setupCallHandler() {
     _channel.setMethodCallHandler((call) async {
       if (call.method == 'receiveCallType') {
         _callType = call.arguments['callType'];
-        // _phoneNumber = call.arguments['phoneNumber'];
+        _phoneNumber = call.arguments['phoneNumber'];
+        debugPrint("Phone Number : $_phoneNumber");
 
-        // onCallTypeReceived(_callType);
-        // _smsAllowed = await SharedPreferencesHelper.getBool('allowSMS') ?? false;
-        // debugPrint('Permission: $_smsAllowed');
-        if(_callType == 'Ongoing' && await checkService()) {
-          // await checkService();
-          // _showNotification("Sending Incoming Message"); // Send notification
+        bool isBlocked = await checkBlocklist();
+        bool isServiceAvailable = await checkService();
+        bool isRepeatOver = await checkNumberRepeat();
+        debugPrint(" isBlocked : $isBlocked \n isServiceAvailable : $isServiceAvailable \n isRepeatOver : $isRepeatOver");
 
-          // await WhatsappHandler.sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
-          // await SmsHandler.sendMessage(_phoneNumber) ? _showNotification("SMS Sent Successfully") : null ;
-        } else if(_callType == 'Missed'  && await checkService()) {
-          // await checkService();
-          // _showNotification("Sending Missed Message"); // Send notification
-
-          // await WhatsappHandler.sendWP(phone: _phoneNumber.replaceAll("+", '')) ? _showNotification("WhatsApp Sent Successfully") : null ;
-          // await SmsHandler.sendMessage(_phoneNumber) ? _showNotification("SMS Sent Successfully") : null ;
-        } else if(_callType == 'Incoming'  && await checkService()) {
-          // await checkService();
-          // _showNotification(_callType); // Send notification
-        } else {
-          // _showNotification(_callType); // Send notification
-          _showNotification("",title: "Subscription",desc: "No Active Subscription"); // Send notification
+        if(isBlocked) {
+          debugPrint("Phone Number $_phoneNumber is blocked.");
+        }
+        // else if(!(await checkService())){
+        //   // _showNotification(_callType); // Send notification
+        //   _showNotification("",title: "Subscription",desc: "Service Error."); // Send notification
+        // }
+        else if(_callType == 'Ongoing' && isServiceAvailable && isRepeatOver) {
+          _showNotification("Executing on call type: Ongoing");
+          // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
+          //   _showNotification("WhatsApp Sent Successfully");
+          //   setNumberRepeat();
+          // }
+          //
+          // if(await SmsHandler.sendMessage(_phoneNumber!)) {
+          //   _showNotification("SMS Sent Successfully");
+          //   setNumberRepeat();
+          // }
+        } else if(_callType == 'Missed'  && isServiceAvailable && isRepeatOver) {
+          _showNotification("Executing on call type: Missed");
+          // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
+          //   _showNotification("WhatsApp Sent Successfully");
+          //   setNumberRepeat();
+          // }
+          //
+          // if(await SmsHandler.sendMessage(_phoneNumber!)) {
+          //   _showNotification("SMS Sent Successfully");
+          //   setNumberRepeat();
+          // }
+        } else if(_callType == 'Incoming'  && isServiceAvailable && isRepeatOver) {
+          _showNotification("Executing on call type: Incoming");
+          // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
+          //   _showNotification("WhatsApp Sent Successfully");
+          //   setNumberRepeat();
+          // }
+          //
+          // if(await SmsHandler.sendMessage(_phoneNumber!)) {
+          //   _showNotification("SMS Sent Successfully");
+          //   setNumberRepeat();
+          // }
+        } else if(isRepeatOver && isServiceAvailable){
+          debugPrint("Number is set to Repeat.");
         }
       }
     });
   }
 
+  static Future<void> setNumberRepeat() async {
+    try {
+      await SharedPreferencesHelper.reload();
+      String today = MyDateUtils.formatDate(DateTime.now());
+      await RepeatNumberProvider.insertOrUpdate(_phoneNumber!, today);
+      // debugPrint("$_phoneNumber has been set to repeat.");
+    } catch(e) {
+      debugPrint("Exception: $e");
+    }
+  }
+
+  static Future<bool> checkNumberRepeat() async {
+    try {
+      await SharedPreferencesHelper.reload();
+      var val = (await SharedPreferencesHelper.getString("repeatList") ?? "{}");
+      var map = stringToMap(val);
+      if(map.containsKey(_phoneNumber!)) {
+        String repeatDate = map[_phoneNumber];
+        String today = MyDateUtils.formatDate(DateTime.now());
+        var repeat = double.parse(await SharedPreferencesHelper.getString("repeat") ?? "7.0").toInt();
+        int diff = MyDateUtils.getDifferenceInDays(MyDateUtils.parseDate(repeatDate), MyDateUtils.parseDate(today));
+        // debugPrint("Repeat Date: $repeatDate. Today's Date : $today. Diff : $diff.");
+        // debugPrint("Repeat : $repeat. Diff : $diff. Exp : ${diff > repeat}");
+        return diff >= repeat;
+      }
+      return true;
+    } catch(e) {
+      debugPrint("Exception: $e");
+      return false;
+    }
+  }
+
+  static Future<bool> checkBlocklist() async {
+    try{
+      await SharedPreferencesHelper.reload();
+      List<String> list = await SharedPreferencesHelper.getList('blocklist');
+      if(_phoneNumber!=null){
+        return (list.contains(_phoneNumber)) ? true : false;
+      } else {
+        throw Exception("Phone Number is NULL");
+      }
+    } catch(e) {
+      debugPrint("Exception: $e");
+      return false;
+    }
+  }
+
   static Future<bool> checkService() async {
     try {
       await SharedPreferencesHelper.reload();
-      // String start = await SharedPreferencesHelper.getString("start");
-      String end = await SharedPreferencesHelper.getString("end");
-      if(end.isNotEmpty) {
+      String? end = await SharedPreferencesHelper.getString("end");
+      if(end != null) {
         int diff = MyDateUtils.getDifferenceInDays(DateTime.now(), MyDateUtils.parseDate(end));
-        debugPrint("Difference: $diff");
+        // debugPrint("Difference: $diff");
         return diff>-1 ? true : false;
       } else {
         debugPrint("No Active Subscription");

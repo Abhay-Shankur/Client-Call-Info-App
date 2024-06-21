@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:toastification/toastification.dart';
@@ -108,6 +110,9 @@ void showNotification(String title, String message) async {
   );
 }
 
+Map<String, dynamic> stringToMap(String str) {
+  return jsonDecode(str);
+}
 // void showSnackBar({required BuildContext context, required String message}) {
 //   ScaffoldMessenger.of(context).showSnackBar(
 //       SnackBar(

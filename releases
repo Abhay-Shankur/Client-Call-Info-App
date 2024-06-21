@@ -178,3 +178,8 @@ Modified Pages(dry-run).
 Added Internet Check activity.
 Added Blocklist Page.
 Added Blocklist Provider.
+
+1.0.33(Abhay):
+Added Repeat Numbers Provider.
+Modified Call handlers.
+Completed handling Calls Action.
