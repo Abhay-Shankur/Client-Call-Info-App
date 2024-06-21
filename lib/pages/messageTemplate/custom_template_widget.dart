@@ -1,7 +1,7 @@
 // import '/flutter_flow/flutter_flow_theme.dart';
 // import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:call_info/theme/MyTheme.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:call_info/main.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
@@ -117,7 +117,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                           child:
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, routeKeys.vendorWPTemplate);
+                              Navigator.pushNamed(context, RouteKeys.vendorWPTemplate);
                             },
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(6),
@@ -137,7 +137,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                   child:
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(context, routeKeys.vendorWPTemplate);
+                                      Navigator.pushNamed(context, RouteKeys.vendorWPTemplate);
                                     },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -175,7 +175,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                     child:
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.pushNamed(context, routeKeys.vendorWPTemplate);
+                                        Navigator.pushNamed(context, RouteKeys.vendorWPTemplate);
                                       },
                                     child: Icon(
                                       Icons.chevron_right_rounded,
@@ -219,7 +219,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                 child:
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.pushNamed(context, routeKeys.vendorSMSTemplate);
+                                    Navigator.pushNamed(context, RouteKeys.vendorSMSTemplate);
                                   },                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(6),
                                   child: Image.asset(
@@ -238,7 +238,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                   child:
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(context, routeKeys.vendorSMSTemplate);
+                                      Navigator.pushNamed(context, RouteKeys.vendorSMSTemplate);
                                     },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -276,7 +276,7 @@ class _CustomtemplateWidgetState extends State<CustomtemplateWidget> {
                                     child:
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.pushNamed(context, routeKeys.vendorSMSTemplate);
+                                        Navigator.pushNamed(context, RouteKeys.vendorSMSTemplate);
                                       },
                                     child: Icon(
                                       Icons.chevron_right_rounded,

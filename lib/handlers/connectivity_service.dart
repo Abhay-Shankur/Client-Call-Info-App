@@ -8,7 +8,7 @@ class ConnectivityService {
   // Function to show popup for no internet connection
   static Future<bool> isConnected() async {
     _connectionStatus = await _connectivity.checkConnectivity();
-    return _connectionStatus != ConnectivityResult.none;
+    return (_connectionStatus == ConnectivityResult.wifi) || (_connectionStatus == ConnectivityResult.mobile);
   }
 
   // Function to check internet connection and show popup if disconnected

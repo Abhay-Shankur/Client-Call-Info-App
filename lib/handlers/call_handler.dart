@@ -9,14 +9,13 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class CallHandler {
   static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
 
-  static String _phoneNumber = '';
   static String _callType = '';
 
   static void setupCallHandler() {
     _channel.setMethodCallHandler((call) async {
       if (call.method == 'receiveCallType') {
         _callType = call.arguments['callType'];
-        _phoneNumber = call.arguments['phoneNumber'];
+        // _phoneNumber = call.arguments['phoneNumber'];
 
         // onCallTypeReceived(_callType);
         // _smsAllowed = await SharedPreferencesHelper.getBool('allowSMS') ?? false;

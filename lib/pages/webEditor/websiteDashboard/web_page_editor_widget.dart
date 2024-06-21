@@ -1,6 +1,6 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
-import 'package:call_info/theme/MyTheme.dart';
+import 'package:call_info/theme/my_theme.dart';
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -206,7 +206,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webMetadataPage);
+                                        .pushNamed(RouteKeys.webMetadataPage);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel1,
@@ -227,7 +227,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webProductsPage);
+                                        .pushNamed(RouteKeys.webProductsPage);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel2,
@@ -254,7 +254,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webImageGallery);
+                                        .pushNamed(RouteKeys.webImageGallery);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel3,
@@ -275,7 +275,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webVideoGallery);
+                                        .pushNamed(RouteKeys.webVideoGallery);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel4,
@@ -302,7 +302,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webServicesPage);
+                                        .pushNamed(RouteKeys.webServicesPage);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel7,
@@ -323,7 +323,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webWeHelpPage);
+                                        .pushNamed(RouteKeys.webWeHelpPage);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel8,
@@ -350,7 +350,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.webTestimonialPage);
+                                        .pushNamed(RouteKeys.webTestimonialPage);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel9,
@@ -371,7 +371,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     navigator.currentState!
-                                        .pushNamed(routeKeys.linkPage);
+                                        .pushNamed(RouteKeys.linkPage);
                                   },
                                   child: wrapWithModel(
                                     model: _model.webPageEditorCardModel10,

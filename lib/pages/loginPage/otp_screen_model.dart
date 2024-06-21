@@ -41,7 +41,7 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
       if(user!=null) {
         // debugPrint('Phone: ${user.user!.phoneNumber?.substring(3)},  UID: ${user.user!.uid}');
         await updateUid(user.user!.uid, user.user!.phoneNumber!.substring(3));
-        navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.vendorDashboard, (route) => false);
+        navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.vendorDashboard, (route) => false);
       } else {
         toastification.show(
             context: navigator.currentState!.context,

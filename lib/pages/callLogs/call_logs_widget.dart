@@ -1,4 +1,4 @@
-// import 'package:call_info/theme/MyTheme.dart';
+// import 'package:call_info/theme/my_theme.dart';
 // import 'package:flutterflow_ui/flutterflow_ui.dart';
 // import '/pages/components/call_log/call_log_widget.dart';
 // import 'package:flutter/material.dart';

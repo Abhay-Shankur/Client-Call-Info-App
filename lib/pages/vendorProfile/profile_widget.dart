@@ -3,7 +3,7 @@ import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
-import 'package:call_info/theme/MyTheme.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -83,7 +83,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         child: GestureDetector(
                                           onTap: () {
                                             navigator.currentState?.pushNamed(
-                                                routeKeys.editVendorProfile);
+                                                RouteKeys.editVendorProfile);
                                           },
                                           child: ClipRRect(
                                             borderRadius:
@@ -201,7 +201,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   child: GestureDetector(
                                       onTap: () {
                                         navigator.currentState?.pushNamed(
-                                            routeKeys
+                                            RouteKeys
                                                 .activeSubscriptionPage);
                                       },
                                       child: Column(
@@ -246,7 +246,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   child: GestureDetector(
                                       onTap: () {
                                         navigator.currentState
-                                            ?.pushNamed(routeKeys
+                                            ?.pushNamed(RouteKeys
                                             .vendorDashboard);
                                       },
                                       child: Padding(
@@ -296,7 +296,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   child: GestureDetector(
                                       onTap: () {
                                         Navigator.pushNamed(
-                                            context, routeKeys.faqPage);
+                                            context, RouteKeys.faqPage);
                                       },
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -391,7 +391,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, routeKeys.callLogTemplate);
+                                    context, RouteKeys.callLogTemplate);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -426,7 +426,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, routeKeys.permissionsPage);
+                                    context, RouteKeys.permissionsPage);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -461,7 +461,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, routeKeys.customTemplates);
+                                    context, RouteKeys.customTemplates);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -495,7 +495,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                               onTap: () {
-                                navigator.currentState!.pushNamed(routeKeys.vendorPromoTemplate);
+                                navigator.currentState!.pushNamed(RouteKeys.vendorPromoTemplate);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -530,7 +530,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             child: GestureDetector(
                               onTap: () {
                                 navigator.currentState!.pushNamed(
-                                    routeKeys.webPageEditorDashboard);
+                                    RouteKeys.webPageEditorDashboard);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -564,7 +564,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                             child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(context, routeKeys.customerSupport);
+                                  Navigator.pushNamed(context, RouteKeys.customerSupport);
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -636,7 +636,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   await FirebaseAuthHandler(context: navigator.currentState!.context)
                                     .signOut(() async {
                                       await SharedPreferencesHelper.removeAll();
-                                      navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.splashScreen,(route) => false);
+                                      navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.splashScreen,(route) => false);
                                     });
                                 },
                                 child: Row(

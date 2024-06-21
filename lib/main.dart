@@ -1,9 +1,13 @@
 
-import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'dart:async';
+import 'dart:developer' as developer;
+
 import 'package:call_info/handlers/call_handler.dart';
+import 'package:call_info/handlers/check_connection_stream.dart';
+import 'package:call_info/pages/blocklistPage/blocked_list_widget.dart';
 import 'package:call_info/pages/callLogs/call_logs_widget.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
-import 'package:call_info/pages/dashboard/DashboardUi.dart';
+import 'package:call_info/pages/dashboard/dashboard_widget.dart';
 import 'package:call_info/pages/editProfile/edit_profile_widget.dart';
 import 'package:call_info/pages/faqPage/faq_widget.dart';
 import 'package:call_info/pages/loginPage/login_page_widget.dart';
@@ -28,6 +32,7 @@ import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widge
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
 import 'package:call_info/pages/webEditor/VideoGallery/web_video_gallery_widget.dart';
 import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
+import 'package:call_info/providers/blocklist/blocklist_provider.dart';
 import 'package:call_info/providers/permissions/permissions_provider.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
@@ -42,9 +47,12 @@ import 'package:call_info/providers/webEditor/reviews/reviews_provider.dart';
 import 'package:call_info/providers/webEditor/services/services_provider.dart';
 import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -70,7 +78,6 @@ Future<void> main() async {
   CallHandler.setupCallHandler();
   // CallHandler.setupCallHandler((callType) {
   //   debugPrint('Received call type: $callType');
-
   //   // Update UI or perform any other actions based on call type
   // });
 
@@ -87,6 +94,8 @@ Future<void> main() async {
   // //Push Notifications
   // await FirebaseMessagingHandler().initNotifications();
 
+
+  // PermissionManager.requestAll();
 
   runApp(const MyApp());
 
@@ -113,13 +122,55 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+
+
   @override
   void initState() {
     super.initState();
-    FirebaseAuthHandler(context: context);
-    // _init();
+    initConnectivity();
+
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
-  //
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    setState(() {
+      _connectionStatus = result;
+    });
+    // ignore: avoid_print
+    print('Connectivity changed: $_connectionStatus');
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initConnectivity() async {
+    late ConnectivityResult result;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      developer.log('Couldn\'t check connectivity status', error: e);
+      return;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
   // Future<void> _init() async {
   //   // Check and request storage permissions
   //   await PermissionManager.requestAll();
@@ -136,6 +187,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => SMSProvider()),
         ChangeNotifierProvider(create: (context) => WPProvider()),
         ChangeNotifierProvider(create: (context) => SubscriptionProvider()),
+        ChangeNotifierProvider(create: (context) => BlocklistProvider()),
 
         ChangeNotifierProvider(create: (context) => WebDomainProvider()),
         ChangeNotifierProvider(create: (context) => WebMetaDataProvider()),
@@ -147,51 +199,60 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => WebReviewsProvider()),
         ChangeNotifierProvider(create: (context) => WebLinksProvider()),
 
-
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'Call Info',
-        initialRoute: routeKeys.splashScreen,
+        initialRoute: RouteKeys.splashScreen,
         // initialRoute: routeKeys.webPageEditorDashboard,
         routes: appRoutes,
         navigatorKey: navigator,
+        initialBinding: InitialBindings()
       ),
     );
   }
 }
-var appRoutes = {
-  routeKeys.splashScreen : (context) => const SplashScreenWidget(),
-  routeKeys.vendorDashboard : (context) => const DashboardWidget(),
-  routeKeys.vendorSMSTemplate : (context) => const SMSTemplateWidget(),
-  routeKeys.vendorWPTemplate : (context) => const WhatsappTemplateWidget(),
-  routeKeys.vendorPromoTemplate : (context) => const PromotionalTemplateWidget(),
-  routeKeys.vendorLogin : (context) => const LoginPageWidget(),
-  routeKeys.vendorOtp : (context) => const OTPScreenWidget(),
-  routeKeys.callLogTemplate : (context) => const CallLogsPage(),
-  routeKeys.editVendorProfile : (context) => const EditProfileWidget(),
-  routeKeys.settingsPage : (context) => const SettingsWidget(),
-  routeKeys.faqPage : (context) => const FaqWidget(),
-  routeKeys.customerSupport : (context) => const CustomerSupportWidget(),
-  routeKeys.customTemplates : (context) => const CustomtemplateWidget(),
-  routeKeys.permissionsPage : (context) => const PermissionWidget(),
-  routeKeys.activeSubscriptionPage : (context) => const SubscriptionPageWidget(),
 
-  routeKeys.webPageEditorDashboard : (context) => const WebPageEditorWidget(),
-  routeKeys.linkPage : (context) => const LinksPageWidget(),
-  routeKeys.webMetadataPage : (context) => const WebMetadataPageWidget(),
-  routeKeys.webVideoGallery : (context) => const WebVideoGalleryWidget(),
-  routeKeys.webImageGallery : (context) => const WebImageGalleyWidget(),
-  routeKeys.webServicesPage : (context) => const WebServicPageWidget(),
-  routeKeys.webServicesAdd : (context) => const WebServiceAddWidget(),
-  routeKeys.webProductsPage : (context) => const WebProductsPageWidget(),
-  routeKeys.webProductsAdd : (context) => const WebProductsAddWidget(),
-  routeKeys.webWeHelpPage : (context) => const WeHelpPageWidget(),
-  routeKeys.webTestimonialPage : (context) => const WebTestimonialPageWidget(),
-  routeKeys.webTestimonialAdd : (context) => const WebTestimonialAddWidget(),
+class InitialBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(CheckConnectionStream());
+  }
+}
+
+var appRoutes = {
+  RouteKeys.splashScreen : (context) => const SplashScreenWidget(),
+  RouteKeys.vendorDashboard : (context) => const DashboardWidget(),
+  RouteKeys.vendorSMSTemplate : (context) => const SMSTemplateWidget(),
+  RouteKeys.vendorWPTemplate : (context) => const WhatsappTemplateWidget(),
+  RouteKeys.vendorPromoTemplate : (context) => const PromotionalTemplateWidget(),
+  RouteKeys.vendorLogin : (context) => const LoginPageWidget(),
+  RouteKeys.vendorOtp : (context) => const OTPScreenWidget(),
+  RouteKeys.callLogTemplate : (context) => const CallLogsPage(),
+  RouteKeys.editVendorProfile : (context) => const EditProfileWidget(),
+  RouteKeys.settingsPage : (context) => const SettingsWidget(),
+  RouteKeys.faqPage : (context) => const FaqWidget(),
+  RouteKeys.customerSupport : (context) => const CustomerSupportWidget(),
+  RouteKeys.customTemplates : (context) => const CustomtemplateWidget(),
+  RouteKeys.permissionsPage : (context) => const PermissionWidget(),
+  RouteKeys.activeSubscriptionPage : (context) => const SubscriptionPageWidget(),
+  RouteKeys.blocklistPage : (context) => const BlockedListWidget(),
+
+  RouteKeys.webPageEditorDashboard : (context) => const WebPageEditorWidget(),
+  RouteKeys.linkPage : (context) => const LinksPageWidget(),
+  RouteKeys.webMetadataPage : (context) => const WebMetadataPageWidget(),
+  RouteKeys.webVideoGallery : (context) => const WebVideoGalleryWidget(),
+  RouteKeys.webImageGallery : (context) => const WebImageGalleyWidget(),
+  RouteKeys.webServicesPage : (context) => const WebServicPageWidget(),
+  RouteKeys.webServicesAdd : (context) => const WebServiceAddWidget(),
+  RouteKeys.webProductsPage : (context) => const WebProductsPageWidget(),
+  RouteKeys.webProductsAdd : (context) => const WebProductsAddWidget(),
+  RouteKeys.webWeHelpPage : (context) => const WeHelpPageWidget(),
+  RouteKeys.webTestimonialPage : (context) => const WebTestimonialPageWidget(),
+  RouteKeys.webTestimonialAdd : (context) => const WebTestimonialAddWidget(),
 
 };
 
-class routeKeys {
+class RouteKeys {
   static const String splashScreen = '/splash';
   static const String vendorDashboard = '/vendor_dashboard';
   static const String vendorSMSTemplate = '/vendor_SMSTemplate';
@@ -207,6 +268,7 @@ class routeKeys {
   static const String customTemplates= '/customTemplates';
   static const String permissionsPage= '/permissionsPage';
   static const String activeSubscriptionPage= '/activeSubscriptionPage';
+  static const String blocklistPage= '/blocklistPage';
 
   static const String webPageEditorDashboard= '/webPageEditorDashboard';
   static const String linkPage= '/linkPage';

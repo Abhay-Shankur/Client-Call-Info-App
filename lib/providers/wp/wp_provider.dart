@@ -15,6 +15,15 @@ class WPProvider extends ChangeNotifier {
     _init();
   }
 
+  Future<bool> initialize() async {
+    try {
+      await _init();
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
   Future<void> _init() async {
     try {
       String? uid = FirebaseAuthHandler.getUid();

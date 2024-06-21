@@ -13,6 +13,15 @@ class SubscriptionProvider extends ChangeNotifier {
     _init();
   }
 
+  Future<bool> initialize() async {
+    try {
+      await _init();
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
   Future<void> _init() async {
     FirestoreHandler fh = FirestoreHandler();
     try {

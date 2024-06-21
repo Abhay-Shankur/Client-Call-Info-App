@@ -27,7 +27,7 @@ class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
 
   Future<void> _isLoggedIn() async {
     if(await FirebaseAuthHandler(context: navigator.currentState!.context).checkLoginStatus()) {
-      navigator.currentState!.pushNamedAndRemoveUntil(routeKeys.vendorDashboard, (route) => false);
+      navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.vendorDashboard, (route) => false);
     }
   }
 

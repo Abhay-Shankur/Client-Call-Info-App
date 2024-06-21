@@ -73,4 +73,17 @@ class SubscriptionPageModel extends FlutterFlowModel<SubscriptionPageWidget> {
     }
   }
 
+  Future<void> repeatMessage(BuildContext context, double val) async{
+    try{
+      await SharedPreferencesHelper.reload();
+      await SharedPreferencesHelper.setString("repeat", val.toString());
+      if(context.mounted) {
+        showSnackbar(context, "Repeat Message updated");
+      }
+    } catch(e) {
+      if(context.mounted){
+        showSnackbar(context, "Failed to updated");
+      }
+    }
+  }
 }

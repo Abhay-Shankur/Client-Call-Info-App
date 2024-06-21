@@ -3,7 +3,7 @@ import 'package:call_info/main.dart';
 import 'package:call_info/providers/sms/sms_provider.dart';
 import 'package:call_info/providers/subscription/subscription_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
-import 'package:call_info/theme/MyTheme.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -403,11 +403,11 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                             label: _model.sliderValue
                                                 ?.toStringAsFixed(0),
                                             divisions: 7,
-                                            onChanged: (newValue) {
+                                            onChanged: (newValue) async {
                                               newValue = double.parse(
                                                   newValue.toStringAsFixed(0));
-                                              setState(() => _model
-                                                  .sliderValue = newValue);
+                                              setState(() => _model.sliderValue = newValue);
+                                              await _model.repeatMessage(context, newValue);
                                             },
                                           ),
                                         ),
@@ -420,46 +420,51 @@ class _SubscriptionPageWidgetState extends State<SubscriptionPageWidget> {
                                       color: MyTheme.of(context)
                                           .primaryText,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 10),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(14),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              10, 10, 10, 10),
-                                          child: ListTile(
-                                            title: Text(
-                                              'Block Contacts',
-                                              style:
-                                              MyTheme.of(context)
-                                                  .titleLarge
-                                                  .override(
-                                                fontFamily: 'Outfit',
-                                                letterSpacing: 0,
+                                    InkWell(
+                                      onTap: () {
+                                        navigator.currentState!.pushNamed(RouteKeys.blocklistPage);
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0, 10, 0, 10),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(14),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                10, 10, 10, 10),
+                                            child: ListTile(
+                                              title: Text(
+                                                'Block Contacts',
+                                                style:
+                                                MyTheme.of(context)
+                                                    .titleLarge
+                                                    .override(
+                                                  fontFamily: 'Outfit',
+                                                  letterSpacing: 0,
+                                                ),
                                               ),
-                                            ),
-                                            trailing: Icon(
-                                              Icons.arrow_forward_ios,
-                                              color:
+                                              trailing: Icon(
+                                                Icons.arrow_forward_ios,
+                                                color:
+                                                MyTheme.of(context)
+                                                    .primaryText,
+                                                size: 20,
+                                              ),
+                                              tileColor:
                                               MyTheme.of(context)
                                                   .primaryText,
-                                              size: 20,
-                                            ),
-                                            tileColor:
-                                            MyTheme.of(context)
-                                                .primaryText,
-                                            dense: false,
-                                            contentPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0, 0, 0, 0),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(0),
+                                              dense: false,
+                                              contentPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 0),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(0),
+                                              ),
                                             ),
                                           ),
                                         ),

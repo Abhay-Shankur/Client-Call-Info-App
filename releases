@@ -173,3 +173,8 @@ Added Subscription Provider. (Revised)
 1.0.31(Abhay):
 Configured Name and Logo.
 Modified Pages(dry-run).
+
+1.0.32(Abhay):
+Added Internet Check activity.
+Added Blocklist Page.
+Added Blocklist Provider.

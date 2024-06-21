@@ -1,4 +1,4 @@
-import 'package:call_info/theme/MyTheme.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/f_a_q_list_item/f_a_q_list_item_widget.dart';
 import 'package:flutter/material.dart';

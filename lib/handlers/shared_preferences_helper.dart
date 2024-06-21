@@ -61,8 +61,21 @@ class SharedPreferencesHelper {
     return prefs.getBool(key) ?? false;
   }
 
+  static Future<void> setList(String key, List<String> value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(key, value);
+    _keys.add(key);
+  }
+
+  static Future<List<String>> getList(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList(key) ?? [];
+  }
+
   static Future<void> removeAll() async {
     reload();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
     _keys.forEach((element) async {
       await remove(element);
     });

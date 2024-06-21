@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:toastification/toastification.dart';
 
-showToast(
+void showToast(
     {required BuildContext context,
     required ToastificationType type,
     required String title,
@@ -108,7 +108,14 @@ void showNotification(String title, String message) async {
   );
 }
 
-
+// void showSnackBar({required BuildContext context, required String message}) {
+//   ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(
+//         content: Text(message),
+//         duration: const Duration(seconds: 3), // Adjust the duration as needed
+//       )
+//   );
+// }
 // void showToast() {
 //   String text = _model.textController.text;
 //

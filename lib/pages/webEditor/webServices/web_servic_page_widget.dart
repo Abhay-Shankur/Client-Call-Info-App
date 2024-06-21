@@ -111,7 +111,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                                       10, 0, 10, 0),
                                   child: FFButtonWidget(
                                     onPressed: () {
-                                      navigator.currentState!.pushNamed(routeKeys.webServicesAdd);
+                                      navigator.currentState!.pushNamed(RouteKeys.webServicesAdd);
                                     },
                                     text: 'Add',
                                     options: FFButtonOptions(
@@ -127,7 +127,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                                           .titleSmall
                                           .override(
                                         fontFamily: 'Readex Pro',
-                                        color: const Color(0xfffffffffffff),
+                                        color: const Color(0xffffffff),
                                         letterSpacing: 0,
                                       ),
                                       borderSide: const BorderSide(

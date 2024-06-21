@@ -1,15 +1,11 @@
-
-
-import 'package:call_log/call_log.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:call_log/call_log.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:call_info/main.dart';
 
-import '../../theme/MyTheme.dart';
-import '../components/card_call/card_call_widget.dart';
-import '../editProfile/edit_profile_widget.dart';
 import 'dashboard_model.dart';
 export 'dashboard_model.dart';
 
@@ -22,75 +18,15 @@ class DashboardWidget extends StatefulWidget {
 
 class _DashboardWidgetState extends State<DashboardWidget>
     with TickerProviderStateMixin {
-  late DashboardModel _model;
+  late DashborddemoCopyModel _model;
   int incomingCalls = 0;
   int outgoingCalls = 0;
-  int totalcalls = 0;
+  int totalCalls = 0;
   int missedCalls = 0;
 
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
   final animationsMap = {
-    'textOnPageLoadAnimation': AnimationInfo(
-          trigger: AnimationTrigger.onPageLoad,
-          effects: [
-            VisibilityEffect(duration: 600.ms),
-            FadeEffect(
-              curve: Curves.easeInOut,
-              delay: 600.ms,
-              duration: 600.ms,
-              begin: 0,
-              end: 1,
-            ),
-            MoveEffect(
-              curve: Curves.easeInOut,
-              delay: 600.ms,
-              duration: 600.ms,
-              begin: const Offset(0, 30),
-              end: const Offset(0, 0),
-            ),
-          ],
-        ),
-        'containerOnPageLoadAnimation1': AnimationInfo(
-          trigger: AnimationTrigger.onPageLoad,
-          effects: [
-            VisibilityEffect(duration: 1600.ms),
-            FadeEffect(
-              curve: Curves.easeInOut,
-              delay: 1600.ms,
-              duration: 600.ms,
-              begin: 0,
-              end: 1,
-            ),
-            MoveEffect(
-              curve: Curves.easeInOut,
-              delay: 1600.ms,
-              duration: 600.ms,
-              begin: const Offset(0, 70),
-              end: const Offset(0, 0),
-            ),
-          ],
-        ),
-        'containerOnPageLoadAnimation2': AnimationInfo(
-          trigger: AnimationTrigger.onPageLoad,
-          effects: [
-            VisibilityEffect(duration: 800.ms),
-            FadeEffect(
-              curve: Curves.easeInOut,
-              delay: 800.ms,
-              duration: 600.ms,
-              begin: 0,
-              end: 1,
-            ),
-            MoveEffect(
-              curve: Curves.easeInOut,
-              delay: 800.ms,
-              duration: 600.ms,
-              begin: const Offset(0, 50),
-              end: const Offset(0, 0),
-            ),
-          ],
-        ),
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -476,16 +412,20 @@ class _DashboardWidgetState extends State<DashboardWidget>
   @override
   void initState() {
     super.initState();
-    retrieveCallLogs();
+    _model = createModel(context, () => DashborddemoCopyModel());
     retrieveAndClassifyCallLogs();
-    _model = createModel(context, () => DashboardModel());
+    totalCalls=incomingCalls+outgoingCalls+missedCalls;
+    retrieveCallLogs();
 
+//
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -503,7 +443,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
@@ -525,14 +465,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                           child: Text(
                             'Dashboard',
                             textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
+                            style: MyTheme.of(context)
                                 .titleMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'Readex Pro',
                                   color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                      MyTheme.of(context).primaryText,
                                   fontSize: 35,
-                                  letterSpacing: 0,
                                   fontWeight: FontWeight.normal,
                                 ),
                           ),
@@ -540,24 +479,18 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                           child: FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context)
+                            borderColor: MyTheme.of(context)
                                 .secondaryBackground,
                             borderRadius: 20,
-                            buttonSize: 58,
-                            fillColor: FlutterFlowTheme.of(context)
+                            fillColor: MyTheme.of(context)
                                 .secondaryBackground,
                             icon: Icon(
                               Icons.account_circle_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: MyTheme.of(context).primaryText,
                               size: 40,
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EditProfileWidget()));
-                              print('IconButton pressed ...');
+                              Navigator.pushNamed(context, RouteKeys.settingsPage);
                             },
                           ),
                         ),
@@ -572,48 +505,410 @@ class _DashboardWidgetState extends State<DashboardWidget>
                       Container(
                         decoration: const BoxDecoration(),
                       ),
-                      Align(
-                        alignment: const AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                          child: ListView(
-                            padding: EdgeInsets.zero,
-                            primary: false,
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              wrapWithModel(
-                                model: _model.cardCallModel4,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget( cardTitle: 'Total Calls',
-                                  cardValue: totalcalls,
-                                  cardIcon: const Icon(Icons.add_ic_call,color: Colors.white,),),
-                              ),
-                              wrapWithModel(
-                                model: _model.cardCallModel1,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget(cardTitle: 'Incoming Calls',
-                                  cardValue: incomingCalls,
-                                  cardIcon: const Icon(Icons.call_received,color: Colors.white),                           ),
-                              ),
-                              wrapWithModel(
-                                model: _model.cardCallModel2,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget(
-                                  cardTitle: 'Outgoing Calls',
-                                  cardValue: outgoingCalls,
-                                  cardIcon: const Icon(Icons.call_made,color: Colors.white,),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                        child: ListView(
+                          padding: EdgeInsets.zero,
+                          primary: false,
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 12),
+                              child: Container(
+                                height: 140,
+                                decoration: BoxDecoration(
+                                  color: MyTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x1F000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: MyTheme.of(context)
+                                        .primaryBackground,
+                                    width: 1,
+                                  ),
                                 ),
-                              ),
-                              wrapWithModel(
-                                model: _model.cardCallModel3,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget( cardTitle: 'Missed Calls',
-                                  cardValue: missedCalls,
-                                  cardIcon: const Icon(Icons.call_missed,color: Colors.white,),),
-                              ),
-
-                            ],
-                          ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12, 0, 12, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          color: MyTheme.of(context)
+                                              .primaryBackground,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        alignment: const AlignmentDirectional(0, 0),
+                                        child: Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: MyTheme.of(context)
+                                              .primary,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(12),
+                                            child: Icon(
+                                              Icons.add_ic_call,
+                                              color: Colors.white,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'containerOnPageLoadAnimation2']!),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Total Calls',
+                                              style: MyTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: MyTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'textOnPageLoadAnimation1']!),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0, 8, 0, 0),
+                                              child: Text(
+                                                '$totalCalls',
+                                                style:
+                                                    MyTheme.of(context)
+                                                        .displaySmall,
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation2']!),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation1']!),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+                              child: Container(
+                                height: 140,
+                                decoration: BoxDecoration(
+                                  color: MyTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x1F000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: MyTheme.of(context)
+                                        .primaryBackground,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12, 0, 12, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          color: MyTheme.of(context)
+                                              .primaryBackground,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        alignment: const AlignmentDirectional(0, 0),
+                                        child: Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: MyTheme.of(context)
+                                              .primary,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(12),
+                                            child: Icon(
+                                              Icons.call_made,
+                                              color: Colors.white,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'containerOnPageLoadAnimation4']!),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Outgoing Calls',
+                                              style: MyTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: MyTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'textOnPageLoadAnimation3']!),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0, 8, 0, 0),
+                                              child: Text(
+                                                '$outgoingCalls',
+                                                style:
+                                                    MyTheme.of(context)
+                                                        .displaySmall,
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation4']!),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation3']!),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+                              child: Container(
+                                height: 140,
+                                decoration: BoxDecoration(
+                                  color: MyTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x1F000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: MyTheme.of(context)
+                                        .primaryBackground,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12, 0, 12, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          color: MyTheme.of(context)
+                                              .primaryBackground,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        alignment: const AlignmentDirectional(0, 0),
+                                        child: Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: MyTheme.of(context)
+                                              .primary,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(12),
+                                            child: Icon(
+                                              Icons.call_missed,
+                                              color: Colors.white,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'containerOnPageLoadAnimation6']!),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Missed Calls ',
+                                              style: MyTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: MyTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'textOnPageLoadAnimation5']!),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0, 8, 0, 0),
+                                              child: Text(
+                                                '$missedCalls',
+                                                style:
+                                                    MyTheme.of(context)
+                                                        .displaySmall,
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation6']!),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation5']!),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 12),
+                              child: Container(
+                                height: 140,
+                                decoration: BoxDecoration(
+                                  color: MyTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x1F000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: MyTheme.of(context)
+                                        .primaryBackground,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12, 0, 12, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          color: MyTheme.of(context)
+                                              .primaryBackground,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        alignment: const AlignmentDirectional(0, 0),
+                                        child: Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: MyTheme.of(context)
+                                              .primary,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40),
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(12),
+                                            child: Icon(
+                                              Icons.call_received,
+                                              color: Colors.white,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'containerOnPageLoadAnimation8']!),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Incoming Calls',
+                                              style: MyTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: MyTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'textOnPageLoadAnimation7']!),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0, 8, 0, 0),
+                                              child: Text(
+                                                '$incomingCalls',
+                                                style:
+                                                    MyTheme.of(context)
+                                                        .displaySmall,
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation8']!),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation7']!),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -624,60 +919,52 @@ class _DashboardWidgetState extends State<DashboardWidget>
                   child: Text(
                     'Current Score',
                     textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).titleLarge.override(
-                          fontFamily: 'Inter',
-                          letterSpacing: 0,
-                        ),
+                    style: MyTheme.of(context).titleLarge,
                   ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation']!),
+                      animationsMap['textOnPageLoadAnimation9']!),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10, 12, 10, 16),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: MyTheme.of(context).secondaryBackground,
                       boxShadow: const [
                         BoxShadow(
                           blurRadius: 4,
                           color: Color(0x1F000000),
-                          offset: Offset(
-                            0.0,
-                            2,
-                          ),
+                          offset: Offset(0, 2),
                         )
                       ],
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        color: MyTheme.of(context).primaryBackground,
                         width: 1,
                       ),
                     ),
                     child: Container(
-                      width: double.infinity,
+                      width: 500,
                       height: 400,
                       constraints: const BoxConstraints(
                         maxWidth: 570,
                       ),
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: MyTheme.of(context).secondaryBackground,
                         boxShadow: const [
                           BoxShadow(
                             blurRadius: 3,
                             color: Color(0x33000000),
-                            offset: Offset(
-                              0,
-                              1,
-                            ),
+                            offset: Offset(0, 1),
                           )
                         ],
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: MyTheme.of(context).alternate,
                           width: 1,
                         ),
                       ),
-                      child: Padding(
+                      child: // Generated code for this main_column Widget...
+                          Padding(
                         padding: const EdgeInsets.all(12),
                         child: SingleChildScrollView(
                           child: Column(
@@ -692,8 +979,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SingleChildScrollView(
-                                    child:Column(
+                                    Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -701,130 +987,217 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         Text(
                                           'Call History',
                                           textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                letterSpacing: 0,
-                                              ),
+                                          style: MyTheme.of(context)
+                                              .titleLarge,
                                         ),
                                         Text(
                                           'A list of historical transactions',
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                letterSpacing: 0,
-                                              ),
+                                          style: MyTheme.of(context)
+                                              .labelMedium,
                                         ),
                                       ].divide(const SizedBox(height: 4)),
-                                    ),
                                     ),
                                   ],
                                 ),
                               ),
-
+                              Padding(
+                                padding:
+                                    const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                                child: FlutterFlowChoiceChips(
+                                  options: const [
+                                    ChipData('All'),
+                                    ChipData('Incoming '),
+                                    ChipData('Outgoing '),
+                                    ChipData('Missed')
+                                  ],
+                                  onChanged: (val) => setState(() => _model
+                                      .choiceChipsValue = val?.firstOrNull),
+                                  selectedChipStyle: ChipStyle(
+                                    backgroundColor:
+                                        MyTheme.of(context).accent1,
+                                    textStyle: MyTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: MyTheme.of(context)
+                                              .primaryText,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                    iconColor: MyTheme.of(context)
+                                        .primaryText,
+                                    iconSize: 18,
+                                    elevation: 0,
+                                    borderColor:
+                                        MyTheme.of(context).primary,
+                                    borderWidth: 2,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  unselectedChipStyle: ChipStyle(
+                                    backgroundColor:
+                                        MyTheme.of(context).alternate,
+                                    textStyle: MyTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: MyTheme.of(context)
+                                              .secondaryText,
+                                        ),
+                                    iconColor: MyTheme.of(context)
+                                        .secondaryText,
+                                    iconSize: 18,
+                                    elevation: 0,
+                                    borderColor:
+                                        MyTheme.of(context).alternate,
+                                    borderWidth: 2,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  chipSpacing: 8,
+                                  rowSpacing: 8,
+                                  multiselect: false,
+                                  initialized: _model.choiceChipsValue != null,
+                                  alignment: WrapAlignment.start,
+                                  controller:
+                                      _model.choiceChipsValueController ??=
+                                          FormFieldController<List<String>>(
+                                    ['All'],
+                                  ),
+                                  // wrapped: false,
+                                ),
+                              ),
                               Divider(
                                 height: 2,
-                                thickness: 2,
+                                thickness: 1,
                                 color: MyTheme.of(context).alternate,
                               ),
                               SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    SizedBox(
-                                      // Set a specific height for the ListView to limit its height in the SingleChildScrollView
-                                      height: MediaQuery.of(context).size.height * 0.8, // Adjust the height as needed
-                                      child: ListView.builder(
-                                        padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-                                        shrinkWrap: true,
-                                        physics: const NeverScrollableScrollPhysics(), // Disable ListView scrolling
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: _callLogs.length,
-                                        itemBuilder: (context, index) {
-                                          var call = _callLogs[index];
-                                          return Container(
-                                            width: 100,
-                                            height: 80,
-                                            decoration: BoxDecoration(
-                                              color: MyTheme.of(context).secondaryBackground,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 0,
-                                                  color: MyTheme.of(context).alternate,
-                                                  offset: const Offset(0, 1),
-                                                )
+                                    ListView.builder(
+                                      padding: const EdgeInsets.fromLTRB(
+                                        0,
+                                        12,
+                                        0,
+                                        12,
+                                      ),
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: _callLogs
+                                          .length, // Use the length of call logs list
+                                      itemBuilder: (context, index) {
+                                        var call = _callLogs[index];
+                                        return Container(
+                                          width: 100,
+                                          height: 80,
+                                          decoration: BoxDecoration(
+                                            color: MyTheme.of(context)
+                                                .secondaryBackground,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 0,
+                                                color:
+                                                    MyTheme.of(context)
+                                                        .alternate,
+                                                offset: const Offset(0, 1),
+                                              )
+                                            ],
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12, 0, 12, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: 32,
+                                                  height: 32,
+                                                  decoration: BoxDecoration(
+                                                    color: MyTheme.of(
+                                                            context)
+                                                        .primaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                    border: Border.all(
+                                                      color:
+                                                          MyTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0, 0),
+                                                    child: Icon(
+                                                      Icons
+                                                          .attach_money_rounded,
+                                                      color:
+                                                          MyTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 24,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                12, 0, 0, 0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          call.name ??
+                                                              'Unknown',
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: MyTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 0),
+                                                          child: Text(
+                                                            'Number ${call.number ?? '**** 2192'}',
+                                                            style: MyTheme
+                                                                    .of(context)
+                                                                .labelMedium,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Container(
-                                                    width: 32,
-                                                    height: 32,
-                                                    decoration: BoxDecoration(
-                                                      color: MyTheme.of(context).primaryBackground,
-                                                      borderRadius: BorderRadius.circular(8),
-                                                      border: Border.all(
-                                                        color: MyTheme.of(context).alternate,
-                                                      ),
-                                                    ),
-                                                    child: Align(
-                                                      alignment: const AlignmentDirectional(0, 0),
-                                                      child: Icon(
-                                                        Icons.attach_money_rounded,
-                                                        color: MyTheme.of(context).secondaryText,
-                                                        size: 24,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                                      child: Column(
-                                                        mainAxisSize: MainAxisSize.max,
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Text(
-                                                            call.name ?? 'Unknown',
-                                                            textAlign: TextAlign.end,
-                                                            style: MyTheme.of(context).bodyMedium,
-                                                          ),
-                                                          Padding(
-                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                0, 4, 0, 0),
-                                                            child: Text(
-                                                              'Number ${call.number ?? '**** 2192'}',
-                                                              style: MyTheme.of(context).labelMedium,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
                               ),
-
                             ],
                           ),
                         ),
                       ),
                     ),
-                  )
-                      // .animateOnPageLoad(
-                      // animationsMap['textOnPageLoadAnimation']!),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation9']!),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10, 12, 10, 0),
@@ -835,104 +1208,272 @@ class _DashboardWidgetState extends State<DashboardWidget>
                       maxHeight: 500,
                     ),
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: MyTheme.of(context).secondaryBackground,
                       boxShadow: const [
                         BoxShadow(
                           blurRadius: 4,
                           color: Color(0x1F000000),
-                          offset: Offset(
-                            0.0,
-                            2,
-                          ),
+                          offset: Offset(0, 2),
                         )
                       ],
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child:
-                    // Generated code for this Column Widget...
-                    Padding(
+                    child: Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                            padding:
+                                const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                             child: Text(
                               'Recent Activity',
-                              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Readex Pro',
-                                letterSpacing: 0,
-                              ),
+                              style: MyTheme.of(context).headlineSmall,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 0, 0),
+                            padding:
+                                const EdgeInsetsDirectional.fromSTEB(16, 10, 0, 0),
                             child: Text(
                               'Below is an overview of tasks & activity completed.',
-                              style: FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Inter',
-                                fontSize: 18,
-                                letterSpacing: 0,
-                              ),
+                              style: MyTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 18,
+                                  ),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
+                            padding:
+                                const EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
                             child: SizedBox(
                               width: double.infinity,
-                              height: 350,
+                              height: 300,
                               child: FlutterFlowLineChart(
                                 data: [
                                   FFLineChartData(
-                              xData: [
-                                                1.0,
-                                                2.0,
-                                                3.0,
-                                                4.0,
-                                                5.0
-                                              ], // Replace with actual x-axis data
-                                              yData: [20.0, 25.0, 30.0, 35.0, 40.0],
+                                    xData: [
+                                      1.0,
+                                      2.0,
+                                      3.0,
+                                      4.0,
+                                      5.0
+                                    ], // Replace with actual x-axis data
+                                    yData: [20.0, 25.0, 30.0, 35.0, 40.0],
                                     settings: LineChartBarData(
-                                      color: FlutterFlowTheme.of(context).tertiary,
+                                        color: const Color(0xFF1A1A1C),
                                       barWidth: 2,
                                       isCurved: true,
                                       preventCurveOverShooting: true,
                                       dotData: FlDotData(show: false),
                                       belowBarData: BarAreaData(
                                         show: true,
-                                        color: FlutterFlowTheme.of(context).accent1,
+                                        color: MyTheme.of(context)
+                                            .accent1,
+                                      ),
+                                    ),
+                                  ),
+                                  FFLineChartData(
+                                    xData: [
+                                      1.0,
+                                      2.0,
+                                      3.0,
+                                      4.0,
+                                      5.0
+                                    ], // Replace with actual x-axis data
+                                    yData: [10.0, 20.0, 15.0, 25.0, 30.0],
+                                    settings: LineChartBarData(
+                                      color: const Color(0xFF4B39EF),
+                                      barWidth: 2,
+                                      isCurved: true,
+                                      preventCurveOverShooting: true,
+                                      dotData: FlDotData(show: false),
+                                      belowBarData: BarAreaData(
+                                        show: true,
+                                        color: MyTheme.of(context)
+                                            .accent3,
                                       ),
                                     ),
                                   )
                                 ],
-
+                                // chartStylingInfo: ChartStylingInfo(
+                                //   backgroundColor:
+                                //   MyTheme.of(context).primaryText,
+                                //   showBorder: false,
+                                // ),
                                 axisBounds: const AxisBounds(),
                                 xAxisLabelInfo: AxisLabelInfo(
                                   title: 'Last 30 Days',
-                                  titleTextStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    fontSize: 20,
-                                    letterSpacing: 0,
-                                  ),
+                                  titleTextStyle: MyTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 20,
+                                      ),
                                 ),
                                 yAxisLabelInfo: AxisLabelInfo(
-                                  title: 'Messeges Sent',
+                                  title: 'Avg. Grade',
                                   titleTextStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0,
-                                  ),
+                                      MyTheme.of(context).bodyMedium,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      height: 32,
+                                      constraints: const BoxConstraints(
+                                        maxHeight: 32,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: MyTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.radio_button_checked_sharp,
+                                              color:
+                                                  MyTheme.of(context)
+                                                      .primary,
+                                              size: 20,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8, 0, 0, 0),
+                                              child: Text(
+                                                'Incoming',
+                                                style:
+                                                    MyTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 18,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 32,
+                                      constraints: const BoxConstraints(
+                                        maxHeight: 32,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: MyTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.radio_button_checked_sharp,
+                                              color:
+                                                  MyTheme.of(context)
+                                                      .secondary,
+                                              size: 20,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8, 0, 0, 0),
+                                              child: Text(
+                                                'Outgoing',
+                                                style:
+                                                    MyTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 18,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 32,
+                                      constraints: const BoxConstraints(
+                                        maxHeight: 32,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: MyTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.radio_button_checked_sharp,
+                                              color:
+                                                  MyTheme.of(context)
+                                                      .tertiary,
+                                              size: 20,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8, 0, 0, 0),
+                                              child: Text(
+                                                'Missed',
+                                                style:
+                                                    MyTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 18,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation2']!),
+                      animationsMap['containerOnPageLoadAnimation10']!),
                 ),
                 Align(
                   alignment: const AlignmentDirectional(0, 0),
@@ -946,15 +1487,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
         ),
       ),
     );
-//
   }
 
   Future<void> retrieveAndClassifyCallLogs() async {
+//
     try {
       // Request permission to access call logs
       var permissionStatus = await Permission.phone.request();
       if (permissionStatus != PermissionStatus.granted) {
-        print('Permission to access call logs not granted');
+        debugPrint('Permission to access call logs not granted');
         return;
       }
 
@@ -978,29 +1519,31 @@ class _DashboardWidgetState extends State<DashboardWidget>
           default:
             break;
         }
+
       }
 
       // Output the counts
-      totalcalls = incomingCalls + outgoingCalls + missedCalls;
-      print(totalcalls);
-      print('Incoming calls: $incomingCalls');
-      print('Outgoing calls: $outgoingCalls');
-      print('Missed calls: $missedCalls');
+      totalCalls=incomingCalls+outgoingCalls+missedCalls;
+      debugPrint('Total Calls: $totalCalls');
+      debugPrint('Incoming calls: $incomingCalls');
+      debugPrint('Outgoing calls: $outgoingCalls');
+      debugPrint('Missed calls: $missedCalls');
+
     } catch (e) {
-      print('Error retrieving call logs: $e');
+      debugPrint('Error retrieving call logs: $e');
     }
   }
 
-    List<CallLogEntry> _callLogs = [];
+  List<CallLogEntry> _callLogs = [];
 
-    Future<void> retrieveCallLogs() async {
-      if (await Permission.phone.request().isGranted) {
-        var callLogs = await CallLog.get();
-        setState(() {
-          _callLogs = callLogs.take(10).toList(); // Limit to top 10 call logs
-        });
-      }
+  Future<void> retrieveCallLogs() async {
+    if (await Permission.phone.request().isGranted) {
+      var callLogs = await CallLog.get();
+      setState(() {
+        _callLogs = callLogs.take(4).toList(); // Limit to top 10 call logs
+      });
     }
+  }
 
   String getMessageForCallType(CallType? callType) {
     if (callType == null) {
@@ -1009,19 +1552,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     switch (callType) {
       case CallType.incoming:
-        print('Incoming call');
+        debugPrint('Incoming call');
         return 'incoming';
       case CallType.outgoing:
-        print('Outgoing call');
+        debugPrint('Outgoing call');
         return 'outgoing';
       case CallType.missed:
-        print('Missed call');
+        debugPrint('Missed call');
         return 'missed';
       case CallType.rejected:
-        print('Rejected call');
+        debugPrint('Rejected call');
         return 'rejected';
       case CallType.blocked:
-        print('Blocked call');
+        debugPrint('Blocked call');
         return 'blocked';
       default:
         return 'Unknown call type';
