@@ -12,12 +12,12 @@
 
     // Static links
     const links = {
-      services: "/#services",
-      whatWeDo: "/#what-we-do",
-      products: "/#products",
-      imageGallery: "/#image-gallery",
-      videoGallery: "/#video-gallery",
-      contactUs: "/#contact-us",
+      services: "#services",
+      whatWeDo: "#what-we-do",
+      products: "#products",
+      imageGallery: "#image-gallery",
+      videoGallery: "#video-gallery",
+      contactUs: "#contact-us",
     };
 
     return (

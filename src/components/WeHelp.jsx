@@ -18,7 +18,7 @@ function WeHelp(props) {
             <h2 className="section-title mb-4">We Help You {data.heading}</h2>
             <p>{data.description}</p>
             {/* Corrected href attribute */}
-            <p><a href="/#" className="btn">Explore</a></p>
+            {/* <p><span className="btn">Explore</span></p> */}
         
         </div>
       </div>

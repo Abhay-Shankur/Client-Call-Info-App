@@ -19,8 +19,9 @@ function Product(props) {
       </div>
     );
   });
+  
   return (
-    <div className="untree_co-section product-section before-footer-section" id='products-section'>
+    <div className="product-section before-footer-section" id='products-section'>
       {/* Product content */}
       <div className="container">
         <div className="row">
@@ -29,7 +30,7 @@ function Product(props) {
           <div className="col-md-12 col-lg-3 mb-5 mb-lg-0">
             <h2 className="mb-4 section-title">Our Unique Products.</h2>
             <p className="mb-4">Describe your specialization In 2-3 Lines only</p>
-            <p><a href="/#" className="btn">Explore</a></p>
+            {/* <p><a href="/#" className="btn">Explore</a></p> */}
           </div>
 
           {products}

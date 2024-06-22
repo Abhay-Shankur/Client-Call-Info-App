@@ -5,97 +5,178 @@ import {
   MDBCarousel,
   // MDBCarouselInner,
   MDBCarouselItem,
-  MDBCol,
+  MDBContainer,
   MDBRow,
+  MDBCol,
+  MDBIcon,
 } from "mdb-react-ui-kit";
 
-
-function Testimonial(props) {
-  let testimonials = props.data;
-  testimonials = testimonials.map((e, i) => {
-    return(
-      <MDBCarouselItem key={i} className={i===0?"active":""}>
-        <p className="lead font-italic mx-4 mx-md-5">
-          "{e.description}"
-        </p>
-        <div className="mt-5 mb-4">
-          <img
-            src="images/default-profile.jpg"
-            className="rounded-circle img-fluid shadow-1-strong"
-            alt="sample "
-            width="100"
-            height="100"
-          />
-        </div>
-        <p className="text-muted mb-0">- {e.name}</p>
+export default function Testimonial({data}) {
+  const reviews = data.map((e, i) => {
+    // const active = (i===0) ? 'active' : '';
+    return (
+      <MDBCarouselItem className={`${i === 0 ? 'active' : ''} text-center`} key={i}>
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
+          alt="avatar"
+          className="rounded-circle shadow-1-strong mb-4"
+          style={{ width: "150px" }}
+        />
+        <MDBRow className="d-flex justify-content-center">
+          <MDBCol>
+            <h5 className="mb-3">Maria Kate</h5>
+            {/* <p>Photographer</p> */}
+            <p className="text-muted">
+              <MDBIcon fas icon="quote-left" className="pe-2" />
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+              et deleniti nesciunt sint eligendi reprehenderit reiciendis,
+              quibusdam illo, beatae quia fugit consequatur laudantium velit
+              magnam error. Consectetur distinctio fugit doloremque.
+            </p>
+          </MDBCol>
+        </MDBRow>
+        <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
+          <li>
+            <MDBIcon fas icon="star" size="sm" />
+          </li>
+          <li>
+            <MDBIcon fas icon="star" size="sm" />
+          </li>
+          <li>
+            <MDBIcon fas icon="star" size="sm" />
+          </li>
+          <li>
+            <MDBIcon fas icon="star" size="sm" />
+          </li>
+          <li>
+            <MDBIcon far icon="star" size="sm" />
+          </li>
+        </ul>
       </MDBCarouselItem>
     );
   });
 
   return (
-    <MDBRow className="py-5 text-center">
-      <MDBCol md="12">
-        <h3 className="mb-4">Testimonials</h3>
-        <MDBCarousel showControls dark>
-          {testimonials}
+    <MDBContainer className="my-4">
+      <MDBCarousel showControls dark>
+        {/* <MDBCarouselInner> */}
+        {reviews}
+          {/* <MDBCarouselItem className="active text-center">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
+              alt="avatar"
+              className="rounded-circle shadow-1-strong mb-4"
+              style={{ width: "150px" }}
+            />
+            <MDBRow className="d-flex justify-content-center">
+              <MDBCol lg="8">
+                <h5 className="mb-3">Maria Kate</h5>
+                <p>Photographer</p>
+                <p className="text-muted">
+                  <MDBIcon fas icon="quote-left" className="pe-2" />
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+                  et deleniti nesciunt sint eligendi reprehenderit reiciendis,
+                  quibusdam illo, beatae quia fugit consequatur laudantium velit
+                  magnam error. Consectetur distinctio fugit doloremque.
+                </p>
+              </MDBCol>
+            </MDBRow>
+            <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon far icon="star" size="sm" />
+              </li>
+            </ul>
+          </MDBCarouselItem>
 
-          {/* <MDBCarouselInner> */}
-            {/* <MDBCarouselItem className="active">
-              <p className="lead font-italic mx-4 mx-md-5">
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Fugit, error amet numquam iure provident voluptate esse quasi,
-                voluptas nostrum quisquam!"
-              </p>
-              <div className="mt-5 mb-4">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-                  className="rounded-circle img-fluid shadow-1-strong"
-                  alt="smaple "
-                  width="100"
-                  height="100"
-                />
-              </div>
-              <p className="text-muted mb-0">- Anna Morian</p>
-            </MDBCarouselItem>
-            <MDBCarouselItem>
-              <p className="lead font-italic mx-4 mx-md-5">
-                "Neque cupiditate assumenda in maiores repudiandae mollitia
-                adipisci maiores repudiandae mollitia consectetur adipisicing
-                architecto elit sed adipiscing elit."
-              </p>
-              <div className="mt-5 mb-4">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp"
-                  className="rounded-circle img-fluid shadow-1-strong"
-                  alt="smaple"
-                  width="100"
-                  height="100"
-                />
-              </div>
-              <p className="text-muted mb-0">- Teresa May</p>
-            </MDBCarouselItem>
-            <MDBCarouselItem>
-              <p className="lead font-italic mx-4 mx-md-5">
-                "Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur est laborum neque
-                cupiditate assumenda in maiores."
-              </p>
-              <div className="mt-5 mb-4">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
-                  className="rounded-circle img-fluid shadow-1-strong"
-                  alt="smaple "
-                  width="100"
-                  height="100"
-                />
-              </div>
-              <p className="text-muted mb-0">- Kate Allise</p>
-            </MDBCarouselItem> */}
-          {/* </MDBCarouselInner> */}
-        </MDBCarousel>
-      </MDBCol>
-    </MDBRow>
+          <MDBCarouselItem className="text-center">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp"
+              alt="avatar"
+              className="rounded-circle shadow-1-strong mb-4"
+              style={{ width: "150px" }}
+            />
+            <MDBRow className="d-flex justify-content-center">
+              <MDBCol lg="8">
+                <h5 className="mb-3">John Doe</h5>
+                <p>Web Developer</p>
+                <p className="text-muted">
+                  <MDBIcon fas icon="quote-left" className="pe-2" />
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+                  et deleniti nesciunt sint eligendi reprehenderit reiciendis.
+                </p>
+              </MDBCol>
+            </MDBRow>
+            <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon far icon="star" size="sm" />
+              </li>
+            </ul>
+          </MDBCarouselItem>
+
+          <MDBCarouselItem className="text-center">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+              alt="avatar"
+              className="rounded-circle shadow-1-strong mb-4"
+              style={{ width: "150px" }}
+            />
+            <MDBRow className="d-flex justify-content-center">
+              <MDBCol lg="8">
+                <h5 className="mb-3">Anna Deynah</h5>
+                <p>Web Developer</p>
+                <p className="text-muted">
+                  <MDBIcon fas icon="quote-left" className="pe-2" />
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+                  et deleniti nesciunt sint eligendi reprehenderit reiciendis,
+                  quibusdam illo, beatae quia fugit consequatur laudantium velit
+                  magnam error. Consectetur distinctio fugit doloremque.
+                </p>
+              </MDBCol>
+            </MDBRow>
+            <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon fas icon="star" size="sm" />
+              </li>
+              <li>
+                <MDBIcon far icon="star" size="sm" />
+              </li>
+            </ul>
+          </MDBCarouselItem> */}
+        {/* </MDBCarouselInner> */}
+      </MDBCarousel>
+    </MDBContainer>
   );
 }
-
-export default Testimonial;
