@@ -59,7 +59,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             itemCount: listItems.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 25),
+            separatorBuilder: (_, __) => const SizedBox(height: 5),
             itemBuilder: (context, listItemsIndex) {
               final listItemsItem = listItems[listItemsIndex];
 

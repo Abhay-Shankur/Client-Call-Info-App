@@ -51,15 +51,15 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
         children: [
           Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: MyTheme.of(context).secondaryBackground,
             appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              backgroundColor: MyTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
               title: Text(
                 'Web Page Editor',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                style: MyTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: MyTheme.of(context).primaryText,
                   fontSize: 30,
                   letterSpacing: 0,
                 ),
@@ -188,7 +188,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Text(
                                 'Quick services',
-                                style: FlutterFlowTheme.of(context)
+                                style: MyTheme.of(context)
                                     .bodyMedium
                                     .override(
                                   fontFamily: 'Readex Pro',
@@ -215,7 +215,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'Master Data',
                                       icon: FaIcon(
                                         FontAwesomeIcons.paste,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),
@@ -236,7 +236,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'Products',
                                       icon: FaIcon(
                                         FontAwesomeIcons.cartPlus,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),
@@ -263,7 +263,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'Photo Gallery',
                                       icon: FaIcon(
                                         FontAwesomeIcons.photoVideo,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),
@@ -284,7 +284,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'Video Gallery',
                                       icon: FaIcon(
                                         FontAwesomeIcons.solidFileVideo,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),
@@ -311,7 +311,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'Services',
                                       icon: Icon(
                                         Icons.design_services,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),
@@ -332,7 +332,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'We help ',
                                       icon: FaIcon(
                                         FontAwesomeIcons.userCheck,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),
@@ -359,7 +359,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'Testimonial',
                                       icon: Icon(
                                         Icons.rate_review,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),
@@ -380,7 +380,7 @@ class _WebPageEditorWidgetState extends State<WebPageEditorWidget> {
                                       text: 'Links',
                                       icon: FaIcon(
                                         FontAwesomeIcons.link,
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
                                         size: 40,
                                       ),

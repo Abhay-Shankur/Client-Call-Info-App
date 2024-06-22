@@ -1,3 +1,4 @@
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,7 @@ class _BlocklistItemWidgetState extends State<BlocklistItemWidget> {
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: MyTheme.of(context).secondaryBackground,
           boxShadow: const [
             BoxShadow(
               blurRadius: 4,
@@ -85,7 +86,7 @@ class _BlocklistItemWidgetState extends State<BlocklistItemWidget> {
                         child: Text(
                           widget.name,
                           style:
-                          FlutterFlowTheme.of(context).titleLarge.override(
+                          MyTheme.of(context).titleLarge.override(
                             fontFamily: 'Readex Pro',
                             fontSize: 18,
                             letterSpacing: 0,
@@ -95,7 +96,7 @@ class _BlocklistItemWidgetState extends State<BlocklistItemWidget> {
                       Text(
                         widget.number,
                         style:
-                        FlutterFlowTheme.of(context).labelMedium.override(
+                        MyTheme.of(context).labelMedium.override(
                           fontFamily: 'Inter',
                           letterSpacing: 0,
                         ),
@@ -111,7 +112,7 @@ class _BlocklistItemWidgetState extends State<BlocklistItemWidget> {
                 buttonSize: 40,
                 icon: Icon(
                   Icons.delete_outline_rounded,
-                  color: FlutterFlowTheme.of(context).error,
+                  color: MyTheme.of(context).error,
                   size: 20,
                 ),
                 onPressed: () async {

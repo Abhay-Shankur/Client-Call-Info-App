@@ -87,10 +87,10 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
         return pickedFile;
       } else {
         // User canceled the picker
-        print('No file selected.');
+        debugPrint('No file selected.');
       }
     } catch (e) {
-      print('Error picking file: $e');
+      debugPrint('Error picking file: $e');
     }
     return null;
   }
@@ -100,7 +100,7 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
     if (pickedFile != null) {
       return pickedFile;
     } else {
-      print("Null image");
+      debugPrint("Null image");
       // Handle the case where pickedFile is null
     }
   }
@@ -126,15 +126,19 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
           'Profile' : profile.toMap()
         };
         await firestore.updateFirestoreData("USERS", uid, data);
-        Provider.of<ProfileProvider>(context, listen: false).updateProfile(profile);
+        if(context.mounted) {
+          Provider.of<ProfileProvider>(context, listen: false).updateProfile(profile);
+          showToast(context: context, type: ToastificationType.success, title: 'Profile', desc: 'Profile Updated');
+        }
         firestore.closeConnection();
-        showToast(context: context, type: ToastificationType.success, title: 'Profile', desc: 'Profile Updated');
       } else {
         showToast(context: context, type: ToastificationType.warning, title: 'Profile', desc: 'User Not Authenticated');
       }
     } catch (e) {
       debugPrint('Exception: $e');
-      showToast(context: context, type: ToastificationType.error, title: 'Profile', desc: 'Exception occurred');
+      if(context.mounted) {
+        showToast(context: context, type: ToastificationType.error, title: 'Profile', desc: 'Exception occurred');
+      }
     }
   }
 /// Additional helper methods are added here.

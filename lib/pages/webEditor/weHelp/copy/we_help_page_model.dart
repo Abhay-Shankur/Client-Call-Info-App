@@ -58,19 +58,19 @@ class WeHelpPageModel extends FlutterFlowModel<WeHelpPageWidget> {
         }
       } else {
         // User canceled the picker
-        print('No file selected.');
+        debugPrint('No file selected.');
       }
     } catch (e) {
-      print('Error picking file: $e');
+      debugPrint('Error picking file: $e');
     }
     return null;
   }
 
   Future<bool> save(BuildContext context) async {
     try {
-      String heading = textController1!.value.text ?? '';
+      String heading = textController1?.value.text ?? '';
       heading.trim();
-      String desc = textController2!.value.text ?? '';
+      String desc = textController2?.value.text ?? '';
       desc.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       if(domain.isNotEmpty) {

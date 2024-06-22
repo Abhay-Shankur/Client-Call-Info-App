@@ -31,7 +31,7 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
 
 /// Action blocks are added here.
 
-  Future<void> verifyOtp(BuildContext context) async {
+  Future<void> verifyOtp(BuildContext context, {String? nextRoute}) async {
     try {
       String otp = otpController!.value.text;
       debugPrint('OTP: $otp');
@@ -41,10 +41,13 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
       if(user!=null) {
         // debugPrint('Phone: ${user.user!.phoneNumber?.substring(3)},  UID: ${user.user!.uid}');
         await updateUid(user.user!.uid, user.user!.phoneNumber!.substring(3));
-        navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.vendorDashboard, (route) => false);
+        if(nextRoute != null) {
+          navigator.currentState!.pushNamedAndRemoveUntil(nextRoute, (route) => false);
+        }
       } else {
-        toastification.show(
-            context: navigator.currentState!.context,
+        if(context.mounted) {
+          toastification.show(
+            context: context,
             title: 'Authentication Failed',
             description: 'User Credential not found !',
             type: ToastificationType.warning,
@@ -58,7 +61,8 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
                 );
             },
             autoCloseDuration: const Duration(seconds: 5),
-        );
+          );
+        }
       }
     } catch (e) {
       debugPrint('Ran into Exception: $e');

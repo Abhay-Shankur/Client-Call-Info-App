@@ -1,3 +1,4 @@
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +51,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: MyTheme.of(context).secondaryBackground,
           boxShadow: const [
             BoxShadow(
               blurRadius: 4,
@@ -81,8 +82,9 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                         child: Text(
                           widget.text,
-                          style:
-                          FlutterFlowTheme.of(context).titleLarge.override(
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: MyTheme.of(context).titleLarge.override(
                             fontFamily: 'Outfit',
                             letterSpacing: 0,
                           ),
@@ -99,7 +101,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                 buttonSize: 40,
                 icon: Icon(
                   Icons.edit_outlined,
-                  color: FlutterFlowTheme.of(context).secondaryText,
+                  color: MyTheme.of(context).secondaryText,
                   size: 20,
                 ),
                 onPressed: () async {
@@ -113,7 +115,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                 buttonSize: 40,
                 icon: Icon(
                   Icons.delete_outline_rounded,
-                  color: FlutterFlowTheme.of(context).error,
+                  color: MyTheme.of(context).error,
                   size: 20,
                 ),
                 onPressed: () async {

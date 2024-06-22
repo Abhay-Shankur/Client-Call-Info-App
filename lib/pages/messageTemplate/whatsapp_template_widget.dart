@@ -22,7 +22,6 @@ class WhatsappTemplateWidget extends StatefulWidget {
 class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
   late WhatsappTemplateModel _model;
 
-  String? _selectedImagePath;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool _saving = false;
@@ -99,10 +98,10 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
                     height: 32,
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: FlutterFlowTheme.of(context).primaryText,
+                    color: MyTheme.of(context).primaryText,
                     textStyle: MyTheme.of(context).titleSmall.override(
                       fontFamily: 'Plus Jakarta Sans',
-                      color:FlutterFlowTheme.of(context).primaryBackground,
+                      color:MyTheme.of(context).primaryBackground,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -389,7 +388,7 @@ class _WhatsappTemplateWidgetState extends State<WhatsappTemplateWidget> {
   //   if (selectedImages!.isNotEmpty) {
   //     imageFileList!.addAll(selectedImages);
   //   }
-  //   print("Image List Length:" + imageFileList!.length.toString());
+  //   debugPrint("Image List Length:" + imageFileList!.length.toString());
   //   setState(() {});
   // }
   // void selectImages() async {

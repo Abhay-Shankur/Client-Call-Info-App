@@ -44,9 +44,9 @@ class LinksPageModel extends FlutterFlowModel<LinksPageWidget> {
 
   Future<bool> save(BuildContext context) async {
     try {
-      String whatsapp = textController1!.value.text ?? '';
-      String instagram = textController2!.value.text ?? '';
-      String facebook = textController3!.value.text ?? '';
+      String whatsapp = textController1?.value.text ?? '';
+      String instagram = textController2?.value.text ?? '';
+      String facebook = textController3?.value.text ?? '';
       whatsapp.trim();
       instagram.trim();
       facebook.trim();

@@ -15,7 +15,7 @@ class FirebaseAuthHandler {
       return user != null;
     } catch (e) {
       // Handle any errors that occur during the process
-      print('Error checking login status: $e');
+      debugPrint('Error checking login status: $e');
       return false; // Return false in case of errors
     }
   }

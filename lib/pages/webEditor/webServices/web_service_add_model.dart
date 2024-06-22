@@ -37,15 +37,15 @@ class WebServiceAddModel extends FlutterFlowModel<WebServiceAddWidget> {
 
   Future<bool> save(BuildContext context) async {
     try {
-      String heading = textController1!.value.text ?? '';
+      String heading = textController1?.value.text ?? '';
       heading.trim();
-      String desc = textController2!.value.text ?? '';
+      String desc = textController2?.value.text ?? '';
       desc.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       if(domain.isNotEmpty) {
         if(domain.isNotEmpty && heading.isNotEmpty && desc.isNotEmpty) {
           FirestoreHandler firestore = FirestoreHandler();
-          int count=Provider.of<WebServicesProvider>(context, listen: false).list.length;
+          // int count=Provider.of<WebServicesProvider>(context, listen: false).list.length;
           Map<String,dynamic> data = {
             'heading' : heading,
             'description' : desc

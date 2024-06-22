@@ -1,6 +1,7 @@
 
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -68,9 +69,9 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
         children: [
           Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: MyTheme.of(context).secondaryBackground,
             appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              backgroundColor: MyTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: true,
               leading: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
@@ -79,7 +80,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                 buttonSize: 60,
                 icon: Icon(
                   Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: MyTheme.of(context).primaryText,
                   size: 30,
                 ),
                 onPressed: () async {
@@ -88,9 +89,9 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
               ),
               title: Text(
                 'Master Data',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                style: MyTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: MyTheme.of(context).primaryText,
                   fontSize: 22,
                   letterSpacing: 0,
                 ),
@@ -109,7 +110,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                     maxWidth: 670,
                   ),
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: MyTheme.of(context).secondaryBackground,
                   ),
                   alignment: const AlignmentDirectional(0, -1),
                   child: SingleChildScrollView(
@@ -139,7 +140,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                       width: double.infinity,
                                       height: 175,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                        color: MyTheme.of(context).primaryBackground,
                                         boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 5,
@@ -153,7 +154,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         ],
                                         borderRadius: BorderRadius.circular(24),
                                         border: Border.all(
-                                          color: FlutterFlowTheme.of(context).alternate,
+                                          color: MyTheme.of(context).alternate,
                                         ),
                                       ),
                                       child: Padding(
@@ -208,7 +209,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Owner name',
-                                          labelStyle: FlutterFlowTheme.of(context)
+                                          labelStyle: MyTheme.of(context)
                                               .labelLarge
                                               .override(
                                             fontFamily: 'Readex Pro',
@@ -216,7 +217,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context)
+                                              color: MyTheme.of(context)
                                                   .alternate,
                                               width: 2,
                                             ),
@@ -228,7 +229,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                              FlutterFlowTheme.of(context).primary,
+                                              MyTheme.of(context).primary,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -238,7 +239,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -248,7 +249,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedErrorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -257,13 +258,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                             ),
                                           ),
                                           filled: true,
-                                          fillColor: FlutterFlowTheme.of(context)
+                                          fillColor: MyTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -293,7 +294,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Owner Contact',
-                                          labelStyle: FlutterFlowTheme.of(context)
+                                          labelStyle: MyTheme.of(context)
                                               .labelLarge
                                               .override(
                                             fontFamily: 'Readex Pro',
@@ -301,7 +302,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context)
+                                              color: MyTheme.of(context)
                                                   .alternate,
                                               width: 2,
                                             ),
@@ -313,7 +314,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                              FlutterFlowTheme.of(context).primary,
+                                              MyTheme.of(context).primary,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -323,7 +324,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -333,7 +334,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedErrorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -342,13 +343,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                             ),
                                           ),
                                           filled: true,
-                                          fillColor: FlutterFlowTheme.of(context)
+                                          fillColor: MyTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -378,7 +379,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Business Name',
-                                          labelStyle: FlutterFlowTheme.of(context)
+                                          labelStyle: MyTheme.of(context)
                                               .labelLarge
                                               .override(
                                             fontFamily: 'Readex Pro',
@@ -386,7 +387,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context)
+                                              color: MyTheme.of(context)
                                                   .alternate,
                                               width: 2,
                                             ),
@@ -398,7 +399,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                              FlutterFlowTheme.of(context).primary,
+                                              MyTheme.of(context).primary,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -408,7 +409,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -418,7 +419,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedErrorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -427,13 +428,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                             ),
                                           ),
                                           filled: true,
-                                          fillColor: FlutterFlowTheme.of(context)
+                                          fillColor: MyTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -464,7 +465,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Business Contact',
-                                          labelStyle: FlutterFlowTheme.of(context)
+                                          labelStyle: MyTheme.of(context)
                                               .labelLarge
                                               .override(
                                             fontFamily: 'Readex Pro',
@@ -472,7 +473,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context)
+                                              color: MyTheme.of(context)
                                                   .alternate,
                                               width: 2,
                                             ),
@@ -484,7 +485,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                              FlutterFlowTheme.of(context).primary,
+                                              MyTheme.of(context).primary,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -494,7 +495,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -504,7 +505,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedErrorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -513,13 +514,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                             ),
                                           ),
                                           filled: true,
-                                          fillColor: FlutterFlowTheme.of(context)
+                                          fillColor: MyTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -549,7 +550,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Business Mail',
-                                          labelStyle: FlutterFlowTheme.of(context)
+                                          labelStyle: MyTheme.of(context)
                                               .labelLarge
                                               .override(
                                             fontFamily: 'Readex Pro',
@@ -557,7 +558,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context)
+                                              color: MyTheme.of(context)
                                                   .alternate,
                                               width: 2,
                                             ),
@@ -569,7 +570,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                              FlutterFlowTheme.of(context).primary,
+                                              MyTheme.of(context).primary,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -579,7 +580,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -589,7 +590,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedErrorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -598,13 +599,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                             ),
                                           ),
                                           filled: true,
-                                          fillColor: FlutterFlowTheme.of(context)
+                                          fillColor: MyTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -635,7 +636,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Business Address',
-                                          labelStyle: FlutterFlowTheme.of(context)
+                                          labelStyle: MyTheme.of(context)
                                               .labelLarge
                                               .override(
                                             fontFamily: 'Readex Pro',
@@ -643,7 +644,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context)
+                                              color: MyTheme.of(context)
                                                   .alternate,
                                               width: 2,
                                             ),
@@ -655,7 +656,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                              FlutterFlowTheme.of(context).primary,
+                                              MyTheme.of(context).primary,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -665,7 +666,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -675,7 +676,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedErrorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -684,13 +685,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                             ),
                                           ),
                                           filled: true,
-                                          fillColor: FlutterFlowTheme.of(context)
+                                          fillColor: MyTheme.of(context)
                                               .secondaryBackground,
                                           contentPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0, 16, 16, 8),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -720,13 +721,13 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Business Description',
-                                          labelStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                                          labelStyle: MyTheme.of(context).labelLarge.override(
                                             fontFamily: 'Readex Pro',
                                             letterSpacing: 0,
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).alternate,
+                                              color: MyTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -736,7 +737,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).primary,
+                                              color: MyTheme.of(context).primary,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -746,7 +747,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -756,7 +757,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                           ),
                                           focusedErrorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: FlutterFlowTheme.of(context).error,
+                                              color: MyTheme.of(context).error,
                                               width: 2,
                                             ),
                                             borderRadius: const BorderRadius.only(
@@ -765,10 +766,10 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                             ),
                                           ),
                                           filled: true,
-                                          fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                          fillColor: MyTheme.of(context).secondaryBackground,
                                           contentPadding: const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
                                         ),
-                                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                        style: MyTheme.of(context).bodyLarge.override(
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0,
                                           lineHeight: 2,
@@ -806,11 +807,11 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: MyTheme.of(context).primaryText,
                               textStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
+                              MyTheme.of(context).titleMedium.override(
                                 fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context)
+                                color: MyTheme.of(context)
                                     .secondaryBackground,
                                 letterSpacing: 0,
                               ),
@@ -820,7 +821,7 @@ class _WebMetadataPageWidgetState extends State<WebMetadataPageWidget> {
                                 width: 1,
                               ),
                               borderRadius: BorderRadius.circular(50),
-                              hoverColor: FlutterFlowTheme.of(context).primaryText,
+                              hoverColor: MyTheme.of(context).primaryText,
                             ),
                           ),
                         ),

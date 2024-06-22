@@ -61,10 +61,10 @@ class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
         return pickedFile;
       } else {
         // User canceled the picker
-        print('No file selected.');
+        debugPrint('No file selected.');
       }
     } catch (e) {
-      print('Error picking file: $e');
+      debugPrint('Error picking file: $e');
     }
     return null;
   }
@@ -78,7 +78,7 @@ class WebSaveProductModel extends FlutterFlowModel<WebProductsAddWidget> {
     if (pickedFile != null) {
       return pickedFile;
     } else {
-      print("Null image");
+      debugPrint("Null image");
       showToast(
           context: context,
           type: ToastificationType.info,

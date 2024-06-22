@@ -17,7 +17,7 @@ class EditProfileWidget extends StatefulWidget {
 
 class _EditProfileWidgetState extends State<EditProfileWidget> {
   late EditProfileModel _model;
-  bool _saving = false;
+  // bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   // late ProfileProvider profileProvider;
@@ -64,8 +64,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   Widget build(BuildContext context) {
     // Access the ProfileProvider
 
-    return WillPopScope(
-      onWillPop: () async => true,
+    return PopScope(
+      canPop: true,
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: MyTheme.of(context).secondaryBackground,
@@ -506,13 +506,13 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    setState(() {
-                      _saving = true;
-                    });
+                    // setState(() {
+                    //   _saving = true;
+                    // });
                     await _model.saveProfile(context);
-                    setState(() {
-                      _saving = false;
-                    });
+                    // setState(() {
+                    //   _saving = false;
+                    // });
                     navigator.currentState!.pop();
                     // _model.initState(context);
                     // Navigator.pushNamed(context, routeKeys.settingsPage);  // context.pushNamed('Profile');

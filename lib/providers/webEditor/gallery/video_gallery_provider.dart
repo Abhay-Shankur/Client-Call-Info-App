@@ -3,7 +3,7 @@ import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 class WebVideoGalleryProvider extends ChangeNotifier {
-  List<String> _list = [];
+  final Set<String> _list = {};
 
   WebVideoGalleryProvider() {
     _init();
@@ -34,10 +34,11 @@ class WebVideoGalleryProvider extends ChangeNotifier {
     }
   }
 
-  List<String> get list => _list;
+  List<String> get list => _list.toList();
 
-  void updateList(List<String> value) {
-    _list = value;
+  void updateList(String value) {
+    // _list = value.toSet();
+    _list.add(value);
     notifyListeners();
   }
 }

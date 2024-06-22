@@ -1,5 +1,6 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/links/links_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -18,10 +19,11 @@ class LinksPageWidget extends StatefulWidget {
 
 class _LinksPageWidgetState extends State<LinksPageWidget> {
   late LinksPageModel _model;
-  bool _saving = false;
+  // bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late StreamSubscription<bool> _keyboardVisibilitySubscription;
+  // ignore: unused_field
   bool _isKeyboardVisible = false;
 
   @override
@@ -66,15 +68,15 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: MyTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: MyTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
             'Links',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               fontSize: 30,
               letterSpacing: 0,
             ),
@@ -86,7 +88,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -108,7 +110,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                 maxWidth: 670,
               ),
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: MyTheme.of(context).secondaryBackground,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -128,7 +130,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                             child: Text(
                               'Join us & reach with confidence',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
+                              style: MyTheme.of(context)
                                   .displayMedium
                                   .override(
                                 fontFamily: 'Outfit',
@@ -142,7 +144,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                             child: Text(
                               'Provide your social media handler link ',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
+                              style: MyTheme.of(context)
                                   .labelLarge
                                   .override(
                                 fontFamily: 'Readex Pro',
@@ -164,7 +166,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'whatsapp',
-                                    labelStyle: FlutterFlowTheme.of(context)
+                                    labelStyle: MyTheme.of(context)
                                         .labelLarge
                                         .override(
                                       fontFamily: 'Readex Pro',
@@ -173,7 +175,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                        MyTheme.of(context).alternate,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -183,7 +185,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).primary,
+                                        color: MyTheme.of(context).primary,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -193,7 +195,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     errorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color: MyTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -203,7 +205,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     focusedErrorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color: MyTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -212,12 +214,12 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                       ),
                                     ),
                                     filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
+                                    fillColor: MyTheme.of(context)
                                         .secondaryBackground,
                                     contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 16, 16, 8),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
+                                  style: MyTheme.of(context)
                                       .bodyLarge
                                       .override(
                                     fontFamily: 'Readex Pro',
@@ -243,7 +245,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Instagram',
-                                    labelStyle: FlutterFlowTheme.of(context)
+                                    labelStyle: MyTheme.of(context)
                                         .labelLarge
                                         .override(
                                       fontFamily: 'Readex Pro',
@@ -252,7 +254,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                        MyTheme.of(context).alternate,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -262,7 +264,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).primary,
+                                        color: MyTheme.of(context).primary,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -272,7 +274,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     errorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color: MyTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -282,7 +284,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     focusedErrorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color: MyTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -291,12 +293,12 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                       ),
                                     ),
                                     filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
+                                    fillColor: MyTheme.of(context)
                                         .secondaryBackground,
                                     contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 16, 16, 8),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
+                                  style: MyTheme.of(context)
                                       .bodyLarge
                                       .override(
                                     fontFamily: 'Readex Pro',
@@ -322,7 +324,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Facebook',
-                                    labelStyle: FlutterFlowTheme.of(context)
+                                    labelStyle: MyTheme.of(context)
                                         .labelLarge
                                         .override(
                                       fontFamily: 'Readex Pro',
@@ -331,7 +333,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                        MyTheme.of(context).alternate,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -341,7 +343,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).primary,
+                                        color: MyTheme.of(context).primary,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -351,7 +353,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     errorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color: MyTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -361,7 +363,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                     ),
                                     focusedErrorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context).error,
+                                        color: MyTheme.of(context).error,
                                         width: 2,
                                       ),
                                       borderRadius: const BorderRadius.only(
@@ -370,12 +372,12 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                                       ),
                                     ),
                                     filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
+                                    fillColor: MyTheme.of(context)
                                         .secondaryBackground,
                                     contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 16, 16, 8),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
+                                  style: MyTheme.of(context)
                                       .bodyLarge
                                       .override(
                                     fontFamily: 'Readex Pro',
@@ -399,13 +401,13 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                     padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 24),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        setState(() {
-                          _saving = true;
-                        });
+                        // setState(() {
+                        //   _saving = true;
+                        // });
                         await _model.save(context);
-                        setState(() {
-                          _saving = false;
-                        });
+                        // setState(() {
+                        //   _saving = false;
+                        // });
                         navigator.currentState!.pop();
                       },
                       text: 'Save ',
@@ -415,11 +417,11 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                         textStyle:
-                        FlutterFlowTheme.of(context).titleMedium.override(
+                        MyTheme.of(context).titleMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context)
+                          color: MyTheme.of(context)
                               .secondaryBackground,
                           letterSpacing: 0,
                         ),
@@ -429,7 +431,7 @@ class _LinksPageWidgetState extends State<LinksPageWidget> {
                           width: 1,
                         ),
                         borderRadius: BorderRadius.circular(50),
-                        hoverColor: FlutterFlowTheme.of(context).primaryText,
+                        hoverColor: MyTheme.of(context).primaryText,
                       ),
                     ),
                   ),

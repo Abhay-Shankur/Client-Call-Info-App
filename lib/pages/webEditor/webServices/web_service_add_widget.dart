@@ -1,4 +1,5 @@
 import 'package:call_info/main.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  bool _saving = false;
+  // bool _saving = false;
 
   @override
   void initState() {
@@ -46,9 +47,9 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: MyTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -57,7 +58,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -66,9 +67,9 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
           ),
           title: Text(
             'Services',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               fontSize: 22,
               letterSpacing: 0,
             ),
@@ -97,15 +98,15 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Label here...',
-                            labelStyle: FlutterFlowTheme.of(context)
+                            labelStyle: MyTheme.of(context)
                                 .labelMedium
                                 .override(
                               fontFamily: 'Readex Pro',
                               color:
-                              FlutterFlowTheme.of(context).primaryText,
+                              MyTheme.of(context).primaryText,
                               letterSpacing: 0,
                             ),
-                            hintStyle: FlutterFlowTheme.of(context)
+                            hintStyle: MyTheme.of(context)
                                 .labelMedium
                                 .override(
                               fontFamily: 'Readex Pro',
@@ -113,35 +114,35 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: MyTheme.of(context).alternate,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: MyTheme.of(context).primary,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             errorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
+                                color: MyTheme.of(context).error,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedErrorBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
+                                color: MyTheme.of(context).error,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                           style:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
+                          MyTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -153,7 +154,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                         thickness: 1,
                         indent: 10,
                         endIndent: 10,
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                       ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
@@ -164,14 +165,14 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Service Description here',
-                            labelStyle: FlutterFlowTheme.of(context)
+                            labelStyle: MyTheme.of(context)
                                 .bodyMedium
                                 .override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0,
                             ),
                             alignLabelWithHint: true,
-                            hintStyle: FlutterFlowTheme.of(context)
+                            hintStyle: MyTheme.of(context)
                                 .labelMedium
                                 .override(
                               fontFamily: 'Readex Pro',
@@ -180,7 +181,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
-                                FlutterFlowTheme.of(context).secondaryText,
+                                MyTheme.of(context).secondaryText,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -188,7 +189,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
-                                FlutterFlowTheme.of(context).secondaryText,
+                                MyTheme.of(context).secondaryText,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -196,7 +197,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
-                                FlutterFlowTheme.of(context).secondaryText,
+                                MyTheme.of(context).secondaryText,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -204,7 +205,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
-                                FlutterFlowTheme.of(context).secondaryText,
+                                MyTheme.of(context).secondaryText,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
@@ -212,7 +213,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             filled: true,
                           ),
                           style:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
+                          MyTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -226,13 +227,13 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              _saving = true;
-                            });
+                            // setState(() {
+                            //   _saving = true;
+                            // });
                             await _model.save(context);
-                            setState(() {
-                              _saving = false;
-                            });
+                            // setState(() {
+                            //   _saving = false;
+                            // });
                             navigator.currentState!.pop();
                           },
                           text: 'Save Information',
@@ -242,12 +243,12 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            textStyle: FlutterFlowTheme.of(context)
+                            color: MyTheme.of(context).primaryText,
+                            textStyle: MyTheme.of(context)
                                 .titleMedium
                                 .override(
                               fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context)
+                              color: MyTheme.of(context)
                                   .secondaryBackground,
                               letterSpacing: 0,
                             ),
@@ -258,7 +259,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget> {
                             ),
                             borderRadius: BorderRadius.circular(50),
                             hoverColor:
-                            FlutterFlowTheme.of(context).primaryText,
+                            MyTheme.of(context).primaryText,
                           ),
                         ),
                       ),

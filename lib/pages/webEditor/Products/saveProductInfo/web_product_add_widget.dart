@@ -1,4 +1,5 @@
 import 'package:call_info/main.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -53,9 +54,9 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
         children: [
           Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: MyTheme.of(context).secondaryBackground,
             appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              backgroundColor: MyTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
@@ -64,7 +65,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                 buttonSize: 60,
                 icon: Icon(
                   Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: MyTheme.of(context).primaryText,
                   size: 30,
                 ),
                 onPressed: () async {
@@ -73,7 +74,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
               ),
               title: Text(
                 'Create Product',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                style: MyTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   letterSpacing: 0,
                 ),
@@ -97,7 +98,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 0, 10),
                         child: Text(
                           'Fill out the information below to post a product',
-                          style: FlutterFlowTheme.of(context).labelMedium.override(
+                          style: MyTheme.of(context).labelMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -152,7 +153,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 width: double.infinity,
                                                 height: 330,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(context)
+                                                  color: MyTheme.of(context)
                                                       .primaryBackground,
                                                   boxShadow: const [
                                                     BoxShadow(
@@ -169,7 +170,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                   BorderRadius.circular(24),
                                                   border: Border.all(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .alternate,
                                                   ),
                                                 ),
@@ -208,31 +209,31 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                               decoration: InputDecoration(
                                                 labelText: 'Product name...',
                                                 labelStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .headlineMedium
                                                     .override(
                                                   fontFamily: 'Outfit',
                                                   color:
-                                                  FlutterFlowTheme.of(
+                                                  MyTheme.of(
                                                       context)
                                                       .secondaryText,
                                                   fontSize: 20,
                                                   letterSpacing: 0,
                                                 ),
                                                 hintStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .labelMedium
                                                     .override(
                                                   fontFamily: 'Readex Pro',
                                                   letterSpacing: 0,
                                                 ),
                                                 errorStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .bodyMedium
                                                     .override(
                                                   fontFamily: 'Readex Pro',
                                                   color:
-                                                  FlutterFlowTheme.of(
+                                                  MyTheme.of(
                                                       context)
                                                       .error,
                                                   fontSize: 12,
@@ -241,7 +242,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 enabledBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .alternate,
                                                     width: 2,
                                                   ),
@@ -251,7 +252,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 focusedBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .primary,
                                                     width: 2,
                                                   ),
@@ -261,7 +262,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .error,
                                                     width: 2,
                                                   ),
@@ -272,7 +273,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .error,
                                                     width: 2,
                                                   ),
@@ -281,13 +282,13 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 ),
                                                 filled: true,
                                                 fillColor:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .secondaryBackground,
                                                 contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16, 20, 16, 20),
                                               ),
-                                              style: FlutterFlowTheme.of(context)
+                                              style: MyTheme.of(context)
                                                   .headlineMedium
                                                   .override(
                                                 fontFamily: 'Outfit',
@@ -296,7 +297,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                               ),
                                               maxLines: null,
                                               cursorColor:
-                                              FlutterFlowTheme.of(context)
+                                              MyTheme.of(context)
                                                   .primary,
                                               validator: _model
                                                   .productNameTextController1Validator
@@ -314,19 +315,19 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                               decoration: InputDecoration(
                                                 labelText: 'Product Price',
                                                 labelStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .headlineMedium
                                                     .override(
                                                   fontFamily: 'Outfit',
                                                   color:
-                                                  FlutterFlowTheme.of(
+                                                  MyTheme.of(
                                                       context)
                                                       .secondaryText,
                                                   fontSize: 18,
                                                   letterSpacing: 0,
                                                 ),
                                                 hintStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .labelMedium
                                                     .override(
                                                   fontFamily: 'Readex Pro',
@@ -334,12 +335,12 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                   letterSpacing: 0,
                                                 ),
                                                 errorStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .bodyMedium
                                                     .override(
                                                   fontFamily: 'Readex Pro',
                                                   color:
-                                                  FlutterFlowTheme.of(
+                                                  MyTheme.of(
                                                       context)
                                                       .error,
                                                   fontSize: 12,
@@ -348,7 +349,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 enabledBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .alternate,
                                                     width: 2,
                                                   ),
@@ -358,7 +359,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 focusedBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .primary,
                                                     width: 2,
                                                   ),
@@ -368,7 +369,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .error,
                                                     width: 2,
                                                   ),
@@ -379,7 +380,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .error,
                                                     width: 2,
                                                   ),
@@ -388,13 +389,13 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 ),
                                                 filled: true,
                                                 fillColor:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .secondaryBackground,
                                                 contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16, 20, 16, 20),
                                               ),
-                                              style: FlutterFlowTheme.of(context)
+                                              style: MyTheme.of(context)
                                                   .headlineMedium
                                                   .override(
                                                 fontFamily: 'Outfit',
@@ -404,7 +405,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                               maxLines: null,
                                               keyboardType: TextInputType.number,
                                               cursorColor:
-                                              FlutterFlowTheme.of(context)
+                                              MyTheme.of(context)
                                                   .primary,
                                               validator: _model
                                                   .productNameTextController2Validator
@@ -422,7 +423,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                               decoration: InputDecoration(
                                                 labelText: 'Description...',
                                                 labelStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .labelLarge
                                                     .override(
                                                   fontFamily: 'Readex Pro',
@@ -430,19 +431,19 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 ),
                                                 alignLabelWithHint: true,
                                                 hintStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .labelMedium
                                                     .override(
                                                   fontFamily: 'Readex Pro',
                                                   letterSpacing: 0,
                                                 ),
                                                 errorStyle:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .bodyMedium
                                                     .override(
                                                   fontFamily: 'Readex Pro',
                                                   color:
-                                                  FlutterFlowTheme.of(
+                                                  MyTheme.of(
                                                       context)
                                                       .error,
                                                   fontSize: 12,
@@ -451,7 +452,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 enabledBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .alternate,
                                                     width: 2,
                                                   ),
@@ -461,7 +462,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 focusedBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .primary,
                                                     width: 2,
                                                   ),
@@ -471,7 +472,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .error,
                                                     width: 2,
                                                   ),
@@ -482,7 +483,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color:
-                                                    FlutterFlowTheme.of(context)
+                                                    MyTheme.of(context)
                                                         .error,
                                                     width: 2,
                                                   ),
@@ -491,13 +492,13 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 ),
                                                 filled: true,
                                                 fillColor:
-                                                FlutterFlowTheme.of(context)
+                                                MyTheme.of(context)
                                                     .secondaryBackground,
                                                 contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16, 16, 16, 16),
                                               ),
-                                              style: FlutterFlowTheme.of(context)
+                                              style: MyTheme.of(context)
                                                   .bodyLarge
                                                   .override(
                                                 fontFamily: 'Readex Pro',
@@ -506,7 +507,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                               maxLines: 9,
                                               minLines: 5,
                                               cursorColor:
-                                              FlutterFlowTheme.of(context)
+                                              MyTheme.of(context)
                                                   .primary,
                                               validator: _model
                                                   .descriptionTextControllerValidator
@@ -560,11 +561,11 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                               iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: MyTheme.of(context).primaryText,
                               textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
+                              MyTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context)
+                                color: MyTheme.of(context)
                                     .secondaryBackground,
                                 letterSpacing: 0,
                               ),

@@ -1,5 +1,6 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/services/services_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/list_view2/list_view2_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +42,9 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: MyTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -52,7 +53,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -61,9 +62,9 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
           ),
           title: Text(
             'Services',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               fontSize: 22,
               letterSpacing: 0,
             ),
@@ -96,7 +97,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                                 const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: Text(
                                   'Click To Add Service',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: MyTheme.of(context)
                                       .bodyMedium
                                       .override(
                                     fontFamily: 'Readex Pro',
@@ -123,7 +124,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                                       const EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 0),
                                       color: Colors.black,
-                                      textStyle: FlutterFlowTheme.of(context)
+                                      textStyle: MyTheme.of(context)
                                           .titleSmall
                                           .override(
                                         fontFamily: 'Readex Pro',
@@ -149,7 +150,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                     thickness: 2,
                     indent: 10,
                     endIndent: 10,
-                    color: FlutterFlowTheme.of(context).primaryText,
+                    color: MyTheme.of(context).primaryText,
                   ),
                 ],
               ),
@@ -161,7 +162,7 @@ class _WebServicPageWidgetState extends State<WebServicPageWidget> {
                     updateCallback: () => setState(() {}),
                     child: Consumer<WebServicesProvider> (
                       builder: (context, value, child) {
-                        List<WebServices> list = value.list ?? [];
+                        List<WebServices> list = value.list;
                         return ListView2Widget(
                           listParam: list,
                         );

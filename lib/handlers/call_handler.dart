@@ -9,6 +9,7 @@ import 'package:call_info/util/date_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 
 class CallHandler {
   static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
@@ -164,7 +165,7 @@ class CallHandler {
     const NotificationDetails platformChannelSpecifics =
     NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
-      0,
+      randomInteger(0, 100),
       title,
       callType.isNotEmpty ? '$desc $callType' : desc,
       platformChannelSpecifics,

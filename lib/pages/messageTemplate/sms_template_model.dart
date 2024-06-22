@@ -49,11 +49,15 @@ class SMSTemplateModel extends FlutterFlowModel<SMSTemplateWidget> {
       await firestore.updateFirestoreData("USERS", uid, data);
       firestore.closeConnection();
       SMSMessageTemplate(text: text).saveToShared();
-      Provider.of<SMSProvider>(context, listen: false).updateText(text);
-      showToast(context: context, type: ToastificationType.success, title: 'SMS Template', desc: 'SMS Template have been saved.');
+      if(context.mounted) {
+        Provider.of<SMSProvider>(context, listen: false).updateText(text);
+        showToast(context: context, type: ToastificationType.success, title: 'SMS Template', desc: 'SMS Template have been saved.');
+      }
     } catch (e) {
       debugPrint('Error While saving: $e');
-      showToast(context: context, type: ToastificationType.error, title: 'SMS Template', desc: 'SMS Template Exception.');
+      if(context.mounted) {
+        showToast(context: context, type: ToastificationType.error, title: 'SMS Template', desc: 'SMS Template Exception.');
+      }
     }
   }
 /// Action blocks are added here.

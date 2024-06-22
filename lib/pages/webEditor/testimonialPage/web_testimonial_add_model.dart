@@ -36,9 +36,9 @@ class WebTestimonialAddModel extends FlutterFlowModel<WebTestimonialAddWidget> {
 
   Future<bool> save(BuildContext context) async {
     try {
-      String name = textController1!.value.text ?? '';
+      String name = textController1?.value.text ?? '';
       name.trim();
-      String desc = textController2!.value.text ?? '';
+      String desc = textController2?.value.text ?? '';
       desc.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
 

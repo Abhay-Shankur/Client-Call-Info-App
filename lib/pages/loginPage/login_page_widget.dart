@@ -255,17 +255,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>{
                                       });
                                       // Perform backend work
                                       if(await _model.checkPhone()) {
-                                        await _model.sendOtp(context);
+                                        if(context.mounted) {
+                                          await _model.sendOtp(context);
+                                        }
                                       } else {
                                         setState(() {
                                           _saving = false;
                                         });
-                                        showToast(
+                                        if(context.mounted) {
+                                          showToast(
                                             context: context,
                                             type: ToastificationType.warning,
                                             title: "Authentication",
                                             desc: "Vendor not Registered!"
-                                        );
+                                          );
+                                        }
                                       }
 
                                       // After work is done, set loading state to false

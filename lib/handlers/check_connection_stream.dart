@@ -10,6 +10,7 @@ class CheckConnectionStream extends GetxController {
   bool isModalEnable = false;
   final loadingCheckConnectivity = false.obs;
 
+  // ignore: unused_field
   ConnectivityResult _connectionStatus = ConnectivityResult.none;
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;

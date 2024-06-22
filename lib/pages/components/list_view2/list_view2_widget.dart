@@ -71,12 +71,12 @@ class _ListView2WidgetState extends State<ListView2Widget> {
               final listDataItem = listData[listDataIndex];
               String title = '', desc ='', type ='';
               if(listDataItem is WebServices) {
-                title = listDataItem.heading! ?? '';
-                desc = listDataItem.description! ?? '';
+                title = listDataItem.heading ?? '';
+                desc = listDataItem.description ?? '';
                 type = 'WebServices';
               } else if (listDataItem is Reviews) {
-                title = listDataItem.name! ?? '';
-                desc = listDataItem.description! ?? '';
+                title = listDataItem.name ?? '';
+                desc = listDataItem.description ?? '';
                 type = 'Reviews';
               }
               return ListTile2Widget(
@@ -111,9 +111,11 @@ class _ListView2WidgetState extends State<ListView2Widget> {
           FirestoreHandler firestore = FirestoreHandler();
           await firestore.deleteListItemAtIndexAtPath("Website", domain, type, index);
           firestore.closeConnection();
-          if(type == 'WebServices') Provider.of<WebServicesProvider>(context, listen: false).removeAt(index);
-          if(type == 'Reviews') Provider.of<WebReviewsProvider>(context, listen: false).removeAt(index);
-          showToast(context: context, type: ToastificationType.success, title: "List", desc: "Item has been deleted");
+          if(context.mounted) {
+            if(type == 'WebServices') Provider.of<WebServicesProvider>(context, listen: false).removeAt(index);
+            if(type == 'Reviews') Provider.of<WebReviewsProvider>(context, listen: false).removeAt(index);
+            showToast(context: context, type: ToastificationType.success, title: "List", desc: "Item has been deleted");
+          }
         } else {
           debugPrint('Domain not authenticated.');
           showToast(context: context, type: ToastificationType.info, title: "List", desc: "Please register your Domain.");
@@ -124,7 +126,9 @@ class _ListView2WidgetState extends State<ListView2Widget> {
       }
     } catch (e) {
       debugPrint('Exception : $e ');
-      showToast(context: context, type: ToastificationType.error, title: "List", desc: "Error occurred.");
+      if(context.mounted) {
+        showToast(context: context, type: ToastificationType.error, title: "List", desc: "Error occurred.");
+      }
     }
   }
 }

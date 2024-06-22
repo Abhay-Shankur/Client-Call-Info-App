@@ -277,12 +277,12 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     }
   }
 
-  void _init() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Future.delayed(const Duration(milliseconds: 500)); // Delay to ensure Activity is ready
-      await PermissionManager.requestAll();
-    });
-  }
+  // void _init() {
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+  //     await Future.delayed(const Duration(milliseconds: 500)); // Delay to ensure Activity is ready
+  //     await PermissionManager.requestAll();
+  //   });
+  // }
 
   // Future<void> _isLoggedIn() async {
   //   if(await FirebaseAuthHandler(context: navigator.currentState!.context).checkLoginStatus()) {
@@ -299,6 +299,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final CheckConnectionStream connectionStream = Get.find();
 
     return GestureDetector(
@@ -349,7 +350,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
               width: double.infinity,
               height: 420,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: MyTheme.of(context).secondaryBackground,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -359,7 +360,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                     width: 200,
                     height: 200,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: MyTheme.of(context).secondaryBackground,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10),

@@ -1,5 +1,6 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -19,7 +20,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
     with TickerProviderStateMixin {
   late WeHelpPageModel _model;
   final List<bool> _pick = [false, false, false];
-  final bool _saving = false;
+  // final bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -137,9 +138,9 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: MyTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: MyTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -148,7 +149,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -157,9 +158,9 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
           ),
           title: Text(
             'We Help To ',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               fontSize: 22,
               letterSpacing: 0,
             ),
@@ -181,7 +182,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                     child: Text(
                       'Upload 3 Cover Images  And Fill The Information',
-                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                      style: MyTheme.of(context).labelLarge.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0,
                       ),
@@ -197,10 +198,10 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                         ),
                         decoration: BoxDecoration(
                           color:
-                          FlutterFlowTheme.of(context).secondaryBackground,
+                          MyTheme.of(context).secondaryBackground,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: MyTheme.of(context).alternate,
                             width: 2,
                           ),
                         ),
@@ -216,11 +217,11 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
+                                    color: MyTheme.of(context)
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: MyTheme.of(context)
                                           .alternate,
                                       width: 2,
                                     ),
@@ -286,11 +287,11 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
+                                    color: MyTheme.of(context)
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: MyTheme.of(context)
                                           .alternate,
                                       width: 2,
                                     ),
@@ -355,11 +356,11 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                                     maxWidth: 500,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
+                                    color: MyTheme.of(context)
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: MyTheme.of(context)
                                           .alternate,
                                       width: 2,
                                     ),
@@ -426,7 +427,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                           animationsMap['containerOnPageLoadAnimation1']!),
                       Divider(
                         thickness: 2,
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                       ),
                       Consumer<WebWeHelpProvider> (
                         builder: (context, value, child) {
@@ -438,44 +439,44 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Heading',
-                              labelStyle: FlutterFlowTheme.of(context)
+                              labelStyle: MyTheme.of(context)
                                   .headlineSmall
                                   .override(
                                 fontFamily: 'Outfit',
                                 color:
-                                FlutterFlowTheme.of(context).secondaryText,
+                                MyTheme.of(context).secondaryText,
                                 letterSpacing: 0,
                                 fontWeight: FontWeight.w500,
                               ),
                               hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                              MyTheme.of(context).labelMedium.override(
                                 fontFamily: 'Readex Pro',
                                 letterSpacing: 0,
                               ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: MyTheme.of(context).alternate,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: MyTheme.of(context).primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               errorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: MyTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               focusedErrorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: MyTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
@@ -484,11 +485,11 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                               const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                             ),
                             style:
-                            FlutterFlowTheme.of(context).headlineSmall.override(
+                            MyTheme.of(context).headlineSmall.override(
                               fontFamily: 'Outfit',
                               letterSpacing: 0,
                             ),
-                            cursorColor: FlutterFlowTheme.of(context).primary,
+                            cursorColor: MyTheme.of(context).primary,
                             validator: _model.textController1Validator
                                 .asValidator(context),
                           );
@@ -504,41 +505,41 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                             obscureText: false,
                             decoration: InputDecoration(
                               labelStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                              MyTheme.of(context).labelMedium.override(
                                 fontFamily: 'Readex Pro',
                                 letterSpacing: 0,
                               ),
                               hintText:
                               'Short Description of the title in 2-4 lines',
                               hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                              MyTheme.of(context).labelMedium.override(
                                 fontFamily: 'Readex Pro',
                                 letterSpacing: 0,
                               ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: MyTheme.of(context).alternate,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: MyTheme.of(context).primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               errorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: MyTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               focusedErrorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: MyTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(0),
@@ -546,13 +547,13 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                               contentPadding:
                               const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            style: MyTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0,
                             ),
                             maxLines: 16,
                             minLines: 6,
-                            cursorColor: FlutterFlowTheme.of(context).primary,
+                            cursorColor: MyTheme.of(context).primary,
                             validator: _model.textController2Validator
                                 .asValidator(context),
                           );
@@ -579,11 +580,11 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
                         height: 54,
                         padding: const EdgeInsets.all(0),
                         iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                         textStyle:
-                        FlutterFlowTheme.of(context).titleSmall.override(
+                        MyTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context)
+                          color: MyTheme.of(context)
                               .secondaryBackground,
                           letterSpacing: 0,
                         ),

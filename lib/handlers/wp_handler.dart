@@ -11,7 +11,7 @@ class WhatsappHandler {
     try {
       await SharedPreferencesHelper.reload();
       WPMessageTemplate? messageTemplate = await WPMessageTemplate.getFromShared();
-      bool allowed = await SharedPreferencesHelper.getBool("allowWP") ?? false;
+      bool allowed = await SharedPreferencesHelper.getBool("allowWP");
 
       if(allowed) {
         if(messageTemplate == null) {

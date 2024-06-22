@@ -77,7 +77,7 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
 
   Future<bool> saveInfo(BuildContext context) async {
     try {
-      // await Future.delayed(Duration(seconds: 5), ()=> print("object"));
+      // await Future.delayed(Duration(seconds: 5), ()=> debugPrint("object"));
       WebMetaDataProvider provider = Provider.of<WebMetaDataProvider>(context, listen: false);
       provider.updateOwnerName(textController1!.value.text);
       provider.updateOwnerContact(textController2!.value.text);
@@ -128,10 +128,10 @@ class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {
         return pickedFile;
       } else {
         // User canceled the picker
-        print('No file selected.');
+        debugPrint('No file selected.');
       }
     } catch (e) {
-      print('Error picking file: $e');
+      debugPrint('Error picking file: $e');
     }
     return null;
   }

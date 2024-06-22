@@ -1,3 +1,4 @@
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,7 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
         width: double.infinity,
         height: 60,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: MyTheme.of(context).secondaryBackground,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
@@ -70,24 +71,24 @@ class _PermissionListItemWidgetState extends State<PermissionListItemWidget> {
                       widget.title,
                       'Title',
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    style: MyTheme.of(context).bodyMedium.override(
                       fontFamily: 'Inter',
-                      color: FlutterFlowTheme.of(context).primaryText,
+                      color: MyTheme.of(context).primaryText,
                       letterSpacing: 0,
                     ),
                   ),
                 ),
               ),
               Switch(
-                value: _model.switchValue ??= widget.status,
+                value: _model.switchValue,
                 onChanged: (newValue) async {
                   setState(() => _model.switchValue = newValue);
                 },
-                activeColor: FlutterFlowTheme.of(context).primaryText,
-                activeTrackColor: FlutterFlowTheme.of(context).secondaryText,
+                activeColor: MyTheme.of(context).primaryText,
+                activeTrackColor: MyTheme.of(context).secondaryText,
                 inactiveTrackColor:
-                FlutterFlowTheme.of(context).secondaryBackground,
-                inactiveThumbColor: FlutterFlowTheme.of(context).secondaryText,
+                MyTheme.of(context).secondaryBackground,
+                inactiveThumbColor: MyTheme.of(context).secondaryText,
               ),
             ],
           ),

@@ -1,6 +1,7 @@
 
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/gallery/video_gallery_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/list_view/list_view_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class WebVideoGalleryWidget extends StatefulWidget {
 
 class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
   late WebVideoGalleryModel _model;
-  bool _saving = false;
+  // bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -42,9 +43,9 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: MyTheme.of(context).secondaryBackground,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: MyTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -53,7 +54,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
           buttonSize: 60,
           icon: Icon(
             Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
+            color: MyTheme.of(context).primaryText,
             size: 30,
           ),
           onPressed: () async {
@@ -80,7 +81,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: Text(
                   'Video Gallery',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  style: MyTheme.of(context).headlineMedium.override(
                     fontFamily: 'Outfit',
                     letterSpacing: 0,
                   ),
@@ -90,7 +91,7 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 16),
                 child: Text(
                   'Add a link of a video you desire to be shown on your webpage ',
-                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                  style: MyTheme.of(context).labelMedium.override(
                     fontFamily: 'Readex Pro',
                     letterSpacing: 0,
                   ),
@@ -114,15 +115,15 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Your link here...',
-                              labelStyle: FlutterFlowTheme.of(context)
+                              labelStyle: MyTheme.of(context)
                                   .labelMedium
                                   .override(
                                 fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context)
+                                color: MyTheme.of(context)
                                     .primaryText,
                                 letterSpacing: 0,
                               ),
-                              hintStyle: FlutterFlowTheme.of(context)
+                              hintStyle: MyTheme.of(context)
                                   .labelMedium
                                   .override(
                                 fontFamily: 'Readex Pro',
@@ -131,50 +132,50 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  MyTheme.of(context).primaryText,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: MyTheme.of(context).primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: MyTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: MyTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
+                              fillColor: MyTheme.of(context)
                                   .secondaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   24, 24, 20, 24),
                             ),
-                            style: FlutterFlowTheme.of(context)
+                            style: MyTheme.of(context)
                                 .bodyMedium
                                 .override(
                               fontFamily: 'Readex Pro',
                               color:
-                              FlutterFlowTheme.of(context).primaryText,
+                              MyTheme.of(context).primaryText,
                               letterSpacing: 0,
                             ),
                             maxLines: null,
                             keyboardType: TextInputType.emailAddress,
                             cursorColor:
-                            FlutterFlowTheme.of(context).primaryText,
+                            MyTheme.of(context).primaryText,
                             validator: _model
                                 .emailAddressTextControllerValidator
                                 .asValidator(context),
@@ -188,13 +189,13 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              _saving = true;
-                            });
+                            // setState(() {
+                            //   _saving = true;
+                            // });
                             await _model.addLink(context);
-                            setState(() {
-                              _saving = false;
-                            });
+                            // setState(() {
+                            //   _saving = false;
+                            // });
                           },
                           text: 'Add Link',
                           options: FFButtonOptions(
@@ -202,12 +203,12 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                             padding: const EdgeInsets.all(6),
                             iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            textStyle: FlutterFlowTheme.of(context)
+                            color: MyTheme.of(context).primaryText,
+                            textStyle: MyTheme.of(context)
                                 .titleSmall
                                 .override(
                               fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context)
+                              color: MyTheme.of(context)
                                   .secondaryBackground,
                               letterSpacing: 0,
                             ),
@@ -227,26 +228,29 @@ class _WebVideoGalleryWidgetState extends State<WebVideoGalleryWidget> {
                 thickness: 2,
                 indent: 10,
                 endIndent: 10,
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: MyTheme.of(context).primaryText,
               ),
-              wrapWithModel(
-                model: _model.listViewModel,
-                updateCallback: () => setState(() {}),
-                updateOnChange: true,
-                child: Hero(
-                  tag: 'ControllerImage',
-                  transitionOnUserGestures: true,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Consumer<WebVideoGalleryProvider> (
-                      builder: (context, value, child){
-                        return ListViewWidget(
-                          listParams: value.list,
-                        );
-                      },
-                    )
+              Expanded(
+                flex: 1,
+                child: wrapWithModel(
+                  model: _model.listViewModel,
+                  updateCallback: () => setState(() {}),
+                  updateOnChange: true,
+                  child: Hero(
+                    tag: 'ControllerImage',
+                    transitionOnUserGestures: true,
+                    child: Material(
+                        color: Colors.transparent,
+                        child: Consumer<WebVideoGalleryProvider> (
+                          builder: (context, value, child){
+                            return ListViewWidget(
+                              listParams: value.list,
+                            );
+                          },
+                        )
+                    ),
                   ),
-                ),
+                )
               ),
             ],
           ),

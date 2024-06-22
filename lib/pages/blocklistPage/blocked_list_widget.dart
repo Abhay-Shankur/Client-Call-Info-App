@@ -1,6 +1,7 @@
 import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/blocklist/blocklist_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:call_info/pages/components/add_number/add_number_widget.dart';
 import 'package:call_info/pages/components/blocklist_item/blocklist_item_widget.dart';
@@ -34,7 +35,9 @@ class _BlockedListWidgetState extends State<BlockedListWidget> {
 
   Future<void> init() async {
     if(await PermissionManager.requestContactsPermission() == false) {
-      showSnackbar(context, "Please Allow to access Contacts");
+      if(mounted) {
+        showSnackbar(context, "Please Allow to access Contacts");
+      }
     }
   }
 
@@ -53,7 +56,7 @@ class _BlockedListWidgetState extends State<BlockedListWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         floatingActionButton: Builder(
           builder: (context) => FloatingActionButton(
             onPressed: () async {
@@ -77,17 +80,17 @@ class _BlockedListWidgetState extends State<BlockedListWidget> {
                 },
               ).then((value) => setState(() {}));
             },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
+            backgroundColor: MyTheme.of(context).primary,
             elevation: 8,
             child: Icon(
               Icons.add,
-              color: FlutterFlowTheme.of(context).info,
+              color: MyTheme.of(context).info,
               size: 24,
             ),
           ),
         ),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: MyTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -96,7 +99,7 @@ class _BlockedListWidgetState extends State<BlockedListWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -105,7 +108,7 @@ class _BlockedListWidgetState extends State<BlockedListWidget> {
           ),
           title: Text(
             'Blocked Contact List',
-            style: FlutterFlowTheme.of(context).titleLarge.override(
+            style: MyTheme.of(context).titleLarge.override(
               fontFamily: 'Readex Pro',
               letterSpacing: 0,
             ),
@@ -121,7 +124,7 @@ class _BlockedListWidgetState extends State<BlockedListWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Text(
                 'Below are numbers in your blocked list',
-                style: FlutterFlowTheme.of(context).labelMedium.override(
+                style: MyTheme.of(context).labelMedium.override(
                   fontFamily: 'Inter',
                   letterSpacing: 0,
                 ),

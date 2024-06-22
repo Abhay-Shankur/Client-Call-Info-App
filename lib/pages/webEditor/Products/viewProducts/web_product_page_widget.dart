@@ -1,6 +1,7 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/pages/components/image_list_view/image_list_view_widget.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,9 +43,9 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: MyTheme.of(context).primaryBackground,
           automaticallyImplyLeading: true,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -53,7 +54,7 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -62,9 +63,9 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
           ),
           title: Text(
             'Products Section',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               fontSize: 22,
               letterSpacing: 0,
             ),
@@ -89,7 +90,7 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                       child: Text(
                         'To add products to your website, simply click on "Add Products" button and showcase your items with elegance and flair.',
                         style:
-                        FlutterFlowTheme.of(context).labelMedium.override(
+                        MyTheme.of(context).labelMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0,
                         ),
@@ -105,7 +106,7 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                             const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                             child: Text(
                               'Add New Product ',
-                              style: FlutterFlowTheme.of(context)
+                              style: MyTheme.of(context)
                                   .bodyMedium
                                   .override(
                                 fontFamily: 'Readex Pro',
@@ -130,13 +131,13 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                                     padding: const EdgeInsets.all(6),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 0),
-                                    color: FlutterFlowTheme.of(context)
+                                    color: MyTheme.of(context)
                                         .primaryText,
-                                    textStyle: FlutterFlowTheme.of(context)
+                                    textStyle: MyTheme.of(context)
                                         .titleSmall
                                         .override(
                                       fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
+                                      color: MyTheme.of(context)
                                           .secondaryBackground,
                                       letterSpacing: 0,
                                     ),
@@ -160,7 +161,7 @@ class _WebProductsPageWidgetState extends State<WebProductsPageWidget> {
                 thickness: 2,
                 indent: 10,
                 endIndent: 10,
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: MyTheme.of(context).primaryText,
               ),
               Expanded(
                 flex: 1,

@@ -1,3 +1,4 @@
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: MyTheme.of(context).secondaryBackground,
           boxShadow: const [
             BoxShadow(
               blurRadius: 4,
@@ -87,7 +88,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
                             'Name',
                           ),
                           style:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
+                          MyTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             fontSize: 18,
                             letterSpacing: 0,
@@ -103,7 +104,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
                             'description',
                           ),
                           style:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
+                          MyTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -121,7 +122,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
                 buttonSize: 40,
                 icon: Icon(
                   Icons.edit_outlined,
-                  color: FlutterFlowTheme.of(context).secondaryText,
+                  color: MyTheme.of(context).secondaryText,
                   size: 20,
                 ),
                 showLoadingIndicator: true,
@@ -136,7 +137,7 @@ class _ListTile2WidgetState extends State<ListTile2Widget> {
                 buttonSize: 40,
                 icon: Icon(
                   Icons.delete_outline_rounded,
-                  color: FlutterFlowTheme.of(context).error,
+                  color: MyTheme.of(context).error,
                   size: 20,
                 ),
                 showLoadingIndicator: true,

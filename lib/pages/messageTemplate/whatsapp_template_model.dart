@@ -47,10 +47,10 @@ class WhatsappTemplateModel extends FlutterFlowModel<WhatsappTemplateWidget> {
         return pickedFile;
       } else {
         // User canceled the picker
-        print('No file selected.');
+        debugPrint('No file selected.');
       }
     } catch (e) {
-      print('Error picking file: $e');
+      debugPrint('Error picking file: $e');
     }
     return null;
   }
@@ -83,7 +83,7 @@ class WhatsappTemplateModel extends FlutterFlowModel<WhatsappTemplateWidget> {
           Provider.of<WPProvider>(context, listen: false).updateImage(imageUrl);
           showToast(context: context, type: ToastificationType.success, title: 'Whatsapp Template', desc: 'Whatsapp Template have been saved.');
         } else {
-          print('Image upload failed.');
+          debugPrint('Image upload failed.');
           showToast(context: context, type: ToastificationType.warning, title: 'Whatsapp Template', desc: 'Please Try Again Later !.');
         }
       }
@@ -144,10 +144,10 @@ class WhatsappTemplateModel extends FlutterFlowModel<WhatsappTemplateWidget> {
   //     dragToClose: true,
   //     applyBlurEffect: true,
   //     callbacks: ToastificationCallbacks(
-  //       onTap: (toastItem) => print('Toast ${toastItem.id} tapped'),
-  //       onCloseButtonTap: (toastItem) => print('Toast ${toastItem.id} close button tapped'),
-  //       onAutoCompleteCompleted: (toastItem) => print('Toast ${toastItem.id} auto complete completed'),
-  //       onDismissed: (toastItem) => print('Toast ${toastItem.id} dismissed'),
+  //       onTap: (toastItem) => debugPrint('Toast ${toastItem.id} tapped'),
+  //       onCloseButtonTap: (toastItem) => debugPrint('Toast ${toastItem.id} close button tapped'),
+  //       onAutoCompleteCompleted: (toastItem) => debugPrint('Toast ${toastItem.id} auto complete completed'),
+  //       onDismissed: (toastItem) => debugPrint('Toast ${toastItem.id} dismissed'),
   //     ),
   //   );
   // }

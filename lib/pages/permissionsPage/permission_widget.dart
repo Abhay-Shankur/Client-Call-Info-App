@@ -1,5 +1,6 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/permissions/permissions_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:provider/provider.dart';
 import '/pages/components/permission_list_item/permission_list_item_widget.dart';
@@ -45,9 +46,9 @@ class _PermissionWidgetState extends State<PermissionWidget> {
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: MyTheme.of(context).primaryBackground,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: MyTheme.of(context).secondaryBackground,
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -56,7 +57,7 @@ class _PermissionWidgetState extends State<PermissionWidget> {
               buttonSize: 60,
               icon: Icon(
                 Icons.arrow_back_rounded,
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: MyTheme.of(context).primaryText,
                 size: 30,
               ),
               onPressed: () async {
@@ -65,7 +66,7 @@ class _PermissionWidgetState extends State<PermissionWidget> {
             ),
             title: Text(
               'Back',
-              style: FlutterFlowTheme.of(context).titleLarge.override(
+              style: MyTheme.of(context).titleLarge.override(
                 fontFamily: 'Readex Pro',
                 letterSpacing: 0,
               ),
@@ -87,9 +88,9 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                     child: Text(
                       'Permissions',
                       style:
-                      FlutterFlowTheme.of(context).headlineMedium.override(
+                      MyTheme.of(context).headlineMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                         letterSpacing: 0,
                       ),
                     ),
@@ -98,9 +99,9 @@ class _PermissionWidgetState extends State<PermissionWidget> {
                     padding: const EdgeInsetsDirectional.fromSTEB(8, 16, 0, 16),
                     child: Text(
                       'Manage the permissions you have granted to the app.',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      style: MyTheme.of(context).bodyMedium.override(
                         fontFamily: 'Inter',
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        color: MyTheme.of(context).secondaryText,
                         letterSpacing: 0,
                       ),
                     ),

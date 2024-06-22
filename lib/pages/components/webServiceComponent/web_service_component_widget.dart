@@ -1,3 +1,4 @@
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -54,45 +55,45 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
             obscureText: false,
             decoration: InputDecoration(
               labelText: 'Label here...',
-              labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+              labelStyle: MyTheme.of(context).labelMedium.override(
                 fontFamily: 'Readex Pro',
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: MyTheme.of(context).primaryText,
                 letterSpacing: 0,
               ),
-              hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+              hintStyle: MyTheme.of(context).labelMedium.override(
                 fontFamily: 'Readex Pro',
                 letterSpacing: 0,
               ),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).alternate,
+                  color: MyTheme.of(context).alternate,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: MyTheme.of(context).primary,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               errorBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).error,
+                  color: MyTheme.of(context).error,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               focusedErrorBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).error,
+                  color: MyTheme.of(context).error,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
+            style: MyTheme.of(context).bodyMedium.override(
               fontFamily: 'Readex Pro',
               letterSpacing: 0,
             ),
@@ -103,7 +104,7 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
           thickness: 1,
           indent: 10,
           endIndent: 10,
-          color: FlutterFlowTheme.of(context).primaryText,
+          color: MyTheme.of(context).primaryText,
         ),
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
@@ -114,46 +115,46 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
             obscureText: false,
             decoration: InputDecoration(
               labelText: 'Service Description here',
-              labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+              labelStyle: MyTheme.of(context).bodyMedium.override(
                 fontFamily: 'Readex Pro',
                 letterSpacing: 0,
               ),
               alignLabelWithHint: true,
-              hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+              hintStyle: MyTheme.of(context).labelMedium.override(
                 fontFamily: 'Readex Pro',
                 letterSpacing: 0,
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).secondaryText,
+                  color: MyTheme.of(context).secondaryText,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).secondaryText,
+                  color: MyTheme.of(context).secondaryText,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               errorBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).secondaryText,
+                  color: MyTheme.of(context).secondaryText,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).secondaryText,
+                  color: MyTheme.of(context).secondaryText,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               filled: true,
             ),
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
+            style: MyTheme.of(context).bodyMedium.override(
               fontFamily: 'Readex Pro',
               letterSpacing: 0,
             ),
@@ -166,7 +167,7 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
           padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
           child: FFButtonWidget(
             onPressed: () {
-              print('Button pressed ...');
+              debugPrint('Button pressed ...');
             },
             text: 'Save Information',
             options: FFButtonOptions(
@@ -174,10 +175,10 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
               height: 60,
               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
               iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              color: FlutterFlowTheme.of(context).primaryText,
-              textStyle: FlutterFlowTheme.of(context).titleMedium.override(
+              color: MyTheme.of(context).primaryText,
+              textStyle: MyTheme.of(context).titleMedium.override(
                 fontFamily: 'Readex Pro',
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: MyTheme.of(context).secondaryBackground,
                 letterSpacing: 0,
               ),
               elevation: 4,
@@ -186,7 +187,7 @@ class _WebServiceComponentWidgetState extends State<WebServiceComponentWidget> {
                 width: 1,
               ),
               borderRadius: BorderRadius.circular(50),
-              hoverColor: FlutterFlowTheme.of(context).primaryText,
+              hoverColor: MyTheme.of(context).primaryText,
             ),
           ),
         ),

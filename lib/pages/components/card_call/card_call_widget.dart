@@ -1,6 +1,7 @@
 // import '/flutter_flow/flutter_flow_animations.dart';
 // import '/flutter_flow/flutter_flow_theme.dart';
 // import '/flutter_flow/flutter_flow_util.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -145,7 +146,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
       child: Container(
         height: 140,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: MyTheme.of(context).secondaryBackground,
           boxShadow: const [
             BoxShadow(
               blurRadius: 4,
@@ -158,7 +159,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
           ],
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: FlutterFlowTheme.of(context).primaryBackground,
+            color: MyTheme.of(context).primaryBackground,
             width: 1,
           ),
         ),
@@ -171,13 +172,13 @@ class _CardCallWidgetState extends State<CardCallWidget>
                 width: 60,
                 height: 60,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBackground,
+                  color: MyTheme.of(context).primaryBackground,
                   shape: BoxShape.circle,
                 ),
                 alignment: const AlignmentDirectional(0, 0),
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: MyTheme.of(context).primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),
                   ),
@@ -197,9 +198,9 @@ class _CardCallWidgetState extends State<CardCallWidget>
                   children: [
                     Text(
                       widget.cardTitle,
-                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                      style: MyTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter',
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                         letterSpacing: 0,
                       ),
                     ).animateOnPageLoad(
@@ -209,7 +210,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
                       child: Text(
                         widget.cardValue.toString(),
                         style:
-                        FlutterFlowTheme.of(context).displaySmall.override(
+                        MyTheme.of(context).displaySmall.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0,
                         ),

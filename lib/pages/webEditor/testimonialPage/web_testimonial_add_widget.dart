@@ -1,4 +1,5 @@
 import 'package:call_info/main.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class WebTestimonialAddWidget extends StatefulWidget {
 
 class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
   late WebTestimonialAddModel _model;
-  bool _saving = false;
+  // bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -46,9 +47,9 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: MyTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: MyTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -57,7 +58,7 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).secondaryText,
+              color: MyTheme.of(context).secondaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -80,7 +81,7 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                 children: [
                   Text(
                     'Add Your Reviews Here',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    style: MyTheme.of(context).headlineMedium.override(
                       fontFamily: 'Outfit',
                       letterSpacing: 0,
                     ),
@@ -89,7 +90,7 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 10),
                     child: Text(
                       'Fill out the form below to submit a review.',
-                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                      style: MyTheme.of(context).labelLarge.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0,
                       ),
@@ -105,45 +106,45 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'reviewer name',
-                          labelStyle: FlutterFlowTheme.of(context)
+                          labelStyle: MyTheme.of(context)
                               .headlineSmall
                               .override(
                             fontFamily: 'Outfit',
                             color:
-                            FlutterFlowTheme.of(context).secondaryText,
+                            MyTheme.of(context).secondaryText,
                             fontSize: 18,
                             letterSpacing: 0,
                             fontWeight: FontWeight.w500,
                           ),
                           hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
+                          MyTheme.of(context).labelMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: MyTheme.of(context).alternate,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: MyTheme.of(context).primary,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           errorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
@@ -152,11 +153,11 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                           const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
                         ),
                         style:
-                        FlutterFlowTheme.of(context).headlineSmall.override(
+                        MyTheme.of(context).headlineSmall.override(
                           fontFamily: 'Outfit',
                           letterSpacing: 0,
                         ),
-                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        cursorColor: MyTheme.of(context).primary,
                         validator: _model.textController1Validator
                             .asValidator(context),
                       ),
@@ -167,40 +168,40 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
+                          MyTheme.of(context).labelMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
                           hintText: 'Short Description of what is going on...',
                           hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
+                          MyTheme.of(context).labelMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: MyTheme.of(context).alternate,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: MyTheme.of(context).primary,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           errorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
                           ),
                           focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
+                              color: MyTheme.of(context).error,
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(0),
@@ -208,13 +209,13 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                           contentPadding:
                           const EdgeInsetsDirectional.fromSTEB(16, 24, 16, 12),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        style: MyTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0,
                         ),
                         maxLines: 16,
                         minLines: 6,
-                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        cursorColor: MyTheme.of(context).primary,
                         validator: _model.textController2Validator
                             .asValidator(context),
                       ),
@@ -226,13 +227,13 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 12),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        setState(() {
-                          _saving = true;
-                        });
+                        // setState(() {
+                        //   _saving = true;
+                        // });
                         await _model.save(context);
-                        setState(() {
-                          _saving = false;
-                        });
+                        // setState(() {
+                        //   _saving = false;
+                        // });
                         navigator.currentState!.pop();
                       },
                       text: 'Submit Review',
@@ -241,11 +242,11 @@ class _WebTestimonialAddWidgetState extends State<WebTestimonialAddWidget> {
                         height: 54,
                         padding: const EdgeInsets.all(0),
                         iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                         textStyle:
-                        FlutterFlowTheme.of(context).titleSmall.override(
+                        MyTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context)
+                          color: MyTheme.of(context)
                               .secondaryBackground,
                           letterSpacing: 0,
                         ),

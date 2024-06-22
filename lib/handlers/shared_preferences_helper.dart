@@ -76,8 +76,11 @@ class SharedPreferencesHelper {
     reload();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
-    _keys.forEach((element) async {
+    // _keys.forEach((element) async {
+    //   await remove(element);
+    // });
+    for(var element in _keys) {
       await remove(element);
-    });
+    }
   }
 }

@@ -22,7 +22,7 @@ class PromotionalTemplateWidget extends StatefulWidget {
 class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
     with TickerProviderStateMixin {
   late PromotionalTemplateModel _model;
-  String? _selectedImagePath;
+
   static File? imageFile;
   int callCount = 0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -378,7 +378,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                       width: double.infinity,
                       height: 330,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        color: MyTheme.of(context).primaryBackground,
                         boxShadow: const [
                           BoxShadow(
                             blurRadius: 5,
@@ -392,7 +392,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                         ],
                         borderRadius: BorderRadius.circular(24),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: MyTheme.of(context).alternate,
                         ),
                       ),
                       child: Padding(
@@ -427,7 +427,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                     thickness: 2,
                     indent: 10,
                     endIndent: 10,
-                    color: FlutterFlowTheme.of(context).primaryText,
+                    color: MyTheme.of(context).primaryText,
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -555,7 +555,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                     child: FFButtonWidget(
                       onPressed: () {
                         showToast();
-                        print('save Button pressed ...');
+                        debugPrint('save Button pressed ...');
                       },
                       text: 'Save Teamplate',
                       icon: const Icon(
@@ -567,7 +567,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
                         height: 54,
                         padding: const EdgeInsets.all(0),
                         iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: MyTheme.of(context).primaryText,
                         textStyle: MyTheme.of(context).titleSmall.override(
                               fontFamily: 'Inter',
                               color: Colors.white,
@@ -616,15 +616,15 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
   void showSelectedChipValue(String value) {
     switch (value) {
       case '24 hrs':
-        // Fetch and print call logs for the last 24 hours
+        // Fetch and debugPrint call logs for the last 24 hours
         fetchAndPrintCallLogs(const Duration(hours: 24));
         break;
       case '1 Week':
-        // Fetch and print call logs for the last 7 days (1 week)
+        // Fetch and debugPrint call logs for the last 7 days (1 week)
         fetchAndPrintCallLogs(const Duration(days: 7));
         break;
       case '1 Month':
-        // Fetch and print call logs for the last 30 days (1 month)
+        // Fetch and debugPrint call logs for the last 30 days (1 month)
         fetchAndPrintCallLogs(const Duration(days: 30));
         break;
       default:
@@ -650,9 +650,9 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
     for (final entry in entries) {
       callCount = callCount + 1;
 
-      print(
+      debugPrint(
           'Call from: ${entry.name}, Number: ${entry.number}, Duration: ${entry.duration} seconds, Type: ${entry.callType}, Date: ${DateTime.fromMillisecondsSinceEpoch(entry.timestamp!)}');
     }
-    print(callCount);
+    debugPrint(callCount.toString());
   }
 }

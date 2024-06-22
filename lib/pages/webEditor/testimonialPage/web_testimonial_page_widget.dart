@@ -1,6 +1,7 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/pages/components/list_view2/list_view2_widget.dart';
 import 'package:call_info/providers/webEditor/reviews/reviews_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,9 +43,9 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: MyTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -53,7 +54,7 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -62,9 +63,9 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
           ),
           title: Text(
             'Review Page',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               fontSize: 22,
               letterSpacing: 0,
             ),
@@ -92,7 +93,7 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                           const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
                           child: Text(
                             'To add Reviews to your website, simply click on "Add Review" button and showcase your quality with elegance and flair.',
-                            style: FlutterFlowTheme.of(context)
+                            style: MyTheme.of(context)
                                 .labelMedium
                                 .override(
                               fontFamily: 'Readex Pro',
@@ -110,7 +111,7 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                                 const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: Text(
                                   'Add New Review',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: MyTheme.of(context)
                                       .bodyMedium
                                       .override(
                                     fontFamily: 'Readex Pro',
@@ -136,14 +137,14 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                                         iconPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 0),
-                                        color: FlutterFlowTheme.of(context)
+                                        color: MyTheme.of(context)
                                             .primaryText,
-                                        textStyle: FlutterFlowTheme.of(context)
+                                        textStyle: MyTheme.of(context)
                                             .titleSmall
                                             .override(
                                           fontFamily: 'Readex Pro',
                                           color:
-                                          FlutterFlowTheme.of(context)
+                                          MyTheme.of(context)
                                               .secondaryBackground,
                                           letterSpacing: 0,
                                         ),
@@ -164,7 +165,7 @@ class _WebTestimonialPageWidgetState extends State<WebTestimonialPageWidget> {
                           thickness: 2,
                           indent: 10,
                           endIndent: 10,
-                          color: FlutterFlowTheme.of(context).primaryText,
+                          color: MyTheme.of(context).primaryText,
                         ),
                       ],
                     ),

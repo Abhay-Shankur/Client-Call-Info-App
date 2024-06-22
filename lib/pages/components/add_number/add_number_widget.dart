@@ -1,6 +1,7 @@
 
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/blocklist/blocklist_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:contacts_plugin_plus/contacts_plugin.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:ui';
@@ -88,7 +89,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).accent4,
+            color: MyTheme.of(context).accent4,
           ),
           alignment: const AlignmentDirectional(0, 1),
           child: Column(
@@ -98,7 +99,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: MyTheme.of(context).secondaryBackground,
                   boxShadow: const [
                     BoxShadow(
                       blurRadius: 7,
@@ -130,7 +131,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
                             width: 60,
                             height: 3,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: MyTheme.of(context).alternate,
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
@@ -140,7 +141,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
                         padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                         child: Text(
                           'Enter Mobile Number',
-                          style: FlutterFlowTheme.of(context)
+                          style: MyTheme.of(context)
                               .headlineSmall
                               .override(
                             fontFamily: 'Readex Pro',
@@ -171,9 +172,9 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
                             child: Text(
                               'Select from Contacts.',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context).labelMedium.override(
+                              style: MyTheme.of(context).labelMedium.override(
                                 fontFamily: 'Inter',
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: MyTheme.of(context).primary,
                                 letterSpacing: 0,
                                 fontStyle: FontStyle.italic,
                                 decoration: TextDecoration.underline,
@@ -193,12 +194,12 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
                           decoration: InputDecoration(
                             prefixText: '+91',
                             labelStyle:
-                            FlutterFlowTheme.of(context).bodyLarge.override(
+                            MyTheme.of(context).bodyLarge.override(
                               fontFamily: 'Inter',
                               letterSpacing: 0,
                             ),
                             hintText: 'Mobile Number',
-                            hintStyle: FlutterFlowTheme.of(context)
+                            hintStyle: MyTheme.of(context)
                                 .labelLarge
                                 .override(
                               fontFamily: 'Inter',
@@ -206,44 +207,44 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: MyTheme.of(context).alternate,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: MyTheme.of(context).primary,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
+                                color: MyTheme.of(context).error,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
+                                color: MyTheme.of(context).error,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
+                            fillColor: MyTheme.of(context)
                                 .secondaryBackground,
                             contentPadding: const EdgeInsets.all(20),
                           ),
                           style:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
+                          MyTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             letterSpacing: 0,
                           ),
                           keyboardType: TextInputType.phone,
-                          cursorColor: FlutterFlowTheme.of(context).primary,
+                          cursorColor: MyTheme.of(context).primary,
                           validator: _model.phoneNumberTextControllerValidator
                               .asValidator(context),
                         ),
@@ -262,8 +263,8 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
+                            color: MyTheme.of(context).primary,
+                            textStyle: MyTheme.of(context)
                                 .titleLarge
                                 .override(
                               fontFamily: 'Readex Pro',

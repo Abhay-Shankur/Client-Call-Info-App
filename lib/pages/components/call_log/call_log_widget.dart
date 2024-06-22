@@ -86,7 +86,7 @@ class _CallLogWidgetState extends State<CallLogWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () {
-                              print('Button pressed ...');
+                              debugPrint('Button pressed ...');
                             },
                             text: 'Resend',
                             options: FFButtonOptions(

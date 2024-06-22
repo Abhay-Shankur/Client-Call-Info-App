@@ -21,7 +21,7 @@ import 'package:call_info/pages/splashScreen/splash_screen_widget.dart';
 import 'package:call_info/pages/subscriptionPage/subscription_page_widget.dart';
 import 'package:call_info/pages/vendorProfile/profile_widget.dart';
 import 'package:call_info/pages/webEditor/ImageGallery/web_image_galley_widget.dart';
-import 'package:call_info/pages/webEditor/Products/AddProduct/web_product_page_widget.dart';
+import 'package:call_info/pages/webEditor/Products/viewProducts/web_product_page_widget.dart';
 import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_product_add_widget.dart';
 import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_add_widget.dart';
 import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_page_widget.dart';
@@ -55,6 +55,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+
 
 
 late final FirebaseApp app;
@@ -141,7 +142,7 @@ class _MyAppState extends State<MyApp> {
       _connectionStatus = result;
     });
     // ignore: avoid_print
-    print('Connectivity changed: $_connectionStatus');
+    debugPrint('Connectivity changed: $_connectionStatus');
   }
 
   @override

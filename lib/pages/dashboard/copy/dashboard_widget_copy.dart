@@ -503,7 +503,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
@@ -525,12 +525,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                           child: Text(
                             'Dashboard',
                             textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
+                            style: MyTheme.of(context)
                                 .titleMedium
                                 .override(
                                   fontFamily: 'Inter',
                                   color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                      MyTheme.of(context).primaryText,
                                   fontSize: 35,
                                   letterSpacing: 0,
                                   fontWeight: FontWeight.normal,
@@ -540,15 +540,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                           child: FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context)
+                            borderColor: MyTheme.of(context)
                                 .secondaryBackground,
                             borderRadius: 20,
                             buttonSize: 58,
-                            fillColor: FlutterFlowTheme.of(context)
+                            fillColor: MyTheme.of(context)
                                 .secondaryBackground,
                             icon: Icon(
                               Icons.account_circle_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: MyTheme.of(context).primaryText,
                               size: 40,
                             ),
                             onPressed: () {
@@ -557,7 +557,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const EditProfileWidget()));
-                              print('IconButton pressed ...');
+                              debugPrint('IconButton pressed ...');
                             },
                           ),
                         ),
@@ -624,7 +624,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                   child: Text(
                     'Current Score',
                     textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).titleLarge.override(
+                    style: MyTheme.of(context).titleLarge.override(
                           fontFamily: 'Inter',
                           letterSpacing: 0,
                         ),
@@ -636,7 +636,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: MyTheme.of(context).secondaryBackground,
                       boxShadow: const [
                         BoxShadow(
                           blurRadius: 4,
@@ -649,7 +649,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                       ],
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        color: MyTheme.of(context).primaryBackground,
                         width: 1,
                       ),
                     ),
@@ -660,7 +660,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         maxWidth: 570,
                       ),
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: MyTheme.of(context).secondaryBackground,
                         boxShadow: const [
                           BoxShadow(
                             blurRadius: 3,
@@ -673,7 +673,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         ],
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: MyTheme.of(context).alternate,
                           width: 1,
                         ),
                       ),
@@ -701,7 +701,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         Text(
                                           'Call History',
                                           textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: MyTheme.of(context)
                                               .titleLarge
                                               .override(
                                                 fontFamily: 'Inter',
@@ -710,7 +710,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         ),
                                         Text(
                                           'A list of historical transactions',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: MyTheme.of(context)
                                               .labelMedium
                                               .override(
                                                 fontFamily: 'Inter',
@@ -835,7 +835,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                       maxHeight: 500,
                     ),
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: MyTheme.of(context).secondaryBackground,
                       boxShadow: const [
                         BoxShadow(
                           blurRadius: 4,
@@ -860,7 +860,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                             child: Text(
                               'Recent Activity',
-                              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                              style: MyTheme.of(context).headlineSmall.override(
                                 fontFamily: 'Readex Pro',
                                 letterSpacing: 0,
                               ),
@@ -870,7 +870,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 0, 0),
                             child: Text(
                               'Below is an overview of tasks & activity completed.',
-                              style: FlutterFlowTheme.of(context).labelMedium.override(
+                              style: MyTheme.of(context).labelMedium.override(
                                 fontFamily: 'Inter',
                                 fontSize: 18,
                                 letterSpacing: 0,
@@ -894,14 +894,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               ], // Replace with actual x-axis data
                                               yData: [20.0, 25.0, 30.0, 35.0, 40.0],
                                     settings: LineChartBarData(
-                                      color: FlutterFlowTheme.of(context).tertiary,
+                                      color: MyTheme.of(context).tertiary,
                                       barWidth: 2,
                                       isCurved: true,
                                       preventCurveOverShooting: true,
                                       dotData: FlDotData(show: false),
                                       belowBarData: BarAreaData(
                                         show: true,
-                                        color: FlutterFlowTheme.of(context).accent1,
+                                        color: MyTheme.of(context).accent1,
                                       ),
                                     ),
                                   )
@@ -911,7 +911,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                 xAxisLabelInfo: AxisLabelInfo(
                                   title: 'Last 30 Days',
                                   titleTextStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium.override(
+                                  MyTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
                                     fontSize: 20,
                                     letterSpacing: 0,
@@ -920,7 +920,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                 yAxisLabelInfo: AxisLabelInfo(
                                   title: 'Messeges Sent',
                                   titleTextStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium.override(
+                                  MyTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
                                     letterSpacing: 0,
                                   ),
@@ -954,7 +954,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
       // Request permission to access call logs
       var permissionStatus = await Permission.phone.request();
       if (permissionStatus != PermissionStatus.granted) {
-        print('Permission to access call logs not granted');
+        debugPrint('Permission to access call logs not granted');
         return;
       }
 
@@ -982,12 +982,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
       // Output the counts
       totalcalls = incomingCalls + outgoingCalls + missedCalls;
-      print(totalcalls);
-      print('Incoming calls: $incomingCalls');
-      print('Outgoing calls: $outgoingCalls');
-      print('Missed calls: $missedCalls');
+      debugPrint('Total Calls: $totalcalls');
+      debugPrint('Incoming calls: $incomingCalls');
+      debugPrint('Outgoing calls: $outgoingCalls');
+      debugPrint('Missed calls: $missedCalls');
     } catch (e) {
-      print('Error retrieving call logs: $e');
+      debugPrint('Error retrieving call logs: $e');
     }
   }
 
@@ -1009,19 +1009,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     switch (callType) {
       case CallType.incoming:
-        print('Incoming call');
+        debugPrint('Incoming call');
         return 'incoming';
       case CallType.outgoing:
-        print('Outgoing call');
+        debugPrint('Outgoing call');
         return 'outgoing';
       case CallType.missed:
-        print('Missed call');
+        debugPrint('Missed call');
         return 'missed';
       case CallType.rejected:
-        print('Rejected call');
+        debugPrint('Rejected call');
         return 'rejected';
       case CallType.blocked:
-        print('Blocked call');
+        debugPrint('Blocked call');
         return 'blocked';
       default:
         return 'Unknown call type';

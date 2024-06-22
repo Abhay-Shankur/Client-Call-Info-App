@@ -111,11 +111,9 @@ class WebPageEditorModel extends FlutterFlowModel<WebPageEditorWidget> {
         firestore.closeConnection();
         throw Exception('Firebase Auth not Found');
       }
-      firestore.closeConnection();
-      return false;
     } catch(e) {
       debugPrint('$e');
-    }
+    } 
     return false;
   }
 }

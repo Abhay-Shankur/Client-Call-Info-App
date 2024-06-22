@@ -37,9 +37,9 @@ class WeHelpPageModel extends FlutterFlowModel<WeHelpPageWidget> {
 
   Future<bool> save(BuildContext context) async {
     try {
-      String heading = textController1!.value.text ?? '';
+      String heading = textController1?.value.text ?? '';
       heading.trim();
-      String desc = textController2!.value.text ?? '';
+      String desc = textController2?.value.text ?? '';
       desc.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       if(domain.isNotEmpty) {

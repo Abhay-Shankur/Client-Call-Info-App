@@ -36,16 +36,16 @@ class WebImageGalleyModel extends FlutterFlowModel<WebImageGalleyWidget> {
 
   Future<bool> addLink(BuildContext context) async {
     try {
-      String link = emailAddressTextController!.value.text ?? '';
+      String link = emailAddressTextController?.value.text ?? '';
       link.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
       if(domain.isNotEmpty) {
         if(link.isNotEmpty) {
           FirestoreHandler firestore = FirestoreHandler();
           await firestore.pushToArray("Website", domain, "Gallery.Photos", link);
-          List<String> listLink = Provider.of<WebPhotoGalleryProvider>(context, listen: false).list;
-          listLink.add(link);
-          Provider.of<WebPhotoGalleryProvider>(context, listen: false).updateList(listLink);
+          // List<String> listLink = Provider.of<WebPhotoGalleryProvider>(context, listen: false).list;
+          // listLink.add(link);
+          Provider.of<WebPhotoGalleryProvider>(context, listen: false).updateList(link);
           firestore.closeConnection();
           showToast(context: context, type: ToastificationType.success, title: 'Image Gallery', desc: 'Information have been saved.');
         } else {

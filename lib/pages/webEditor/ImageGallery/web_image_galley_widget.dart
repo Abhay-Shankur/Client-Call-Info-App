@@ -1,5 +1,6 @@
 import 'package:call_info/main.dart';
 import 'package:call_info/providers/webEditor/gallery/photo_gallery_provider.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/list_view/list_view_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class WebImageGalleyWidget extends StatefulWidget {
 
 class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
   late WebImageGalleyModel _model;
-  bool _saving = false;
+  // bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -45,9 +46,9 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: MyTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: MyTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -56,7 +57,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
             buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               size: 30,
             ),
             onPressed: () async {
@@ -65,9 +66,9 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
           ),
           title: Text(
             'Image Gallery',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: MyTheme.of(context).headlineMedium.override(
               fontFamily: 'Outfit',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: MyTheme.of(context).primaryText,
               fontSize: 22,
               letterSpacing: 0,
             ),
@@ -89,7 +90,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                     padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 16),
                     child: Text(
                       'Add link of  your image asset from google drive to  be shown on website',
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                      style: MyTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0,
                       ),
@@ -114,15 +115,15 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Your link here...',
-                                  labelStyle: FlutterFlowTheme.of(context)
+                                  labelStyle: MyTheme.of(context)
                                       .labelMedium
                                       .override(
                                     fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
+                                    color: MyTheme.of(context)
                                         .primaryText,
                                     letterSpacing: 0,
                                   ),
-                                  hintStyle: FlutterFlowTheme.of(context)
+                                  hintStyle: MyTheme.of(context)
                                       .labelMedium
                                       .override(
                                     fontFamily: 'Readex Pro',
@@ -130,7 +131,7 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: MyTheme.of(context)
                                           .primaryText,
                                       width: 2,
                                     ),
@@ -139,44 +140,44 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color:
-                                      FlutterFlowTheme.of(context).primary,
+                                      MyTheme.of(context).primary,
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
+                                      color: MyTheme.of(context).error,
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
+                                      color: MyTheme.of(context).error,
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   filled: true,
-                                  fillColor: FlutterFlowTheme.of(context)
+                                  fillColor: MyTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
                                   const EdgeInsetsDirectional.fromSTEB(
                                       24, 24, 20, 24),
                                 ),
-                                style: FlutterFlowTheme.of(context)
+                                style: MyTheme.of(context)
                                     .bodyMedium
                                     .override(
                                   fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context)
+                                  color: MyTheme.of(context)
                                       .primaryText,
                                   letterSpacing: 0,
                                 ),
                                 maxLines: null,
                                 keyboardType: TextInputType.emailAddress,
                                 cursorColor:
-                                FlutterFlowTheme.of(context).primaryText,
+                                MyTheme.of(context).primaryText,
                                 validator: _model
                                     .emailAddressTextControllerValidator
                                     .asValidator(context),
@@ -191,13 +192,13 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                             const EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                setState(() {
-                                  _saving = true;
-                                });
+                                // setState(() {
+                                //   _saving = true;
+                                // });
                                 await _model.addLink(context);
-                                setState(() {
-                                  _saving = false;
-                                });
+                                // setState(() {
+                                //   _saving = false;
+                                // });
                               },
                               text: 'Add Link',
                               options: FFButtonOptions(
@@ -205,12 +206,12 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                                 padding: const EdgeInsets.all(6),
                                 iconPadding:
                                 const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                textStyle: FlutterFlowTheme.of(context)
+                                color: MyTheme.of(context).primaryText,
+                                textStyle: MyTheme.of(context)
                                     .titleSmall
                                     .override(
                                   fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context)
+                                  color: MyTheme.of(context)
                                       .secondaryBackground,
                                   letterSpacing: 0,
                                 ),
@@ -232,24 +233,27 @@ class _WebImageGalleyWidgetState extends State<WebImageGalleyWidget> {
                 thickness: 2,
                 indent: 10,
                 endIndent: 10,
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: MyTheme.of(context).primaryText,
               ),
-              wrapWithModel(
-                model: _model.listViewModel,
-                updateCallback: () => setState(() {}),
-                updateOnChange: true,
-                child: Hero(
-                  tag: 'ControllerImage',
-                  transitionOnUserGestures: true,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Consumer<WebPhotoGalleryProvider> (
-                      builder: (context, value, child) {
-                        return ListViewWidget(
-                          listParams: value.list,
-                        );
-                      },
-                    )
+              Expanded(
+                flex: 1,
+                child: wrapWithModel(
+                  model: _model.listViewModel,
+                  updateCallback: () => setState(() {}),
+                  updateOnChange: true,
+                  child: Hero(
+                    tag: 'ControllerImage',
+                    transitionOnUserGestures: true,
+                    child: Material(
+                        color: Colors.transparent,
+                        child: Consumer<WebPhotoGalleryProvider> (
+                          builder: (context, value, child) {
+                            return ListViewWidget(
+                              listParams: value.list,
+                            );
+                          },
+                        )
+                    ),
                   ),
                 ),
               ),

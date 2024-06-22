@@ -93,10 +93,10 @@ class _WhtstempCopyWidgetState extends State<SMSTemplateWidget> {
                     height: 32,
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: FlutterFlowTheme.of(context).primaryText,
+                    color: MyTheme.of(context).primaryText,
                     textStyle: MyTheme.of(context).titleSmall.override(
                       fontFamily: 'Plus Jakarta Sans',
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: MyTheme.of(context).primaryBackground,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),

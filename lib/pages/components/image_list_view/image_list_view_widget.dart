@@ -117,8 +117,10 @@ class _ImageListViewWidgetState extends State<ImageListViewWidget> {
           FirestoreHandler firestore = FirestoreHandler();
           await firestore.deleteListItemAtIndexAtPath("Website", domain, type, index);
           firestore.closeConnection();
-          Provider.of<WebProductsProvider>(context, listen: false).removeAt(index);
-          showToast(context: context, type: ToastificationType.success, title: "Products List", desc: "Product has been deleted");
+          if(context.mounted) {
+            Provider.of<WebProductsProvider>(context, listen: false).removeAt(index);
+            showToast(context: context, type: ToastificationType.success, title: "Products List", desc: "Product has been deleted");
+          }
         } else {
           debugPrint('Domain not authenticated.');
           showToast(context: context, type: ToastificationType.info, title: "Products List", desc: "Please register your Domain.");
@@ -129,7 +131,9 @@ class _ImageListViewWidgetState extends State<ImageListViewWidget> {
       }
     } catch (e) {
       debugPrint('Exception : $e ');
-      showToast(context: context, type: ToastificationType.error, title: "Products List", desc: "Error occurred.");
+      if(context.mounted) {
+        showToast(context: context, type: ToastificationType.error, title: "Products List", desc: "Error occurred.");
+      }
     }
   }
 }

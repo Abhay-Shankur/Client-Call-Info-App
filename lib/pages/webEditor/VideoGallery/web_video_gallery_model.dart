@@ -34,7 +34,7 @@ class WebVideoGalleryModel extends FlutterFlowModel<WebVideoGalleryWidget> {
 
   Future<bool> addLink(BuildContext context) async {
     try {
-      String link = emailAddressTextController!.value.text ?? '';
+      String link = emailAddressTextController?.value.text ?? '';
       link.trim();
       String domain = Provider.of<WebDomainProvider>(context, listen: false).domainName;
 
@@ -42,9 +42,9 @@ class WebVideoGalleryModel extends FlutterFlowModel<WebVideoGalleryWidget> {
         if(link.isNotEmpty && domain.isNotEmpty) {
           FirestoreHandler firestore = FirestoreHandler();
           await firestore.pushToArray("Website", domain, "Gallery.Videos", link);
-          List<String> listLink = Provider.of<WebVideoGalleryProvider>(context, listen: false).list;
-          listLink.add(link);
-          Provider.of<WebVideoGalleryProvider>(context, listen: false).updateList(listLink);
+          // List<String> listLink = Provider.of<WebVideoGalleryProvider>(context, listen: false).list;
+          // listLink.add(link);
+          Provider.of<WebVideoGalleryProvider>(context, listen: false).updateList(link);
           firestore.closeConnection();
           showToast(context: context, type: ToastificationType.success, title: 'Video Gallery', desc: 'Information have been saved.');
           return true;

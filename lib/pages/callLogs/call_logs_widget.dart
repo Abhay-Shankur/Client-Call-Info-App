@@ -153,7 +153,7 @@ class CallLogsPage extends StatefulWidget {
   const CallLogsPage({super.key});
 
   @override
-  _CallLogsPageState createState() => _CallLogsPageState();
+  State<CallLogsPage> createState() => _CallLogsPageState();
 }
 
 class _CallLogsPageState extends State<CallLogsPage> {

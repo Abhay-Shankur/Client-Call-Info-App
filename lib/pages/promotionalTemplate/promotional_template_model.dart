@@ -54,10 +54,10 @@ class PromotionalTemplateModel
         return pickedFile;
       } else {
         // User canceled the picker
-        print('No file selected.');
+        debugPrint('No file selected.');
       }
     } catch (e) {
-      print('Error picking file: $e');
+      debugPrint('Error picking file: $e');
     }
     return null;
   }
@@ -67,7 +67,7 @@ class PromotionalTemplateModel
     if (pickedFile != null) {
       return pickedFile;
     } else {
-      print("Null image");
+      debugPrint("Null image");
       // Handle the case where pickedFile is null
     }
   }

@@ -43,8 +43,8 @@ class SubscriptionPageModel extends FlutterFlowModel<SubscriptionPageWidget> {
 
   Future<bool> save(BuildContext context) async {
     try {
-      String authKey = textController1!.value.text ?? '';
-      String instanceId = textController2!.value.text ?? '';
+      String authKey = textController1?.value.text ?? '';
+      String instanceId = textController2?.value.text ?? '';
       String uid = FirebaseAuthHandler.getUid() ?? '';
       if(uid.isNotEmpty && authKey.isNotEmpty && instanceId.isNotEmpty) {
         FirestoreHandler firestore = FirestoreHandler();

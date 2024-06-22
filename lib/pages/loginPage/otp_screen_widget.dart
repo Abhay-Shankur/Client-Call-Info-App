@@ -18,7 +18,7 @@ class OTPScreenWidget extends StatefulWidget {
 class _OTPScreenWidgetState extends State<OTPScreenWidget>
     with TickerProviderStateMixin {
   late OTPScreenModel _model;
-  bool _saving = false;
+  // bool _saving = false;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -274,13 +274,13 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  setState(() {
-                                    _saving = true;
-                                  });
-                                  await _model.verifyOtp(context);
-                                  setState(() {
-                                    _saving = false;
-                                  });
+                                  // setState(() {
+                                  //   _saving = true;
+                                  // });
+                                  await _model.verifyOtp(context, nextRoute: RouteKeys.vendorDashboard);
+                                  // setState(() {
+                                  //   _saving = false;
+                                  // });
                                   // navigator.currentState?.pushNamed(routeKeys.vendorDashboard);
                                 },
                                 text: 'Submit',

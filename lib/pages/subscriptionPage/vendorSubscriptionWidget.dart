@@ -1,4 +1,5 @@
 import 'package:call_info/handlers/shared_preferences_helper.dart';
+import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -79,9 +80,9 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
         children: [
           Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: MyTheme.of(context).secondaryBackground,
             appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              backgroundColor: MyTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: true,
               leading: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
@@ -90,7 +91,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                 buttonSize: 60,
                 icon: Icon(
                   Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: MyTheme.of(context).primaryText,
                   size: 30,
                 ),
                 onPressed: () async {
@@ -114,7 +115,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                       maxWidth: 670,
                     ),
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: MyTheme.of(context).secondaryBackground,
                     ),
                     alignment: const AlignmentDirectional(0, -1),
                     child: SingleChildScrollView(
@@ -138,7 +139,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                       child: Text(
                                         'Activate Subscription',
                                         textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .displayMedium
                                             .override(
                                           fontFamily: 'Outfit',
@@ -156,7 +157,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                       child: Text(
                                         'Join us & get extream reach',
                                         textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: MyTheme.of(context)
                                             .bodyLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -178,21 +179,21 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                           },
                                           title: Text(
                                             'SMS',
-                                            style: FlutterFlowTheme.of(context).titleLarge.override(
+                                            style: MyTheme.of(context).titleLarge.override(
                                               fontFamily: 'Outfit',
                                               letterSpacing: 0,
                                             ),
                                           ),
                                           subtitle: Text(
                                             'Activate SMS Service',
-                                            style: FlutterFlowTheme.of(context).labelMedium.override(
+                                            style: MyTheme.of(context).labelMedium.override(
                                               fontFamily: 'Readex Pro',
                                               letterSpacing: 0,
                                             ),
                                           ),
-                                          tileColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                          activeColor: FlutterFlowTheme.of(context).primary,
-                                          activeTrackColor: FlutterFlowTheme.of(context).accent1,
+                                          tileColor: MyTheme.of(context).secondaryBackground,
+                                          activeColor: MyTheme.of(context).primary,
+                                          activeTrackColor: MyTheme.of(context).accent1,
                                           dense: false,
                                           controlAffinity: ListTileControlAffinity.trailing,
                                         ),
@@ -204,21 +205,21 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                           },
                                           title: Text(
                                             'WhatsApp ',
-                                            style: FlutterFlowTheme.of(context).titleLarge.override(
+                                            style: MyTheme.of(context).titleLarge.override(
                                               fontFamily: 'Outfit',
                                               letterSpacing: 0,
                                             ),
                                           ),
                                           subtitle: Text(
                                             'Activate WhatsApp Service',
-                                            style: FlutterFlowTheme.of(context).labelMedium.override(
+                                            style: MyTheme.of(context).labelMedium.override(
                                               fontFamily: 'Readex Pro',
                                               letterSpacing: 0,
                                             ),
                                           ),
-                                          tileColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                          activeColor: FlutterFlowTheme.of(context).primary,
-                                          activeTrackColor: FlutterFlowTheme.of(context).accent1,
+                                          tileColor: MyTheme.of(context).secondaryBackground,
+                                          activeColor: MyTheme.of(context).primary,
+                                          activeTrackColor: MyTheme.of(context).accent1,
                                           dense: false,
                                           controlAffinity: ListTileControlAffinity.trailing,
                                         ),
@@ -237,7 +238,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'Access token',
-                                        labelStyle: FlutterFlowTheme.of(context)
+                                        labelStyle: MyTheme.of(context)
                                             .labelLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -245,7 +246,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: MyTheme.of(context)
                                                 .alternate,
                                             width: 2,
                                           ),
@@ -256,7 +257,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         ),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: MyTheme.of(context)
                                                 .primary,
                                             width: 2,
                                           ),
@@ -268,7 +269,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         errorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color:
-                                            FlutterFlowTheme.of(context).error,
+                                            MyTheme.of(context).error,
                                             width: 2,
                                           ),
                                           borderRadius: const BorderRadius.only(
@@ -279,7 +280,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         focusedErrorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color:
-                                            FlutterFlowTheme.of(context).error,
+                                            MyTheme.of(context).error,
                                             width: 2,
                                           ),
                                           borderRadius: const BorderRadius.only(
@@ -288,13 +289,13 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                           ),
                                         ),
                                         filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
+                                        fillColor: MyTheme.of(context)
                                             .secondaryBackground,
                                         contentPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             0, 16, 16, 8),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
+                                      style: MyTheme.of(context)
                                           .bodyLarge
                                           .override(
                                         fontFamily: 'Readex Pro',
@@ -316,7 +317,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'Instance id',
-                                        labelStyle: FlutterFlowTheme.of(context)
+                                        labelStyle: MyTheme.of(context)
                                             .labelLarge
                                             .override(
                                           fontFamily: 'Readex Pro',
@@ -324,7 +325,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: MyTheme.of(context)
                                                 .alternate,
                                             width: 2,
                                           ),
@@ -335,7 +336,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         ),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: MyTheme.of(context)
                                                 .primary,
                                             width: 2,
                                           ),
@@ -347,7 +348,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         errorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color:
-                                            FlutterFlowTheme.of(context).error,
+                                            MyTheme.of(context).error,
                                             width: 2,
                                           ),
                                           borderRadius: const BorderRadius.only(
@@ -358,7 +359,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                         focusedErrorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color:
-                                            FlutterFlowTheme.of(context).error,
+                                            MyTheme.of(context).error,
                                             width: 2,
                                           ),
                                           borderRadius: const BorderRadius.only(
@@ -367,13 +368,13 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                           ),
                                         ),
                                         filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
+                                        fillColor: MyTheme.of(context)
                                             .secondaryBackground,
                                         contentPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             0, 16, 16, 8),
                                       ),
-                                      style: FlutterFlowTheme.of(context)
+                                      style: MyTheme.of(context)
                                           .bodyLarge
                                           .override(
                                         fontFamily: 'Readex Pro',
@@ -412,12 +413,12 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                   const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                   iconPadding:
                                   const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                  color: FlutterFlowTheme.of(context).primaryText,
-                                  textStyle: FlutterFlowTheme.of(context)
+                                  color: MyTheme.of(context).primaryText,
+                                  textStyle: MyTheme.of(context)
                                       .titleMedium
                                       .override(
                                     fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
+                                    color: MyTheme.of(context)
                                         .secondaryBackground,
                                     letterSpacing: 0,
                                   ),
@@ -428,7 +429,7 @@ class _ActiveSubscriptionWidgetState extends State<ActiveSubscriptionWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(50),
                                   hoverColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  MyTheme.of(context).primaryText,
                                 ),
                               ),
                             ),
