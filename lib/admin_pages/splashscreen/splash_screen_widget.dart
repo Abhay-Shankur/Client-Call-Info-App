@@ -114,18 +114,20 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
 
-    checkAuth();
   }
 
-  Future<void> checkAuth() async {
+  Future<bool?> _initializeProviders() async {
     try {
-      if(await FirebaseAuthHandler(context: context).checkLoginStatus()) {
-        navigator.currentState!.pushReplacementNamed(RouteKeys.homePage);
+      final isLogin = await FirebaseAuthHandler(context: navigator.currentState!.context).checkLoginStatus();
+      if(isLogin) {
+        final status = await Provider.of<VendorsListProvider>(context, listen: false).initialize();
+        return status;
       } else {
-        navigator.currentState!.pushReplacementNamed(RouteKeys.login);
+        return false;
       }
-    } catch (e) {
+    } catch (e){
       debugPrint("Exception: $e");
+      return null;
     }
   }
 
@@ -136,32 +138,41 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     super.dispose();
   }
 
-  Future<void> initializeProviders(BuildContext context) async {
-    Provider.of<VendorsListProvider>(context, listen: false);
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
-      child: screen(),
-      // child: FutureBuilder(
-      //   future: initializeProviders(context),
-      //   builder: (context, snapshot) {
-      //     if(snapshot.connectionState == ConnectionState.waiting) {
-      //       return screen();
-      //     } else {
-      //       navigator.currentState!.pushReplacementNamed(RouteKeys.homePage);
-      //       return Container();
-      //     }
-      //   },
-      // ),
+      // child: screen(),
+      child: FutureBuilder(
+        future: _initializeProviders(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Scaffold(
+              body: Center(
+                child: Text('Error Please Try Again.'),
+              ),
+            );
+          } else if (snapshot.data == false) {
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.login, (route) => false);
+            });
+            return const Scaffold();
+          } else if ((snapshot.connectionState == ConnectionState.done) && snapshot.data == true) {
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.homePage, (route) => false);
+            });
+            return const Scaffold();
+          } else {
+            return getScreen();
+          }
+        },
+      ),
     );
   }
 
-  Scaffold screen() {
+  Scaffold getScreen() {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,

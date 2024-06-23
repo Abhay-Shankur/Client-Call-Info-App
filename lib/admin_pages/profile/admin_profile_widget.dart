@@ -1,7 +1,10 @@
+import 'package:app/firebaseHandlers/firebase_auth.dart';
 import 'package:app/main.dart';
+import 'package:app/providers/vendors/vendors_provider.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 
 import 'admin_profile_model.dart';
 export 'admin_profile_model.dart';
@@ -264,14 +267,19 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                     color: FlutterFlowTheme.of(context).alternate,
                   ).animateOnPageLoad(
                       animationsMap['dividerOnPageLoadAnimation']!),
-                  Text(
-                    '0',
-                    style: FlutterFlowTheme.of(context).displayMedium.override(
-                      fontFamily: 'Readex Pro',
-                      letterSpacing: 0,
-                    ),
-                  ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation2']!),
+                  Consumer<VendorsListProvider>(
+                      builder: (_, value, child) {
+                        int count = value.vendors.length;
+                        return Text(
+                          count.toString(),
+                          style: FlutterFlowTheme.of(context).displayMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0,
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['textOnPageLoadAnimation2']!);
+                      }
+                  ),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 16),
                     child: Text(
@@ -333,6 +341,12 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                 child: FFButtonWidget(
                   onPressed: () async {
                     //TODO: Logout
+                    await FirebaseAuthHandler(context: context)
+                        .signOut(
+                            () async {
+                              navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.splash, (route) => false);
+                            }
+                        );
                     // GoRouter.of(context).prepareAuthEvent();
                     // await authManager.signOut();
                     // GoRouter.of(context).clearRedirectLocation();

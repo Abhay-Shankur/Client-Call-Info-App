@@ -2,6 +2,7 @@ import 'package:app/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'add_number_widget.dart' show AddNumberWidget;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddNumberModel extends FlutterFlowModel<AddNumberWidget> {
   ///  State fields for stateful widgets in this component.
@@ -32,6 +33,7 @@ class AddNumberModel extends FlutterFlowModel<AddNumberWidget> {
         };
         await firestoreHandler.updateFirestoreData("ADMIN", "USERS", data);
         debugPrint('Value Updated');
+        Get.showSnackbar(const GetSnackBar(message: "Vendor Added Successfully"));
       }
       firestoreHandler.closeConnection();
     } catch (e) {

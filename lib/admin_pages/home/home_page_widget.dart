@@ -191,54 +191,84 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ],
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: FutureBuilder(
-                    future: _model.getVendors(),
-                    builder: (context, snapshot) {
-                      // Check the state of the Future
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        // While the data is loading, show a loading indicator
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        // If there's an error, display it
-                        return Center(child: Text('Error: ${snapshot.error}'));
-                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        // If no data is returned, display a message
-                        return const Center(child: Text('No data available'));
+                child: Consumer<VendorsListProvider>(
+                    builder: (context, model, child) {
+                      Map<String, dynamic> listItems = model.vendors;
+                      final listIds = listItems.keys.toList();
+                      // final listIds = snapshot.data!;
+                      if(listItems.isEmpty) {
+                        return Container();
                       } else {
-                        // return Container();
-                        // If the data is available, display the list
-                        return Consumer<VendorsListProvider>(
-                            builder: (context, model, child) {
-                              Map<String, dynamic> listItems = model.vendors;
-                              final listIds = snapshot.data!;
-                              if(listItems.isEmpty) {
-                                return Container();
-                              } else {
-                                return SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: List.generate(listIds.length, (listIdsIndex) {
-                                      final listItemsItem = listItems[listIds[listIdsIndex]];
-                                      if(listItemsItem != null ) {
-                                        return VendorItemWidget(
-                                          key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
-                                          id: listIds[listIdsIndex],
-                                          value: listItemsItem,
-                                        );
-                                      } else {
-                                        return Container();
-                                      }
-                                    })
-                                        .divide(const SizedBox(height: 5))
-                                        .around(const SizedBox(height: 5)),
-                                  ),
+                        return SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: List.generate(listIds.length, (listIdsIndex) {
+                              final listItemsItem = listItems[listIds[listIdsIndex]];
+                              if(listItemsItem != null ) {
+                                return VendorItemWidget(
+                                  key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
+                                  id: listIds[listIdsIndex],
+                                  value: listItemsItem,
                                 );
+                              } else {
+                                return Container();
                               }
-                            }
+                            })
+                                .divide(const SizedBox(height: 5))
+                                .around(const SizedBox(height: 5)),
+                          ),
                         );
                       }
                     }
                 ),
+                // child: FutureBuilder(
+                //     future: _model.getVendors(),
+                //     builder: (context, snapshot) {
+                //       // Check the state of the Future
+                //       if (snapshot.connectionState == ConnectionState.waiting) {
+                //         // While the data is loading, show a loading indicator
+                //         return const Center(child: CircularProgressIndicator());
+                //       } else if (snapshot.hasError) {
+                //         // If there's an error, display it
+                //         return Center(child: Text('Error: ${snapshot.error}'));
+                //       } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                //         // If no data is returned, display a message
+                //         return const Center(child: Text('No data available'));
+                //       } else {
+                //         // return Container();
+                //         // If the data is available, display the list
+                //         return Consumer<VendorsListProvider>(
+                //             builder: (context, model, child) {
+                //               Map<String, dynamic> listItems = model.vendors;
+                //               final listIds = snapshot.data!;
+                //               if(listItems.isEmpty) {
+                //                 return Container();
+                //               } else {
+                //                 return SingleChildScrollView(
+                //                   child: Column(
+                //                     mainAxisSize: MainAxisSize.max,
+                //                     children: List.generate(listIds.length, (listIdsIndex) {
+                //                       final listItemsItem = listItems[listIds[listIdsIndex]];
+                //                       if(listItemsItem != null ) {
+                //                         return VendorItemWidget(
+                //                           key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
+                //                           id: listIds[listIdsIndex],
+                //                           value: listItemsItem,
+                //                         );
+                //                       } else {
+                //                         return Container();
+                //                       }
+                //                     })
+                //                         .divide(const SizedBox(height: 5))
+                //                         .around(const SizedBox(height: 5)),
+                //                   ),
+                //                 );
+                //               }
+                //             }
+                //         );
+                //       }
+                //     }
+                // ),
               ),
             ),
           ],
