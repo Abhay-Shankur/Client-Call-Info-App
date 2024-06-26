@@ -1,10 +1,11 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
+import 'package:call_info/main.dart';
 import 'package:call_info/pages/components/image_list_tile/image_list_tile_widget.dart';
+import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_product_add_widget.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -87,7 +88,8 @@ class _ImageListViewWidgetState extends State<ImageListViewWidget> {
                     productPrice: listParamsItem.productPrice,
                     productDescription: listParamsItem.productDescription,
                     editFunc: () async {
-                      debugPrint('Editing at Index: $listParamsIndex');
+                      // debugPrint('Editing at Index: $listParamsIndex');
+                      editFunc(type: 'ProductsList', index: listParamsIndex, context: context);
                     },
                     deleteFunc: () async {
                       deleteFunc(type: 'ProductsList', index: listParamsIndex, context: context);
@@ -105,6 +107,11 @@ class _ImageListViewWidgetState extends State<ImageListViewWidget> {
 
   Future<void> editFunc({required String type, required int index, required BuildContext context}) async {
     debugPrint('Type: $type, Index: $index');
+    navigator.currentState!.push(
+      MaterialPageRoute(
+        builder: (context) => WebProductsAddWidget(id: index),
+      ),
+    );
   }
 
   Future<void> deleteFunc({required String type, required int index, required BuildContext context}) async {

@@ -3,6 +3,8 @@
 import 'dart:async';
 
 import 'package:call_info/handlers/shared_preferences_helper.dart';
+import 'package:call_info/handlers/sms_handler.dart';
+import 'package:call_info/handlers/wp_handler.dart';
 import 'package:call_info/providers/repeat/repeat_numbers_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
 import 'package:call_info/util/date_utils.dart';
@@ -38,7 +40,7 @@ class CallHandler {
         //   _showNotification("",title: "Subscription",desc: "Service Error."); // Send notification
         // }
         else if(_callType == 'Ongoing' && isServiceAvailable && isRepeatOver) {
-          _showNotification("Executing on call type: Ongoing");
+          // _showNotification("Executing on call type: Ongoing");
           // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
           //   _showNotification("WhatsApp Sent Successfully");
           //   setNumberRepeat();
@@ -49,18 +51,18 @@ class CallHandler {
           //   setNumberRepeat();
           // }
         } else if(_callType == 'Missed'  && isServiceAvailable && isRepeatOver) {
-          _showNotification("Executing on call type: Missed");
-          // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
-          //   _showNotification("WhatsApp Sent Successfully");
-          //   setNumberRepeat();
-          // }
-          //
-          // if(await SmsHandler.sendMessage(_phoneNumber!)) {
-          //   _showNotification("SMS Sent Successfully");
-          //   setNumberRepeat();
-          // }
+          // _showNotification("Executing on call type: Missed");
+          if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
+            _showNotification("WhatsApp Sent Successfully");
+            setNumberRepeat();
+          }
+
+          if(await SmsHandler.sendMessage(_phoneNumber!)) {
+            _showNotification("SMS Sent Successfully");
+            setNumberRepeat();
+          }
         } else if(_callType == 'Incoming'  && isServiceAvailable && isRepeatOver) {
-          _showNotification("Executing on call type: Incoming");
+          // _showNotification("Executing on call type: Incoming");
           // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
           //   _showNotification("WhatsApp Sent Successfully");
           //   setNumberRepeat();

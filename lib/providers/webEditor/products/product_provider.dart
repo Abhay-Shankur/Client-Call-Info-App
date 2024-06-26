@@ -7,6 +7,12 @@ class Product {
   String? _productName;
   String? _productPrice;
   String? _productDescription;
+// Default constructor
+  Product({String? imagePath, String? productName, String? productPrice, String? productDescription})
+      : _imagePath = imagePath,
+        _productName = productName,
+        _productPrice = productPrice,
+        _productDescription = productDescription;
 
   String get imagePath => _imagePath!;
 
@@ -39,6 +45,16 @@ class Product {
       'productPrice': _productPrice,
       'productDescription': _productDescription,
     };
+  }
+
+  // Factory constructor to create object from map
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      imagePath: map['imagePath'],
+      productName: map['productName'],
+      productPrice: map['productPrice'],
+      productDescription: map['productDescription'],
+    );
   }
 
 }

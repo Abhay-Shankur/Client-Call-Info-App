@@ -33,7 +33,7 @@ dependencies:
     flutterflow_ui: ^0.2.0+1
     connectivity_plus: any
     mock_data: ^2.0.1
-    permission_handler: ^11.3.0
+    permission_handler: ^11.3.1
     badges: ^3.1.2
     flutter_animate: 4.1.1+1
     flutter_keyboard_visibility: any

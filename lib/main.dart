@@ -4,6 +4,7 @@ import 'dart:developer' as developer;
 
 import 'package:call_info/handlers/call_handler.dart';
 import 'package:call_info/handlers/check_connection_stream.dart';
+import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/pages/blocklistPage/blocked_list_widget.dart';
 import 'package:call_info/pages/callLogs/call_logs_widget.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
@@ -48,6 +49,8 @@ import 'package:call_info/providers/webEditor/services/services_provider.dart';
 import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -61,7 +64,7 @@ import 'firebase_options.dart';
 late final FirebaseApp app;
 final navigator = GlobalKey<NavigatorState>();
 
-Future<void> main() async {
+void main() async {
   //Widgets Initializations.
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -82,21 +85,22 @@ Future<void> main() async {
   //   // Update UI or perform any other actions based on call type
   // });
 
-  // // Crashlytics
-  // FlutterError.onError = (errorDetails) {
-  //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  // };
-  // // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-  // PlatformDispatcher.instance.onError = (error, stack) {
-  //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-  //   return true;
-  // };
+  // Crashlytics
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
   // //Push Notifications
   // await FirebaseMessagingHandler().initNotifications();
 
 
-  // PermissionManager.requestAll();
+  // Check and request storage permissions
+  await PermissionManager.requestAll();
 
   runApp(const MyApp());
 
@@ -246,7 +250,7 @@ var appRoutes = {
   RouteKeys.webServicesPage : (context) => const WebServicPageWidget(),
   RouteKeys.webServicesAdd : (context) => const WebServiceAddWidget(),
   RouteKeys.webProductsPage : (context) => const WebProductsPageWidget(),
-  RouteKeys.webProductsAdd : (context) => const WebProductsAddWidget(),
+  RouteKeys.webProductsAdd : (context) => WebProductsAddWidget(),
   RouteKeys.webWeHelpPage : (context) => const WeHelpPageWidget(),
   RouteKeys.webTestimonialPage : (context) => const WebTestimonialPageWidget(),
   RouteKeys.webTestimonialAdd : (context) => const WebTestimonialAddWidget(),

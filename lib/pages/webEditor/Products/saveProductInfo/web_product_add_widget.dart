@@ -1,4 +1,7 @@
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/main.dart';
+import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +11,8 @@ import 'web_product_add_model.dart';
 export 'web_product_add_model.dart';
 
 class WebProductsAddWidget extends StatefulWidget {
-  const WebProductsAddWidget({super.key});
+  int? id;
+  WebProductsAddWidget({super.key, this.id});
 
   @override
   State<WebProductsAddWidget> createState() => _WebProductsAddWidgetState();
@@ -35,6 +39,29 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
 
     _model.descriptionTextController ??= TextEditingController();
     _model.descriptionFocusNode ??= FocusNode();
+
+
+    // _init();
+  }
+
+  Future<void> _init() async {
+    try {
+      if(widget.id != null) {
+        FirestoreHandler firestore = FirestoreHandler();
+        String? uid = FirebaseAuthHandler.getUid();
+        String domainName = await firestore.readFieldAtPath("USERS", uid!, 'webDomain');
+        List<dynamic> dynlist = await firestore.readFieldAtPath("Website", domainName, 'ProductsList') ?? [];
+        Map<String,dynamic> p = dynlist[widget.id!];
+        Product product = Product.fromMap(p);
+        _model.productNameTextController1.text = product.productName;
+        _model.productNameTextController2.text = product.productPrice;
+        _model.descriptionTextController.text = product.productDescription;
+        // _model.pickedFile
+        firestore.closeConnection();
+      }
+    } catch(e) {
+      debugPrint("Exception: $e");
+    }
   }
 
   @override
