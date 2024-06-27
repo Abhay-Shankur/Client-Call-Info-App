@@ -9,7 +9,7 @@ const extractVideoId = (url) => {
 const Gallery = ({ images, videos }) => {
 
   return (
-    <div className="gallery-section">
+    <div id="gallery-section">
       <div className="container">
 
         {/* Image Gallery */

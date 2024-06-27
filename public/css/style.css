@@ -442,6 +442,7 @@ a.more {
 }
 
 .feature h3 {
+  font-weight: 900;
   font-size: 14px;
   color: #2f2f2f;
 }
@@ -1032,13 +1033,4 @@ textarea {
   height: 50px;
   border-radius: 50%;
   background: rgba(59, 93, 80, 0.2);
-}
-
-.image-gallery, .video-gallery {
-  display: flex;
-  flex-direction: column !important;
-}
-
-p{
-  text-align: justify;
 }

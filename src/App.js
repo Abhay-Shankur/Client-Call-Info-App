@@ -1,21 +1,19 @@
-
-
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import ReactLoading from 'react-loading';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import WeHelp from './components/WeHelp';
 import Product from './components/Product';
-import Gallery from './components/Gallery'; // Import the Gallery component
+import Gallery from './components/Gallery'; 
 import Testimonial from './components/Testimonial';
 import Footer from './components/Footer';
+// import SiteHistoryOverview from './components/SiteSummary';
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import SiteHistoryOverview from './components/SiteSummary';
 
 function App(props) {
   const { id } = useParams();
@@ -42,7 +40,8 @@ function App(props) {
     // Fetch business information based on the URL path
     const fetchData = async () => {
       const db = getFirestore(initializedApp);
-      let path = id || 'callinfos';
+      // let path = id || 'callinfos';
+      let path = id || 'default';
       const docRef = doc(db, 'Website', path);
       try {
         const docSnap = await getDoc(docRef);
@@ -88,8 +87,10 @@ function App(props) {
   if (loading) {
     // return <ReactLoading type={'spinningBubbles'} color={'#000'} />;
     return (
-      <div className="spinner-grow" role="status">
-        <span className="visually-hidden">Loading...</span>
+      <div className="spinner-grow container" role="status">
+        <center>
+          <span className="visually-hidden">Loading...</span>
+        </center>
       </div>
     );
   }
@@ -108,7 +109,7 @@ function App(props) {
       {WebsiteInfo?.Gallery && <Gallery images={WebsiteInfo.Gallery?.Photos} videos={WebsiteInfo.Gallery?.Videos} />}
       {WebsiteInfo?.ProductsList && <Product data={WebsiteInfo.ProductsList} />}
       {WebsiteInfo?.Reviews && <Testimonial data={WebsiteInfo.Reviews} />}
-      <SiteHistoryOverview />
+      {/* <SiteHistoryOverview /> */}
       {/* {WebsiteInfo?.MasterData && <ContactForm data={WebsiteInfo.MasterData}/>} */}
       {(WebsiteInfo?.MasterData && WebsiteInfo?.Links) && <Footer data={WebsiteInfo.MasterData} links={WebsiteInfo.Links} />}
       {/* Add Gallery component with imageUrls and videoUrls as props */}
