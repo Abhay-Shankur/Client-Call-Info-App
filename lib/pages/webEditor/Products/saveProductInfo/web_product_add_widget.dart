@@ -1,10 +1,11 @@
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
-import 'package:call_info/main.dart';
+import 'package:call_info/main.dart' as main;
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:call_info/theme/my_theme.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'web_product_add_model.dart';
@@ -41,7 +42,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
     _model.descriptionFocusNode ??= FocusNode();
 
 
-    // _init();
+    _init();
   }
 
   Future<void> _init() async {
@@ -96,7 +97,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                   size: 30,
                 ),
                 onPressed: () async {
-                  navigator.currentState!.pop();
+                  main.navigator.currentState!.pop();
                 },
               ),
               title: Text(
@@ -173,7 +174,7 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                                                 await _model.pickFile();
                                                 debugPrint('Pick Image');
                                                 setState(() {
-                                                  imagePicked = true;
+                                                  imagePicked = _model.pickedFile!=null;
                                                 });
                                               },
                                               child: Container(
@@ -575,11 +576,18 @@ class _WebProductsAddWidgetState extends State<WebProductsAddWidget> {
                               setState(() {
                                 _saving = true;
                               });
-                              await _model.createProduct(context);
-                              setState(() {
-                                _saving = false;
-                              });
-                              navigator.currentState!.pop();
+                              if(_model.pickedFile != null) {
+                                await _model.createProduct(context);
+                                setState(() {
+                                  _saving = false;
+                                });
+                                main.navigator.currentState!.pop();
+                              } else {
+                                setState(() {
+                                  _saving = false;
+                                });
+                                Get.showSnackbar(const GetSnackBar(message: 'Please Select Image.',));
+                              }
                             },
                             text: 'Create Product',
                             options: FFButtonOptions(
