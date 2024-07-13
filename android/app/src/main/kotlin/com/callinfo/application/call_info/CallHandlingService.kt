@@ -159,17 +159,17 @@ override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
                 TelephonyManager.CALL_STATE_RINGING -> {
                     // Incoming call
                     isIncoming = true
-                    incomingNumber?.let { sendCallTypeToFlutter("Incoming", it) }
+//                    incomingNumber?.let { sendCallTypeToFlutter("Incoming", it) }
                 }
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
                     // Call in progress
                     isOngoing = true
-                    incomingNumber?.let { sendCallTypeToFlutter("Outgoing", it) }
+//                    incomingNumber?.let { sendCallTypeToFlutter("Outgoing", it) }
                 }
                 TelephonyManager.CALL_STATE_IDLE -> {
                     // Call ended
                     if (isIncoming && isOngoing) {
-                        incomingNumber?.let { sendCallTypeToFlutter("Ongoing", it) }
+                        incomingNumber?.let { sendCallTypeToFlutter("Incoming", it) }
                     } else if (isIncoming && !isOngoing) {
                         incomingNumber?.let { sendCallTypeToFlutter("Missed", it) }
                     }

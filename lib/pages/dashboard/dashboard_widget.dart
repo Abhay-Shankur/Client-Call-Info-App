@@ -24,6 +24,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
   int totalCalls = 0;
   int missedCalls = 0;
 
+  List<CallLogEntry> _callLogs = [];
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
@@ -1000,70 +1002,70 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                                child: FlutterFlowChoiceChips(
-                                  options: const [
-                                    ChipData('All'),
-                                    ChipData('Incoming '),
-                                    ChipData('Outgoing '),
-                                    ChipData('Missed')
-                                  ],
-                                  onChanged: (val) => setState(() => _model
-                                      .choiceChipsValue = val?.firstOrNull),
-                                  selectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        MyTheme.of(context).accent1,
-                                    textStyle: MyTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: MyTheme.of(context)
-                                              .primaryText,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                    iconColor: MyTheme.of(context)
-                                        .primaryText,
-                                    iconSize: 18,
-                                    elevation: 0,
-                                    borderColor:
-                                        MyTheme.of(context).primary,
-                                    borderWidth: 2,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  unselectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        MyTheme.of(context).alternate,
-                                    textStyle: MyTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: MyTheme.of(context)
-                                              .secondaryText,
-                                        ),
-                                    iconColor: MyTheme.of(context)
-                                        .secondaryText,
-                                    iconSize: 18,
-                                    elevation: 0,
-                                    borderColor:
-                                        MyTheme.of(context).alternate,
-                                    borderWidth: 2,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  chipSpacing: 8,
-                                  rowSpacing: 8,
-                                  multiselect: false,
-                                  initialized: _model.choiceChipsValue != null,
-                                  alignment: WrapAlignment.start,
-                                  controller:
-                                      _model.choiceChipsValueController ??=
-                                          FormFieldController<List<String>>(
-                                    ['All'],
-                                  ),
-                                  // wrapped: false,
-                                ),
-                              ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                              //   child: FlutterFlowChoiceChips(
+                              //     options: const [
+                              //       ChipData('All'),
+                              //       ChipData('Incoming '),
+                              //       ChipData('Outgoing '),
+                              //       ChipData('Missed')
+                              //     ],
+                              //     onChanged: (val) => setState(() => _model
+                              //         .choiceChipsValue = val?.firstOrNull),
+                              //     selectedChipStyle: ChipStyle(
+                              //       backgroundColor:
+                              //           MyTheme.of(context).accent1,
+                              //       textStyle: MyTheme.of(context)
+                              //           .bodyMedium
+                              //           .override(
+                              //             fontFamily: 'Readex Pro',
+                              //             color: MyTheme.of(context)
+                              //                 .primaryText,
+                              //             fontWeight: FontWeight.bold,
+                              //           ),
+                              //       iconColor: MyTheme.of(context)
+                              //           .primaryText,
+                              //       iconSize: 18,
+                              //       elevation: 0,
+                              //       borderColor:
+                              //           MyTheme.of(context).primary,
+                              //       borderWidth: 2,
+                              //       borderRadius: BorderRadius.circular(8),
+                              //     ),
+                              //     unselectedChipStyle: ChipStyle(
+                              //       backgroundColor:
+                              //           MyTheme.of(context).alternate,
+                              //       textStyle: MyTheme.of(context)
+                              //           .bodyMedium
+                              //           .override(
+                              //             fontFamily: 'Readex Pro',
+                              //             color: MyTheme.of(context)
+                              //                 .secondaryText,
+                              //           ),
+                              //       iconColor: MyTheme.of(context)
+                              //           .secondaryText,
+                              //       iconSize: 18,
+                              //       elevation: 0,
+                              //       borderColor:
+                              //           MyTheme.of(context).alternate,
+                              //       borderWidth: 2,
+                              //       borderRadius: BorderRadius.circular(8),
+                              //     ),
+                              //     chipSpacing: 8,
+                              //     rowSpacing: 8,
+                              //     multiselect: false,
+                              //     initialized: _model.choiceChipsValue != null,
+                              //     alignment: WrapAlignment.start,
+                              //     controller:
+                              //         _model.choiceChipsValueController ??=
+                              //             FormFieldController<List<String>>(
+                              //       ['All'],
+                              //     ),
+                              //     // wrapped: false,
+                              //   ),
+                              // ),
                               Divider(
                                 height: 2,
                                 thickness: 1,
@@ -1253,6 +1255,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                               height: 300,
                               child: FlutterFlowLineChart(
                                 data: [
+                                  //TODO : RealTime Chart
                                   FFLineChartData(
                                     xData: [
                                       1.0,
@@ -1503,7 +1506,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
       Iterable<CallLogEntry> callLogs = await CallLog.get();
 
       // Initialize counters for each call type
-
+      debugPrint("${callLogs.toList().length}");
       // Classify and count calls based on type
       for (var call in callLogs) {
         switch (call.callType) {
@@ -1534,40 +1537,40 @@ class _DashboardWidgetState extends State<DashboardWidget>
     }
   }
 
-  List<CallLogEntry> _callLogs = [];
 
   Future<void> retrieveCallLogs() async {
     if (await Permission.phone.request().isGranted) {
       var callLogs = await CallLog.get();
       setState(() {
-        _callLogs = callLogs.take(4).toList(); // Limit to top 10 call logs
+        // _callLogs = callLogs.take(4).toList(); // Limit to top 10 call logs
+        _callLogs = callLogs.toSet().toList(); // Limit to top 10 call logs
       });
     }
   }
 
-  String getMessageForCallType(CallType? callType) {
-    if (callType == null) {
-      return 'Unknown call type';
-    }
-
-    switch (callType) {
-      case CallType.incoming:
-        debugPrint('Incoming call');
-        return 'incoming';
-      case CallType.outgoing:
-        debugPrint('Outgoing call');
-        return 'outgoing';
-      case CallType.missed:
-        debugPrint('Missed call');
-        return 'missed';
-      case CallType.rejected:
-        debugPrint('Rejected call');
-        return 'rejected';
-      case CallType.blocked:
-        debugPrint('Blocked call');
-        return 'blocked';
-      default:
-        return 'Unknown call type';
-    }
-  }
+  // String getMessageForCallType(CallType? callType) {
+  //   if (callType == null) {
+  //     return 'Unknown call type';
+  //   }
+  //
+  //   switch (callType) {
+  //     case CallType.incoming:
+  //       debugPrint('Incoming call');
+  //       return 'incoming';
+  //     case CallType.outgoing:
+  //       debugPrint('Outgoing call');
+  //       return 'outgoing';
+  //     case CallType.missed:
+  //       debugPrint('Missed call');
+  //       return 'missed';
+  //     case CallType.rejected:
+  //       debugPrint('Rejected call');
+  //       return 'rejected';
+  //     case CallType.blocked:
+  //       debugPrint('Blocked call');
+  //       return 'blocked';
+  //     default:
+  //       return 'Unknown call type';
+  //   }
+  // }
 }

@@ -37,7 +37,8 @@ class SmsHandler {
 
       if(allowed) {
         if(message == null) {
-          showNotification('CALL INFOS', 'SMS Template is Empty.');
+          // showNotification('CALL INFOS', 'SMS Template is Empty.');
+          debugPrint('CALL INFOS-SMS Template is Empty.');
           return false;
         }
 

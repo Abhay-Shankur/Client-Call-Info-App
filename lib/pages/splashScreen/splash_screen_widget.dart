@@ -221,8 +221,8 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     super.initState();
     _model = createModel(context, () => SplashScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _requestPermissions();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _requestPermissions();
     });
 
     // _isLoggedIn();
@@ -264,6 +264,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
 
   Future<bool?> _initializeProviders() async {
     try {
+      // await _requestPermissions();
       final isLogin = await FirebaseAuthHandler(context: main.navigator.currentState!.context).checkLoginStatus();
       if(isLogin) {
         final status = await Provider.of<ProfileProvider>(context, listen: false).initialize();

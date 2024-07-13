@@ -1,6 +1,7 @@
 // call_handler.dart
 
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:call_info/handlers/sms_handler.dart';
@@ -8,6 +9,7 @@ import 'package:call_info/handlers/wp_handler.dart';
 import 'package:call_info/providers/repeat/repeat_numbers_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
 import 'package:call_info/util/date_utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -39,8 +41,9 @@ class CallHandler {
         //   // _showNotification(_callType); // Send notification
         //   _showNotification("",title: "Subscription",desc: "Service Error."); // Send notification
         // }
-        else if(_callType == 'Ongoing' && isServiceAvailable && isRepeatOver) {
+        else if(_callType == 'Outgoing' && isServiceAvailable && isRepeatOver) {
           // _showNotification("Executing on call type: Ongoing");
+          debugPrint("Executing on call type: Outgoing");
           // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
           //   _showNotification("WhatsApp Sent Successfully");
           //   setNumberRepeat();
@@ -53,25 +56,30 @@ class CallHandler {
         } else if(_callType == 'Missed'  && isServiceAvailable && isRepeatOver) {
           // _showNotification("Executing on call type: Missed");
           if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
-            _showNotification("WhatsApp Sent Successfully");
+            // _showNotification("WhatsApp Sent Successfully");
+            debugPrint("Executing on call type: Missed");
             setNumberRepeat();
           }
 
           if(await SmsHandler.sendMessage(_phoneNumber!)) {
-            _showNotification("SMS Sent Successfully");
+            // _showNotification("SMS Sent Successfully");
+            debugPrint("Executing on call type: Missed");
             setNumberRepeat();
           }
         } else if(_callType == 'Incoming'  && isServiceAvailable && isRepeatOver) {
           // _showNotification("Executing on call type: Incoming");
-          // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
-          //   _showNotification("WhatsApp Sent Successfully");
-          //   setNumberRepeat();
-          // }
-          //
-          // if(await SmsHandler.sendMessage(_phoneNumber!)) {
-          //   _showNotification("SMS Sent Successfully");
-          //   setNumberRepeat();
-          // }
+
+          if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
+            // _showNotification("WhatsApp Sent Successfully");
+            debugPrint("Executing on call type: Incoming");
+            setNumberRepeat();
+          }
+
+          if(await SmsHandler.sendMessage(_phoneNumber!)) {
+            // _showNotification("SMS Sent Successfully");
+            debugPrint("Executing on call type: Incoming");
+            setNumberRepeat();
+          }
         } else if(isRepeatOver && isServiceAvailable){
           debugPrint("Number is set to Repeat.");
         }
@@ -155,7 +163,8 @@ class CallHandler {
     InitializationSettings(android: initializationSettingsAndroid);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    const int insistentFlag = 4;
+    AndroidNotificationDetails androidPlatformChannelSpecifics =
     AndroidNotificationDetails(
       'com.callinfo.application.call_info',
       'Call Infos',
@@ -163,8 +172,9 @@ class CallHandler {
       importance: Importance.max,
       priority: Priority.high,
       showWhen: false,
+      additionalFlags: Int32List.fromList(<int>[insistentFlag]),
     );
-    const NotificationDetails platformChannelSpecifics =
+    NotificationDetails platformChannelSpecifics =
     NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
       randomInteger(0, 100),

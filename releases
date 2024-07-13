@@ -186,3 +186,9 @@ Completed handling Calls Action.
 Themed App (Revised)
 Fixed Item Overflow. (Revised)
 Fixed Issues (Revised)
+
+1.0.34(Abhay):
+Modified with version 31+ for local notification.
+Sync with Incoming and Missed call identification.
+Located a stable release.
+Modified Promotional Template.

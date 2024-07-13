@@ -99,7 +99,7 @@ void main() async {
   // await FirebaseMessagingHandler().initNotifications();
 
 
-  // Check and request storage permissions
+  // // Check and request storage permissions
   await PermissionManager.requestAll();
 
   runApp(const MyApp());

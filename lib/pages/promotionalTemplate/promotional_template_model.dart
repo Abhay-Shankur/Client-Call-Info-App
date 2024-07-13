@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
@@ -26,7 +27,7 @@ class PromotionalTemplateModel
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
+  TextEditingController? textControllerMessage;
   String? Function(BuildContext, String?)? textController2Validator;
 
   /// Initialization and disposal methods.
@@ -41,7 +42,7 @@ class PromotionalTemplateModel
     textController1?.dispose();
 
     textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    textControllerMessage?.dispose();
   }
 
 /// Action blocks are added here.
@@ -68,9 +69,25 @@ class PromotionalTemplateModel
       return pickedFile;
     } else {
       debugPrint("Null image");
+      return null;
       // Handle the case where pickedFile is null
     }
   }
 
 /// Additional helper methods are added here.
+  Future<void> sendPromotionalMessage() async {
+    try {
+      await SharedPreferencesHelper.reload();
+      var val = await SharedPreferencesHelper.getString("repeatList");
+      if(val != null) {
+        Map<String,dynamic> mapList = jsonDecode(val);
+        debugPrint("Repeat List: ${mapList.toString()}");
+        for(var i in mapList.keys) {
+          debugPrint("Number : $i");
+        }
+      }
+    } catch(e) {
+      debugPrint("Exception: $e");
+    }
+  }
 }

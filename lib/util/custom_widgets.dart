@@ -81,34 +81,34 @@ void showToast(
   );
 }
 
-void showNotification(String title, String message) async {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
-  const InitializationSettings initializationSettings =
-      InitializationSettings(android: initializationSettingsAndroid);
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-  const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails(
-    'com.callinfo.application.call_info',
-    'Call Infos',
-    'Notification channel for call infos',
-    importance: Importance.max,
-    priority: Priority.high,
-    showWhen: false,
-  );
-  const NotificationDetails platformChannelSpecifics =
-      NotificationDetails(android: androidPlatformChannelSpecifics);
-  await flutterLocalNotificationsPlugin.show(
-    0,
-    title,
-    message,
-    platformChannelSpecifics,
-  );
-}
+// void showNotification(String title, String message) async {
+//   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//       FlutterLocalNotificationsPlugin();
+//
+//   const AndroidInitializationSettings initializationSettingsAndroid =
+//       AndroidInitializationSettings('@mipmap/ic_launcher');
+//   const InitializationSettings initializationSettings =
+//       InitializationSettings(android: initializationSettingsAndroid);
+//   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+//
+//   const AndroidNotificationDetails androidPlatformChannelSpecifics =
+//       AndroidNotificationDetails(
+//     'com.callinfo.application.call_info',
+//     'Call Infos',
+//     'Notification channel for call infos',
+//     importance: Importance.max,
+//     priority: Priority.high,
+//     showWhen: false,
+//   );
+//   const NotificationDetails platformChannelSpecifics =
+//       NotificationDetails(android: androidPlatformChannelSpecifics);
+//   await flutterLocalNotificationsPlugin.show(
+//     0,
+//     title,
+//     message,
+//     platformChannelSpecifics,
+//   );
+// }
 
 Map<String, dynamic> stringToMap(String str) {
   return jsonDecode(str);

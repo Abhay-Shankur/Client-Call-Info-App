@@ -15,7 +15,8 @@ class WhatsappHandler {
 
       if(allowed) {
         if(messageTemplate == null) {
-          showNotification('Call Infos', 'Whatsapp Template is Empty.');
+          // showNotification('Call Infos', 'Whatsapp Template is Empty.');
+          debugPrint('Call Infos-Whatsapp Template is Empty.');
           return false;
         }
 
