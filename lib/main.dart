@@ -3,7 +3,7 @@ import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/handlers/call_handler.dart';
 import 'package:call_info/pages/callLogs/call_logs_widget.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
-import 'package:call_info/pages/dashboard/DashboardUi.dart';
+import 'package:call_info/pages/dashboard/dashboard_widget.dart';
 import 'package:call_info/pages/editProfile/edit_profile_widget.dart';
 import 'package:call_info/pages/faqPage/faq_widget.dart';
 import 'package:call_info/pages/loginPage/login_page_widget.dart';
@@ -161,7 +161,8 @@ class _MyAppState extends State<MyApp> {
 }
 var appRoutes = {
   routeKeys.splashScreen : (context) => SplashScreenWidget(),
-  routeKeys.vendorDashboard : (context) => DashboardWidget(),
+  // routeKeys.vendorDashboard : (context) => DashboardWidget(),
+  routeKeys.vendorDashboard : (context) => DashborddemoWidget(),
   routeKeys.vendorSMSTemplate : (context) => SMSTemplateWidget(),
   routeKeys.vendorWPTemplate : (context) => WhatsappTemplateWidget(),
   routeKeys.vendorPromoTemplate : (context) => PromotionalTemplateWidget(),
@@ -193,6 +194,7 @@ var appRoutes = {
 
 class routeKeys {
   static const String splashScreen = '/splash';
+  // static const String vendorDashboard = '/vendor_dashboard';
   static const String vendorDashboard = '/vendor_dashboard';
   static const String vendorSMSTemplate = '/vendor_SMSTemplate';
   static const String vendorWPTemplate = '/vendor_WPTemplate';

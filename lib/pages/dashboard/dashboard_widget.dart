@@ -1,1030 +1,480 @@
-
-
-import 'package:call_log/call_log.dart';
-import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:call_info/theme/MyTheme.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:permission_handler/permission_handler.dart';
-
-import '../../theme/MyTheme.dart';
-import '../components/card_call/card_call_widget.dart';
-import '../editProfile/edit_profile_widget.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 import 'dashboard_model.dart';
+import '../components/grid/grid_widget.dart';
+import 'cal_log_service.dart'; // import the CallLogService
+import 'package:call_log/call_log.dart'; // import CallLogEntry
+import 'package:intl/intl.dart'; // for DateFormat
+import 'package:fl_chart/fl_chart.dart';
+
 export 'dashboard_model.dart';
 
-class DashboardWidget extends StatefulWidget {
-  const DashboardWidget({super.key});
+class DashborddemoWidget extends StatefulWidget {
+  const DashborddemoWidget({super.key});
 
   @override
-  State<DashboardWidget> createState() => _DashboardWidgetState();
+  State<DashborddemoWidget> createState() => _DashbordWidgetState();
 }
 
-class _DashboardWidgetState extends State<DashboardWidget>
-    with TickerProviderStateMixin {
-  late DashboardModel _model;
+class _DashbordWidgetState extends State<DashborddemoWidget> {
+  late DashborddemoCopyCopyModel _model;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // Variables to store call log counts
   int incomingCalls = 0;
   int outgoingCalls = 0;
-  int totalcalls = 0;
   int missedCalls = 0;
+  int totalCalls = 0;
 
+  // Variable to store the list of call logs
+  List<CallLogEntry> callLogs = [];
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  final animationsMap = {
-    'textOnPageLoadAnimation': AnimationInfo(
-          trigger: AnimationTrigger.onPageLoad,
-          effects: [
-            VisibilityEffect(duration: 600.ms),
-            FadeEffect(
-              curve: Curves.easeInOut,
-              delay: 600.ms,
-              duration: 600.ms,
-              begin: 0,
-              end: 1,
-            ),
-            MoveEffect(
-              curve: Curves.easeInOut,
-              delay: 600.ms,
-              duration: 600.ms,
-              begin: Offset(0, 30),
-              end: Offset(0, 0),
-            ),
-          ],
-        ),
-        'containerOnPageLoadAnimation1': AnimationInfo(
-          trigger: AnimationTrigger.onPageLoad,
-          effects: [
-            VisibilityEffect(duration: 1600.ms),
-            FadeEffect(
-              curve: Curves.easeInOut,
-              delay: 1600.ms,
-              duration: 600.ms,
-              begin: 0,
-              end: 1,
-            ),
-            MoveEffect(
-              curve: Curves.easeInOut,
-              delay: 1600.ms,
-              duration: 600.ms,
-              begin: Offset(0, 70),
-              end: Offset(0, 0),
-            ),
-          ],
-        ),
-        'containerOnPageLoadAnimation2': AnimationInfo(
-          trigger: AnimationTrigger.onPageLoad,
-          effects: [
-            VisibilityEffect(duration: 800.ms),
-            FadeEffect(
-              curve: Curves.easeInOut,
-              delay: 800.ms,
-              duration: 600.ms,
-              begin: 0,
-              end: 1,
-            ),
-            MoveEffect(
-              curve: Curves.easeInOut,
-              delay: 800.ms,
-              duration: 600.ms,
-              begin: Offset(0, 50),
-              end: Offset(0, 0),
-            ),
-          ],
-        ),
-    'containerOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(100, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 180.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: Offset(20, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 200.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: Offset(40, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(120, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 220.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: Offset(20, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 240.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: Offset(40, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(120, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation6': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 220.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: Offset(20, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation6': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 240.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: Offset(40, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation7': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(100, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation8': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0.8, 0.8),
-          end: Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation7': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 180.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: Offset(20, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation8': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 200.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: Offset(40, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation9': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 600.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 600.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 600.ms,
-          duration: 600.ms,
-          begin: Offset(0, 30),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation9': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1600.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 1600.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1600.ms,
-          duration: 600.ms,
-          begin: Offset(0, 70),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation10': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 800.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 800.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 800.ms,
-          duration: 600.ms,
-          begin: Offset(0, 50),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-  };
+  // Variables for 7-day call history graph
+  List<FlSpot> lineChartData = [];
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    retrieveCallLogs();
-    retrieveAndClassifyCallLogs();
-    _model = createModel(context, () => DashboardModel());
+    _model = createModel(context, () => DashborddemoCopyCopyModel());
 
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
+    // Retrieve and classify call logs on init
+    _retrieveCallLogs();
+    // Retrieve call logs for the past week
+    _retrieveCallLogsForWeek();
   }
 
-  @override
-  void dispose() {
-    _model.dispose();
+  Future<void> _retrieveCallLogs() async {
+    CallLogService callLogService = CallLogService();
+    Map<String, int> callCounts = await callLogService.retrieveAndClassifyCallLogs();
+    List<CallLogEntry> logs = await callLogService.retrieveTodayCallLogs();
 
-    super.dispose();
+    setState(() {
+      incomingCalls = callCounts['incomingCalls'] ?? 0;
+      outgoingCalls = callCounts['outgoingCalls'] ?? 0;
+      missedCalls = callCounts['missedCalls'] ?? 0;
+      totalCalls = callCounts['totalCalls'] ?? 0;
+      callLogs = logs;
+    });
+  }
+
+  Future<void> _retrieveCallLogsForWeek() async {
+    CallLogService callLogService = CallLogService();
+    List<CallLogEntry> logs = await callLogService.retrievePastWeekCallLogs();
+
+    Map<String, int> dailyCallCounts = {};
+    for (var i = 0; i < 7; i++) {
+      DateTime day = DateTime.now().subtract(Duration(days: i));
+      String dayLabel = DateFormat('EEEE').format(day);
+      dailyCallCounts[dayLabel] = 0;
+    }
+
+    for (var log in logs) {
+      DateTime logDate = DateTime.fromMillisecondsSinceEpoch(log.timestamp!);
+      String dayLabel = DateFormat('EEEE').format(logDate);
+      if (dailyCallCounts.containsKey(dayLabel)) {
+        dailyCallCounts[dayLabel] = dailyCallCounts[dayLabel]! + 1;
+      }
+    }
+
+    List<String> days = dailyCallCounts.keys.toList().reversed.toList();
+    List<double> callCounts = dailyCallCounts.values
+        .toList()
+        .reversed
+        .toList()
+        .map((e) => e.toDouble())
+        .toList();
+
+    setState(() {
+      lineChartData = List.generate(callCounts.length, (index) {
+        return FlSpot(index.toDouble(), callCounts[index]);
+      });
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
-          child: SingleChildScrollView(
-            primary: false,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
-                          child: Text(
-                            'Dashboard',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 35,
-                                  letterSpacing: 0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                          child: FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: 20,
-                            buttonSize: 58,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            icon: Icon(
-                              Icons.account_circle_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 40,
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          EditProfileWidget()));
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 160,
-                  child: Stack(
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      body: SafeArea(
+        top: true,
+        child: SingleChildScrollView(
+          primary: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                          child: ListView(
-                            padding: EdgeInsets.zero,
-                            primary: false,
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              wrapWithModel(
-                                model: _model.cardCallModel4,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget( cardTitle: 'Total Calls',
-                                  cardValue: totalcalls,
-                                  cardIcon: Icon(Icons.add_ic_call,color: Colors.white,),),
-                              ),
-                              wrapWithModel(
-                                model: _model.cardCallModel1,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget(cardTitle: 'Incoming Calls',
-                                  cardValue: incomingCalls,
-                                  cardIcon: Icon(Icons.call_received,color: Colors.white),                           ),
-                              ),
-                              wrapWithModel(
-                                model: _model.cardCallModel2,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget(
-                                  cardTitle: 'Outgoing Calls',
-                                  cardValue: outgoingCalls,
-                                  cardIcon: Icon(Icons.call_made,color: Colors.white,),
-                                ),
-                              ),
-                              wrapWithModel(
-                                model: _model.cardCallModel3,
-                                updateCallback: () => setState(() {}),
-                                child: CardCallWidget( cardTitle: 'Missed Calls',
-                                  cardValue: missedCalls,
-                                  cardIcon: Icon(Icons.call_missed,color: Colors.white,),),
-                              ),
-
-                            ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
+                        child: Text(
+                          'Dashboard',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 35,
+                            letterSpacing: 0,
+                            fontWeight: FontWeight.normal,
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                        child: FlutterFlowIconButton(
+                          borderColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: 20,
+                          fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                          icon: Icon(
+                            Icons.account_circle_outlined,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 40,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, routeKeys.settingsPage);
+                          },
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
-                  child: Text(
-                    'Current Score',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).titleLarge.override(
-                          fontFamily: 'Inter',
-                          letterSpacing: 0,
-                        ),
-                  ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation']!),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 12, 10, 16),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Color(0x1F000000),
-                          offset: Offset(
-                            0.0,
-                            2,
-                          ),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        width: 1,
-                      ),
+              ),
+              Text(
+                '     Find Your Daily Call Summary Here..',
+                style: MyTheme.of(context).labelMedium,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: GridWidget(
+                      calls: incomingCalls.toString(),
+                      calltype: 'Incoming Calls',
                     ),
-                    child: Container(
-                      width: double.infinity,
-                      height: 400,
-                      constraints: BoxConstraints(
-                        maxWidth: 570,
+                  ),
+                  Expanded(
+                    child: GridWidget(
+                      calls: outgoingCalls.toString(),
+                      calltype: 'Outgoing Calls',
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: GridWidget(
+                      calls: missedCalls.toString(),
+                      calltype: 'Missed Calls',
+                    ),
+                  ),
+                  Expanded(
+                    child: GridWidget(
+                      calls: totalCalls.toString(),
+                      calltype: 'Total Calls',
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4,
+                        color: Color(0x34090F13),
+                        offset: Offset(0.0, 2),
                       ),
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 3,
-                            color: Color(0x33000000),
-                            offset: Offset(
-                              0,
-                              1,
-                            ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 1,
+                    ],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Call Logs',
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(12),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                        Divider(
+                          thickness: 2,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
+                        Container(
+                          height: 290,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: callLogs.map((log) {
+                                return Column(
                                   children: [
-                                    SingleChildScrollView(
-                                    child:Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
+                                    Container(
+                                      margin: EdgeInsets.symmetric(
+                                          vertical: 0),
+                                      child: ListTile(
+                                        dense: true,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8),
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        leading: Icon(
+                                          log.callType == CallType.incoming
+                                              ? Icons.call_received
+                                              : log.callType ==
+                                              CallType.outgoing
+                                              ? Icons.call_made
+                                              : Icons.call_missed,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                        ),
+                                        title: Text(
+                                          log.name ?? log.number ?? 'Unknown',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                        subtitle: Row(
+                                          crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Call History',
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                letterSpacing: 0,
-                                              ),
-                                        ),
-                                        Text(
-                                          'A list of historical transactions',
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                letterSpacing: 0,
-                                              ),
-                                        ),
-                                      ].divide(SizedBox(height: 4)),
-                                    ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              Divider(
-                                height: 2,
-                                thickness: 2,
-                                color: MyTheme.of(context).alternate,
-                              ),
-                              SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    SizedBox(
-                                      // Set a specific height for the ListView to limit its height in the SingleChildScrollView
-                                      height: MediaQuery.of(context).size.height * 0.8, // Adjust the height as needed
-                                      child: ListView.builder(
-                                        padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(), // Disable ListView scrolling
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: _callLogs.length,
-                                        itemBuilder: (context, index) {
-                                          var call = _callLogs[index];
-                                          return Container(
-                                            width: 100,
-                                            height: 80,
-                                            decoration: BoxDecoration(
-                                              color: MyTheme.of(context).secondaryBackground,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 0,
-                                                  color: MyTheme.of(context).alternate,
-                                                  offset: Offset(0, 1),
-                                                )
-                                              ],
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Container(
-                                                    width: 32,
-                                                    height: 32,
-                                                    decoration: BoxDecoration(
-                                                      color: MyTheme.of(context).primaryBackground,
-                                                      borderRadius: BorderRadius.circular(8),
-                                                      border: Border.all(
-                                                        color: MyTheme.of(context).alternate,
-                                                      ),
-                                                    ),
-                                                    child: Align(
-                                                      alignment: AlignmentDirectional(0, 0),
-                                                      child: Icon(
-                                                        Icons.attach_money_rounded,
-                                                        color: MyTheme.of(context).secondaryText,
-                                                        size: 24,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                                      child: Column(
-                                                        mainAxisSize: MainAxisSize.max,
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Text(
-                                                            call.name ?? 'Unknown',
-                                                            textAlign: TextAlign.end,
-                                                            style: MyTheme.of(context).bodyMedium,
-                                                          ),
-                                                          Padding(
-                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                0, 4, 0, 0),
-                                                            child: Text(
-                                                              'Number ${call.number ?? '**** 2192'}',
-                                                              style: MyTheme.of(context).labelMedium,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                log.number?.isNotEmpty == true
+                                                    ? log.number!
+                                                    : 'Unknown',
+                                                style: FlutterFlowTheme.of(
+                                                    context)
+                                                    .bodyMedium
+                                                    .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color:
+                                                  FlutterFlowTheme.of(
+                                                      context)
+                                                      .secondaryText,
+                                                ),
                                               ),
                                             ),
-                                          );
-                                        },
+                                            Text(
+                                              '${DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(log.timestamp!))}',
+                                              style: FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyMedium
+                                                  .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: FlutterFlowTheme.of(
+                                                    context)
+                                                    .secondaryText,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        // trailing: Text(
+                                        //   '${log.duration ?? 0} sec',
+                                        //   style: FlutterFlowTheme.of(context)
+                                        //       .bodyMedium,
+                                        // ),
                                       ),
                                     ),
+                                    Divider(
+                                      height: 2,
+                                      color:
+                                      FlutterFlowTheme.of(context).accent2,
+                                    ),
                                   ],
-                                ),
-                              ),
-
-                            ],
+                                );
+                              }).toList(),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  )
-                      // .animateOnPageLoad(
-                      // animationsMap['textOnPageLoadAnimation']!),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 12, 10, 0),
-                  child: Container(
-                    width: double.infinity,
-                    constraints: BoxConstraints(
-                      minHeight: 300,
-                      maxHeight: 500,
-                    ),
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Color(0x1F000000),
-                          offset: Offset(
-                            0.0,
-                            2,
-                          ),
-                        )
                       ],
-                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child:
-                    // Generated code for this Column Widget...
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
-                            child: Text(
-                              'Recent Activity',
-                              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Readex Pro',
-                                letterSpacing: 0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 10, 0, 0),
-                            child: Text(
-                              'Below is an overview of tasks & activity completed.',
-                              style: FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Inter',
-                                fontSize: 18,
-                                letterSpacing: 0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
-                            child: Container(
-                              width: double.infinity,
-                              height: 350,
-                              child: FlutterFlowLineChart(
-                                data: [
-                                  FFLineChartData(
-                              xData: [
-                                                1.0,
-                                                2.0,
-                                                3.0,
-                                                4.0,
-                                                5.0
-                                              ], // Replace with actual x-axis data
-                                              yData: [20.0, 25.0, 30.0, 35.0, 40.0],
-                                    settings: LineChartBarData(
-                                      color: FlutterFlowTheme.of(context).tertiary,
-                                      barWidth: 2,
-                                      isCurved: true,
-                                      preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
-                                      belowBarData: BarAreaData(
-                                        show: true,
-                                        color: FlutterFlowTheme.of(context).accent1,
-                                      ),
-                                    ),
-                                  )
-                                ],
-
-                                axisBounds: AxisBounds(),
-                                xAxisLabelInfo: AxisLabelInfo(
-                                  title: 'Last 30 Days',
-                                  titleTextStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    fontSize: 20,
-                                    letterSpacing: 0,
-                                  ),
-                                ),
-                                yAxisLabelInfo: AxisLabelInfo(
-                                  title: 'Messeges Sent',
-                                  titleTextStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation2']!),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: Container(
-                    decoration: BoxDecoration(),
                   ),
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 16, 10, 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4,
+                        color: Color(0x34090F13),
+                        offset: Offset(0.0, 2),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '7-Day Call History',
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Divider(
+                          thickness: 2,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
+                        SizedBox(height: 10),
+                        if (isLoading) Center(child: CircularProgressIndicator()) else Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: SizedBox(
+                            height: 220,
+                            child: LineChart(
+                              LineChartData(
+                                gridData: FlGridData(
+                                  show: true,
+                                  drawHorizontalLine: true,
+                                  getDrawingHorizontalLine: (value) {
+                                    return FlLine(
+                                      color: const Color(0xff37434d),
+                                      strokeWidth: 1,
+                                    );
+                                  },
+                                  drawVerticalLine: true,
+                                  getDrawingVerticalLine: (value) {
+                                    return FlLine(
+                                      color: const Color(0xff37434d),
+                                      strokeWidth: 1,
+                                    );
+                                  },
+                                ),
+                                titlesData: FlTitlesData(
+                                  show: true,
+                                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      interval: 1,
+                                      getTitlesWidget: (value, meta) {
+                                        const days = [
+                                          'Mon',
+                                          'Tue',
+                                          'Wed',
+                                          'Thu',
+                                          'Fri',
+                                          'Sat',
+                                          'Sun'
+                                        ];
+                                        return Padding(
+                                          padding: const EdgeInsets.only(top:3),
+                                          child: Text(
+                                            days[value.toInt()],
+                                            style: const TextStyle(
+                                              color: Color(0xff68737d),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  leftTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      interval: 1,
+                                      getTitlesWidget: (value, meta) {
+                                        if (value == 0) {
+                                          return Text('0', style: const TextStyle(
+                                              color: Color(0xff67727d),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12));
+                                        } else if (value % 5 == 0) {
+                                          return Text('${value.toInt()}', style: const TextStyle(
+                                              color: Color(0xff67727d),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12));
+                                        }
+                                        return Text('');
+                                      },
+                                      reservedSize: 28,
+                                      // margin: 8,
+                                    ),
+                                  ),
+                                ),
+                                borderData: FlBorderData(
+                                  show: true,
+                                  border: Border.all(
+                                      color: const Color(0xff37434d),
+                                      width: 1),
+                                ),
+                                minX: 0,
+                                maxX: 6,
+                                minY: 0,
+                                maxY: lineChartData.isNotEmpty
+                                    ? (lineChartData
+                                    .map((spot) => spot.y)
+                                    .reduce((a, b) =>
+                                a > b ? a : b) +
+                                    2)
+                                    .roundToDouble()
+                                    : 10,
+                                lineBarsData: [
+                                  LineChartBarData(
+                                    spots: lineChartData,
+                                    isCurved: true,
+                                    color:Colors.blue,
+                                    barWidth: 2,
+                                    isStrokeCapRound: true,
+                                    dotData: FlDotData(show: false),
+                                    belowBarData: BarAreaData(show: false),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
-//
-  }
-
-  Future<void> retrieveAndClassifyCallLogs() async {
-    try {
-      // Request permission to access call logs
-      var permissionStatus = await Permission.phone.request();
-      if (permissionStatus != PermissionStatus.granted) {
-        print('Permission to access call logs not granted');
-        return;
-      }
-
-      // Retrieve call logs
-      Iterable<CallLogEntry> callLogs = await CallLog.get();
-
-      // Initialize counters for each call type
-
-      // Classify and count calls based on type
-      for (var call in callLogs) {
-        switch (call.callType) {
-          case CallType.incoming:
-            incomingCalls++;
-            break;
-          case CallType.outgoing:
-            outgoingCalls++;
-            break;
-          case CallType.missed:
-            missedCalls++;
-            break;
-          default:
-            break;
-        }
-      }
-
-      // Output the counts
-      totalcalls = incomingCalls + outgoingCalls + missedCalls;
-      print(totalcalls);
-      print('Incoming calls: $incomingCalls');
-      print('Outgoing calls: $outgoingCalls');
-      print('Missed calls: $missedCalls');
-    } catch (e) {
-      print('Error retrieving call logs: $e');
-    }
-  }
-
-    List<CallLogEntry> _callLogs = [];
-
-    Future<void> retrieveCallLogs() async {
-      if (await Permission.phone.request().isGranted) {
-        var callLogs = await CallLog.get();
-        setState(() {
-          _callLogs = callLogs.take(10).toList(); // Limit to top 10 call logs
-        });
-      }
-    }
-
-  String getMessageForCallType(CallType? callType) {
-    if (callType == null) {
-      return 'Unknown call type';
-    }
-
-    switch (callType) {
-      case CallType.incoming:
-        print('Incoming call');
-        return 'incoming';
-      case CallType.outgoing:
-        print('Outgoing call');
-        return 'outgoing';
-      case CallType.missed:
-        print('Missed call');
-        return 'missed';
-      case CallType.rejected:
-        print('Rejected call');
-        return 'rejected';
-      case CallType.blocked:
-        print('Blocked call');
-        return 'blocked';
-      default:
-        return 'Unknown call type';
-    }
   }
 }

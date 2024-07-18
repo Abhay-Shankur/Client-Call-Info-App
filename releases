@@ -1,47 +1,47 @@
 1.0.3:
-Added SplashScreen
-Added CallLogs
-Added FAQ
-Added Customer Support
-Added Permission
-Added EditProfile
-Added Profile
-Added Login
-Added OTP
+Added SplashScreen.
+Added CallLogs.
+Added FAQ.
+Added Customer Support.
+Added Permission.
+Added EditProfile.
+Added Profile.
+Added Login.
+Added OTP.
 
-1.0.4(Nikhil)
-Added Dashboard
-Added Edit Profile
-Added Message Templates
-Added SMS Message Template
-Added Whatsapp Message Template
-Added Professional Templates
-Added Profile page Customer
-Connected All Pages
-Handled Overflow Error
+1.0.4(Nikhil).
+Added Dashboard.
+Added Edit Profile.
+Added Message Templates.
+Added SMS Message Template.
+Added Whatsapp Message Template.
+Added Professional Templates.
+Added Profile page Customer.
+Connected All Pages.
+Handled Overflow Error.
 
 
 1.0.5(Nikhil)
-Added Image support for Whatsapp Message Template
-Optimized Promotional Message Template Delay
+Added Image support for Whatsapp Message Template.
+Optimized Promotional Message Template Delay.
 
 1.0.6(Abhay)
-Changed Theme to MyTheme
-Structured Files
+Changed Theme to MyTheme.
+Structured Files.
 
 1.0.7(Nikhil):
-Added Dashboard Backend
-Replaced static widgets with reusable components
-Handled OnBack events
-issue in Null pointer(helped Abhay for this)
+Added Dashboard Backend.
+Replaced static widgets with reusable components.
+Handled OnBack events.
+issue in Null pointer(helped Abhay for this).
 
 1.0.8(Abhay):
-Call Identifying
-Merged both branch to "merged-branch"
+Call Identifying.
+Merged both branch to "merged-branch".
 
 1.0.9(Abhay):
-Added Handler Files
-Created SMS Handler
+Added Handler Files.
+Created SMS Handler.
 Created WhatsApp Handler.
 
 1.0.10(Abhay):
@@ -53,21 +53,21 @@ Saving Data to Shared Preference.
 Able to Send through WhatsApp and SMS.
 
 1.0.11(Nikhil)
-Fixed All page routes
-Added batch to profile
+Fixed All page routes.
+Added batch to profile.
 
 1.0.12
-Upadated Ui
+Upadated Ui.
 
 1.0.12(Nikhil)
-Upadated Ui
-Added vendor Subscription module
-Added CallLog module
+Upadated Ui.
+Added vendor Subscription module.
+Added CallLog module.
 
 1.0.13(Abhay):
-Added Login Backend
-Added OTP Backend
-Added JKS
+Added Login Backend.
+Added OTP Backend.
+Added JKS.
 Managed Flow of User Login.
 
 1.0.14(Abhay):
@@ -83,22 +83,22 @@ Added Loading for necessary parts.
 Added WebEditor Page.
 
 1.0.17(Nikhil):
--Added webEditor
--Added Link Page
--Added Metadata page
--Added VideoGallery
--Added WebsiteDashboard
+-Added webEditor.
+-Added Link Page.
+-Added Metadata page.
+-Added VideoGallery.
+-Added WebsiteDashboard.
 
 1.0.18(Abhay):
 Made Compatible with Android 13.
 
 1.0.19(Nikhil)
--Added ImageGallery page
--Added Web Services Page
--Added Products Module
--Added Testimonial module
--Added We Help module
--fixed WebEditor flow
+-Added ImageGallery page.
+-Added Web Services Page.
+-Added Products Module.
+-Added Testimonial module.
+-Added We Help module.
+-fixed WebEditor flow.
 
 1.0.20(Abhay):
 Metadata Provider.
@@ -113,8 +113,8 @@ Added Provider for Add Product Page.
 Added Backend for Products Page.
 Added Backend for Add Product Page.
 
-1.0.22
--Added Permissions Backend
+1.0.22( Nikhil)
+-Added Permissions Backend.
 
 1.0.23(Abhay):
 Created ImageListView.
@@ -130,7 +130,7 @@ Added Provider for Reviews.
 Added Provider for WeHelp.
 Added Backend for Links.
 
-1.0.25(Abhay):
+1.0.25(Nikhil):
 Added Backend for WeHelp.
 Added ListTile2 and ListView2.
 Added WebService Pages.
@@ -167,3 +167,8 @@ Minor Fixes.
 Updated live control on services.
 Updated WebServiceAdd.
 Updated WeHelp.
+
+1.0.31 (Nikhil)
+Resolved Stack memory error(Dashboard).
+Added Grid component.
+Final Dashboard UI.

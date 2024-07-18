@@ -1,42 +1,36 @@
-import '/pages/components/card_call/card_call_widget.dart';
+import '../components/grid/grid_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'dashboard_widget.dart' show DashboardWidget;
+import 'dashboard_widget.dart' show DashborddemoWidget;
 import 'package:flutter/material.dart';
 
-class DashboardModel extends FlutterFlowModel<DashboardWidget> {
+class DashborddemoCopyCopyModel
+    extends FlutterFlowModel<DashborddemoWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for card_call component.
-  late CardCallModel cardCallModel1;
-  // Model for card_call component.
-  late CardCallModel cardCallModel2;
-  // Model for card_call component.
-  late CardCallModel cardCallModel3;
-  // Model for card_call component.
-  late CardCallModel cardCallModel4;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  String? get choiceChipsValue =>
-      choiceChipsValueController?.value?.firstOrNull;
-  set choiceChipsValue(String? val) =>
-      choiceChipsValueController?.value = val != null ? [val] : [];
+  // Model for grid component.
+  late GridModel gridModel1;
+  // Model for grid component.
+  late GridModel gridModel2;
+  // Model for grid component.
+  late GridModel gridModel3;
+  // Model for grid component.
+  late GridModel gridModel4;
 
   @override
   void initState(BuildContext context) {
-    cardCallModel1 = createModel(context, () => CardCallModel());
-    cardCallModel2 = createModel(context, () => CardCallModel());
-    cardCallModel3 = createModel(context, () => CardCallModel());
-    cardCallModel4 = createModel(context, () => CardCallModel());
+    gridModel1 = createModel(context, () => GridModel());
+    gridModel2 = createModel(context, () => GridModel());
+    gridModel3 = createModel(context, () => GridModel());
+    gridModel4 = createModel(context, () => GridModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    cardCallModel1.dispose();
-    cardCallModel2.dispose();
-    cardCallModel3.dispose();
-    cardCallModel4.dispose();
+    gridModel1.dispose();
+    gridModel2.dispose();
+    gridModel3.dispose();
+    gridModel4.dispose();
   }
 }
-
