@@ -192,3 +192,8 @@ Modified with version 31+ for local notification.
 Sync with Incoming and Missed call identification.
 Located a stable release.
 Modified Promotional Template.
+
+1.0.35 (Nikhil)
+Resolved Stack memory error(Dashboard).
+Added Grid component.
+Final Dashboard UI.

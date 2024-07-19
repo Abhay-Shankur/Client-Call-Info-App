@@ -9,7 +9,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
-import 'webMetadatawidget.dart' show WebMetadataPageWidget;
+import 'web_metadata_widget.dart' show WebMetadataPageWidget;
 import 'package:flutter/material.dart';
 
 class WebMetadataPageModel extends FlutterFlowModel<WebMetadataPageWidget> {

@@ -1,12 +1,14 @@
+import 'package:call_info/main.dart';
 import 'package:call_info/theme/my_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:call_log/call_log.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'package:call_info/main.dart';
-
 import 'dashboard_model.dart';
+import '../components/grid/grid_widget.dart';
+import 'cal_log_service.dart'; // import the CallLogService
+import 'package:call_log/call_log.dart'; // import CallLogEntry
+// for DateFormat
+import 'package:fl_chart/fl_chart.dart';
+
 export 'dashboard_model.dart';
 
 class DashboardWidget extends StatefulWidget {
@@ -16,1561 +18,463 @@ class DashboardWidget extends StatefulWidget {
   State<DashboardWidget> createState() => _DashboardWidgetState();
 }
 
-class _DashboardWidgetState extends State<DashboardWidget>
-    with TickerProviderStateMixin {
-  late DashborddemoCopyModel _model;
-  int incomingCalls = 0;
-  int outgoingCalls = 0;
-  int totalCalls = 0;
-  int missedCalls = 0;
-
-  List<CallLogEntry> _callLogs = [];
-
+class _DashboardWidgetState extends State<DashboardWidget> {
+  late DashboardModel _model;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'containerOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(100, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.8, 0.8),
-          end: const Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 180.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: const Offset(20, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 200.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: const Offset(40, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(120, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.8, 0.8),
-          end: const Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 220.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: const Offset(20, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 240.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: const Offset(40, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(120, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation6': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.8, 0.8),
-          end: const Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 220.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 220.ms,
-          duration: 600.ms,
-          begin: const Offset(20, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation6': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 240.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 240.ms,
-          duration: 600.ms,
-          begin: const Offset(40, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation7': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(100, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation8': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.8, 0.8),
-          end: const Offset(1, 1),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation7': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 180.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: const Offset(20, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation8': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 200.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: const Offset(40, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation9': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 600.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 600.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 600.ms,
-          duration: 600.ms,
-          begin: const Offset(0, 30),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation9': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1600.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 1600.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1600.ms,
-          duration: 600.ms,
-          begin: const Offset(0, 70),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation10': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 800.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 800.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 800.ms,
-          duration: 600.ms,
-          begin: const Offset(0, 50),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-  };
+  // Variables to store call log counts
+  int incomingCalls = 0;
+  int outgoingCalls = 0;
+  int missedCalls = 0;
+  int totalCalls = 0;
+
+  // Variable to store the list of call logs
+  List<CallLogEntry> callLogs = [];
+
+  // Variables for 7-day call history graph
+  List<FlSpot> lineChartData = [];
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DashborddemoCopyModel());
-    retrieveAndClassifyCallLogs();
-    totalCalls=incomingCalls+outgoingCalls+missedCalls;
-    retrieveCallLogs();
+    _model = createModel(context, () => DashboardModel());
+    _model.initState(context);
 
-//
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    // Retrieve and classify call logs on init
+    _retrieveCallLogs();
+    // Retrieve call logs for the past week
+    _retrieveCallLogsForWeek();
   }
 
-  @override
-  void dispose() {
-    _model.dispose();
+  Future<void> _retrieveCallLogs() async {
+    CallLogService callLogService = CallLogService();
+    Map<String, int> callCounts = await callLogService.retrieveAndClassifyCallLogs();
+    List<CallLogEntry> logs = await callLogService.retrieveTodayCallLogs();
 
-    super.dispose();
+    setState(() {
+      incomingCalls = callCounts['incomingCalls'] ?? 0;
+      outgoingCalls = callCounts['outgoingCalls'] ?? 0;
+      missedCalls = callCounts['missedCalls'] ?? 0;
+      totalCalls = callCounts['totalCalls'] ?? 0;
+      callLogs = logs;
+    });
+  }
+
+  Future<void> _retrieveCallLogsForWeek() async {
+    CallLogService callLogService = CallLogService();
+    List<CallLogEntry> logs = await callLogService.retrievePastWeekCallLogs();
+
+    Map<String, int> dailyCallCounts = {};
+    for (var i = 0; i < 7; i++) {
+      DateTime day = DateTime.now().subtract(Duration(days: i));
+      String dayLabel = DateFormat('EEEE').format(day);
+      dailyCallCounts[dayLabel] = 0;
+    }
+
+    for (var log in logs) {
+      DateTime logDate = DateTime.fromMillisecondsSinceEpoch(log.timestamp!);
+      String dayLabel = DateFormat('EEEE').format(logDate);
+      if (dailyCallCounts.containsKey(dayLabel)) {
+        dailyCallCounts[dayLabel] = dailyCallCounts[dayLabel]! + 1;
+      }
+    }
+
+    List<String> days = dailyCallCounts.keys.toList().reversed.toList();
+    List<double> callCounts = dailyCallCounts.values
+        .toList()
+        .reversed
+        .toList()
+        .map((e) => e.toDouble())
+        .toList();
+
+    setState(() {
+      lineChartData = List.generate(callCounts.length, (index) {
+        return FlSpot(index.toDouble(), callCounts[index]);
+      });
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: MyTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
-          child: SingleChildScrollView(
-            primary: false,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: const BoxDecoration(),
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
-                          child: Text(
-                            'Dashboard',
-                            textAlign: TextAlign.center,
-                            style: MyTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color:
-                                      MyTheme.of(context).primaryText,
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                          child: FlutterFlowIconButton(
-                            borderColor: MyTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: 20,
-                            fillColor: MyTheme.of(context)
-                                .secondaryBackground,
-                            icon: Icon(
-                              Icons.account_circle_outlined,
-                              color: MyTheme.of(context).primaryText,
-                              size: 40,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(context, RouteKeys.settingsPage);
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: Stack(
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      body: SafeArea(
+        top: true,
+        child: SingleChildScrollView(
+          primary: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: const BoxDecoration(),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        decoration: const BoxDecoration(),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
+                        child: Text(
+                          'Dashboard',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 35,
+                            letterSpacing: 0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                        child: ListView(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 12),
-                              child: Container(
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  color: MyTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x1F000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: MyTheme.of(context)
-                                        .primaryBackground,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12, 0, 12, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width: 60,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                          color: MyTheme.of(context)
-                                              .primaryBackground,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0, 0),
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: MyTheme.of(context)
-                                              .primary,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(12),
-                                            child: Icon(
-                                              Icons.add_ic_call,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ),
-                                          ),
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation2']!),
-                                      Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Total Calls',
-                                              style: MyTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: MyTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation1']!),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0, 8, 0, 0),
-                                              child: Text(
-                                                '$totalCalls',
-                                                style:
-                                                    MyTheme.of(context)
-                                                        .displaySmall,
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'textOnPageLoadAnimation2']!),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                                  'containerOnPageLoadAnimation1']!),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
-                              child: Container(
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  color: MyTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x1F000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: MyTheme.of(context)
-                                        .primaryBackground,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12, 0, 12, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width: 60,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                          color: MyTheme.of(context)
-                                              .primaryBackground,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0, 0),
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: MyTheme.of(context)
-                                              .primary,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(12),
-                                            child: Icon(
-                                              Icons.call_made,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ),
-                                          ),
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation4']!),
-                                      Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Outgoing Calls',
-                                              style: MyTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: MyTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation3']!),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0, 8, 0, 0),
-                                              child: Text(
-                                                '$outgoingCalls',
-                                                style:
-                                                    MyTheme.of(context)
-                                                        .displaySmall,
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'textOnPageLoadAnimation4']!),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                                  'containerOnPageLoadAnimation3']!),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
-                              child: Container(
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  color: MyTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x1F000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: MyTheme.of(context)
-                                        .primaryBackground,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12, 0, 12, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width: 60,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                          color: MyTheme.of(context)
-                                              .primaryBackground,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0, 0),
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: MyTheme.of(context)
-                                              .primary,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(12),
-                                            child: Icon(
-                                              Icons.call_missed,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ),
-                                          ),
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation6']!),
-                                      Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Missed Calls ',
-                                              style: MyTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: MyTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation5']!),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0, 8, 0, 0),
-                                              child: Text(
-                                                '$missedCalls',
-                                                style:
-                                                    MyTheme.of(context)
-                                                        .displaySmall,
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'textOnPageLoadAnimation6']!),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                                  'containerOnPageLoadAnimation5']!),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 12),
-                              child: Container(
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  color: MyTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x1F000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: MyTheme.of(context)
-                                        .primaryBackground,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12, 0, 12, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width: 60,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                          color: MyTheme.of(context)
-                                              .primaryBackground,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        alignment: const AlignmentDirectional(0, 0),
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: MyTheme.of(context)
-                                              .primary,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(12),
-                                            child: Icon(
-                                              Icons.call_received,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ),
-                                          ),
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation8']!),
-                                      Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Incoming Calls',
-                                              style: MyTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: MyTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation7']!),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0, 8, 0, 0),
-                                              child: Text(
-                                                '$incomingCalls',
-                                                style:
-                                                    MyTheme.of(context)
-                                                        .displaySmall,
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'textOnPageLoadAnimation8']!),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                                  'containerOnPageLoadAnimation7']!),
-                            ),
-                          ],
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                        child: FlutterFlowIconButton(
+                          borderColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: 20,
+                          fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                          icon: Icon(
+                            Icons.account_circle_outlined,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 40,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, RouteKeys.settingsPage);
+                          },
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 0, 0),
-                  child: Text(
-                    'Current Score',
-                    textAlign: TextAlign.start,
-                    style: MyTheme.of(context).titleLarge,
-                  ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation9']!),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 12, 10, 16),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: MyTheme.of(context).secondaryBackground,
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Color(0x1F000000),
-                          offset: Offset(0, 2),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: MyTheme.of(context).primaryBackground,
-                        width: 1,
-                      ),
+              ),
+              Text(
+                '     Find Your Daily Call Summary Here..',
+                style: MyTheme.of(context).labelMedium,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: GridWidget(
+                      calls: incomingCalls.toString(),
+                      calltype: 'Incoming Calls',
                     ),
-                    child: Container(
-                      width: 500,
-                      height: 400,
-                      constraints: const BoxConstraints(
-                        maxWidth: 570,
+                  ),
+                  Expanded(
+                    child: GridWidget(
+                      calls: outgoingCalls.toString(),
+                      calltype: 'Outgoing Calls',
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: GridWidget(
+                      calls: missedCalls.toString(),
+                      calltype: 'Missed Calls',
+                    ),
+                  ),
+                  Expanded(
+                    child: GridWidget(
+                      calls: totalCalls.toString(),
+                      calltype: 'Total Calls',
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 4,
+                        color: Color(0x34090F13),
+                        offset: Offset(0.0, 2),
                       ),
-                      decoration: BoxDecoration(
-                        color: MyTheme.of(context).secondaryBackground,
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 3,
-                            color: Color(0x33000000),
-                            offset: Offset(0, 1),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: MyTheme.of(context).alternate,
-                          width: 1,
+                    ],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Call Logs',
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      child: // Generated code for this main_column Widget...
-                          Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                        Divider(
+                          thickness: 2,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
+                        SizedBox(
+                          height: 290,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: callLogs.map((log) {
+                                return Column(
                                   children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 0),
+                                      child: ListTile(
+                                        dense: true,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8),
+                                        ),
+                                        contentPadding: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        leading: Icon(
+                                          log.callType == CallType.incoming
+                                              ? Icons.call_received
+                                              : log.callType ==
+                                              CallType.outgoing
+                                              ? Icons.call_made
+                                              : Icons.call_missed,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                        ),
+                                        title: Text(
+                                          log.name ?? log.number ?? 'Unknown',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                        subtitle: Row(
+                                          crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Call History',
-                                          textAlign: TextAlign.end,
-                                          style: MyTheme.of(context)
-                                              .titleLarge,
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                log.number?.isNotEmpty == true
+                                                    ? log.number!
+                                                    : 'Unknown',
+                                                style: FlutterFlowTheme.of(
+                                                    context)
+                                                    .bodyMedium
+                                                    .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color:
+                                                  FlutterFlowTheme.of(
+                                                      context)
+                                                      .secondaryText,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(log.timestamp!)),
+                                              style: FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyMedium
+                                                  .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: FlutterFlowTheme.of(
+                                                    context)
+                                                    .secondaryText,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        Text(
-                                          'A list of historical transactions',
-                                          style: MyTheme.of(context)
-                                              .labelMedium,
-                                        ),
-                                      ].divide(const SizedBox(height: 4)),
+                                        // trailing: Text(
+                                        //   '${log.duration ?? 0} sec',
+                                        //   style: FlutterFlowTheme.of(context)
+                                        //       .bodyMedium,
+                                        // ),
+                                      ),
+                                    ),
+                                    Divider(
+                                      height: 2,
+                                      color:
+                                      FlutterFlowTheme.of(context).accent2,
                                     ),
                                   ],
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 16, 10, 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 4,
+                        color: Color(0x34090F13),
+                        offset: Offset(0.0, 2),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '7-Day Call History',
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Divider(
+                          thickness: 2,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
+                        const SizedBox(height: 10),
+                        if (isLoading) const Center(child: CircularProgressIndicator()) else Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: SizedBox(
+                            height: 220,
+                            child: LineChart(
+                              LineChartData(
+                                gridData: FlGridData(
+                                  show: true,
+                                  drawHorizontalLine: true,
+                                  getDrawingHorizontalLine: (value) {
+                                    return FlLine(
+                                      color: const Color(0xff37434d),
+                                      strokeWidth: 1,
+                                    );
+                                  },
+                                  drawVerticalLine: true,
+                                  getDrawingVerticalLine: (value) {
+                                    return FlLine(
+                                      color: const Color(0xff37434d),
+                                      strokeWidth: 1,
+                                    );
+                                  },
                                 ),
-                              ),
-                              // Padding(
-                              //   padding:
-                              //       const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                              //   child: FlutterFlowChoiceChips(
-                              //     options: const [
-                              //       ChipData('All'),
-                              //       ChipData('Incoming '),
-                              //       ChipData('Outgoing '),
-                              //       ChipData('Missed')
-                              //     ],
-                              //     onChanged: (val) => setState(() => _model
-                              //         .choiceChipsValue = val?.firstOrNull),
-                              //     selectedChipStyle: ChipStyle(
-                              //       backgroundColor:
-                              //           MyTheme.of(context).accent1,
-                              //       textStyle: MyTheme.of(context)
-                              //           .bodyMedium
-                              //           .override(
-                              //             fontFamily: 'Readex Pro',
-                              //             color: MyTheme.of(context)
-                              //                 .primaryText,
-                              //             fontWeight: FontWeight.bold,
-                              //           ),
-                              //       iconColor: MyTheme.of(context)
-                              //           .primaryText,
-                              //       iconSize: 18,
-                              //       elevation: 0,
-                              //       borderColor:
-                              //           MyTheme.of(context).primary,
-                              //       borderWidth: 2,
-                              //       borderRadius: BorderRadius.circular(8),
-                              //     ),
-                              //     unselectedChipStyle: ChipStyle(
-                              //       backgroundColor:
-                              //           MyTheme.of(context).alternate,
-                              //       textStyle: MyTheme.of(context)
-                              //           .bodyMedium
-                              //           .override(
-                              //             fontFamily: 'Readex Pro',
-                              //             color: MyTheme.of(context)
-                              //                 .secondaryText,
-                              //           ),
-                              //       iconColor: MyTheme.of(context)
-                              //           .secondaryText,
-                              //       iconSize: 18,
-                              //       elevation: 0,
-                              //       borderColor:
-                              //           MyTheme.of(context).alternate,
-                              //       borderWidth: 2,
-                              //       borderRadius: BorderRadius.circular(8),
-                              //     ),
-                              //     chipSpacing: 8,
-                              //     rowSpacing: 8,
-                              //     multiselect: false,
-                              //     initialized: _model.choiceChipsValue != null,
-                              //     alignment: WrapAlignment.start,
-                              //     controller:
-                              //         _model.choiceChipsValueController ??=
-                              //             FormFieldController<List<String>>(
-                              //       ['All'],
-                              //     ),
-                              //     // wrapped: false,
-                              //   ),
-                              // ),
-                              Divider(
-                                height: 2,
-                                thickness: 1,
-                                color: MyTheme.of(context).alternate,
-                              ),
-                              SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    ListView.builder(
-                                      padding: const EdgeInsets.fromLTRB(
-                                        0,
-                                        12,
-                                        0,
-                                        12,
-                                      ),
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: _callLogs
-                                          .length, // Use the length of call logs list
-                                      itemBuilder: (context, index) {
-                                        var call = _callLogs[index];
-                                        return Container(
-                                          width: 100,
-                                          height: 80,
-                                          decoration: BoxDecoration(
-                                            color: MyTheme.of(context)
-                                                .secondaryBackground,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 0,
-                                                color:
-                                                    MyTheme.of(context)
-                                                        .alternate,
-                                                offset: const Offset(0, 1),
-                                              )
-                                            ],
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    12, 0, 12, 0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: 32,
-                                                  height: 32,
-                                                  decoration: BoxDecoration(
-                                                    color: MyTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                    border: Border.all(
-                                                      color:
-                                                          MyTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
-                                                  ),
-                                                  child: Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0, 0),
-                                                    child: Icon(
-                                                      Icons
-                                                          .attach_money_rounded,
-                                                      color:
-                                                          MyTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 24,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                12, 0, 0, 0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          call.name ??
-                                                              'Unknown',
-                                                          textAlign:
-                                                              TextAlign.end,
-                                                          style: MyTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      4, 0, 0),
-                                                          child: Text(
-                                                            'Number ${call.number ?? '**** 2192'}',
-                                                            style: MyTheme
-                                                                    .of(context)
-                                                                .labelMedium,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                titlesData: FlTitlesData(
+                                  show: true,
+                                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      interval: 1,
+                                      getTitlesWidget: (value, meta) {
+                                        const days = [
+                                          'Mon',
+                                          'Tue',
+                                          'Wed',
+                                          'Thu',
+                                          'Fri',
+                                          'Sat',
+                                          'Sun'
+                                        ];
+                                        return Padding(
+                                          padding: const EdgeInsets.only(top:3),
+                                          child: Text(
+                                            days[value.toInt()],
+                                            style: const TextStyle(
+                                              color: Color(0xff68737d),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
                                             ),
                                           ),
                                         );
                                       },
                                     ),
-                                  ],
+                                  ),
+                                  leftTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      interval: 1,
+                                      getTitlesWidget: (value, meta) {
+                                        if (value == 0) {
+                                          return const Text('0', style: TextStyle(
+                                              color: Color(0xff67727d),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12));
+                                        } else if (value % 5 == 0) {
+                                          return Text('${value.toInt()}', style: const TextStyle(
+                                              color: Color(0xff67727d),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12));
+                                        }
+                                        return const Text('');
+                                      },
+                                      reservedSize: 28,
+                                      // margin: 8,
+                                    ),
+                                  ),
                                 ),
+                                borderData: FlBorderData(
+                                  show: true,
+                                  border: Border.all(
+                                      color: const Color(0xff37434d),
+                                      width: 1),
+                                ),
+                                minX: 0,
+                                maxX: 6,
+                                minY: 0,
+                                maxY: lineChartData.isNotEmpty
+                                    ? (lineChartData
+                                    .map((spot) => spot.y)
+                                    .reduce((a, b) =>
+                                a > b ? a : b) +
+                                    2)
+                                    .roundToDouble()
+                                    : 10,
+                                lineBarsData: [
+                                  LineChartBarData(
+                                    spots: lineChartData,
+                                    isCurved: true,
+                                    color:Colors.blue,
+                                    barWidth: 2,
+                                    isStrokeCapRound: true,
+                                    dotData: FlDotData(show: false),
+                                    belowBarData: BarAreaData(show: false),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation9']!),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 12, 10, 0),
-                  child: Container(
-                    width: double.infinity,
-                    constraints: const BoxConstraints(
-                      minHeight: 300,
-                      maxHeight: 500,
-                    ),
-                    decoration: BoxDecoration(
-                      color: MyTheme.of(context).secondaryBackground,
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Color(0x1F000000),
-                          offset: Offset(0, 2),
-                        )
                       ],
-                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
-                            child: Text(
-                              'Recent Activity',
-                              style: MyTheme.of(context).headlineSmall,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsetsDirectional.fromSTEB(16, 10, 0, 0),
-                            child: Text(
-                              'Below is an overview of tasks & activity completed.',
-                              style: MyTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 18,
-                                  ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: 300,
-                              child: FlutterFlowLineChart(
-                                data: [
-                                  //TODO : RealTime Chart
-                                  FFLineChartData(
-                                    xData: [
-                                      1.0,
-                                      2.0,
-                                      3.0,
-                                      4.0,
-                                      5.0
-                                    ], // Replace with actual x-axis data
-                                    yData: [20.0, 25.0, 30.0, 35.0, 40.0],
-                                    settings: LineChartBarData(
-                                        color: const Color(0xFF1A1A1C),
-                                      barWidth: 2,
-                                      isCurved: true,
-                                      preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
-                                      belowBarData: BarAreaData(
-                                        show: true,
-                                        color: MyTheme.of(context)
-                                            .accent1,
-                                      ),
-                                    ),
-                                  ),
-                                  FFLineChartData(
-                                    xData: [
-                                      1.0,
-                                      2.0,
-                                      3.0,
-                                      4.0,
-                                      5.0
-                                    ], // Replace with actual x-axis data
-                                    yData: [10.0, 20.0, 15.0, 25.0, 30.0],
-                                    settings: LineChartBarData(
-                                      color: const Color(0xFF4B39EF),
-                                      barWidth: 2,
-                                      isCurved: true,
-                                      preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
-                                      belowBarData: BarAreaData(
-                                        show: true,
-                                        color: MyTheme.of(context)
-                                            .accent3,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                                // chartStylingInfo: ChartStylingInfo(
-                                //   backgroundColor:
-                                //   MyTheme.of(context).primaryText,
-                                //   showBorder: false,
-                                // ),
-                                axisBounds: const AxisBounds(),
-                                xAxisLabelInfo: AxisLabelInfo(
-                                  title: 'Last 30 Days',
-                                  titleTextStyle: MyTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 20,
-                                      ),
-                                ),
-                                yAxisLabelInfo: AxisLabelInfo(
-                                  title: 'Avg. Grade',
-                                  titleTextStyle:
-                                      MyTheme.of(context).bodyMedium,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Container(
-                                      height: 32,
-                                      constraints: const BoxConstraints(
-                                        maxHeight: 32,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: MyTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 8, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.radio_button_checked_sharp,
-                                              color:
-                                                  MyTheme.of(context)
-                                                      .primary,
-                                              size: 20,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8, 0, 0, 0),
-                                              child: Text(
-                                                'Incoming',
-                                                style:
-                                                    MyTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 18,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 32,
-                                      constraints: const BoxConstraints(
-                                        maxHeight: 32,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: MyTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 8, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.radio_button_checked_sharp,
-                                              color:
-                                                  MyTheme.of(context)
-                                                      .secondary,
-                                              size: 20,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8, 0, 0, 0),
-                                              child: Text(
-                                                'Outgoing',
-                                                style:
-                                                    MyTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 18,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 32,
-                                      constraints: const BoxConstraints(
-                                        maxHeight: 32,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: MyTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 8, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.radio_button_checked_sharp,
-                                              color:
-                                                  MyTheme.of(context)
-                                                      .tertiary,
-                                              size: 20,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8, 0, 0, 0),
-                                              child: Text(
-                                                'Missed',
-                                                style:
-                                                    MyTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 18,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation10']!),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0, 0),
-                  child: Container(
-                    decoration: const BoxDecoration(),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
-
-  Future<void> retrieveAndClassifyCallLogs() async {
-//
-    try {
-      // Request permission to access call logs
-      var permissionStatus = await Permission.phone.request();
-      if (permissionStatus != PermissionStatus.granted) {
-        debugPrint('Permission to access call logs not granted');
-        return;
-      }
-
-      // Retrieve call logs
-      Iterable<CallLogEntry> callLogs = await CallLog.get();
-
-      // Initialize counters for each call type
-      debugPrint("${callLogs.toList().length}");
-      // Classify and count calls based on type
-      for (var call in callLogs) {
-        switch (call.callType) {
-          case CallType.incoming:
-            incomingCalls++;
-            break;
-          case CallType.outgoing:
-            outgoingCalls++;
-            break;
-          case CallType.missed:
-            missedCalls++;
-            break;
-          default:
-            break;
-        }
-
-      }
-
-      // Output the counts
-      totalCalls=incomingCalls+outgoingCalls+missedCalls;
-      debugPrint('Total Calls: $totalCalls');
-      debugPrint('Incoming calls: $incomingCalls');
-      debugPrint('Outgoing calls: $outgoingCalls');
-      debugPrint('Missed calls: $missedCalls');
-
-    } catch (e) {
-      debugPrint('Error retrieving call logs: $e');
-    }
-  }
-
-
-  Future<void> retrieveCallLogs() async {
-    if (await Permission.phone.request().isGranted) {
-      var callLogs = await CallLog.get();
-      setState(() {
-        // _callLogs = callLogs.take(4).toList(); // Limit to top 10 call logs
-        _callLogs = callLogs.toSet().toList(); // Limit to top 10 call logs
-      });
-    }
-  }
-
-  // String getMessageForCallType(CallType? callType) {
-  //   if (callType == null) {
-  //     return 'Unknown call type';
-  //   }
-  //
-  //   switch (callType) {
-  //     case CallType.incoming:
-  //       debugPrint('Incoming call');
-  //       return 'incoming';
-  //     case CallType.outgoing:
-  //       debugPrint('Outgoing call');
-  //       return 'outgoing';
-  //     case CallType.missed:
-  //       debugPrint('Missed call');
-  //       return 'missed';
-  //     case CallType.rejected:
-  //       debugPrint('Rejected call');
-  //       return 'rejected';
-  //     case CallType.blocked:
-  //       debugPrint('Blocked call');
-  //       return 'blocked';
-  //     default:
-  //       return 'Unknown call type';
-  //   }
-  // }
 }

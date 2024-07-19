@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:call_info/firebaseHandlers/firebase_firestore.dart';
 import 'package:call_info/firebaseHandlers/firebase_storage.dart';
 import 'package:call_info/providers/webEditor/domain_provider.dart';
-import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
+import 'package:call_info/providers/webEditor/weHelpTo/weHelp_provider.dart';
 import 'package:call_info/util/custom_widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';

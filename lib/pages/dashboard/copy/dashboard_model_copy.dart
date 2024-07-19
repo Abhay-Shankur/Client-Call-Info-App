@@ -1,6 +1,6 @@
 import '/pages/components/card_call/card_call_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import '../dashboard_widget.dart' show DashboardWidget;
+import 'dashboard_widget_copy.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
 
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {

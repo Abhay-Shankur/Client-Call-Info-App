@@ -1,33 +1,36 @@
-
+import '../components/grid/grid_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-// import '/flutter_flow/random_data_util.dart' as random_data;
 import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
 
-class DashborddemoCopyModel extends FlutterFlowModel<DashboardWidget> {
+class DashboardModel
+    extends FlutterFlowModel<DashboardWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  String? get choiceChipsValue =>
-      choiceChipsValueController?.value?.firstOrNull;
-  set choiceChipsValue(String? val) =>
-      choiceChipsValueController?.value = val != null ? [val] : [];
-
-  /// Initialization and disposal methods.
-
-
+  // Model for grid component.
+  late GridModel gridModel1;
+  // Model for grid component.
+  late GridModel gridModel2;
+  // Model for grid component.
+  late GridModel gridModel3;
+  // Model for grid component.
+  late GridModel gridModel4;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    gridModel1 = createModel(context, () => GridModel());
+    gridModel2 = createModel(context, () => GridModel());
+    gridModel3 = createModel(context, () => GridModel());
+    gridModel4 = createModel(context, () => GridModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    gridModel1.dispose();
+    gridModel2.dispose();
+    gridModel3.dispose();
+    gridModel4.dispose();
   }
-
-/// Action blocks are added here.
-
-/// Additional helper methods are added here.
 }

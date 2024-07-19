@@ -1,7 +1,6 @@
 import 'package:call_info/handlers/api_handler.dart';
 import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:call_info/providers/wp/wp_shared.dart';
-import 'package:call_info/util/custom_widgets.dart';
 import 'package:flutter/cupertino.dart';
 
 

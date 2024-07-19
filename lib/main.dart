@@ -1,10 +1,7 @@
 
-import 'dart:async';
-import 'dart:developer' as developer;
-
+import 'package:call_info/firebaseHandlers/firebase_auth.dart';
 import 'package:call_info/handlers/call_handler.dart';
 import 'package:call_info/handlers/check_connection_stream.dart';
-import 'package:call_info/handlers/permission_manager.dart';
 import 'package:call_info/pages/blocklistPage/blocked_list_widget.dart';
 import 'package:call_info/pages/callLogs/call_logs_widget.dart';
 import 'package:call_info/pages/customerSupport/customer_support_widget.dart';
@@ -27,12 +24,12 @@ import 'package:call_info/pages/webEditor/Products/saveProductInfo/web_product_a
 import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_add_widget.dart';
 import 'package:call_info/pages/webEditor/testimonialPage/web_testimonial_page_widget.dart';
 import 'package:call_info/pages/webEditor/weHelp/we_help_page_widget.dart';
-import 'package:call_info/pages/webEditor/webServices/web_servic_page_widget.dart';
+import 'package:call_info/pages/webEditor/webServices/web_service_page_widget.dart';
 import 'package:call_info/pages/webEditor/webServices/web_service_add_widget.dart';
 import 'package:call_info/pages/webEditor/websiteDashboard/web_page_editor_widget.dart';
 import 'package:call_info/pages/webEditor/LinkPage/LinkWidget.dart';
 import 'package:call_info/pages/webEditor/VideoGallery/web_video_gallery_widget.dart';
-import 'package:call_info/pages/webEditor/metaData/webMetadatawidget.dart';
+import 'package:call_info/pages/webEditor/metaData/web_metadata_widget.dart';
 import 'package:call_info/providers/blocklist/blocklist_provider.dart';
 import 'package:call_info/providers/permissions/permissions_provider.dart';
 import 'package:call_info/providers/profile/profile_provider.dart';
@@ -46,25 +43,20 @@ import 'package:call_info/providers/webEditor/metadata/metadata_provider.dart';
 import 'package:call_info/providers/webEditor/products/product_provider.dart';
 import 'package:call_info/providers/webEditor/reviews/reviews_provider.dart';
 import 'package:call_info/providers/webEditor/services/services_provider.dart';
-import 'package:call_info/providers/webEditor/weHelpTo/wehelp_provider.dart';
+import 'package:call_info/providers/webEditor/weHelpTo/weHelp_provider.dart';
 import 'package:call_info/providers/wp/wp_provider.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 
-
 late final FirebaseApp app;
 final navigator = GlobalKey<NavigatorState>();
 
-void main() async {
+Future<void> main() async {
   //Widgets Initializations.
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -82,40 +74,26 @@ void main() async {
   CallHandler.setupCallHandler();
   // CallHandler.setupCallHandler((callType) {
   //   debugPrint('Received call type: $callType');
+
   //   // Update UI or perform any other actions based on call type
   // });
 
-  // Crashlytics
-  FlutterError.onError = (errorDetails) {
-    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  };
-  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
+  // // Crashlytics
+  // FlutterError.onError = (errorDetails) {
+  //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  // };
+  // // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  // PlatformDispatcher.instance.onError = (error, stack) {
+  //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+  //   return true;
+  // };
 
   // //Push Notifications
   // await FirebaseMessagingHandler().initNotifications();
 
-
-  // // Check and request storage permissions
-  await PermissionManager.requestAll();
-
   runApp(const MyApp());
 
 }
-
-// void backgroundTask() {
-//   const MethodChannel backgroundChannel = MethodChannel('com.callinfo.application.call_info/callType');
-//   backgroundChannel.setMethodCallHandler((call) async {
-//     if (call.method == 'triggerBackgroundTask') {
-//       // Code to trigger the BroadcastReceiver and send call type to Flutter
-//       // You can implement this logic here or call another function
-//       backgroundChannel.invokeMethod('receiveCallType', 'Incoming');
-//     }
-//   });
-// }
 
 
 class MyApp extends StatefulWidget {
@@ -127,53 +105,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  ConnectivityResult _connectionStatus = ConnectivityResult.none;
-  final Connectivity _connectivity = Connectivity();
-  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
-
-
   @override
   void initState() {
     super.initState();
-    initConnectivity();
-
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-  }
-
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
-    setState(() {
-      _connectionStatus = result;
-    });
-    // ignore: avoid_print
-    debugPrint('Connectivity changed: $_connectionStatus');
-  }
-
-  @override
-  void dispose() {
-    _connectivitySubscription.cancel();
-    super.dispose();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initConnectivity() async {
-    late ConnectivityResult result;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      result = await _connectivity.checkConnectivity();
-    } on PlatformException catch (e) {
-      developer.log("Couldn't check connectivity status", error: e);
-      return;
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) {
-      return Future.value(null);
-    }
-
-    return _updateConnectionStatus(result);
+    FirebaseAuthHandler(context: context);
+    // _init();
   }
 
   // Future<void> _init() async {

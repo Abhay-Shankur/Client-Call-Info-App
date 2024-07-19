@@ -1,6 +1,6 @@
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import '/pages/components/list_view2/list_view2_widget.dart';
-import 'web_servic_page_widget.dart' show WebServicPageWidget;
+import 'web_service_page_widget.dart' show WebServicPageWidget;
 import 'package:flutter/material.dart';
 
 class WebServicPageModel extends FlutterFlowModel<WebServicPageWidget> {
