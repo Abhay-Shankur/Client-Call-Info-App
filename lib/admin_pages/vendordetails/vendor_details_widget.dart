@@ -79,7 +79,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           preferredSize: const Size.fromHeight(40),
           child: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: true,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
               borderRadius: 30,
@@ -91,7 +91,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                 size: 30,
               ),
               onPressed: () async {
-                // context.pushNamed('Profile');
+                Navigator.pop(context);
               },
             ),
             actions: const [],

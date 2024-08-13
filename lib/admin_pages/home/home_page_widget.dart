@@ -203,7 +203,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: List.generate(listIds.length, (listIdsIndex) {
+                              // final keyindex =listIds[listIdsIndex];
                               final listItemsItem = listItems[listIds[listIdsIndex]];
+
                               if(listItemsItem != null ) {
                                 return VendorItemWidget(
                                   key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),

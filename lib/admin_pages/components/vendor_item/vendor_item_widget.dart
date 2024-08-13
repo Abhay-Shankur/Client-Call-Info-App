@@ -181,7 +181,7 @@ class _VendorItemWidgetState extends State<VendorItemWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.value["Profile"]["businessName"]?? 'Vendor Name',
+                      widget.value["Profile"]?["businessName"]?? 'Vendor Name',
                       style: GoogleFonts.getFont(
                         'Outfit',
                         color: const Color(0xFF0F1113),
@@ -192,7 +192,7 @@ class _VendorItemWidgetState extends State<VendorItemWidget> {
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
                       child: AutoSizeText(
-                        widget.value["Profile"]["vendorContact"] ?? 'Vendor Phone',
+                        widget.value["Profile"]?["vendorContact"] ?? widget.id,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.getFont(
                           'Plus Jakarta Sans',
