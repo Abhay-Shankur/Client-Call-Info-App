@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
-import 'grid_model.dart';
+import 'package:call_info/theme/my_theme.dart';
 
+import 'grid_model.dart';
 export 'grid_model.dart';
 
 class GridWidget extends StatefulWidget {
   const GridWidget({
     super.key,
     required this.calls,
-    required this.calltype,
+    required this.callType,
   });
 
   final String calls;
-  final String calltype;
+  final String callType;
 
   @override
   State<GridWidget> createState() => _GridWidgetState();
@@ -64,7 +65,7 @@ class _GridWidgetState extends State<GridWidget> {
         width: 170,
         height: 100,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: MyTheme.of(context).secondaryBackground,
           boxShadow: const [
             BoxShadow(
               blurRadius: 4,
@@ -82,14 +83,14 @@ class _GridWidgetState extends State<GridWidget> {
             children: [
               Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: FlutterFlowTheme.of(context).primary,
+                color: MyTheme.of(context).primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: Icon(
-                    _getCallTypeIcon(widget.calltype),
+                    _getCallTypeIcon(widget.callType),
                     color: Colors.white,
                     size: 18,
                   ),
@@ -98,8 +99,8 @@ class _GridWidgetState extends State<GridWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                 child: Text(
-                  widget.calltype,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  widget.callType,
+                  style: MyTheme.of(context).bodyMedium.override(
                     fontFamily: 'Readex Pro',
                     letterSpacing: 0,
                     fontWeight: FontWeight.bold,
@@ -110,7 +111,7 @@ class _GridWidgetState extends State<GridWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                 child: Text(
                   widget.calls,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  style: MyTheme.of(context).bodyMedium.override(
                     fontFamily: 'Readex Pro',
                     letterSpacing: 0,
                   ),

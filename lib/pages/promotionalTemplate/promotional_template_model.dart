@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:call_info/handlers/shared_preferences_helper.dart';
+import 'package:call_info/handlers/wp_handler.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
@@ -82,8 +83,9 @@ class PromotionalTemplateModel
       if(val != null) {
         Map<String,dynamic> mapList = jsonDecode(val);
         debugPrint("Repeat List: ${mapList.toString()}");
-        for(var i in mapList.keys) {
-          debugPrint("Number : $i");
+        for(var phone in mapList.keys) {
+          debugPrint("Number : $phone");
+          await WhatsappHandler.sendWP(phone: phone);
         }
       }
     } catch(e) {

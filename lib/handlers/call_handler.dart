@@ -69,17 +69,17 @@ class CallHandler {
         } else if(_callType == 'Incoming'  && isServiceAvailable && isRepeatOver) {
           // _showNotification("Executing on call type: Incoming");
 
-          if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
-            // _showNotification("WhatsApp Sent Successfully");
-            debugPrint("Executing on call type: Incoming");
-            setNumberRepeat();
-          }
-
-          if(await SmsHandler.sendMessage(_phoneNumber!)) {
-            // _showNotification("SMS Sent Successfully");
-            debugPrint("Executing on call type: Incoming");
-            setNumberRepeat();
-          }
+          // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
+          //   // _showNotification("WhatsApp Sent Successfully");
+          //   debugPrint("Executing on call type: Incoming");
+          //   setNumberRepeat();
+          // }
+          //
+          // if(await SmsHandler.sendMessage(_phoneNumber!)) {
+          //   // _showNotification("SMS Sent Successfully");
+          //   debugPrint("Executing on call type: Incoming");
+          //   setNumberRepeat();
+          // }
         } else if(isRepeatOver && isServiceAvailable){
           debugPrint("Number is set to Repeat.");
         }

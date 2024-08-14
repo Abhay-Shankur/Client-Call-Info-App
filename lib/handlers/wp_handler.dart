@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 class WhatsappHandler {
 
-  static Future<bool> sendWP({required String phone}) async {
+  static Future<bool> sendWP({required String phone, String? image, String? text}) async {
     try {
       await SharedPreferencesHelper.reload();
       WPMessageTemplate? messageTemplate = await WPMessageTemplate.getFromShared();

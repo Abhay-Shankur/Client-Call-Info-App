@@ -100,7 +100,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: MyTheme.of(context).primaryBackground,
       body: SafeArea(
         top: true,
         child: SingleChildScrollView(
@@ -122,11 +122,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         child: Text(
                           'Dashboard',
                           textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.of(context)
+                          style: MyTheme.of(context)
                               .titleMedium
                               .override(
                             fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: MyTheme.of(context).primaryText,
                             fontSize: 35,
                             letterSpacing: 0,
                             fontWeight: FontWeight.normal,
@@ -137,13 +137,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                         child: FlutterFlowIconButton(
                           borderColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
+                          MyTheme.of(context).secondaryBackground,
                           borderRadius: 20,
                           fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
+                          MyTheme.of(context).secondaryBackground,
                           icon: Icon(
                             Icons.account_circle_outlined,
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: MyTheme.of(context).primaryText,
                             size: 40,
                           ),
                           onPressed: () {
@@ -167,13 +167,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                   Expanded(
                     child: GridWidget(
                       calls: incomingCalls.toString(),
-                      calltype: 'Incoming Calls',
+                      callType: 'Incoming Calls',
                     ),
                   ),
                   Expanded(
                     child: GridWidget(
                       calls: outgoingCalls.toString(),
-                      calltype: 'Outgoing Calls',
+                      callType: 'Outgoing Calls',
                     ),
                   ),
                 ],
@@ -185,13 +185,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                   Expanded(
                     child: GridWidget(
                       calls: missedCalls.toString(),
-                      calltype: 'Missed Calls',
+                      callType: 'Missed Calls',
                     ),
                   ),
                   Expanded(
                     child: GridWidget(
                       calls: totalCalls.toString(),
-                      calltype: 'Total Calls',
+                      callType: 'Total Calls',
                     ),
                   ),
                 ],
@@ -200,7 +200,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: MyTheme.of(context).secondaryBackground,
                     boxShadow: const [
                       BoxShadow(
                         blurRadius: 4,
@@ -217,18 +217,18 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       children: [
                         Text(
                           'Call Logs',
-                          style: FlutterFlowTheme.of(context)
+                          style: MyTheme.of(context)
                               .titleMedium
                               .override(
                             fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: MyTheme.of(context).primaryText,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Divider(
                           thickness: 2,
-                          color: FlutterFlowTheme.of(context).primaryText,
+                          color: MyTheme.of(context).primaryText,
                         ),
                         SizedBox(
                           height: 290,
@@ -255,12 +255,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               CallType.outgoing
                                               ? Icons.call_made
                                               : Icons.call_missed,
-                                          color: FlutterFlowTheme.of(context)
+                                          color: MyTheme.of(context)
                                               .primary,
                                         ),
                                         title: Text(
                                           log.name ?? log.number ?? 'Unknown',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: MyTheme.of(context)
                                               .bodyMedium,
                                         ),
                                         subtitle: Row(
@@ -272,13 +272,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                 log.number?.isNotEmpty == true
                                                     ? log.number!
                                                     : 'Unknown',
-                                                style: FlutterFlowTheme.of(
+                                                style: MyTheme.of(
                                                     context)
                                                     .bodyMedium
                                                     .override(
                                                   fontFamily: 'Readex Pro',
                                                   color:
-                                                  FlutterFlowTheme.of(
+                                                  MyTheme.of(
                                                       context)
                                                       .secondaryText,
                                                 ),
@@ -286,12 +286,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                             Text(
                                               DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(log.timestamp!)),
-                                              style: FlutterFlowTheme.of(
+                                              style: MyTheme.of(
                                                   context)
                                                   .bodyMedium
                                                   .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: FlutterFlowTheme.of(
+                                                color: MyTheme.of(
                                                     context)
                                                     .secondaryText,
                                               ),
@@ -300,7 +300,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         ),
                                         // trailing: Text(
                                         //   '${log.duration ?? 0} sec',
-                                        //   style: FlutterFlowTheme.of(context)
+                                        //   style: MyTheme.of(context)
                                         //       .bodyMedium,
                                         // ),
                                       ),
@@ -308,7 +308,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     Divider(
                                       height: 2,
                                       color:
-                                      FlutterFlowTheme.of(context).accent2,
+                                      MyTheme.of(context).accent2,
                                     ),
                                   ],
                                 );
@@ -325,7 +325,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(10, 16, 10, 20),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: MyTheme.of(context).secondaryBackground,
                     boxShadow: const [
                       BoxShadow(
                         blurRadius: 4,
@@ -342,18 +342,18 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       children: [
                         Text(
                           '7-Day Call History',
-                          style: FlutterFlowTheme.of(context)
+                          style: MyTheme.of(context)
                               .titleMedium
                               .override(
                             fontFamily: 'Readex Pro',
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: MyTheme.of(context).primaryText,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Divider(
                           thickness: 2,
-                          color: FlutterFlowTheme.of(context).primaryText,
+                          color: MyTheme.of(context).primaryText,
                         ),
                         const SizedBox(height: 10),
                         if (isLoading) const Center(child: CircularProgressIndicator()) else Padding(

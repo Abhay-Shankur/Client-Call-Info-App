@@ -1,5 +1,6 @@
 
 import 'package:call_info/firebaseHandlers/firebase_auth.dart';
+import 'package:call_info/firebaseHandlers/firebase_messaging.dart';
 import 'package:call_info/handlers/call_handler.dart';
 import 'package:call_info/handlers/check_connection_stream.dart';
 import 'package:call_info/pages/blocklistPage/blocked_list_widget.dart';
@@ -88,8 +89,8 @@ Future<void> main() async {
   //   return true;
   // };
 
-  // //Push Notifications
-  // await FirebaseMessagingHandler().initNotifications();
+  //Push Notifications
+  await FirebaseMessagingHandler().initNotifications();
 
   runApp(const MyApp());
 
