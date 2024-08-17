@@ -222,7 +222,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     _model = createModel(context, () => SplashScreenModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _requestPermissions();
+      _requestPermissions();
     });
 
     // _isLoggedIn();
@@ -231,7 +231,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
 
   Future<void> _requestPermissions() async {
     if(mounted) {
-      await PermissionManager.requestAll();
+       PermissionManager.requestAll();
     }
   }
 

@@ -90,7 +90,7 @@ Future<void> main() async {
   // };
 
   //Push Notifications
-  await FirebaseMessagingHandler().initNotifications();
+  FirebaseMessagingHandler().initNotifications();
 
   runApp(const MyApp());
 
