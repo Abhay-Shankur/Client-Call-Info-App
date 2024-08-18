@@ -40,7 +40,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
@@ -59,7 +59,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
       ),
       'containerOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
@@ -78,7 +78,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
       ),
       'containerOnPageLoadAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
@@ -97,7 +97,7 @@ class _WeHelpPageWidgetState extends State<WeHelpPageWidget>
       ),
       'containerOnPageLoadAnimation4': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,

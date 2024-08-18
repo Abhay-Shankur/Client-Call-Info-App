@@ -5,8 +5,8 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dashboard_model.dart';
 import '../components/grid/grid_widget.dart';
 import 'cal_log_service.dart'; // import the CallLogService
-import 'package:call_log/call_log.dart'; // import CallLogEntry
-// for DateFormat
+// import 'package:call_log/call_log.dart'; // import CallLogEntry
+import 'package:call_info/handlers/call_log.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 export 'dashboard_model.dart';
@@ -366,23 +366,23 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   show: true,
                                   drawHorizontalLine: true,
                                   getDrawingHorizontalLine: (value) {
-                                    return FlLine(
-                                      color: const Color(0xff37434d),
+                                    return const FlLine(
+                                      color: Color(0xff37434d),
                                       strokeWidth: 1,
                                     );
                                   },
                                   drawVerticalLine: true,
                                   getDrawingVerticalLine: (value) {
-                                    return FlLine(
-                                      color: const Color(0xff37434d),
+                                    return const FlLine(
+                                      color: Color(0xff37434d),
                                       strokeWidth: 1,
                                     );
                                   },
                                 ),
                                 titlesData: FlTitlesData(
                                   show: true,
-                                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                                  topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                                   bottomTitles: AxisTitles(
                                     sideTitles: SideTitles(
                                       showTitles: true,
@@ -458,7 +458,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     color:Colors.blue,
                                     barWidth: 2,
                                     isStrokeCapRound: true,
-                                    dotData: FlDotData(show: false),
+                                    dotData: const FlDotData(show: false),
                                     belowBarData: BarAreaData(show: false),
                                   ),
                                 ],

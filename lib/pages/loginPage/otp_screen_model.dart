@@ -48,8 +48,10 @@ class OTPScreenModel extends FlutterFlowModel<OTPScreenWidget> {
         if(context.mounted) {
           toastification.show(
             context: context,
-            title: 'Authentication Failed',
-            description: 'User Credential not found !',
+            // title: 'Authentication Failed',
+            title: const  Text('Authentication Failed'),
+            // description: 'User Credential not found !',
+            description: const Text('User Credential not found !'),
             type: ToastificationType.warning,
             style: ToastificationStyle.minimal,
             alignment: Alignment.bottomLeft,

@@ -42,7 +42,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
           MoveEffect(
             curve: Curves.linear,
@@ -55,7 +55,7 @@ class _AddNumberWidgetState extends State<AddNumberWidget>
       ),
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,

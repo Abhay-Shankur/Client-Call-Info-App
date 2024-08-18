@@ -18,13 +18,11 @@ class FirebaseMessagingHandler {
   static final _firebaseMessaging = FirebaseMessaging.instance;
   static late NotificationSettings notificationSettings;
 
-
   static get firebaseMessaging => _firebaseMessaging;
 
   final _androidChannel = const AndroidNotificationChannel(
-      'high_importance_channel',
-      'High Importance Notifications',
-      'This channel is used for important notification',
+      'high_importance_channel', 'High Importance Notifications',
+      description: 'This channel is used for important notification',
       importance: Importance.defaultImportance);
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
@@ -38,9 +36,12 @@ class FirebaseMessagingHandler {
       carPlay: false,
       criticalAlert: false,
       provisional: false,
-      sound: true,);
-    if(notificationSettings.authorizationStatus == AuthorizationStatus.denied) {
-      notificationSettings = await _firebaseMessaging.requestPermission(provisional: true);
+      sound: true,
+    );
+    if (notificationSettings.authorizationStatus ==
+        AuthorizationStatus.denied) {
+      notificationSettings =
+          await _firebaseMessaging.requestPermission(provisional: true);
     }
 
 // TODO:For apple platforms, ensure the APNS token is available before making any FCM plugin API calls
@@ -48,7 +49,7 @@ class FirebaseMessagingHandler {
 //     if (apnsToken != null) {
 //       // APNS token is available, make FCM plugin API requests...
 //     }
-    if(await ConnectivityService.isConnected()) {
+    if (await ConnectivityService.isConnected()) {
       var fCMToken = await _firebaseMessaging.getToken();
       await SharedPreferencesHelper.saveDeviceToken(fCMToken!);
       debugPrint('Device Token: $fCMToken');
@@ -61,8 +62,10 @@ class FirebaseMessagingHandler {
     try {
       // checkDeviceToken(fCMToken);
       // If notifications are disabled, request permission
-      if (notificationSettings.authorizationStatus == AuthorizationStatus.notDetermined) {
-        notificationSettings = await _firebaseMessaging.requestPermission(provisional: true);
+      if (notificationSettings.authorizationStatus ==
+          AuthorizationStatus.notDetermined) {
+        notificationSettings =
+            await _firebaseMessaging.requestPermission(provisional: true);
         var fCMToken = await _firebaseMessaging.getToken();
         await SharedPreferencesHelper.saveDeviceToken(fCMToken!);
         debugPrint('Device Token: $fCMToken');
@@ -150,7 +153,7 @@ class FirebaseMessagingHandler {
             android: AndroidNotificationDetails(
           _androidChannel.id,
           _androidChannel.name,
-          _androidChannel.description,
+          channelDescription: _androidChannel.description,
           icon: '@drawable/ic_launcher',
         )),
         payload: jsonEncode(event.toMap()),

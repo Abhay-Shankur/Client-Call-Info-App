@@ -42,8 +42,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-jksFiledetails
 keystore.jks
+android/app/keystore.jks
 Screenshots.zip
 Screenshots/
 release 1.0.33/

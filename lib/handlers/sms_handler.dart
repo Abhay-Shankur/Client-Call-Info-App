@@ -1,4 +1,4 @@
-import 'package:background_sms/background_sms.dart';
+// import 'package:background_sms/background_sms.dart';
 import 'package:call_info/handlers/shared_preferences_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -25,8 +25,8 @@ class SmsHandler {
     return status.isGranted;
   }
 
-  static Future<bool?> get supportCustomSim async =>
-      await BackgroundSms.isSupportCustomSim;
+  // static Future<bool?> get supportCustomSim async =>
+  //     await BackgroundSms.isSupportCustomSim;
 
   static Future<bool> sendMessage(String phoneNumber, {int? simSlot}) async {
     try {
@@ -42,38 +42,39 @@ class SmsHandler {
         }
 
         String msg = message.text;
-        if (await isPermissionGranted()) {
-          var isCustomSimSupported = await supportCustomSim;
-          if (isCustomSimSupported != null && isCustomSimSupported) {
-            var result = await BackgroundSms.sendMessage(
-                phoneNumber: phoneNumber, message: msg, simSlot: simSlot);
-            debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
-            return result == SmsStatus.sent;
-          } else {
-            var result = await BackgroundSms.sendMessage(
-                phoneNumber: phoneNumber, message: msg);
-            debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
-            return result == SmsStatus.sent;
-          }
-        } else {
-          var granted = await requestPermission();
-          if (granted) {
-            var isCustomSimSupported = await supportCustomSim;
-            if (isCustomSimSupported != null && isCustomSimSupported) {
-              var result = await BackgroundSms.sendMessage(
-                  phoneNumber: phoneNumber, message: msg, simSlot: simSlot);
-              debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
-              return result == SmsStatus.sent;
-            } else {
-              var result = await BackgroundSms.sendMessage(
-                  phoneNumber: phoneNumber, message: msg);
-              debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
-              return result == SmsStatus.sent;
-            }
-          } else {
-            return false;
-          }
-        }
+        return true;
+        // if (await isPermissionGranted()) {
+        //   var isCustomSimSupported = await supportCustomSim;
+        //   if (isCustomSimSupported != null && isCustomSimSupported) {
+        //     var result = await BackgroundSms.sendMessage(
+        //         phoneNumber: phoneNumber, message: msg, simSlot: simSlot);
+        //     debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
+        //     return result == SmsStatus.sent;
+        //   } else {
+        //     var result = await BackgroundSms.sendMessage(
+        //         phoneNumber: phoneNumber, message: msg);
+        //     debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
+        //     return result == SmsStatus.sent;
+        //   }
+        // } else {
+        //   var granted = await requestPermission();
+        //   if (granted) {
+        //     var isCustomSimSupported = await supportCustomSim;
+        //     if (isCustomSimSupported != null && isCustomSimSupported) {
+        //       var result = await BackgroundSms.sendMessage(
+        //           phoneNumber: phoneNumber, message: msg, simSlot: simSlot);
+        //       debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
+        //       return result == SmsStatus.sent;
+        //     } else {
+        //       var result = await BackgroundSms.sendMessage(
+        //           phoneNumber: phoneNumber, message: msg);
+        //       debugPrint("Sending SMS to $phoneNumber (${result.toString()})");
+        //       return result == SmsStatus.sent;
+        //     }
+        //   } else {
+        //     return false;
+        //   }
+        // }
       } else {
         return false;
       }

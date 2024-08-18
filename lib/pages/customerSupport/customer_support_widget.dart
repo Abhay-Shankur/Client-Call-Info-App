@@ -22,7 +22,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
   final animationsMap = {
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
@@ -41,7 +41,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
     ),
     'containerOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
@@ -60,7 +60,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
     ),
     'containerOnPageLoadAnimation3': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
@@ -79,7 +79,7 @@ class _CustomerSupportWidgetState extends State<CustomerSupportWidget>
     ),
     'containerOnPageLoadAnimation4': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,

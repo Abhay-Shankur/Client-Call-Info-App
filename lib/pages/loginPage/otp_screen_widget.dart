@@ -25,7 +25,7 @@ class _OTPScreenWidgetState extends State<OTPScreenWidget>
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 1.ms),
         FadeEffect(
           curve: Curves.easeInOut,

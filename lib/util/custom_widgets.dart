@@ -46,9 +46,11 @@ void showToast(
     type: type,
     style: ToastificationStyle.minimal,
     autoCloseDuration: const Duration(seconds: 5),
-    title: title,
+    // title: title,
+    title: Text(title),
     // you can also use RichText widget for title and description parameters
-    description: desc,
+    // description: desc,
+    description: Text(desc),
     alignment: Alignment.bottomLeft,
     animationDuration: const Duration(milliseconds: 300),
     animationBuilder: (context, animation, alignment, child) {

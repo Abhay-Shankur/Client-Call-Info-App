@@ -35,7 +35,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
       loop: true,
       reverse: true,
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         MoveEffect(
           curve: Curves.easeOut,
           delay: 0.ms,
@@ -54,7 +54,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     ),
     'textOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 200.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -81,7 +81,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     ),
     'textOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 300.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -108,7 +108,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     ),
     'textOnPageLoadAnimation3': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 200.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -135,7 +135,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     ),
     'textOnPageLoadAnimation4': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 300.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -162,7 +162,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     ),
     'textOnPageLoadAnimation5': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 200.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -189,7 +189,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     ),
     'textOnPageLoadAnimation6': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 300.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -221,19 +221,19 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     super.initState();
     _model = createModel(context, () => SplashScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _requestPermissions();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await _requestPermissions();
+    // });
 
     // _isLoggedIn();
     // _init();
   }
 
-  Future<void> _requestPermissions() async {
-    if(mounted) {
-       PermissionManager.requestAll();
-    }
-  }
+  // Future<void> _requestPermissions() async {
+  //   if(mounted) {
+  //      await PermissionManager.requestAll();
+  //   }
+  // }
 
   // Completer<bool>? _completer;
   //
@@ -265,6 +265,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
   Future<bool?> _initializeProviders() async {
     try {
       // await _requestPermissions();
+      await PermissionManager.requestAll();
       final isLogin = await FirebaseAuthHandler(context: main.navigator.currentState!.context).checkLoginStatus();
       if(isLogin) {
         final status = await Provider.of<ProfileProvider>(context, listen: false).initialize();

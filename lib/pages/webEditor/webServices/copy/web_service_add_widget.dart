@@ -40,7 +40,7 @@ class _WebServiceAddWidgetState extends State<WebServiceAddWidget>
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,

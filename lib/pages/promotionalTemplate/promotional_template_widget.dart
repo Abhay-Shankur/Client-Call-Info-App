@@ -1,7 +1,8 @@
 import 'dart:io';
 // import 'package:debounce/debounce.dart';
 import 'package:call_info/theme/my_theme.dart';
-import 'package:call_log/call_log.dart';
+// import 'package:call_log/call_log.dart';
+import 'package:call_info/handlers/call_log.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
   final animationsMap = {
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
@@ -48,7 +49,7 @@ class _PromotionalTemplateWidgetState extends State<PromotionalTemplateWidget>
     ),
     'containerOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,

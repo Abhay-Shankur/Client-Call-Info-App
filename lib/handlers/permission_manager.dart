@@ -9,9 +9,9 @@ class PermissionManager {
     //   Permission.contacts,
     //   Permission.sms,
     // ].request();
-    await Permission.phone.request();
-    await Permission.contacts.request();
-    await Permission.sms.request();
+    Permission.phone.request();
+    Permission.contacts.request();
+    Permission.sms.request();
   }
 
   static Future<bool> requestContactsPermission() async {

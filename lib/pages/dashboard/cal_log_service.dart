@@ -1,6 +1,6 @@
 // call_log_service.dart
 
-import 'package:call_log/call_log.dart';
+import 'package:call_info/handlers/call_log.dart';
 import 'package:intl/intl.dart';
 
 class CallLogService {

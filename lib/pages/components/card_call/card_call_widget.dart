@@ -33,7 +33,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
   final animationsMap = {
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 1.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -53,7 +53,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
     ),
     'containerOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 1.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -73,7 +73,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
     ),
     'textOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 180.ms),
         FadeEffect(
           curve: Curves.easeInOut,
@@ -93,7 +93,7 @@ class _CardCallWidgetState extends State<CardCallWidget>
     ),
     'textOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
-      effects: [
+      effectsBuilder: () => [
         VisibilityEffect(duration: 200.ms),
         FadeEffect(
           curve: Curves.easeInOut,

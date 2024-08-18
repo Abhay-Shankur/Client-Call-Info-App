@@ -16,7 +16,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
 class CallHandler {
-  static const MethodChannel _channel = MethodChannel('com.callinfo.application.call_info/callType');
+  static const MethodChannel _channel =
+      MethodChannel('com.callinfo.application.call_info/callType');
 
   static String? _callType;
 
@@ -32,16 +33,19 @@ class CallHandler {
         bool isBlocked = await checkBlocklist();
         bool isServiceAvailable = await checkService();
         bool isRepeatOver = await checkNumberRepeat();
-        debugPrint(" isBlocked : $isBlocked \n isServiceAvailable : $isServiceAvailable \n isRepeatOver : $isRepeatOver");
+        debugPrint(
+            " isBlocked : $isBlocked \n isServiceAvailable : $isServiceAvailable \n isRepeatOver : $isRepeatOver");
 
-        if(isBlocked) {
+        if (isBlocked) {
           debugPrint("Phone Number $_phoneNumber is blocked.");
         }
         // else if(!(await checkService())){
         //   // _showNotification(_callType); // Send notification
         //   _showNotification("",title: "Subscription",desc: "Service Error."); // Send notification
         // }
-        else if(_callType == 'Outgoing' && isServiceAvailable && isRepeatOver) {
+        else if (_callType == 'Outgoing' &&
+            isServiceAvailable &&
+            isRepeatOver) {
           // _showNotification("Executing on call type: Ongoing");
           debugPrint("Executing on call type: Outgoing");
           // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
@@ -53,20 +57,25 @@ class CallHandler {
           //   _showNotification("SMS Sent Successfully");
           //   setNumberRepeat();
           // }
-        } else if(_callType == 'Missed'  && isServiceAvailable && isRepeatOver) {
+        } else if (_callType == 'Missed' &&
+            isServiceAvailable &&
+            isRepeatOver) {
           // _showNotification("Executing on call type: Missed");
-          if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
+          if (await WhatsappHandler.sendWP(
+              phone: _phoneNumber!.replaceAll("+", ''))) {
             // _showNotification("WhatsApp Sent Successfully");
             debugPrint("Executing on call type: Missed");
             setNumberRepeat();
           }
 
-          if(await SmsHandler.sendMessage(_phoneNumber!)) {
+          if (await SmsHandler.sendMessage(_phoneNumber!)) {
             // _showNotification("SMS Sent Successfully");
             debugPrint("Executing on call type: Missed");
             setNumberRepeat();
           }
-        } else if(_callType == 'Incoming'  && isServiceAvailable && isRepeatOver) {
+        } else if (_callType == 'Incoming' &&
+            isServiceAvailable &&
+            isRepeatOver) {
           // _showNotification("Executing on call type: Incoming");
 
           // if(await WhatsappHandler.sendWP(phone: _phoneNumber!.replaceAll("+", ''))){
@@ -80,7 +89,7 @@ class CallHandler {
           //   debugPrint("Executing on call type: Incoming");
           //   setNumberRepeat();
           // }
-        } else if(isRepeatOver && isServiceAvailable){
+        } else if (isRepeatOver && isServiceAvailable) {
           debugPrint("Number is set to Repeat.");
         }
       }
@@ -93,7 +102,7 @@ class CallHandler {
       String today = MyDateUtils.formatDate(DateTime.now());
       await RepeatNumberProvider.insertOrUpdate(_phoneNumber!, today);
       // debugPrint("$_phoneNumber has been set to repeat.");
-    } catch(e) {
+    } catch (e) {
       debugPrint("Exception: $e");
     }
   }
@@ -103,32 +112,35 @@ class CallHandler {
       await SharedPreferencesHelper.reload();
       var val = (await SharedPreferencesHelper.getString("repeatList") ?? "{}");
       var map = stringToMap(val);
-      if(map.containsKey(_phoneNumber!)) {
+      if (map.containsKey(_phoneNumber!)) {
         String repeatDate = map[_phoneNumber];
         String today = MyDateUtils.formatDate(DateTime.now());
-        var repeat = double.parse(await SharedPreferencesHelper.getString("repeat") ?? "7.0").toInt();
-        int diff = MyDateUtils.getDifferenceInDays(MyDateUtils.parseDate(repeatDate), MyDateUtils.parseDate(today));
+        var repeat = double.parse(
+                await SharedPreferencesHelper.getString("repeat") ?? "7.0")
+            .toInt();
+        int diff = MyDateUtils.getDifferenceInDays(
+            MyDateUtils.parseDate(repeatDate), MyDateUtils.parseDate(today));
         // debugPrint("Repeat Date: $repeatDate. Today's Date : $today. Diff : $diff.");
         // debugPrint("Repeat : $repeat. Diff : $diff. Exp : ${diff > repeat}");
         return diff >= repeat;
       }
       return true;
-    } catch(e) {
+    } catch (e) {
       debugPrint("Exception: $e");
       return false;
     }
   }
 
   static Future<bool> checkBlocklist() async {
-    try{
+    try {
       await SharedPreferencesHelper.reload();
       List<String> list = await SharedPreferencesHelper.getList('blocklist');
-      if(_phoneNumber!=null){
+      if (_phoneNumber != null) {
         return (list.contains(_phoneNumber)) ? true : false;
       } else {
         throw Exception("Phone Number is NULL");
       }
-    } catch(e) {
+    } catch (e) {
       debugPrint("Exception: $e");
       return false;
     }
@@ -138,10 +150,11 @@ class CallHandler {
     try {
       await SharedPreferencesHelper.reload();
       String? end = await SharedPreferencesHelper.getString("end");
-      if(end != null) {
-        int diff = MyDateUtils.getDifferenceInDays(DateTime.now(), MyDateUtils.parseDate(end));
+      if (end != null) {
+        int diff = MyDateUtils.getDifferenceInDays(
+            DateTime.now(), MyDateUtils.parseDate(end));
         // debugPrint("Difference: $diff");
-        return diff>-1 ? true : false;
+        return diff > -1 ? true : false;
       } else {
         debugPrint("No Active Subscription");
         return false;
@@ -152,30 +165,30 @@ class CallHandler {
     }
   }
 
-  static void _showNotification(String callType, {String title='Call Detected', String desc='Call type:'}) async {
-
+  static void _showNotification(String callType,
+      {String title = 'Call Detected', String desc = 'Call type:'}) async {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+        FlutterLocalNotificationsPlugin();
 
     const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     const InitializationSettings initializationSettings =
-    InitializationSettings(android: initializationSettingsAndroid);
+        InitializationSettings(android: initializationSettingsAndroid);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
     const int insistentFlag = 4;
     AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails(
+        AndroidNotificationDetails(
       'com.callinfo.application.call_info',
       'Call Infos',
-      'Notification channel for call detection',
+      channelDescription: 'Notification channel for call detection',
       importance: Importance.max,
       priority: Priority.high,
       showWhen: false,
       additionalFlags: Int32List.fromList(<int>[insistentFlag]),
     );
     NotificationDetails platformChannelSpecifics =
-    NotificationDetails(android: androidPlatformChannelSpecifics);
+        NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
       randomInteger(0, 100),
       title,
@@ -183,5 +196,4 @@ class CallHandler {
       platformChannelSpecifics,
     );
   }
-
 }

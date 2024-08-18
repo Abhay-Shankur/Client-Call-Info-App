@@ -64,8 +64,10 @@ class ActiveSubscriptionModel extends FlutterFlowModel<ActiveSubscriptionWidget>
       debugPrint('Error: $e');
       toastification.show(
         context: navigator.currentState!.context,
-        title: 'Failed',
-        description: 'Ohh Something is wrong!',
+        // title: 'Failed',
+        title: const Text('Failed'),
+        // description: 'Ohh Something is wrong!',
+        description: const Text('Ohh Something is wrong!'),
         type: ToastificationType.warning,
         style: ToastificationStyle.minimal,
         alignment: Alignment.bottomLeft,
