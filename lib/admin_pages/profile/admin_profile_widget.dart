@@ -5,6 +5,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'admin_profile_model.dart';
 export 'admin_profile_model.dart';
@@ -32,7 +33,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -52,7 +53,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
       ),
       'textOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -72,7 +73,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
       ),
       'dividerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -92,7 +93,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
       ),
       'textOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -112,7 +113,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
       ),
       'textOnPageLoadAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -132,7 +133,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
       ),
       'containerOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 300.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -152,7 +153,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
       ),
       'buttonOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects:[
+        effectsBuilder: () =>[
           VisibilityEffect(duration: 400.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -190,9 +191,9 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: AppTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           actions: [
             FlutterFlowIconButton(
@@ -202,7 +203,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
               buttonSize: 60,
               icon: Icon(
                 Icons.close_rounded,
-                color: FlutterFlowTheme.of(context).secondaryText,
+                color: AppTheme.of(context).secondaryText,
                 size: 30,
               ),
               onPressed: () async {
@@ -226,10 +227,10 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                     width: 120,
                     height: 120,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).accent1,
+                      color: AppTheme.of(context).accent1,
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: AppTheme.of(context).primary,
                         width: 2,
                       ),
                     ),
@@ -252,7 +253,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                     child: Text(
                       'Hello Admin',
                       style:
-                      FlutterFlowTheme.of(context).headlineSmall.override(
+                      AppTheme.of(context).headlineSmall.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0,
                       ),
@@ -264,7 +265,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                     thickness: 1,
                     indent: 24,
                     endIndent: 24,
-                    color: FlutterFlowTheme.of(context).alternate,
+                    color: AppTheme.of(context).alternate,
                   ).animateOnPageLoad(
                       animationsMap['dividerOnPageLoadAnimation']!),
                   Consumer<VendorsListProvider>(
@@ -272,7 +273,7 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                         int count = value.vendors.length;
                         return Text(
                           count.toString(),
-                          style: FlutterFlowTheme.of(context).displayMedium.override(
+                          style: AppTheme.of(context).displayMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -284,9 +285,9 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 16),
                     child: Text(
                       'Total Vendors',
-                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                      style: AppTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter',
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        color: AppTheme.of(context).secondaryText,
                         letterSpacing: 0,
                       ),
                     ).animateOnPageLoad(
@@ -294,48 +295,48 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 2,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8, 12, 8, 12),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                          child: Icon(
-                            Icons.settings_outlined,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: Text(
-                            'Account Settings',
-                            style:
-                            FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily: 'Inter',
-                              letterSpacing: 0,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation2']!),
-              ),
+              // Padding(
+              //   padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+              //   child: Container(
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //       color: AppTheme.of(context).secondaryBackground,
+              //       borderRadius: BorderRadius.circular(12),
+              //       border: Border.all(
+              //         color: AppTheme.of(context).alternate,
+              //         width: 2,
+              //       ),
+              //     ),
+              //     child: Padding(
+              //       padding: const EdgeInsetsDirectional.fromSTEB(8, 12, 8, 12),
+              //       child: Row(
+              //         mainAxisSize: MainAxisSize.max,
+              //         children: [
+              //           Padding(
+              //             padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+              //             child: Icon(
+              //               Icons.settings_outlined,
+              //               color: AppTheme.of(context).primaryText,
+              //               size: 24,
+              //             ),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+              //             child: Text(
+              //               'Account Settings',
+              //               style:
+              //               AppTheme.of(context).bodyLarge.override(
+              //                 fontFamily: 'Inter',
+              //                 letterSpacing: 0,
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ).animateOnPageLoad(
+              //       animationsMap['containerOnPageLoadAnimation2']!),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: FFButtonWidget(
@@ -347,11 +348,6 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                               navigator.currentState!.pushNamedAndRemoveUntil(RouteKeys.splash, (route) => false);
                             }
                         );
-                    // GoRouter.of(context).prepareAuthEvent();
-                    // await authManager.signOut();
-                    // GoRouter.of(context).clearRedirectLocation();
-
-                    // context.goNamedAuth('vendorList', context.mounted);
                   },
                   text: 'Log Out',
                   options: FFButtonOptions(
@@ -359,14 +355,14 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget>
                     height: 50,
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                    textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+                    color: AppTheme.of(context).primaryBackground,
+                    textStyle: AppTheme.of(context).bodyLarge.override(
                       fontFamily: 'Inter',
                       letterSpacing: 0,
                     ),
                     elevation: 0,
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: AppTheme.of(context).alternate,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(38),

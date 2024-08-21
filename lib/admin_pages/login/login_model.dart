@@ -1,3 +1,4 @@
+import 'package:app/firebaseHandlers/firebase_firestore.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
@@ -28,4 +29,17 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     otpTextController?.dispose();
   }
 
+  Future<bool> checkAdmin(String number) async {
+    try {
+      FirestoreHandler firestoreHandler = FirestoreHandler();
+      var doc = await firestoreHandler.readFirestoreData("ADMIN", "ADMINS");
+      firestoreHandler.closeConnection();
+      return doc.keys.contains(number);
+    }catch (e) {
+      debugPrint("Exception $this: $e");
+      return false;
+    }
+  }
+
+  
 }

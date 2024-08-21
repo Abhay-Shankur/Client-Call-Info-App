@@ -3,6 +3,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'vendor_item_model.dart';
 export 'vendor_item_model.dart';
@@ -15,7 +16,7 @@ class VendorItemWidget extends StatefulWidget {
   });
 
   final String id;
-  final Map<String,dynamic> value;
+  final Map<String,dynamic>? value;
 
 
   @override
@@ -125,8 +126,8 @@ class _VendorItemWidgetState extends State<VendorItemWidget> {
   //                       style: GoogleFonts.getFont(
   //                         'Plus Jakarta Sans',
   //                         color: widget.id == 'true'
-  //                             ? FlutterFlowTheme.of(context).success
-  //                             : FlutterFlowTheme.of(context).warning,
+  //                             ? AppTheme.of(context).success
+  //                             : AppTheme.of(context).warning,
   //                         fontWeight: FontWeight.w500,
   //                         fontSize: 14,
   //                       ),
@@ -162,7 +163,7 @@ class _VendorItemWidgetState extends State<VendorItemWidget> {
                 borderRadius: BorderRadius.circular(6),
                 child: FadeInImage.assetNetwork(
                   placeholder: 'assets/placeholder_image.jpg', // Ensure you have a placeholder image in your assets
-                  image: widget.value["Profile"]?["imageFile"] ??
+                  image: widget.value?["Profile"]?["imageFile"] ??
                       'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
                   width: 80,
                   height: 80,
@@ -181,7 +182,7 @@ class _VendorItemWidgetState extends State<VendorItemWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.value["Profile"]?["businessName"]?? 'Vendor Name',
+                      widget.value?["Profile"]?["businessName"]?? 'Vendor Name',
                       style: GoogleFonts.getFont(
                         'Outfit',
                         color: const Color(0xFF0F1113),
@@ -192,7 +193,7 @@ class _VendorItemWidgetState extends State<VendorItemWidget> {
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
                       child: AutoSizeText(
-                        widget.value["Profile"]?["vendorContact"] ?? widget.id,
+                        widget.value?["Profile"]?["vendorContact"] ?? widget.id,
                         textAlign: TextAlign.start,
                         style: GoogleFonts.getFont(
                           'Plus Jakarta Sans',
@@ -227,8 +228,8 @@ class _VendorItemWidgetState extends State<VendorItemWidget> {
                     style: GoogleFonts.getFont(
                       'Plus Jakarta Sans',
                       color: widget.id == 'true'
-                          ? FlutterFlowTheme.of(context).success
-                          : FlutterFlowTheme.of(context).warning,
+                          ? AppTheme.of(context).success
+                          : AppTheme.of(context).warning,
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
                     ),

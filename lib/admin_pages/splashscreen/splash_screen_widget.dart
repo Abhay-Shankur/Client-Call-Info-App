@@ -5,6 +5,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'splash_screen_model.dart';
 export 'splash_screen_model.dart';
@@ -32,7 +33,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -52,7 +53,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
       ),
       'containerOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 300.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -72,7 +73,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
       ),
       'textOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 350.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -92,7 +93,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
       ),
       'textOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 400.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -175,7 +176,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
   Scaffold getScreen() {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: AppTheme.of(context).secondaryBackground,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,9 +188,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    FlutterFlowTheme.of(context).primary,
-                    FlutterFlowTheme.of(context).error,
-                    FlutterFlowTheme.of(context).tertiary
+                    AppTheme.of(context).primary,
+                    AppTheme.of(context).error,
+                    AppTheme.of(context).tertiary
                   ],
                   stops: const [0, 0.5, 1],
                   begin: const AlignmentDirectional(-1, -1),
@@ -203,7 +204,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                   gradient: LinearGradient(
                     colors: [
                       const Color(0x00FFFFFF),
-                      FlutterFlowTheme.of(context).secondaryBackground
+                      AppTheme.of(context).secondaryBackground
                     ],
                     stops: const [0, 1],
                     begin: const AlignmentDirectional(0, -1),
@@ -218,7 +219,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                       width: 120,
                       height: 120,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).accent4,
+                        color: AppTheme.of(context).accent4,
                         shape: BoxShape.circle,
                       ),
                       child: Container(
@@ -239,7 +240,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
                       child: Text(
                         'Call Infos Admin',
-                        style: FlutterFlowTheme.of(context)
+                        style: AppTheme.of(context)
                             .displaySmall
                             .override(
                           fontFamily: 'Readex Pro',
@@ -254,7 +255,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                         'Thanks for joining! Access or create vendor account below, and get started on your journey!',
                         textAlign: TextAlign.center,
                         style:
-                        FlutterFlowTheme.of(context).labelMedium.override(
+                        AppTheme.of(context).labelMedium.override(
                           fontFamily: 'Inter',
                           letterSpacing: 0,
                         ),

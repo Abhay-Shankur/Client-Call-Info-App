@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '/admin_pages/components/edit_subscription/edit_subscription_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'vendor_details_model.dart';
 export 'vendor_details_model.dart';
@@ -35,7 +36,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
     animationsMap.addAll({
       'listViewOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects: [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 150.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -74,11 +75,11 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.of(context).secondaryBackground,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(40),
           child: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: AppTheme.of(context).primaryBackground,
             automaticallyImplyLeading: true,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -87,7 +88,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
               buttonSize: 60,
               icon: Icon(
                 Icons.arrow_back_rounded,
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: AppTheme.of(context).primaryText,
                 size: 30,
               ),
               onPressed: () async {
@@ -105,8 +106,8 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
             children: [
               Consumer<VendorsListProvider> (
                 builder: (context, model, child) {
-                  Map<String, dynamic> details = model.getVendor(vendorId) as Map<String, dynamic>;
-                  if(details.isNotEmpty){
+                  Map<String, dynamic>? details = model.getVendor(vendorId);
+                  if(details != null && details.isNotEmpty){
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +122,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                   child: Text(
                                     'Vendor Details',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme.of(context)
                                         .displaySmall
                                         .override(
                                       fontFamily: 'Readex Pro',
@@ -132,7 +133,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                 Divider(
                                   height: 32,
                                   thickness: 1,
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: AppTheme.of(context).alternate,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
@@ -146,7 +147,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                         width: 100,
                                         height: 100,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
+                                          color: AppTheme.of(context)
                                               .secondaryBackground,
                                         ),
                                         child: Row(
@@ -182,12 +183,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -214,7 +215,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Vendor Name',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -227,7 +228,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Profile"]["vendorName"]?? '[Vendor name]',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -255,12 +256,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -287,7 +288,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Email',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -300,7 +301,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Profile"]["vendorEmail"]?? '[xyz@gmail.com]',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -328,12 +329,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -360,7 +361,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Phone',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -373,7 +374,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Profile"]["vendorContact"]?? '[1234567890]',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -401,12 +402,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -433,7 +434,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Business Name',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -446,7 +447,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Profile"]["businessName"]?? '[Business name]',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -474,12 +475,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -506,7 +507,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Business Description',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -519,7 +520,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Profile"]["businessDescription"]?? '[Description]',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -547,12 +548,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -579,7 +580,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Notification',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -592,7 +593,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Notification"]?["Enabled"] ?? 'Not Set',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -619,13 +620,13 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                   thickness: 2,
                                   indent: 10,
                                   endIndent: 10,
-                                  color: FlutterFlowTheme.of(context).primaryText,
+                                  color: AppTheme.of(context).primaryText,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                   child: Text(
                                     'Website',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme.of(context)
                                         .displaySmall
                                         .override(
                                       fontFamily: 'Readex Pro',
@@ -636,7 +637,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                 Divider(
                                   height: 22,
                                   thickness: 0,
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: AppTheme.of(context).alternate,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(24, 10, 24, 12),
@@ -646,11 +647,11 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                       maxWidth: 570,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: AppTheme.of(context)
                                           .secondaryBackground,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: FlutterFlowTheme.of(context).alternate,
+                                        color: AppTheme.of(context).alternate,
                                         width: 2,
                                       ),
                                     ),
@@ -679,7 +680,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                       Text(
                                                         'Domain Name',
                                                         style:
-                                                        FlutterFlowTheme.of(context)
+                                                        AppTheme.of(context)
                                                             .bodyLarge
                                                             .override(
                                                           fontFamily: 'Inter',
@@ -693,7 +694,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         child: Text(
                                                           details["webDomain"] ?? 'Website not created!',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .labelMedium
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -752,7 +753,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                 },
                                                 child: Icon(
                                                   Icons.delete_forever,
-                                                  color: FlutterFlowTheme.of(context)
+                                                  color: AppTheme.of(context)
                                                       .secondaryText,
                                                   size: 24,
                                                 ),
@@ -768,13 +769,13 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                   thickness: 2,
                                   indent: 10,
                                   endIndent: 10,
-                                  color: FlutterFlowTheme.of(context).primaryText,
+                                  color: AppTheme.of(context).primaryText,
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                   child: Text(
                                     'Active Subscriptions',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme.of(context)
                                         .displaySmall
                                         .override(
                                       fontFamily: 'Readex Pro',
@@ -795,7 +796,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                           child: Text(
                                             'Subscription Details',
                                             textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
+                                            style: AppTheme.of(context)
                                                 .bodyLarge
                                                 .override(
                                               fontFamily: 'Inter',
@@ -808,7 +809,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                       Divider(
                                         height: 22,
                                         thickness: 0,
-                                        color: FlutterFlowTheme.of(context).alternate,
+                                        color: AppTheme.of(context).alternate,
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -819,12 +820,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -851,7 +852,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Subscription Type',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -864,7 +865,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Subscription"]?["type"]?? 'Inactive',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -892,12 +893,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -924,7 +925,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'Start Date',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -937,7 +938,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Subscription"]?["start"] ?? 'Inactive',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -965,12 +966,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             maxWidth: 570,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
+                                            color: AppTheme.of(context)
                                                 .secondaryBackground,
                                             borderRadius: BorderRadius.circular(8),
                                             border: Border.all(
                                               color:
-                                              FlutterFlowTheme.of(context).alternate,
+                                              AppTheme.of(context).alternate,
                                               width: 2,
                                             ),
                                           ),
@@ -997,7 +998,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                         Text(
                                                           'End Date',
                                                           style:
-                                                          FlutterFlowTheme.of(context)
+                                                          AppTheme.of(context)
                                                               .bodyLarge
                                                               .override(
                                                             fontFamily: 'Inter',
@@ -1010,7 +1011,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                               .fromSTEB(0, 4, 0, 0),
                                                           child: Text(
                                                             details["Subscription"]?["end"] ?? 'Inactive',
-                                                            style: FlutterFlowTheme.of(
+                                                            style: AppTheme.of(
                                                                 context)
                                                                 .labelMedium
                                                                 .override(
@@ -1073,8 +1074,8 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                                   24, 0, 24, 0),
                                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 0),
-                                              color: FlutterFlowTheme.of(context).primary,
-                                              textStyle: FlutterFlowTheme.of(context)
+                                              color: AppTheme.of(context).primary,
+                                              textStyle: AppTheme.of(context)
                                                   .titleSmall
                                                   .override(
                                                 fontFamily: 'Inter',
@@ -1145,7 +1146,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                                 0, 0, 0, 0),
                                             color: const Color(0xFFFB1014),
-                                            textStyle: FlutterFlowTheme.of(context)
+                                            textStyle: AppTheme.of(context)
                                                 .titleSmall
                                                 .override(
                                               fontFamily: 'Inter',
@@ -1167,7 +1168,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                                 Divider(
                                   height: 22,
                                   thickness: 0,
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: AppTheme.of(context).alternate,
                                 ),
                               ],
                             ),
@@ -1177,8 +1178,10 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
                     );
                   } else {
                     debugPrint("Details not found");
-                    navigator.currentState!.pop();
-                    return Container();
+                    // navigator.currentState!.pop();
+                    return const Center(
+                      child: Text("Vendor profile Incomplete")
+                    );
                   }
                 },
               ),
@@ -1210,7 +1213,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //               padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
           //               child: Text(
           //                 'Vendor Details',
-          //                 style: FlutterFlowTheme.of(context)
+          //                 style: AppTheme.of(context)
           //                     .displaySmall
           //                     .override(
           //                   fontFamily: 'Readex Pro',
@@ -1221,7 +1224,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //             Divider(
           //               height: 32,
           //               thickness: 1,
-          //               color: FlutterFlowTheme.of(context).alternate,
+          //               color: AppTheme.of(context).alternate,
           //             ),
           //             Padding(
           //               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
@@ -1235,7 +1238,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                     width: 100,
           //                     height: 100,
           //                     decoration: BoxDecoration(
-          //                       color: FlutterFlowTheme.of(context)
+          //                       color: AppTheme.of(context)
           //                           .secondaryBackground,
           //                     ),
           //                     child: Row(
@@ -1266,12 +1269,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1298,7 +1301,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Vendor Name',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1311,7 +1314,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                           .fromSTEB(0, 4, 0, 0),
           //                                       child: Text(
           //                                         '[Vendor name]',
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -1339,12 +1342,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1371,7 +1374,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Email',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1384,7 +1387,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                           .fromSTEB(0, 4, 0, 0),
           //                                       child: Text(
           //                                         '[xyz@gmail.com]',
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -1412,12 +1415,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1444,7 +1447,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Phone',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1457,7 +1460,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                           .fromSTEB(0, 4, 0, 0),
           //                                       child: Text(
           //                                         '[1234567890]',
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -1485,12 +1488,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1517,7 +1520,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Business Name',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1530,7 +1533,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                           .fromSTEB(0, 4, 0, 0),
           //                                       child: Text(
           //                                         '[Business name]',
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -1558,12 +1561,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1590,7 +1593,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Business Description',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1603,7 +1606,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                           .fromSTEB(0, 4, 0, 0),
           //                                       child: Text(
           //                                         '[Description]',
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -1631,12 +1634,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1663,7 +1666,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Notification',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1676,7 +1679,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                           .fromSTEB(0, 4, 0, 0),
           //                                       child: Text(
           //                                         'Enabled',
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -1703,13 +1706,13 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //               thickness: 2,
           //               indent: 10,
           //               endIndent: 10,
-          //               color: FlutterFlowTheme.of(context).primaryText,
+          //               color: AppTheme.of(context).primaryText,
           //             ),
           //             Padding(
           //               padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
           //               child: Text(
           //                 'Website',
-          //                 style: FlutterFlowTheme.of(context)
+          //                 style: AppTheme.of(context)
           //                     .displaySmall
           //                     .override(
           //                   fontFamily: 'Readex Pro',
@@ -1720,7 +1723,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //             Divider(
           //               height: 22,
           //               thickness: 0,
-          //               color: FlutterFlowTheme.of(context).alternate,
+          //               color: AppTheme.of(context).alternate,
           //             ),
           //             Padding(
           //               padding: const EdgeInsetsDirectional.fromSTEB(24, 10, 24, 12),
@@ -1730,11 +1733,11 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                   maxWidth: 570,
           //                 ),
           //                 decoration: BoxDecoration(
-          //                   color: FlutterFlowTheme.of(context)
+          //                   color: AppTheme.of(context)
           //                       .secondaryBackground,
           //                   borderRadius: BorderRadius.circular(8),
           //                   border: Border.all(
-          //                     color: FlutterFlowTheme.of(context).alternate,
+          //                     color: AppTheme.of(context).alternate,
           //                     width: 2,
           //                   ),
           //                 ),
@@ -1763,7 +1766,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                   Text(
           //                                     'Domain Name',
           //                                     style:
-          //                                     FlutterFlowTheme.of(context)
+          //                                     AppTheme.of(context)
           //                                         .bodyLarge
           //                                         .override(
           //                                       fontFamily: 'Inter',
@@ -1777,7 +1780,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     child: Text(
           //                                       'xyz',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .labelMedium
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1827,7 +1830,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                             },
           //                             child: Icon(
           //                               Icons.delete_forever,
-          //                               color: FlutterFlowTheme.of(context)
+          //                               color: AppTheme.of(context)
           //                                   .secondaryText,
           //                               size: 24,
           //                             ),
@@ -1843,13 +1846,13 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //               thickness: 2,
           //               indent: 10,
           //               endIndent: 10,
-          //               color: FlutterFlowTheme.of(context).primaryText,
+          //               color: AppTheme.of(context).primaryText,
           //             ),
           //             Padding(
           //               padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
           //               child: Text(
           //                 'Active Subscriptions',
-          //                 style: FlutterFlowTheme.of(context)
+          //                 style: AppTheme.of(context)
           //                     .displaySmall
           //                     .override(
           //                   fontFamily: 'Readex Pro',
@@ -1870,7 +1873,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                       child: Text(
           //                         'Subscription Details',
           //                         textAlign: TextAlign.start,
-          //                         style: FlutterFlowTheme.of(context)
+          //                         style: AppTheme.of(context)
           //                             .bodyLarge
           //                             .override(
           //                           fontFamily: 'Inter',
@@ -1883,7 +1886,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                   Divider(
           //                     height: 22,
           //                     thickness: 0,
-          //                     color: FlutterFlowTheme.of(context).alternate,
+          //                     color: AppTheme.of(context).alternate,
           //                   ),
           //                   Padding(
           //                     padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1894,12 +1897,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1926,7 +1929,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Subscription Type',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -1939,7 +1942,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                           .fromSTEB(0, 4, 0, 0),
           //                                       child: Text(
           //                                         'Premium',
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -1967,12 +1970,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -1999,7 +2002,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'Start Date',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -2014,7 +2017,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                         random_data
           //                                             .mockDate()
           //                                             .toString(),
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -2042,12 +2045,12 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         maxWidth: 570,
           //                       ),
           //                       decoration: BoxDecoration(
-          //                         color: FlutterFlowTheme.of(context)
+          //                         color: AppTheme.of(context)
           //                             .secondaryBackground,
           //                         borderRadius: BorderRadius.circular(8),
           //                         border: Border.all(
           //                           color:
-          //                           FlutterFlowTheme.of(context).alternate,
+          //                           AppTheme.of(context).alternate,
           //                           width: 2,
           //                         ),
           //                       ),
@@ -2074,7 +2077,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                     Text(
           //                                       'End Date',
           //                                       style:
-          //                                       FlutterFlowTheme.of(context)
+          //                                       AppTheme.of(context)
           //                                           .bodyLarge
           //                                           .override(
           //                                         fontFamily: 'Inter',
@@ -2089,7 +2092,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                                         random_data
           //                                             .mockDate()
           //                                             .toString(),
-          //                                         style: FlutterFlowTheme.of(
+          //                                         style: AppTheme.of(
           //                                             context)
           //                                             .labelMedium
           //                                             .override(
@@ -2152,8 +2155,8 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                               24, 0, 24, 0),
           //                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
           //                               0, 0, 0, 0),
-          //                           color: FlutterFlowTheme.of(context).primary,
-          //                           textStyle: FlutterFlowTheme.of(context)
+          //                           color: AppTheme.of(context).primary,
+          //                           textStyle: AppTheme.of(context)
           //                               .titleSmall
           //                               .override(
           //                             fontFamily: 'Inter',
@@ -2212,7 +2215,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //                         iconPadding: const EdgeInsetsDirectional.fromSTEB(
           //                             0, 0, 0, 0),
           //                         color: const Color(0xFFFB1014),
-          //                         textStyle: FlutterFlowTheme.of(context)
+          //                         textStyle: AppTheme.of(context)
           //                             .titleSmall
           //                             .override(
           //                           fontFamily: 'Inter',
@@ -2234,7 +2237,7 @@ class _VendorDetailsWidgetState extends State<VendorDetailsWidget>
           //             Divider(
           //               height: 22,
           //               thickness: 0,
-          //               color: FlutterFlowTheme.of(context).alternate,
+          //               color: AppTheme.of(context).alternate,
           //             ),
           //           ],
           //         ),

@@ -50,8 +50,9 @@ class EditSubscriptionModel extends FlutterFlowModel<EditSubscriptionWidget> {
           "end" : end,
         }
       };
-      await fh.updateFirestoreData("USERS", id, data);
-      await Provider.of<VendorsListProvider>(localContext, listen: false).updateVendor(id);
+      String uid = await Provider.of<VendorsListProvider>(localContext, listen: false).users[id];
+      await fh.updateFirestoreData("USERS", uid, data);
+      await Provider.of<VendorsListProvider>(localContext, listen: false).updateVendor(uid,id);
       fh.closeConnection();
     } catch(e) {
       fh.closeConnection();

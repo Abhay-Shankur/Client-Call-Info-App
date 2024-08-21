@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '/admin_pages/components/add_number/add_number_widget.dart';
 import '/admin_pages/components/vendor_item/vendor_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'vendor_list_model.dart';
 export 'vendor_list_model.dart';
@@ -76,11 +77,11 @@ class _VendorListWidgetState extends State<VendorListWidget> {
                   },
                 ).then((value) => setState(() {}));
               },
-              backgroundColor: FlutterFlowTheme.of(context).primary,
+              backgroundColor: AppTheme.of(context).primary,
               elevation: 8,
               child: Icon(
                 Icons.add,
-                color: FlutterFlowTheme.of(context).info,
+                color: AppTheme.of(context).info,
                 size: 24,
               ),
             ),
@@ -102,10 +103,10 @@ class _VendorListWidgetState extends State<VendorListWidget> {
                       width: double.infinity,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: AppTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(40),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: AppTheme.of(context).alternate,
                         ),
                       ),
                       child: Padding(
@@ -117,7 +118,7 @@ class _VendorListWidgetState extends State<VendorListWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                               child: Icon(
                                 Icons.search_rounded,
-                                color: FlutterFlowTheme.of(context).secondaryText,
+                                color: AppTheme.of(context).secondaryText,
                                 size: 24,
                               ),
                             ),
@@ -134,13 +135,13 @@ class _VendorListWidgetState extends State<VendorListWidget> {
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'Search vendors...',
-                                      labelStyle: FlutterFlowTheme.of(context)
+                                      labelStyle: AppTheme.of(context)
                                           .labelMedium
                                           .override(
                                         fontFamily: 'Inter',
                                         letterSpacing: 0,
                                       ),
-                                      hintStyle: FlutterFlowTheme.of(context)
+                                      hintStyle: AppTheme.of(context)
                                           .labelMedium
                                           .override(
                                         fontFamily: 'Inter',
@@ -151,10 +152,10 @@ class _VendorListWidgetState extends State<VendorListWidget> {
                                       errorBorder: InputBorder.none,
                                       focusedErrorBorder: InputBorder.none,
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
+                                      fillColor: AppTheme.of(context)
                                           .secondaryBackground,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme.of(context)
                                         .bodyMedium
                                         .override(
                                       fontFamily: 'Inter',
@@ -170,15 +171,15 @@ class _VendorListWidgetState extends State<VendorListWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 9),
                               child: FlutterFlowIconButton(
                                 borderColor:
-                                FlutterFlowTheme.of(context).alternate,
+                                AppTheme.of(context).alternate,
                                 borderRadius: 20,
                                 borderWidth: 1,
                                 buttonSize: 40,
-                                fillColor: FlutterFlowTheme.of(context)
+                                fillColor: AppTheme.of(context)
                                     .secondaryBackground,
                                 icon: Icon(
                                   Icons.tune_rounded,
-                                  color: FlutterFlowTheme.of(context).primaryText,
+                                  color: AppTheme.of(context).primaryText,
                                   size: 24,
                                 ),
                                 onPressed: () {
@@ -210,7 +211,7 @@ class _VendorListWidgetState extends State<VendorListWidget> {
                                       0, 15, 0, 10),
                                   child: Text(
                                     'Our list is below',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: AppTheme.of(context)
                                         .labelMedium
                                         .override(
                                       fontFamily: 'Plus Jakarta Sans',

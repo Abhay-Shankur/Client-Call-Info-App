@@ -4,6 +4,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'edit_subscription_model.dart';
 export 'edit_subscription_model.dart';
@@ -43,7 +44,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects : [
+        effectsBuilder: () => [
           VisibilityEffect(duration: 300.ms),
           MoveEffect(
             curve: Curves.bounceOut,
@@ -89,7 +90,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).accent4,
+            color: AppTheme.of(context).accent4,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -103,7 +104,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                     maxWidth: 670,
                   ),
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: AppTheme.of(context).secondaryBackground,
                     boxShadow: const [
                       BoxShadow(
                         blurRadius: 12,
@@ -125,7 +126,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                         child: Text(
                           'Edit Subscription',
                           style:
-                          FlutterFlowTheme.of(context).headlineMedium.override(
+                          AppTheme.of(context).headlineMedium.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -135,7 +136,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                         padding: const EdgeInsetsDirectional.fromSTEB(24, 4, 0, 0),
                         child: Text(
                           'Below are your profile details',
-                          style: FlutterFlowTheme.of(context).labelMedium.override(
+                          style: AppTheme.of(context).labelMedium.override(
                             fontFamily: 'Inter',
                             letterSpacing: 0,
                           ),
@@ -154,52 +155,52 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Subscription Type',
-                                labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                labelStyle: AppTheme.of(context).labelMedium.override(
                                   fontFamily: 'Inter',
                                   letterSpacing: 0,
                                 ),
-                                hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                hintStyle: AppTheme.of(context).labelMedium.override(
                                   fontFamily: 'Inter',
                                   letterSpacing: 0,
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).alternate,
+                                    color: AppTheme.of(context).alternate,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: AppTheme.of(context).primary,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
+                                    color: AppTheme.of(context).error,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
+                                    color: AppTheme.of(context).error,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 filled: true,
-                                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                fillColor: AppTheme.of(context).secondaryBackground,
                                 contentPadding: const EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                               ),
-                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              style: AppTheme.of(context).bodyMedium.override(
                                 fontFamily: 'Inter',
                                 letterSpacing: 0,
                               ),
                               maxLines: null,
-                              cursorColor: FlutterFlowTheme.of(context).primary,
+                              cursorColor: AppTheme.of(context).primary,
                               validator:
                               _model.subscriptionTypeTextControllerValidator.asValidator(context),
                             ),
@@ -234,11 +235,11 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                   maxWidth: 570,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme.of(context)
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: FlutterFlowTheme.of(context).alternate,
+                                    color: AppTheme.of(context).alternate,
                                     width: 2,
                                   ),
                                 ),
@@ -263,7 +264,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                             children: [
                                               Text(
                                                 'Start Date ',
-                                                style: FlutterFlowTheme.of(context)
+                                                style: AppTheme.of(context)
                                                     .bodyLarge
                                                     .override(
                                                   fontFamily: 'Inter',
@@ -281,7 +282,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                                     'Start Date',
                                                   ),
                                                   style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme.of(context)
                                                       .labelMedium
                                                       .override(
                                                     fontFamily: 'Inter',
@@ -330,11 +331,11 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                   maxWidth: 570,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme.of(context)
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: FlutterFlowTheme.of(context).alternate,
+                                    color: AppTheme.of(context).alternate,
                                     width: 2,
                                   ),
                                 ),
@@ -359,7 +360,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                             children: [
                                               Text(
                                                 'End Date',
-                                                style: FlutterFlowTheme.of(context)
+                                                style: AppTheme.of(context)
                                                     .bodyLarge
                                                     .override(
                                                   fontFamily: 'Inter',
@@ -377,7 +378,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                                     'End Date',
                                                   ),
                                                   style:
-                                                  FlutterFlowTheme.of(context)
+                                                  AppTheme.of(context)
                                                       .labelMedium
                                                       .override(
                                                     fontFamily: 'Inter',
@@ -413,7 +414,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                         child: SelectionArea(
                                             child: Text(
                                               'Created On:',
-                                              style: FlutterFlowTheme.of(context)
+                                              style: AppTheme.of(context)
                                                   .labelMedium
                                                   .override(
                                                 fontFamily: 'Inter',
@@ -427,7 +428,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                         child: SelectionArea(
                                             child: Text(
                                               details["Subscription"]?["created"] ?? 'Inactive',
-                                              style: FlutterFlowTheme.of(context)
+                                              style: AppTheme.of(context)
                                                   .bodyLarge
                                                   .override(
                                                 fontFamily: 'Inter',
@@ -450,7 +451,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                         child: SelectionArea(
                                             child: Text(
                                               'Last Active:',
-                                              style: FlutterFlowTheme.of(context)
+                                              style: AppTheme.of(context)
                                                   .labelMedium
                                                   .override(
                                                 fontFamily: 'Inter',
@@ -464,7 +465,7 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                         child: SelectionArea(
                                             child: Text(
                                               details["Subscription"]?["type"] ?? 'Inactive',
-                                              style: FlutterFlowTheme.of(context)
+                                              style: AppTheme.of(context)
                                                   .bodyLarge
                                                   .override(
                                                 fontFamily: 'Inter',
@@ -499,9 +500,9 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                   const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                                   iconPadding:
                                   const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                  color: FlutterFlowTheme.of(context)
+                                  color: AppTheme.of(context)
                                       .secondaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
+                                  textStyle: AppTheme.of(context)
                                       .bodyMedium
                                       .override(
                                     fontFamily: 'Inter',
@@ -509,18 +510,18 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                   ),
                                   elevation: 0,
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).alternate,
+                                    color: AppTheme.of(context).alternate,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(12),
                                   hoverColor:
-                                  FlutterFlowTheme.of(context).alternate,
+                                  AppTheme.of(context).alternate,
                                   hoverBorderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).alternate,
+                                    color: AppTheme.of(context).alternate,
                                     width: 2,
                                   ),
                                   hoverTextColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  AppTheme.of(context).primaryText,
                                   hoverElevation: 3,
                                 ),
                               ),
@@ -539,8 +540,8 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                   const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                                   iconPadding:
                                   const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
+                                  color: AppTheme.of(context).primary,
+                                  textStyle: AppTheme.of(context)
                                       .titleSmall
                                       .override(
                                     fontFamily: 'Inter',
@@ -552,13 +553,13 @@ class _EditSubscriptionWidgetState extends State<EditSubscriptionWidget>
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(12),
-                                  hoverColor: FlutterFlowTheme.of(context).accent1,
+                                  hoverColor: AppTheme.of(context).accent1,
                                   hoverBorderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: AppTheme.of(context).primary,
                                     width: 1,
                                   ),
                                   hoverTextColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                                  AppTheme.of(context).primaryText,
                                   hoverElevation: 0,
                                 ),
                               ),

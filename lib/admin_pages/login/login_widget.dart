@@ -3,6 +3,7 @@ import 'package:app/main.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'login_model.dart';
 export 'login_model.dart';
@@ -40,7 +41,7 @@ class _LoginWidgetState extends State<LoginWidget>
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects:  [
+        effectsBuilder: () =>  [
           VisibilityEffect(duration: 1.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -60,7 +61,7 @@ class _LoginWidgetState extends State<LoginWidget>
       ),
       'textOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects:  [
+        effectsBuilder: () =>  [
           VisibilityEffect(duration: 100.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -80,7 +81,7 @@ class _LoginWidgetState extends State<LoginWidget>
       ),
       'textOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects:  [
+        effectsBuilder: () =>  [
           VisibilityEffect(duration: 150.ms),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -100,7 +101,7 @@ class _LoginWidgetState extends State<LoginWidget>
       ),
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
-        effects:  [
+        effectsBuilder: () =>  [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 200.0.ms,
@@ -144,7 +145,7 @@ class _LoginWidgetState extends State<LoginWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: AppTheme.of(context).secondaryBackground,
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -155,9 +156,9 @@ class _LoginWidgetState extends State<LoginWidget>
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      FlutterFlowTheme.of(context).primary,
-                      FlutterFlowTheme.of(context).error,
-                      FlutterFlowTheme.of(context).tertiary
+                      AppTheme.of(context).primary,
+                      AppTheme.of(context).error,
+                      AppTheme.of(context).tertiary
                     ],
                     stops: const [0, 0.5, 1],
                     begin: const AlignmentDirectional(-1, -1),
@@ -171,7 +172,7 @@ class _LoginWidgetState extends State<LoginWidget>
                     gradient: LinearGradient(
                       colors: [
                         const Color(0x00FFFFFF),
-                        FlutterFlowTheme.of(context).secondaryBackground
+                        AppTheme.of(context).secondaryBackground
                       ],
                       stops: const [0, 1],
                       begin: const AlignmentDirectional(0, -1),
@@ -186,7 +187,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).accent4,
+                          color: AppTheme.of(context).accent4,
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Padding(
@@ -208,7 +209,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         child: Text(
                           'Sign In',
                           style:
-                          FlutterFlowTheme.of(context).headlineSmall.override(
+                          AppTheme.of(context).headlineSmall.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -220,7 +221,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         child: Text(
                           'Use the account below to sign in.',
                           style:
-                          FlutterFlowTheme.of(context).labelMedium.override(
+                          AppTheme.of(context).labelMedium.override(
                             fontFamily: 'Inter',
                             letterSpacing: 0,
                           ),
@@ -252,7 +253,7 @@ class _LoginWidgetState extends State<LoginWidget>
                             decoration: InputDecoration(
                               prefixText: '+91',
                               labelText: 'Phone Number',
-                              labelStyle: FlutterFlowTheme.of(context)
+                              labelStyle: AppTheme.of(context)
                                   .labelMedium
                                   .override(
                                 fontFamily: 'Inter',
@@ -260,39 +261,39 @@ class _LoginWidgetState extends State<LoginWidget>
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: AppTheme.of(context).alternate,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: AppTheme.of(context).primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: AppTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: AppTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
+                              fillColor: AppTheme.of(context)
                                   .secondaryBackground,
                               contentPadding: const EdgeInsets.all(24),
                             ),
                             style:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
+                            AppTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
                               letterSpacing: 0,
                             ),
@@ -314,7 +315,7 @@ class _LoginWidgetState extends State<LoginWidget>
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'OTP',
-                              labelStyle: FlutterFlowTheme.of(context)
+                              labelStyle: AppTheme.of(context)
                                   .labelMedium
                                   .override(
                                 fontFamily: 'Inter',
@@ -322,39 +323,39 @@ class _LoginWidgetState extends State<LoginWidget>
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: AppTheme.of(context).alternate,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: AppTheme.of(context).primary,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: AppTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
+                                  color: AppTheme.of(context).error,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
+                              fillColor: AppTheme.of(context)
                                   .secondaryBackground,
                               contentPadding: const EdgeInsets.all(24),
                             ),
                             style:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
+                            AppTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
                               letterSpacing: 0,
                             ),
@@ -384,14 +385,14 @@ class _LoginWidgetState extends State<LoginWidget>
                                 );
                                 return;
                               } else {
-                                // _model.sendOtp();
+                                await _model.checkAdmin(phoneNumberVal) ?
                                 await FirebaseAuthHandler(context: context)
                                     .beginPhoneAuth(phoneNumberVal, () {
-                                  setState(() {
-                                    otpSent = true;
-                                  });
-                                }
-                                );
+                                      setState(() {
+                                        otpSent = true;
+                                      });
+                                    }
+                                ) : showSnackbar(context, "Not an Admin!",);
                               }
                               // await authManager.beginPhoneAuth(
                               //   context: context,
@@ -412,9 +413,9 @@ class _LoginWidgetState extends State<LoginWidget>
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              color: FlutterFlowTheme.of(context)
+                              color: AppTheme.of(context)
                                   .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
+                              textStyle: AppTheme.of(context)
                                   .bodyMedium
                                   .override(
                                 fontFamily: 'Inter',
@@ -422,13 +423,13 @@ class _LoginWidgetState extends State<LoginWidget>
                               ),
                               elevation: 0,
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).secondaryText,
+                                color: AppTheme.of(context).secondaryText,
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(12),
-                              disabledColor: FlutterFlowTheme.of(context).accent4,
+                              disabledColor: AppTheme.of(context).accent4,
                               disabledTextColor:
-                              FlutterFlowTheme.of(context).secondaryText,
+                              AppTheme.of(context).secondaryText,
                             ),
                           ),
                         ),
@@ -479,8 +480,8 @@ class _LoginWidgetState extends State<LoginWidget>
                               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
+                              color: AppTheme.of(context).primary,
+                              textStyle: AppTheme.of(context)
                                   .titleSmall
                                   .override(
                                 fontFamily: 'Inter',
@@ -493,9 +494,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                 width: 1,
                               ),
                               borderRadius: BorderRadius.circular(12),
-                              disabledColor: FlutterFlowTheme.of(context).accent4,
+                              disabledColor: AppTheme.of(context).accent4,
                               disabledTextColor:
-                              FlutterFlowTheme.of(context).secondaryText,
+                              AppTheme.of(context).secondaryText,
                             ),
                           ),
                         ),

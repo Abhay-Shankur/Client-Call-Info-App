@@ -5,6 +5,7 @@ import '/admin_pages/components/add_number/add_number_widget.dart';
 import '/admin_pages/components/vendor_item/vendor_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:app/theme/my_theme.dart';
 
 import 'home_page_model.dart';
 export 'home_page_model.dart';
@@ -44,7 +45,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: AppTheme.of(context).primaryBackground,
         floatingActionButton: Builder(
           builder: (context) => FloatingActionButton(
             onPressed: () async {
@@ -72,23 +73,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 },
               ).then((value) => setState(() {}));
             },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
+            backgroundColor: AppTheme.of(context).primary,
             elevation: 8,
             child: Icon(
               Icons.add,
-              color: FlutterFlowTheme.of(context).info,
+              color: AppTheme.of(context).info,
               size: 24,
             ),
           ),
         ),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: AppTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
             'Home',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: AppTheme.of(context).headlineMedium.override(
               fontFamily: 'Readex Pro',
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: AppTheme.of(context).primaryText,
               fontSize: 22,
               letterSpacing: 0,
             ),
@@ -140,140 +141,232 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           centerTitle: false,
           elevation: 0,
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 10),
-                          child: Text(
-                            'Our list is below',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                              fontFamily: 'Plus Jakarta Sans',
-                              color: const Color(0xFF57636C),
-                              fontSize: 14,
-                              letterSpacing: 0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 3,
-                      color: Color(0x411D2429),
-                      offset: Offset(
-                        0.0,
-                        1,
-                      ),
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Consumer<VendorsListProvider>(
-                    builder: (context, model, child) {
-                      Map<String, dynamic> listItems = model.vendors;
-                      final listIds = listItems.keys.toList();
-                      // final listIds = snapshot.data!;
-                      if(listItems.isEmpty) {
-                        return Container();
-                      } else {
-                        return SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(listIds.length, (listIdsIndex) {
-                              // final keyindex =listIds[listIdsIndex];
-                              final listItemsItem = listItems[listIds[listIdsIndex]];
-
-                              if(listItemsItem != null ) {
-                                return VendorItemWidget(
-                                  key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
-                                  id: listIds[listIdsIndex],
-                                  value: listItemsItem,
-                                );
-                              } else {
-                                return Container();
-                              }
-                            })
-                                .divide(const SizedBox(height: 5))
-                                .around(const SizedBox(height: 5)),
-                          ),
-                        );
-                      }
-                    }
-                ),
-                // child: FutureBuilder(
-                //     future: _model.getVendors(),
-                //     builder: (context, snapshot) {
-                //       // Check the state of the Future
-                //       if (snapshot.connectionState == ConnectionState.waiting) {
-                //         // While the data is loading, show a loading indicator
-                //         return const Center(child: CircularProgressIndicator());
-                //       } else if (snapshot.hasError) {
-                //         // If there's an error, display it
-                //         return Center(child: Text('Error: ${snapshot.error}'));
-                //       } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                //         // If no data is returned, display a message
-                //         return const Center(child: Text('No data available'));
-                //       } else {
-                //         // return Container();
-                //         // If the data is available, display the list
-                //         return Consumer<VendorsListProvider>(
-                //             builder: (context, model, child) {
-                //               Map<String, dynamic> listItems = model.vendors;
-                //               final listIds = snapshot.data!;
-                //               if(listItems.isEmpty) {
-                //                 return Container();
-                //               } else {
-                //                 return SingleChildScrollView(
-                //                   child: Column(
-                //                     mainAxisSize: MainAxisSize.max,
-                //                     children: List.generate(listIds.length, (listIdsIndex) {
-                //                       final listItemsItem = listItems[listIds[listIdsIndex]];
-                //                       if(listItemsItem != null ) {
-                //                         return VendorItemWidget(
-                //                           key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
-                //                           id: listIds[listIdsIndex],
-                //                           value: listItemsItem,
-                //                         );
-                //                       } else {
-                //                         return Container();
-                //                       }
-                //                     })
-                //                         .divide(const SizedBox(height: 5))
-                //                         .around(const SizedBox(height: 5)),
-                //                   ),
-                //                 );
-                //               }
-                //             }
-                //         );
-                //       }
-                //     }
-                // ),
-              ),
-            ),
-          ],
+        // body: Column(
+        //   mainAxisSize: MainAxisSize.max,
+        //   children: [
+        //     Padding(
+        //       padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+        //       child: Row(
+        //         mainAxisSize: MainAxisSize.max,
+        //         children: [
+        //           Padding(
+        //             padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 10),
+        //             child: Text(
+        //               'Our list is below',
+        //               style: AppTheme.of(context)
+        //                   .labelMedium
+        //                   .override(
+        //                 fontFamily: 'Plus Jakarta Sans',
+        //                 color: const Color(0xFF57636C),
+        //                 fontSize: 14,
+        //                 letterSpacing: 0,
+        //                 fontWeight: FontWeight.w500,
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //     Expanded(
+        //         child:
+        //     ),
+        //   ],
+        // ),
+        body: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+          child: Consumer<VendorsListProvider>(
+              builder: (context, model, child) {
+                var listItems = model.vendors;
+                final listIds = listItems.keys.toList();
+                // final listIds = snapshot.data!;
+                if(listItems.isEmpty) {
+                  return const Center(
+                    child: Text("No Vendor Profile Found!"),
+                  );
+                } else {
+                  // return Column(
+                  //   mainAxisSize: MainAxisSize.max,
+                  //   children: List.generate(listIds.length, (listIdsIndex) {
+                  //     final keyIndex = listIds[listIdsIndex];
+                  //     // debugPrint("key : ${keyIndex}");
+                  //     final listItemsItem = listItems[listIds[listIdsIndex]];
+                  //     // debugPrint("item : ${listItemsItem.toString()}");
+                  //
+                  //     if(listItemsItem != null ) {
+                  //       return VendorItemWidget(
+                  //         key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
+                  //         id: keyIndex,
+                  //         value: listItemsItem,
+                  //       );
+                  //     } else {
+                  //       return Container();
+                  //     }
+                  //   })
+                  //       .divide(const SizedBox(height: 5))
+                  //       .around(const SizedBox(height: 5)),
+                  // );
+                  // return SingleChildScrollView(
+                  //   child: ,
+                  // );
+                  // return SingleChildScrollView(
+                  //     child: RefreshIndicator(
+                  //       onRefresh: () async  => await model.initialize(),
+                  //       child: Column(
+                  //         // mainAxisSize: MainAxisSize.max,
+                  //         children: List.generate(listIds.length, (listIdsIndex) {
+                  //           final keyIndex = listIds[listIdsIndex];
+                  //           // debugPrint("key : $keyIndex");
+                  //           final listItemsItem = listItems[listIds[listIdsIndex]];
+                  //           // debugPrint("item : ${listItemsItem.toString()}");
+                  //           return VendorItemWidget(
+                  //             key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
+                  //             id: keyIndex,
+                  //             value: listItemsItem,
+                  //           );
+                  //           // if(listItemsItem != null ) {
+                  //           //   return VendorItemWidget(
+                  //           //     key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
+                  //           //     id: keyIndex,
+                  //           //     value: listItemsItem,
+                  //           //   );
+                  //           // } else {
+                  //           //   return Container();
+                  //           // }
+                  //         })
+                  //             .divide(const SizedBox(height: 5))
+                  //             .around(const SizedBox(height: 5)),
+                  //       ),
+                  //     )
+                  // );
+                  return RefreshIndicator(
+                      onRefresh: () async => await model.initialize(),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listIds.length,
+                        itemBuilder: (context, listItemIndex) {
+                          final keyIndex = listIds[listItemIndex];
+                          // debugPrint("key : $keyIndex");
+                          final listItemsItem = listItems[listIds[listItemIndex]];
+                          // debugPrint("item : ${listItemsItem.toString()}");
+                          return VendorItemWidget(
+                            key: Key('Keygal_${listItemIndex}_of_${listIds.length}'),
+                            id: keyIndex,
+                            value: listItemsItem,
+                          );
+                        }
+                      )
+                  );
+                }
+              }
+          ),
+          // child: Container(
+          //   width: double.infinity,
+          //   decoration: BoxDecoration(
+          //     color: Colors.white,
+          //     boxShadow: const [
+          //       BoxShadow(
+          //         blurRadius: 3,
+          //         color: Color(0x411D2429),
+          //         offset: Offset(
+          //           0.0,
+          //           1,
+          //         ),
+          //       )
+          //     ],
+          //     borderRadius: BorderRadius.circular(8),
+          //   ),
+          //   child: Consumer<VendorsListProvider>(
+          //       builder: (context, model, child) {
+          //         Map<String, dynamic> listItems = model.vendors;
+          //         final listIds = listItems.keys.toList();
+          //         // final listIds = snapshot.data!;
+          //         if(listItems.isEmpty) {
+          //           return const Center(
+          //             child: Text("No Vendor Profile Found!"),
+          //           );
+          //         } else {
+          //           // return SingleChildScrollView(
+          //           //   child: ,
+          //           // );
+          //           return RefreshIndicator(
+          //               onRefresh: () async => await model.initialize(),
+          //               child: SingleChildScrollView(
+          //                 child: Column(
+          //                   mainAxisSize: MainAxisSize.max,
+          //                   children: List.generate(listIds.length, (listIdsIndex) {
+          //                     final keyIndex = listIds[listIdsIndex];
+          //                     // debugPrint("key : ${keyIndex}");
+          //                     final listItemsItem = listItems[listIds[listIdsIndex]];
+          //                     // debugPrint("item : ${listItemsItem.toString()}");
+          //
+          //                     if(listItemsItem != null ) {
+          //                       return VendorItemWidget(
+          //                         key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
+          //                         id: keyIndex,
+          //                         value: listItemsItem,
+          //                       );
+          //                     } else {
+          //                       return Container();
+          //                     }
+          //                   })
+          //                       .divide(const SizedBox(height: 5))
+          //                       .around(const SizedBox(height: 5)),
+          //                 ),
+          //               )
+          //           );
+          //         }
+          //       }
+          //   ),
+          //   // child: FutureBuilder(
+          //   //     future: _model.getVendors(),
+          //   //     builder: (context, snapshot) {
+          //   //       // Check the state of the Future
+          //   //       if (snapshot.connectionState == ConnectionState.waiting) {
+          //   //         // While the data is loading, show a loading indicator
+          //   //         return const Center(child: CircularProgressIndicator());
+          //   //       } else if (snapshot.hasError) {
+          //   //         // If there's an error, display it
+          //   //         return Center(child: Text('Error: ${snapshot.error}'));
+          //   //       } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          //   //         // If no data is returned, display a message
+          //   //         return const Center(child: Text('No data available'));
+          //   //       } else {
+          //   //         // return Container();
+          //   //         // If the data is available, display the list
+          //   //         return Consumer<VendorsListProvider>(
+          //   //             builder: (context, model, child) {
+          //   //               Map<String, dynamic> listItems = model.vendors;
+          //   //               final listIds = snapshot.data!;
+          //   //               if(listItems.isEmpty) {
+          //   //                 return Container();
+          //   //               } else {
+          //   //                 return SingleChildScrollView(
+          //   //                   child: Column(
+          //   //                     mainAxisSize: MainAxisSize.max,
+          //   //                     children: List.generate(listIds.length, (listIdsIndex) {
+          //   //                       final listItemsItem = listItems[listIds[listIdsIndex]];
+          //   //                       if(listItemsItem != null ) {
+          //   //                         return VendorItemWidget(
+          //   //                           key: Key('Keygal_${listIdsIndex}_of_${listIds.length}'),
+          //   //                           id: listIds[listIdsIndex],
+          //   //                           value: listItemsItem,
+          //   //                         );
+          //   //                       } else {
+          //   //                         return Container();
+          //   //                       }
+          //   //                     })
+          //   //                         .divide(const SizedBox(height: 5))
+          //   //                         .around(const SizedBox(height: 5)),
+          //   //                   ),
+          //   //                 );
+          //   //               }
+          //   //             }
+          //   //         );
+          //   //       }
+          //   //     }
+          //   // ),
+          // ),
         ),
       ),
     );

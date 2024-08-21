@@ -25,12 +25,12 @@ class FirestoreHandler {
       await _firestore.collection(collection).doc(document).get();
 
       if (documentSnapshot.exists) {
-        debugPrint('User data: ${documentSnapshot.data()}');
+        // debugPrint('User data: ${documentSnapshot.data()}');
         Map<String, dynamic> rs = documentSnapshot.data() as Map<String, dynamic>;
         // return rs['Message'] as Map<String, dynamic>;
         return rs;
       } else {
-        debugPrint('User not found');
+        debugPrint('Docs not found');
       }
     } catch (e) {
       debugPrint('Error reading data: $e');

@@ -1,4 +1,5 @@
 
+import 'package:app/firebaseHandlers/firebase_auth.dart';
 import 'package:app/firebaseHandlers/firebase_firestore.dart';
 import 'package:app/firebaseHandlers/firebase_storage.dart';
 import 'package:app/providers/vendors/vendors_provider.dart';
@@ -28,12 +29,13 @@ class VendorDetailsModel extends FlutterFlowModel<VendorDetailsWidget> {
     // await Future.delayed(const Duration(seconds: 5));
     FirestoreHandler fh = FirestoreHandler();
     try {
-      String? domain = await fh.readFieldAtPath("USERS", id, "webDomain");
+      String uid = await Provider.of<VendorsListProvider>(localContext, listen: false).users[id];
+      String? domain = await fh.readFieldAtPath("USERS", uid, "webDomain");
       if(domain != null && domain.isNotEmpty) {
         await FirebaseStorageService.deleteFolder(domain);
         await fh.deleteFirestoreData("Website", domain);
-        await fh.removeField("USERS", id, "webDomain");
-        await Provider.of<VendorsListProvider>(localContext, listen: false).updateVendor(id);
+        await fh.removeField("USERS", uid, "webDomain");
+        await Provider.of<VendorsListProvider>(localContext, listen: false).updateVendor(uid,id);
       }
       fh.closeConnection();
     } catch(e) {
@@ -46,12 +48,23 @@ class VendorDetailsModel extends FlutterFlowModel<VendorDetailsWidget> {
     // await Future.delayed(const Duration(seconds: 5));
     FirestoreHandler fh = FirestoreHandler();
     try {
-      await FirebaseStorageService.deleteFolder("Users/$id");
-      await fh.deleteFirestoreData("USERS", id);
+      // String uid = FirebaseAuthHandler.getUid()!;
+      String uid = await Provider.of<VendorsListProvider>(localContext, listen: false).users[id];
+      await fh.deleteFirestoreData("USERS", uid);
+      await FirebaseStorageService.deleteFolder("Users/$uid");
+
+      // var users = await fh.readFirestoreData("ADMIN", "USERS");
       final vendor = await Provider.of<VendorsListProvider>(localContext, listen: false).getVendor(id);
-      final phone = vendor["Profile"]["vendorContact"].toString();
-      await fh.removeField("ADMIN", "USERS", phone);
-      await Provider.of<VendorsListProvider>(localContext, listen: false).deleteVendor(id);
+      var domain = vendor['webDomain'];
+      if(domain != null) {
+        await FirebaseStorageService.deleteFolder("$domain");
+        await fh.deleteFirestoreData("Website", domain);
+      }
+      await fh.removeField("ADMIN", "USERS", uid);
+
+      // final phone = vendor["Profile"]["vendorContact"].toString();
+      // await fh.removeField("ADMIN", "USERS", phone);
+      // await Provider.of<VendorsListProvider>(localContext, listen: false).deleteVendor(id);
       fh.closeConnection();
       return true;
     } catch(e) {
